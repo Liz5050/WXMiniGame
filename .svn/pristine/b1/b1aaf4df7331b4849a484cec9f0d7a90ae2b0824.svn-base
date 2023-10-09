@@ -1,1540 +1,0 @@
-2023-9-8 13:00:59-debug: asset-db:worker-init (2814ms)
-2023-9-8 13:00:59-debug: Preimport db internal success
-2023-9-8 13:01:00-debug: Preimport db assets success
-2023-9-8 13:01:01-debug: asset-db:worker-effect-data-processing (1083ms)
-2023-9-8 13:01:07-debug: Set detail map pack:///resolution-detail-map.json: {}
-2023-9-8 13:01:07-debug: asset-db:worker-init-script (3490ms)
-2023-9-8 13:01:07-debug: Start up the 'internal' database...
-2023-9-8 13:01:08-debug: start asset-db with asset: 419
-2023-9-8 13:01:08-debug: Start up the 'assets' database...
-2023-9-8 13:01:08-debug: start asset-db with asset: 44
-2023-9-8 13:01:08-debug: asset-db:worker-startup-database[internal] (9509ms)
-2023-9-8 13:01:08-debug: asset-db:worker-startup-database[assets] (8479ms)
-2023-9-8 13:01:08-debug: Asset DB is ready!
-2023-9-8 13:01:08-debug: init worker message success
-2023-9-8 13:01:10-debug: builder:worker-init (1576ms)
-2023-9-8 13:01:12-debug: programming:execute-script (3ms)
-2023-9-8 13:01:44-debug: refresh db internal success
-2023-9-8 13:01:44-debug: asset-db:worker-effect-data-processing (148ms)
-2023-9-8 13:01:44-debug: refresh db assets success
-2023-9-8 13:01:44-debug: asset-db:refresh-all-database (195ms)
-2023-9-8 13:01:50-debug: programming:execute-script (4ms)
-2023-9-8 13:01:51-debug: Query all assets info in project
-2023-9-8 13:01:51-debug: BuildAssetLibrary query-assets with assets 478
-2023-9-8 13:01:51-debug: init custom config: keepNodeUuid: false, useCache: true
-2023-9-8 13:01:51-debug:   Number of all scripts: 13
-2023-9-8 13:01:51-debug:   Number of other assets: 321
-2023-9-8 13:01:51-debug: 查询 Asset Bundle start0%
-2023-9-8 13:01:51-debug: // ---- build task 查询 Asset Bundle ----
-2023-9-8 13:01:51-debug: Process: heapTotal 222.91MB heapUsed 194.30MB rss 556.79MB
-2023-9-8 13:01:51-debug:   Number of all scenes: 1
-2023-9-8 13:01:51-debug: // ---- build task 查询 Asset Bundle ---- (5ms)
-2023-9-8 13:01:51-debug: run build task 查询 Asset Bundle success in 5 ms √3%
-2023-9-8 13:01:51-debug: Process: heapTotal 223.16MB heapUsed 189.11MB rss 557.90MB
-2023-9-8 13:01:51-debug: // ---- build task 查询使用的资源以及资源包配置 ----
-2023-9-8 13:01:51-debug: 查询使用的资源以及资源包配置 start3%
-2023-9-8 13:01:51-debug: init bundle assets
-2023-9-8 13:01:51-debug: Query preload assets from cc.config.json: 60f7195c-ec2a-45eb-ba94-8955f60e81d0,1c02ae6f-4492-4915-b8f8-7492a3b1e4cd,810e96e4-e456-4468-9b59-f4e8f39732c0,efe8e2a3-eace-427b-b4f1-cb8a937ec77d,e9aa9a3e-5b2b-4ac7-a2c7-073de2b2b24f,8bbdbcdd-5cd4-4100-b6d5-b7c9625b6107,50f4348b-c883-4e2f-8f11-ce233b859fa1,fda095cb-831d-4601-ad94-846013963de8,f92806d7-1768-443f-afe8-12bcde84d0f0,dd3a144d-ab7f-41f0-82b8-2e43a090d496,f0416e68-0200-4b77-a926-4f9d16e494da,ff9be190-20a4-4e48-b68c-76e3c7cff085,970b0598-bcb0-4714-91fb-2e81440dccd8,bcd64cc6-2dd9-43f6-abbe-66318d332032,d930590d-bb92-4cc8-8bd1-23cd027f9edf,a3cd009f-0ab0-420d-9278-b9fdab939bbc,9361fd90-ba52-4f84-aa93-6e878fd576ca,c27215d8-6835-4b68-bfbb-bdeac6100c04,b5d6115f-0370-4d7c-aad3-c194cc71cf98,871c3b6c-7379-419d-bda3-794b239ab90d
-2023-9-8 13:01:51-debug: Number of scenes: 1
-2023-9-8 13:01:51-debug: // ---- build task 查询使用的资源以及资源包配置 ---- (1ms)
-2023-9-8 13:01:51-debug: run build task 查询使用的资源以及资源包配置 success in 1 ms √7%
-2023-9-8 13:01:51-debug: 整理脚本分组与脚本数据 start7%
-2023-9-8 13:01:51-debug: // ---- build task 整理脚本分组与脚本数据 ----
-2023-9-8 13:01:51-debug: Process: heapTotal 223.16MB heapUsed 189.27MB rss 557.95MB
-2023-9-8 13:01:51-debug: sort script group...
-2023-9-8 13:01:51-debug: run build task 整理脚本分组与脚本数据 success in 0 ms √10%
-2023-9-8 13:01:51-debug: 初始化 settings.json 与 config.json start10%
-2023-9-8 13:01:51-debug: // ---- build task 初始化 settings.json 与 config.json ----
-2023-9-8 13:01:51-debug: Process: heapTotal 223.16MB heapUsed 189.30MB rss 557.95MB
-2023-9-8 13:01:51-debug: // ---- build task 初始化 settings.json 与 config.json ---- (1ms)
-2023-9-8 13:01:51-debug: run build task 初始化 settings.json 与 config.json success in 1 ms √11%
-2023-9-8 13:01:51-debug: builder.tasks.settings.macro start11%
-2023-9-8 13:01:51-debug: builder.tasks.settings.macro 字段未在编辑器多语言内定义
-2023-9-8 13:01:51-debug: // ---- build task builder.tasks.settings.macro ----
-2023-9-8 13:01:51-debug: Process: heapTotal 223.16MB heapUsed 189.34MB rss 557.96MB
-2023-9-8 13:01:51-debug: // ---- build task builder.tasks.settings.macro ---- (1ms)
-2023-9-8 13:01:51-debug: run build task builder.tasks.settings.macro success in 1 ms √11%
-2023-9-8 13:01:51-debug: 整理部分构建选项内数据到 settings.json start11%
-2023-9-8 13:01:51-debug: // ---- build task 整理部分构建选项内数据到 settings.json ----
-2023-9-8 13:01:51-debug: Process: heapTotal 223.16MB heapUsed 189.38MB rss 557.97MB
-2023-9-8 13:01:51-debug: // ---- build task 整理部分构建选项内数据到 settings.json ---- (37ms)
-2023-9-8 13:01:51-debug: run build task 整理部分构建选项内数据到 settings.json success in 37 ms √12%
-2023-9-8 13:01:51-debug: Process: heapTotal 223.16MB heapUsed 189.45MB rss 558.01MB
-2023-9-8 13:01:51-debug: custom joint texture layouts start12%
-2023-9-8 13:01:51-debug: // ---- build task custom joint texture layouts ----
-2023-9-8 13:01:51-debug: run build task custom joint texture layouts success in 0 ms √12%
-2023-9-8 13:01:51-debug: custom joint physics start12%
-2023-9-8 13:01:51-debug: // ---- build task custom joint physics ----
-2023-9-8 13:01:51-debug: Process: heapTotal 223.16MB heapUsed 189.48MB rss 558.01MB
-2023-9-8 13:01:51-debug: run build task custom joint physics success in 0 ms √13%
-2023-9-8 13:01:51-debug: // ---- build task 填充脚本数据到 settings.json ----
-2023-9-8 13:01:51-debug: 填充脚本数据到 settings.json start13%
-2023-9-8 13:01:51-debug: Process: heapTotal 223.16MB heapUsed 189.50MB rss 558.02MB
-2023-9-8 13:01:51-debug: run build task 填充脚本数据到 settings.json success in 0 ms √13%
-2023-9-8 13:01:51-debug: 填充场景数据到 settings.json start13%
-2023-9-8 13:01:51-debug: Process: heapTotal 223.16MB heapUsed 189.53MB rss 558.01MB
-2023-9-8 13:01:51-debug: // ---- build task 填充场景数据到 settings.json ----
-2023-9-8 13:01:51-debug: run build task 填充场景数据到 settings.json success in 0 ms √14%
-2023-9-8 13:01:51-debug: // ---- build task 整理资源分组，生成 packedAssets 以及 rawAssets 数据 ----
-2023-9-8 13:01:51-debug: 整理资源分组，生成 packedAssets 以及 rawAssets 数据 start14%
-2023-9-8 13:01:51-debug: Process: heapTotal 223.16MB heapUsed 189.55MB rss 558.02MB
-2023-9-8 13:01:51-debug: // ---- build task 整理资源分组，生成 packedAssets 以及 rawAssets 数据 ---- (1ms)
-2023-9-8 13:01:51-debug: run build task 整理资源分组，生成 packedAssets 以及 rawAssets 数据 success in 1 ms √14%
-2023-9-8 13:01:51-debug: 从 suffixMap 生成 md5AssetsMap 到 settings.json start14%
-2023-9-8 13:01:51-debug: // ---- build task 从 suffixMap 生成 md5AssetsMap 到 settings.json ----
-2023-9-8 13:01:51-debug: Process: heapTotal 223.16MB heapUsed 189.60MB rss 558.02MB
-2023-9-8 13:01:51-debug: options.md5Cache is false.
-2023-9-8 13:01:51-debug: // ---- build task 从 suffixMap 生成 md5AssetsMap 到 settings.json ---- (1ms)
-2023-9-8 13:01:51-debug: run build task 从 suffixMap 生成 md5AssetsMap 到 settings.json success in 1 ms √15%
-2023-9-8 13:03:04-debug: start refresh asset from G:\Work\cocoscreator\MiniGame\assets\scenes\scene.scene...
-2023-9-8 13:03:04-debug: %cImport%c: G:\Work\cocoscreator\MiniGame\assets\scenes\scene.scenebackground: #aaff85; color: #000;color: #000;
-2023-9-8 13:03:04-debug: refresh asset G:\Work\cocoscreator\MiniGame\assets\scenes success
-2023-9-8 13:03:41-debug: refresh db internal success
-2023-9-8 13:03:41-debug: asset-db:worker-effect-data-processing (144ms)
-2023-9-8 13:03:41-debug: refresh db assets success
-2023-9-8 13:03:41-debug: asset-db:refresh-all-database (185ms)
-2023-9-8 13:05:07-debug: refresh db internal success
-2023-9-8 13:05:07-debug: asset-db:worker-effect-data-processing (146ms)
-2023-9-8 13:05:07-debug: refresh db assets success
-2023-9-8 13:05:07-debug: asset-db:refresh-all-database (192ms)
-2023-9-8 13:05:10-debug: refresh db internal success
-2023-9-8 13:05:10-debug: asset-db:worker-effect-data-processing (106ms)
-2023-9-8 13:05:10-debug: refresh db assets success
-2023-9-8 13:05:10-debug: asset-db:refresh-all-database (151ms)
-2023-9-8 13:05:27-debug: start refresh asset from G:\Work\cocoscreator\MiniGame\assets\script\game\MainMenu.ts...
-2023-9-8 13:05:27-debug: %cImport%c: G:\Work\cocoscreator\MiniGame\assets\script\game\MainMenu.tsbackground: #aaff85; color: #000;color: #000;
-2023-9-8 13:05:27-debug: refresh asset G:\Work\cocoscreator\MiniGame\assets\script\game success
-2023-9-8 13:05:27-debug: %cImport%c: G:\Work\cocoscreator\MiniGame\assets\script\gamebackground: #aaff85; color: #000;color: #000;
-2023-9-8 13:08:56-debug: refresh db internal success
-2023-9-8 13:08:56-debug: asset-db:worker-effect-data-processing (154ms)
-2023-9-8 13:08:56-debug: %cImport%c: G:\Work\cocoscreator\MiniGame\assets\script\game\MainMenu.tsbackground: #aaff85; color: #000;color: #000;
-2023-9-8 13:08:56-debug: refresh db assets success
-2023-9-8 13:08:56-debug: asset-db:refresh-all-database (205ms)
-2023-9-8 13:09:00-debug: refresh db internal success
-2023-9-8 13:09:00-debug: asset-db:worker-effect-data-processing (109ms)
-2023-9-8 13:09:00-debug: refresh db assets success
-2023-9-8 13:09:00-debug: asset-db:refresh-all-database (150ms)
-2023-9-8 13:09:23-debug: refresh db internal success
-2023-9-8 13:09:23-debug: asset-db:worker-effect-data-processing (304ms)
-2023-9-8 13:09:23-debug: refresh db assets success
-2023-9-8 13:09:23-debug: asset-db:refresh-all-database (405ms)
-2023-9-8 13:11:17-debug: refresh db internal success
-2023-9-8 13:11:17-debug: %cImport%c: G:\Work\cocoscreator\MiniGame\assets\script\enum\GameState.tsbackground: #aaff85; color: #000;color: #000;
-2023-9-8 13:11:17-debug: asset-db:worker-effect-data-processing (147ms)
-2023-9-8 13:11:17-debug: %cImport%c: G:\Work\cocoscreator\MiniGame\assets\script\enumbackground: #aaff85; color: #000;color: #000;
-2023-9-8 13:11:17-debug: %cImport%c: G:\Work\cocoscreator\MiniGame\assets\script\game\MainMenu.tsbackground: #aaff85; color: #000;color: #000;
-2023-9-8 13:11:17-debug: refresh db assets success
-2023-9-8 13:11:17-debug: asset-db:refresh-all-database (195ms)
-2023-9-8 13:12:35-debug: refresh db internal success
-2023-9-8 13:12:36-debug: asset-db:worker-effect-data-processing (146ms)
-2023-9-8 13:12:36-debug: %cImport%c: G:\Work\cocoscreator\MiniGame\assets\script\game\MainMenu.tsbackground: #aaff85; color: #000;color: #000;
-2023-9-8 13:12:36-debug: refresh db assets success
-2023-9-8 13:12:36-debug: asset-db:refresh-all-database (183ms)
-2023-9-8 13:12:43-debug: refresh db internal success
-2023-9-8 13:12:43-debug: asset-db:worker-effect-data-processing (105ms)
-2023-9-8 13:12:43-debug: %cImport%c: G:\Work\cocoscreator\MiniGame\assets\script\game\MainMenu.tsbackground: #aaff85; color: #000;color: #000;
-2023-9-8 13:12:43-debug: refresh db assets success
-2023-9-8 13:12:43-debug: asset-db:refresh-all-database (144ms)
-2023-9-8 13:14:13-debug: refresh db internal success
-2023-9-8 13:14:13-debug: asset-db:worker-effect-data-processing (136ms)
-2023-9-8 13:14:13-debug: %cImport%c: G:\Work\cocoscreator\MiniGame\assets\script\game\MainMenu.tsbackground: #aaff85; color: #000;color: #000;
-2023-9-8 13:14:13-debug: refresh db assets success
-2023-9-8 13:14:13-debug: asset-db:refresh-all-database (170ms)
-2023-9-8 13:18:02-debug: refresh db internal success
-2023-9-8 13:18:02-debug: asset-db:worker-effect-data-processing (147ms)
-2023-9-8 13:18:02-debug: refresh db assets success
-2023-9-8 13:18:02-debug: asset-db:refresh-all-database (181ms)
-2023-9-8 13:18:51-debug: start refresh asset from G:\Work\cocoscreator\MiniGame\assets\scenes\scene.scene...
-2023-9-8 13:18:51-debug: %cImport%c: G:\Work\cocoscreator\MiniGame\assets\scenes\scene.scenebackground: #aaff85; color: #000;color: #000;
-2023-9-8 13:18:51-debug: refresh asset G:\Work\cocoscreator\MiniGame\assets\scenes success
-2023-9-8 13:19:02-debug: start refresh asset from G:\Work\cocoscreator\MiniGame\assets\scenes\scene.scene...
-2023-9-8 13:19:02-debug: %cImport%c: G:\Work\cocoscreator\MiniGame\assets\scenes\scene.scenebackground: #aaff85; color: #000;color: #000;
-2023-9-8 13:19:02-debug: refresh asset G:\Work\cocoscreator\MiniGame\assets\scenes success
-2023-9-8 13:22:09-debug: start refresh asset from G:\Work\cocoscreator\MiniGame\assets\scenes\scene.scene...
-2023-9-8 13:22:09-debug: %cImport%c: G:\Work\cocoscreator\MiniGame\assets\scenes\scene.scenebackground: #aaff85; color: #000;color: #000;
-2023-9-8 13:22:09-debug: refresh asset G:\Work\cocoscreator\MiniGame\assets\scenes success
-2023-9-8 13:22:13-debug: refresh db internal success
-2023-9-8 13:22:13-debug: asset-db:worker-effect-data-processing (144ms)
-2023-9-8 13:22:13-debug: refresh db assets success
-2023-9-8 13:22:13-debug: asset-db:refresh-all-database (182ms)
-2023-9-8 13:22:56-debug: refresh db internal success
-2023-9-8 13:22:56-debug: asset-db:worker-effect-data-processing (150ms)
-2023-9-8 13:22:56-debug: refresh db assets success
-2023-9-8 13:22:56-debug: asset-db:refresh-all-database (189ms)
-2023-9-8 13:24:55-debug: refresh db internal success
-2023-9-8 13:24:56-debug: asset-db:worker-effect-data-processing (140ms)
-2023-9-8 13:24:56-debug: %cImport%c: G:\Work\cocoscreator\MiniGame\assets\script\game\MainMenu.tsbackground: #aaff85; color: #000;color: #000;
-2023-9-8 13:24:56-debug: refresh db assets success
-2023-9-8 13:24:56-debug: asset-db:refresh-all-database (176ms)
-2023-9-8 13:24:59-debug: refresh db internal success
-2023-9-8 13:24:59-debug: asset-db:worker-effect-data-processing (104ms)
-2023-9-8 13:24:59-debug: refresh db assets success
-2023-9-8 13:24:59-debug: asset-db:refresh-all-database (137ms)
-2023-9-8 13:25:02-debug: refresh db internal success
-2023-9-8 13:25:02-debug: asset-db:worker-effect-data-processing (101ms)
-2023-9-8 13:25:02-debug: refresh db assets success
-2023-9-8 13:25:02-debug: asset-db:refresh-all-database (135ms)
-2023-9-8 13:25:09-debug: refresh db internal success
-2023-9-8 13:25:09-debug: asset-db:worker-effect-data-processing (133ms)
-2023-9-8 13:25:09-debug: refresh db assets success
-2023-9-8 13:25:09-debug: asset-db:refresh-all-database (167ms)
-2023-9-8 13:25:11-debug: start refresh asset from G:\Work\cocoscreator\MiniGame\assets\scenes\scene.scene...
-2023-9-8 13:25:11-debug: %cImport%c: G:\Work\cocoscreator\MiniGame\assets\scenes\scene.scenebackground: #aaff85; color: #000;color: #000;
-2023-9-8 13:25:11-debug: refresh asset G:\Work\cocoscreator\MiniGame\assets\scenes success
-2023-9-8 13:25:31-debug: start refresh asset from G:\Work\cocoscreator\MiniGame\assets\scenes\scene.scene...
-2023-9-8 13:25:31-debug: %cImport%c: G:\Work\cocoscreator\MiniGame\assets\scenes\scene.scenebackground: #aaff85; color: #000;color: #000;
-2023-9-8 13:25:31-debug: refresh asset G:\Work\cocoscreator\MiniGame\assets\scenes success
-2023-9-8 13:25:32-debug: programming:execute-script (5ms)
-2023-9-8 13:25:34-debug: Query all assets info in project
-2023-9-8 13:25:34-debug: BuildAssetLibrary query-assets with assets 480
-2023-9-8 13:25:34-debug: init custom config: keepNodeUuid: false, useCache: true
-2023-9-8 13:25:34-debug:   Number of all scenes: 1
-2023-9-8 13:25:34-debug:   Number of all scripts: 15
-2023-9-8 13:25:34-debug: // ---- build task 查询 Asset Bundle ----
-2023-9-8 13:25:34-debug:   Number of other assets: 321
-2023-9-8 13:25:34-debug: Process: heapTotal 211.45MB heapUsed 189.62MB rss 543.46MB
-2023-9-8 13:25:34-debug: 查询 Asset Bundle start0%
-2023-9-8 13:25:34-debug: // ---- build task 查询 Asset Bundle ---- (5ms)
-2023-9-8 13:25:34-debug: run build task 查询 Asset Bundle success in 5 ms √3%
-2023-9-8 13:25:34-debug: Process: heapTotal 211.45MB heapUsed 189.79MB rss 543.32MB
-2023-9-8 13:25:34-debug: // ---- build task 查询使用的资源以及资源包配置 ----
-2023-9-8 13:25:34-debug: init bundle assets
-2023-9-8 13:25:34-debug: 查询使用的资源以及资源包配置 start3%
-2023-9-8 13:25:34-debug: Query preload assets from cc.config.json: 60f7195c-ec2a-45eb-ba94-8955f60e81d0,1c02ae6f-4492-4915-b8f8-7492a3b1e4cd,810e96e4-e456-4468-9b59-f4e8f39732c0,efe8e2a3-eace-427b-b4f1-cb8a937ec77d,e9aa9a3e-5b2b-4ac7-a2c7-073de2b2b24f,8bbdbcdd-5cd4-4100-b6d5-b7c9625b6107,50f4348b-c883-4e2f-8f11-ce233b859fa1,fda095cb-831d-4601-ad94-846013963de8,f92806d7-1768-443f-afe8-12bcde84d0f0,dd3a144d-ab7f-41f0-82b8-2e43a090d496,f0416e68-0200-4b77-a926-4f9d16e494da,ff9be190-20a4-4e48-b68c-76e3c7cff085,970b0598-bcb0-4714-91fb-2e81440dccd8,bcd64cc6-2dd9-43f6-abbe-66318d332032,d930590d-bb92-4cc8-8bd1-23cd027f9edf,a3cd009f-0ab0-420d-9278-b9fdab939bbc,9361fd90-ba52-4f84-aa93-6e878fd576ca,c27215d8-6835-4b68-bfbb-bdeac6100c04,b5d6115f-0370-4d7c-aad3-c194cc71cf98,871c3b6c-7379-419d-bda3-794b239ab90d
-2023-9-8 13:25:34-debug: Number of scenes: 1
-2023-9-8 13:25:34-debug: // ---- build task 查询使用的资源以及资源包配置 ---- (1ms)
-2023-9-8 13:25:34-debug: run build task 查询使用的资源以及资源包配置 success in 1 ms √7%
-2023-9-8 13:25:34-debug: Process: heapTotal 211.45MB heapUsed 189.95MB rss 543.51MB
-2023-9-8 13:25:34-debug: 整理脚本分组与脚本数据 start7%
-2023-9-8 13:25:34-debug: // ---- build task 整理脚本分组与脚本数据 ----
-2023-9-8 13:25:34-debug: sort script group...
-2023-9-8 13:25:34-debug: run build task 整理脚本分组与脚本数据 success in 0 ms √10%
-2023-9-8 13:25:34-debug: 初始化 settings.json 与 config.json start10%
-2023-9-8 13:25:34-debug: // ---- build task 初始化 settings.json 与 config.json ----
-2023-9-8 13:25:34-debug: Process: heapTotal 211.45MB heapUsed 189.99MB rss 543.55MB
-2023-9-8 13:25:34-debug: run build task 初始化 settings.json 与 config.json success in 0 ms √11%
-2023-9-8 13:25:34-debug: builder.tasks.settings.macro start11%
-2023-9-8 13:25:34-debug: // ---- build task builder.tasks.settings.macro ----
-2023-9-8 13:25:34-debug: Process: heapTotal 211.45MB heapUsed 190.02MB rss 543.57MB
-2023-9-8 13:25:34-debug: builder.tasks.settings.macro 字段未在编辑器多语言内定义
-2023-9-8 13:25:34-debug: run build task builder.tasks.settings.macro success in 0 ms √11%
-2023-9-8 13:25:34-debug: // ---- build task 整理部分构建选项内数据到 settings.json ----
-2023-9-8 13:25:34-debug: 整理部分构建选项内数据到 settings.json start11%
-2023-9-8 13:25:34-debug: Process: heapTotal 211.45MB heapUsed 190.06MB rss 543.61MB
-2023-9-8 13:25:34-debug: // ---- build task 整理部分构建选项内数据到 settings.json ---- (6ms)
-2023-9-8 13:25:34-debug: run build task 整理部分构建选项内数据到 settings.json success in 6 ms √12%
-2023-9-8 13:25:34-debug: Process: heapTotal 211.45MB heapUsed 190.13MB rss 543.72MB
-2023-9-8 13:25:34-debug: // ---- build task custom joint texture layouts ----
-2023-9-8 13:25:34-debug: custom joint texture layouts start12%
-2023-9-8 13:25:34-debug: // ---- build task custom joint texture layouts ---- (1ms)
-2023-9-8 13:25:34-debug: run build task custom joint texture layouts success in 1 ms √12%
-2023-9-8 13:25:34-debug: Process: heapTotal 211.45MB heapUsed 190.16MB rss 543.75MB
-2023-9-8 13:25:34-debug: custom joint physics start12%
-2023-9-8 13:25:34-debug: // ---- build task custom joint physics ----
-2023-9-8 13:25:34-debug: // ---- build task custom joint physics ---- (1ms)
-2023-9-8 13:25:34-debug: run build task custom joint physics success in 1 ms √13%
-2023-9-8 13:25:34-debug: Process: heapTotal 211.45MB heapUsed 190.19MB rss 543.79MB
-2023-9-8 13:25:34-debug: // ---- build task 填充脚本数据到 settings.json ----
-2023-9-8 13:25:34-debug: 填充脚本数据到 settings.json start13%
-2023-9-8 13:25:34-debug: run build task 填充脚本数据到 settings.json success in 0 ms √13%
-2023-9-8 13:25:34-debug: 填充场景数据到 settings.json start13%
-2023-9-8 13:25:34-debug: // ---- build task 填充场景数据到 settings.json ----
-2023-9-8 13:25:34-debug: Process: heapTotal 211.45MB heapUsed 190.21MB rss 543.81MB
-2023-9-8 13:25:34-debug: run build task 填充场景数据到 settings.json success in 0 ms √14%
-2023-9-8 13:25:34-debug: // ---- build task 整理资源分组，生成 packedAssets 以及 rawAssets 数据 ----
-2023-9-8 13:25:34-debug: 整理资源分组，生成 packedAssets 以及 rawAssets 数据 start14%
-2023-9-8 13:25:34-debug: Process: heapTotal 211.45MB heapUsed 190.24MB rss 543.84MB
-2023-9-8 13:25:34-debug: // ---- build task 整理资源分组，生成 packedAssets 以及 rawAssets 数据 ---- (1ms)
-2023-9-8 13:25:34-debug: run build task 整理资源分组，生成 packedAssets 以及 rawAssets 数据 success in 1 ms √14%
-2023-9-8 13:25:34-debug: Process: heapTotal 211.45MB heapUsed 189.56MB rss 543.03MB
-2023-9-8 13:25:34-debug: // ---- build task 从 suffixMap 生成 md5AssetsMap 到 settings.json ----
-2023-9-8 13:25:34-debug: 从 suffixMap 生成 md5AssetsMap 到 settings.json start14%
-2023-9-8 13:25:34-debug: options.md5Cache is false.
-2023-9-8 13:25:34-debug: run build task 从 suffixMap 生成 md5AssetsMap 到 settings.json success in 0 ms √15%
-2023-9-8 13:25:48-debug: refresh db internal success
-2023-9-8 13:25:49-debug: asset-db:worker-effect-data-processing (145ms)
-2023-9-8 13:25:49-debug: refresh db assets success
-2023-9-8 13:25:49-debug: asset-db:refresh-all-database (181ms)
-2023-9-8 13:32:52-debug: refresh db internal success
-2023-9-8 13:32:52-debug: asset-db:worker-effect-data-processing (137ms)
-2023-9-8 13:32:52-debug: %cImport%c: G:\Work\cocoscreator\MiniGame\assets\script\game\MainMenu.tsbackground: #aaff85; color: #000;color: #000;
-2023-9-8 13:32:52-debug: refresh db assets success
-2023-9-8 13:32:52-debug: asset-db:refresh-all-database (178ms)
-2023-9-8 13:33:45-debug: refresh db internal success
-2023-9-8 13:33:45-debug: asset-db:worker-effect-data-processing (138ms)
-2023-9-8 13:33:45-debug: refresh db assets success
-2023-9-8 13:33:45-debug: asset-db:refresh-all-database (174ms)
-2023-9-8 13:34:24-debug: refresh db internal success
-2023-9-8 13:34:24-debug: asset-db:worker-effect-data-processing (134ms)
-2023-9-8 13:34:24-debug: refresh db assets success
-2023-9-8 13:34:24-debug: asset-db:refresh-all-database (166ms)
-2023-9-8 13:34:26-debug: start refresh asset from G:\Work\cocoscreator\MiniGame\assets\scenes\scene.scene...
-2023-9-8 13:34:26-debug: %cImport%c: G:\Work\cocoscreator\MiniGame\assets\scenes\scene.scenebackground: #aaff85; color: #000;color: #000;
-2023-9-8 13:34:26-debug: refresh asset G:\Work\cocoscreator\MiniGame\assets\scenes success
-2023-9-8 13:34:27-debug: programming:execute-script (3ms)
-2023-9-8 13:34:28-debug: Query all assets info in project
-2023-9-8 13:34:28-debug: BuildAssetLibrary query-assets with assets 480
-2023-9-8 13:34:28-debug: init custom config: keepNodeUuid: false, useCache: true
-2023-9-8 13:34:28-debug:   Number of other assets: 321
-2023-9-8 13:34:28-debug:   Number of all scenes: 1
-2023-9-8 13:34:28-debug:   Number of all scripts: 15
-2023-9-8 13:34:28-debug: Process: heapTotal 225.74MB heapUsed 191.15MB rss 328.79MB
-2023-9-8 13:34:28-debug: // ---- build task 查询 Asset Bundle ----
-2023-9-8 13:34:28-debug: 查询 Asset Bundle start0%
-2023-9-8 13:34:28-debug: // ---- build task 查询 Asset Bundle ---- (3ms)
-2023-9-8 13:34:28-debug: run build task 查询 Asset Bundle success in 3 ms √3%
-2023-9-8 13:34:28-debug: Process: heapTotal 225.74MB heapUsed 192.72MB rss 328.81MB
-2023-9-8 13:34:28-debug: // ---- build task 查询使用的资源以及资源包配置 ----
-2023-9-8 13:34:28-debug: init bundle assets
-2023-9-8 13:34:28-debug: 查询使用的资源以及资源包配置 start3%
-2023-9-8 13:34:28-debug: Query preload assets from cc.config.json: 60f7195c-ec2a-45eb-ba94-8955f60e81d0,1c02ae6f-4492-4915-b8f8-7492a3b1e4cd,810e96e4-e456-4468-9b59-f4e8f39732c0,efe8e2a3-eace-427b-b4f1-cb8a937ec77d,e9aa9a3e-5b2b-4ac7-a2c7-073de2b2b24f,8bbdbcdd-5cd4-4100-b6d5-b7c9625b6107,50f4348b-c883-4e2f-8f11-ce233b859fa1,fda095cb-831d-4601-ad94-846013963de8,f92806d7-1768-443f-afe8-12bcde84d0f0,dd3a144d-ab7f-41f0-82b8-2e43a090d496,f0416e68-0200-4b77-a926-4f9d16e494da,ff9be190-20a4-4e48-b68c-76e3c7cff085,970b0598-bcb0-4714-91fb-2e81440dccd8,bcd64cc6-2dd9-43f6-abbe-66318d332032,d930590d-bb92-4cc8-8bd1-23cd027f9edf,a3cd009f-0ab0-420d-9278-b9fdab939bbc,9361fd90-ba52-4f84-aa93-6e878fd576ca,c27215d8-6835-4b68-bfbb-bdeac6100c04,b5d6115f-0370-4d7c-aad3-c194cc71cf98,871c3b6c-7379-419d-bda3-794b239ab90d
-2023-9-8 13:34:28-debug: Number of scenes: 1
-2023-9-8 13:34:28-debug: // ---- build task 查询使用的资源以及资源包配置 ---- (2ms)
-2023-9-8 13:34:28-debug: run build task 查询使用的资源以及资源包配置 success in 2 ms √7%
-2023-9-8 13:34:28-debug: 整理脚本分组与脚本数据 start7%
-2023-9-8 13:34:28-debug: // ---- build task 整理脚本分组与脚本数据 ----
-2023-9-8 13:34:28-debug: Process: heapTotal 225.74MB heapUsed 192.88MB rss 328.86MB
-2023-9-8 13:34:28-debug: sort script group...
-2023-9-8 13:34:28-debug: // ---- build task 整理脚本分组与脚本数据 ---- (1ms)
-2023-9-8 13:34:28-debug: 初始化 settings.json 与 config.json start10%
-2023-9-8 13:34:28-debug: run build task 整理脚本分组与脚本数据 success in 1 ms √10%
-2023-9-8 13:34:28-debug: // ---- build task 初始化 settings.json 与 config.json ----
-2023-9-8 13:34:28-debug: Process: heapTotal 225.74MB heapUsed 192.92MB rss 328.86MB
-2023-9-8 13:34:28-debug: run build task 初始化 settings.json 与 config.json success in 0 ms √11%
-2023-9-8 13:34:28-debug: builder.tasks.settings.macro 字段未在编辑器多语言内定义
-2023-9-8 13:34:28-debug: builder.tasks.settings.macro start11%
-2023-9-8 13:34:28-debug: // ---- build task builder.tasks.settings.macro ----
-2023-9-8 13:34:28-debug: Process: heapTotal 225.74MB heapUsed 192.96MB rss 328.86MB
-2023-9-8 13:34:28-debug: // ---- build task builder.tasks.settings.macro ---- (1ms)
-2023-9-8 13:34:28-debug: run build task builder.tasks.settings.macro success in 1 ms √11%
-2023-9-8 13:34:28-debug: Process: heapTotal 225.74MB heapUsed 192.99MB rss 328.86MB
-2023-9-8 13:34:28-debug: 整理部分构建选项内数据到 settings.json start11%
-2023-9-8 13:34:28-debug: // ---- build task 整理部分构建选项内数据到 settings.json ----
-2023-9-8 13:34:28-debug: // ---- build task 整理部分构建选项内数据到 settings.json ---- (1ms)
-2023-9-8 13:34:28-debug: run build task 整理部分构建选项内数据到 settings.json success in 1 ms √12%
-2023-9-8 13:34:28-debug: Process: heapTotal 225.74MB heapUsed 193.09MB rss 328.90MB
-2023-9-8 13:34:28-debug: custom joint texture layouts start12%
-2023-9-8 13:34:28-debug: // ---- build task custom joint texture layouts ----
-2023-9-8 13:34:28-debug: // ---- build task custom joint texture layouts ---- (1ms)
-2023-9-8 13:34:28-debug: run build task custom joint texture layouts success in 1 ms √12%
-2023-9-8 13:34:28-debug: Process: heapTotal 225.74MB heapUsed 193.13MB rss 328.90MB
-2023-9-8 13:34:28-debug: // ---- build task custom joint physics ----
-2023-9-8 13:34:28-debug: custom joint physics start12%
-2023-9-8 13:34:28-debug: run build task custom joint physics success in 0 ms √13%
-2023-9-8 13:34:28-debug: // ---- build task 填充脚本数据到 settings.json ----
-2023-9-8 13:34:28-debug: Process: heapTotal 225.74MB heapUsed 193.15MB rss 328.90MB
-2023-9-8 13:34:28-debug: 填充脚本数据到 settings.json start13%
-2023-9-8 13:34:28-debug: run build task 填充脚本数据到 settings.json success in 0 ms √13%
-2023-9-8 13:34:28-debug: // ---- build task 填充场景数据到 settings.json ----
-2023-9-8 13:34:28-debug: 填充场景数据到 settings.json start13%
-2023-9-8 13:34:28-debug: Process: heapTotal 225.74MB heapUsed 193.18MB rss 328.90MB
-2023-9-8 13:34:28-debug: // ---- build task 填充场景数据到 settings.json ---- (1ms)
-2023-9-8 13:34:28-debug: run build task 填充场景数据到 settings.json success in 1 ms √14%
-2023-9-8 13:34:28-debug: 整理资源分组，生成 packedAssets 以及 rawAssets 数据 start14%
-2023-9-8 13:34:28-debug: // ---- build task 整理资源分组，生成 packedAssets 以及 rawAssets 数据 ----
-2023-9-8 13:34:28-debug: Process: heapTotal 225.74MB heapUsed 193.20MB rss 328.91MB
-2023-9-8 13:34:28-debug: run build task 整理资源分组，生成 packedAssets 以及 rawAssets 数据 success in 0 ms √14%
-2023-9-8 13:34:28-debug: 从 suffixMap 生成 md5AssetsMap 到 settings.json start14%
-2023-9-8 13:34:28-debug: // ---- build task 从 suffixMap 生成 md5AssetsMap 到 settings.json ----
-2023-9-8 13:34:28-debug: options.md5Cache is false.
-2023-9-8 13:34:28-debug: Process: heapTotal 225.74MB heapUsed 193.25MB rss 328.91MB
-2023-9-8 13:34:28-debug: run build task 从 suffixMap 生成 md5AssetsMap 到 settings.json success in 0 ms √15%
-2023-9-8 13:35:31-debug: refresh db internal success
-2023-9-8 13:35:31-debug: asset-db:worker-effect-data-processing (142ms)
-2023-9-8 13:35:31-debug: %cImport%c: G:\Work\cocoscreator\MiniGame\assets\script\game\gameShulte\GameShulteController.tsbackground: #aaff85; color: #000;color: #000;
-2023-9-8 13:35:31-debug: refresh db assets success
-2023-9-8 13:35:31-debug: asset-db:refresh-all-database (182ms)
-2023-9-8 13:35:44-debug: refresh db internal success
-2023-9-8 13:35:44-debug: asset-db:worker-effect-data-processing (139ms)
-2023-9-8 13:35:44-debug: %cImport%c: G:\Work\cocoscreator\MiniGame\assets\script\game\gameShulte\GameShulteController.tsbackground: #aaff85; color: #000;color: #000;
-2023-9-8 13:35:44-debug: refresh db assets success
-2023-9-8 13:35:44-debug: asset-db:refresh-all-database (176ms)
-2023-9-8 13:35:48-debug: programming:execute-script (2ms)
-2023-9-8 13:35:48-debug: Query all assets info in project
-2023-9-8 13:35:48-debug: BuildAssetLibrary query-assets with assets 480
-2023-9-8 13:35:48-debug: init custom config: keepNodeUuid: false, useCache: true
-2023-9-8 13:35:48-debug:   Number of other assets: 321
-2023-9-8 13:35:48-debug: 查询 Asset Bundle start0%
-2023-9-8 13:35:48-debug: // ---- build task 查询 Asset Bundle ----
-2023-9-8 13:35:48-debug: Process: heapTotal 225.97MB heapUsed 190.54MB rss 329.89MB
-2023-9-8 13:35:48-debug:   Number of all scripts: 15
-2023-9-8 13:35:48-debug:   Number of all scenes: 1
-2023-9-8 13:35:48-debug: // ---- build task 查询 Asset Bundle ---- (3ms)
-2023-9-8 13:35:48-debug: run build task 查询 Asset Bundle success in 3 ms √3%
-2023-9-8 13:35:48-debug: Process: heapTotal 225.97MB heapUsed 192.12MB rss 329.98MB
-2023-9-8 13:35:48-debug: // ---- build task 查询使用的资源以及资源包配置 ----
-2023-9-8 13:35:48-debug: init bundle assets
-2023-9-8 13:35:48-debug: 查询使用的资源以及资源包配置 start3%
-2023-9-8 13:35:48-debug: Query preload assets from cc.config.json: 60f7195c-ec2a-45eb-ba94-8955f60e81d0,1c02ae6f-4492-4915-b8f8-7492a3b1e4cd,810e96e4-e456-4468-9b59-f4e8f39732c0,efe8e2a3-eace-427b-b4f1-cb8a937ec77d,e9aa9a3e-5b2b-4ac7-a2c7-073de2b2b24f,8bbdbcdd-5cd4-4100-b6d5-b7c9625b6107,50f4348b-c883-4e2f-8f11-ce233b859fa1,fda095cb-831d-4601-ad94-846013963de8,f92806d7-1768-443f-afe8-12bcde84d0f0,dd3a144d-ab7f-41f0-82b8-2e43a090d496,f0416e68-0200-4b77-a926-4f9d16e494da,ff9be190-20a4-4e48-b68c-76e3c7cff085,970b0598-bcb0-4714-91fb-2e81440dccd8,bcd64cc6-2dd9-43f6-abbe-66318d332032,d930590d-bb92-4cc8-8bd1-23cd027f9edf,a3cd009f-0ab0-420d-9278-b9fdab939bbc,9361fd90-ba52-4f84-aa93-6e878fd576ca,c27215d8-6835-4b68-bfbb-bdeac6100c04,b5d6115f-0370-4d7c-aad3-c194cc71cf98,871c3b6c-7379-419d-bda3-794b239ab90d
-2023-9-8 13:35:48-debug: Number of scenes: 1
-2023-9-8 13:35:48-debug: // ---- build task 查询使用的资源以及资源包配置 ---- (2ms)
-2023-9-8 13:35:48-debug: run build task 查询使用的资源以及资源包配置 success in 2 ms √7%
-2023-9-8 13:35:48-debug: Process: heapTotal 225.97MB heapUsed 192.28MB rss 330.42MB
-2023-9-8 13:35:48-debug: // ---- build task 整理脚本分组与脚本数据 ----
-2023-9-8 13:35:48-debug: 整理脚本分组与脚本数据 start7%
-2023-9-8 13:35:48-debug: sort script group...
-2023-9-8 13:35:48-debug: // ---- build task 整理脚本分组与脚本数据 ---- (1ms)
-2023-9-8 13:35:48-debug: run build task 整理脚本分组与脚本数据 success in 1 ms √10%
-2023-9-8 13:35:48-debug: // ---- build task 初始化 settings.json 与 config.json ----
-2023-9-8 13:35:48-debug: Process: heapTotal 225.97MB heapUsed 192.32MB rss 330.40MB
-2023-9-8 13:35:48-debug: 初始化 settings.json 与 config.json start10%
-2023-9-8 13:35:48-debug: // ---- build task 初始化 settings.json 与 config.json ---- (1ms)
-2023-9-8 13:35:48-debug: run build task 初始化 settings.json 与 config.json success in 1 ms √11%
-2023-9-8 13:35:48-debug: builder.tasks.settings.macro start11%
-2023-9-8 13:35:48-debug: builder.tasks.settings.macro 字段未在编辑器多语言内定义
-2023-9-8 13:35:48-debug: // ---- build task builder.tasks.settings.macro ----
-2023-9-8 13:35:48-debug: Process: heapTotal 225.97MB heapUsed 192.36MB rss 331.00MB
-2023-9-8 13:35:48-debug: run build task builder.tasks.settings.macro success in 0 ms √11%
-2023-9-8 13:35:48-debug: // ---- build task 整理部分构建选项内数据到 settings.json ----
-2023-9-8 13:35:48-debug: 整理部分构建选项内数据到 settings.json start11%
-2023-9-8 13:35:48-debug: Process: heapTotal 225.97MB heapUsed 192.39MB rss 332.15MB
-2023-9-8 13:35:48-debug: // ---- build task 整理部分构建选项内数据到 settings.json ---- (1ms)
-2023-9-8 13:35:48-debug: run build task 整理部分构建选项内数据到 settings.json success in 1 ms √12%
-2023-9-8 13:35:48-debug: // ---- build task custom joint texture layouts ----
-2023-9-8 13:35:48-debug: Process: heapTotal 225.97MB heapUsed 192.46MB rss 332.37MB
-2023-9-8 13:35:48-debug: custom joint texture layouts start12%
-2023-9-8 13:35:48-debug: // ---- build task custom joint texture layouts ---- (1ms)
-2023-9-8 13:35:48-debug: run build task custom joint texture layouts success in 1 ms √12%
-2023-9-8 13:35:48-debug: Process: heapTotal 225.97MB heapUsed 192.49MB rss 331.61MB
-2023-9-8 13:35:48-debug: // ---- build task custom joint physics ----
-2023-9-8 13:35:48-debug: custom joint physics start12%
-2023-9-8 13:35:48-debug: run build task custom joint physics success in 0 ms √13%
-2023-9-8 13:35:48-debug: // ---- build task 填充脚本数据到 settings.json ----
-2023-9-8 13:35:48-debug: 填充脚本数据到 settings.json start13%
-2023-9-8 13:35:48-debug: Process: heapTotal 225.97MB heapUsed 192.77MB rss 329.80MB
-2023-9-8 13:35:48-debug: // ---- build task 填充脚本数据到 settings.json ---- (1ms)
-2023-9-8 13:35:48-debug: run build task 填充脚本数据到 settings.json success in 1 ms √13%
-2023-9-8 13:35:48-debug: Process: heapTotal 225.97MB heapUsed 192.79MB rss 329.65MB
-2023-9-8 13:35:48-debug: // ---- build task 填充场景数据到 settings.json ----
-2023-9-8 13:35:48-debug: 填充场景数据到 settings.json start13%
-2023-9-8 13:35:48-debug: // ---- build task 填充场景数据到 settings.json ---- (1ms)
-2023-9-8 13:35:48-debug: 整理资源分组，生成 packedAssets 以及 rawAssets 数据 start14%
-2023-9-8 13:35:48-debug: // ---- build task 整理资源分组，生成 packedAssets 以及 rawAssets 数据 ----
-2023-9-8 13:35:48-debug: Process: heapTotal 225.97MB heapUsed 192.82MB rss 329.46MB
-2023-9-8 13:35:48-debug: run build task 填充场景数据到 settings.json success in 1 ms √14%
-2023-9-8 13:35:48-debug: // ---- build task 整理资源分组，生成 packedAssets 以及 rawAssets 数据 ---- (1ms)
-2023-9-8 13:35:48-debug: run build task 整理资源分组，生成 packedAssets 以及 rawAssets 数据 success in 1 ms √14%
-2023-9-8 13:35:48-debug: Process: heapTotal 225.97MB heapUsed 192.87MB rss 329.36MB
-2023-9-8 13:35:48-debug: // ---- build task 从 suffixMap 生成 md5AssetsMap 到 settings.json ----
-2023-9-8 13:35:48-debug: 从 suffixMap 生成 md5AssetsMap 到 settings.json start14%
-2023-9-8 13:35:48-debug: options.md5Cache is false.
-2023-9-8 13:35:48-debug: run build task 从 suffixMap 生成 md5AssetsMap 到 settings.json success in 0 ms √15%
-2023-9-8 13:36:01-debug: refresh db internal success
-2023-9-8 13:36:01-debug: asset-db:worker-effect-data-processing (148ms)
-2023-9-8 13:36:01-debug: refresh db assets success
-2023-9-8 13:36:01-debug: asset-db:refresh-all-database (183ms)
-2023-9-8 13:36:33-debug: refresh db internal success
-2023-9-8 13:36:33-debug: asset-db:worker-effect-data-processing (146ms)
-2023-9-8 13:36:33-debug: refresh db assets success
-2023-9-8 13:36:33-debug: asset-db:refresh-all-database (183ms)
-2023-9-8 13:36:52-debug: programming:execute-script (3ms)
-2023-9-8 13:36:53-debug: Query all assets info in project
-2023-9-8 13:36:53-debug: BuildAssetLibrary query-assets with assets 480
-2023-9-8 13:36:53-debug: init custom config: keepNodeUuid: false, useCache: true
-2023-9-8 13:36:53-debug:   Number of other assets: 321
-2023-9-8 13:36:53-debug: 查询 Asset Bundle start0%
-2023-9-8 13:36:53-debug:   Number of all scenes: 1
-2023-9-8 13:36:53-debug:   Number of all scripts: 15
-2023-9-8 13:36:53-debug: // ---- build task 查询 Asset Bundle ----
-2023-9-8 13:36:53-debug: Process: heapTotal 210.26MB heapUsed 188.43MB rss 286.48MB
-2023-9-8 13:36:53-debug: // ---- build task 查询 Asset Bundle ---- (4ms)
-2023-9-8 13:36:53-debug: run build task 查询 Asset Bundle success in 4 ms √3%
-2023-9-8 13:36:53-debug: Process: heapTotal 210.26MB heapUsed 188.61MB rss 286.31MB
-2023-9-8 13:36:53-debug: // ---- build task 查询使用的资源以及资源包配置 ----
-2023-9-8 13:36:53-debug: 查询使用的资源以及资源包配置 start3%
-2023-9-8 13:36:53-debug: init bundle assets
-2023-9-8 13:36:53-debug: Query preload assets from cc.config.json: 60f7195c-ec2a-45eb-ba94-8955f60e81d0,1c02ae6f-4492-4915-b8f8-7492a3b1e4cd,810e96e4-e456-4468-9b59-f4e8f39732c0,efe8e2a3-eace-427b-b4f1-cb8a937ec77d,e9aa9a3e-5b2b-4ac7-a2c7-073de2b2b24f,8bbdbcdd-5cd4-4100-b6d5-b7c9625b6107,50f4348b-c883-4e2f-8f11-ce233b859fa1,fda095cb-831d-4601-ad94-846013963de8,f92806d7-1768-443f-afe8-12bcde84d0f0,dd3a144d-ab7f-41f0-82b8-2e43a090d496,f0416e68-0200-4b77-a926-4f9d16e494da,ff9be190-20a4-4e48-b68c-76e3c7cff085,970b0598-bcb0-4714-91fb-2e81440dccd8,bcd64cc6-2dd9-43f6-abbe-66318d332032,d930590d-bb92-4cc8-8bd1-23cd027f9edf,a3cd009f-0ab0-420d-9278-b9fdab939bbc,9361fd90-ba52-4f84-aa93-6e878fd576ca,c27215d8-6835-4b68-bfbb-bdeac6100c04,b5d6115f-0370-4d7c-aad3-c194cc71cf98,871c3b6c-7379-419d-bda3-794b239ab90d
-2023-9-8 13:36:53-debug: Number of scenes: 1
-2023-9-8 13:36:53-debug: // ---- build task 查询使用的资源以及资源包配置 ---- (1ms)
-2023-9-8 13:36:53-debug: run build task 查询使用的资源以及资源包配置 success in 1 ms √7%
-2023-9-8 13:36:53-debug: Process: heapTotal 210.26MB heapUsed 188.77MB rss 286.49MB
-2023-9-8 13:36:53-debug: sort script group...
-2023-9-8 13:36:53-debug: 整理脚本分组与脚本数据 start7%
-2023-9-8 13:36:53-debug: // ---- build task 整理脚本分组与脚本数据 ----
-2023-9-8 13:36:53-debug: run build task 整理脚本分组与脚本数据 success in 0 ms √10%
-2023-9-8 13:36:53-debug: // ---- build task 初始化 settings.json 与 config.json ----
-2023-9-8 13:36:53-debug: 初始化 settings.json 与 config.json start10%
-2023-9-8 13:36:53-debug: Process: heapTotal 210.26MB heapUsed 188.81MB rss 286.53MB
-2023-9-8 13:36:53-debug: run build task 初始化 settings.json 与 config.json success in 0 ms √11%
-2023-9-8 13:36:53-debug: builder.tasks.settings.macro 字段未在编辑器多语言内定义
-2023-9-8 13:36:53-debug: builder.tasks.settings.macro start11%
-2023-9-8 13:36:53-debug: // ---- build task builder.tasks.settings.macro ----
-2023-9-8 13:36:53-debug: Process: heapTotal 210.26MB heapUsed 188.84MB rss 286.57MB
-2023-9-8 13:36:53-debug: // ---- build task builder.tasks.settings.macro ---- (1ms)
-2023-9-8 13:36:53-debug: run build task builder.tasks.settings.macro success in 1 ms √11%
-2023-9-8 13:36:53-debug: Process: heapTotal 210.26MB heapUsed 188.88MB rss 286.60MB
-2023-9-8 13:36:53-debug: 整理部分构建选项内数据到 settings.json start11%
-2023-9-8 13:36:53-debug: // ---- build task 整理部分构建选项内数据到 settings.json ----
-2023-9-8 13:36:53-debug: // ---- build task 整理部分构建选项内数据到 settings.json ---- (2ms)
-2023-9-8 13:36:53-debug: run build task 整理部分构建选项内数据到 settings.json success in 2 ms √12%
-2023-9-8 13:36:53-debug: Process: heapTotal 210.26MB heapUsed 188.94MB rss 286.70MB
-2023-9-8 13:36:53-debug: custom joint texture layouts start12%
-2023-9-8 13:36:53-debug: // ---- build task custom joint texture layouts ----
-2023-9-8 13:36:53-debug: run build task custom joint texture layouts success in 0 ms √12%
-2023-9-8 13:36:53-debug: Process: heapTotal 210.26MB heapUsed 188.97MB rss 286.73MB
-2023-9-8 13:36:53-debug: custom joint physics start12%
-2023-9-8 13:36:53-debug: // ---- build task custom joint physics ----
-2023-9-8 13:36:53-debug: run build task custom joint physics success in 0 ms √13%
-2023-9-8 13:36:53-debug: // ---- build task 填充脚本数据到 settings.json ----
-2023-9-8 13:36:53-debug: Process: heapTotal 210.26MB heapUsed 188.99MB rss 286.75MB
-2023-9-8 13:36:53-debug: 填充脚本数据到 settings.json start13%
-2023-9-8 13:36:53-debug: // ---- build task 填充脚本数据到 settings.json ---- (1ms)
-2023-9-8 13:36:53-debug: run build task 填充脚本数据到 settings.json success in 1 ms √13%
-2023-9-8 13:36:53-debug: Process: heapTotal 210.26MB heapUsed 189.02MB rss 286.79MB
-2023-9-8 13:36:53-debug: // ---- build task 填充场景数据到 settings.json ----
-2023-9-8 13:36:53-debug: 填充场景数据到 settings.json start13%
-2023-9-8 13:36:53-debug: run build task 填充场景数据到 settings.json success in 0 ms √14%
-2023-9-8 13:36:53-debug: 整理资源分组，生成 packedAssets 以及 rawAssets 数据 start14%
-2023-9-8 13:36:53-debug: Process: heapTotal 210.26MB heapUsed 189.05MB rss 286.81MB
-2023-9-8 13:36:53-debug: // ---- build task 整理资源分组，生成 packedAssets 以及 rawAssets 数据 ----
-2023-9-8 13:36:53-debug: run build task 整理资源分组，生成 packedAssets 以及 rawAssets 数据 success in 0 ms √14%
-2023-9-8 13:36:53-debug: 从 suffixMap 生成 md5AssetsMap 到 settings.json start14%
-2023-9-8 13:36:53-debug: // ---- build task 从 suffixMap 生成 md5AssetsMap 到 settings.json ----
-2023-9-8 13:36:53-debug: options.md5Cache is false.
-2023-9-8 13:36:53-debug: Process: heapTotal 210.26MB heapUsed 189.09MB rss 286.85MB
-2023-9-8 13:36:53-debug: // ---- build task 从 suffixMap 生成 md5AssetsMap 到 settings.json ---- (1ms)
-2023-9-8 13:36:53-debug: run build task 从 suffixMap 生成 md5AssetsMap 到 settings.json success in 1 ms √15%
-2023-9-8 13:37:50-debug: refresh db internal success
-2023-9-8 13:37:50-debug: asset-db:worker-effect-data-processing (109ms)
-2023-9-8 13:37:50-debug: %cImport%c: G:\Work\cocoscreator\MiniGame\assets\script\game\MainMenu.tsbackground: #aaff85; color: #000;color: #000;
-2023-9-8 13:37:50-debug: refresh db assets success
-2023-9-8 13:37:50-debug: asset-db:refresh-all-database (144ms)
-2023-9-8 13:40:08-debug: refresh db internal success
-2023-9-8 13:40:08-debug: asset-db:worker-effect-data-processing (147ms)
-2023-9-8 13:40:08-debug: %cImport%c: G:\Work\cocoscreator\MiniGame\assets\script\game\MainMenu.tsbackground: #aaff85; color: #000;color: #000;
-2023-9-8 13:40:08-debug: refresh db assets success
-2023-9-8 13:40:08-debug: asset-db:refresh-all-database (180ms)
-2023-9-8 13:40:11-debug: programming:execute-script (2ms)
-2023-9-8 13:40:12-debug: Query all assets info in project
-2023-9-8 13:40:12-debug: BuildAssetLibrary query-assets with assets 480
-2023-9-8 13:40:12-debug: init custom config: keepNodeUuid: false, useCache: true
-2023-9-8 13:40:12-debug:   Number of all scripts: 15
-2023-9-8 13:40:12-debug:   Number of other assets: 321
-2023-9-8 13:40:12-debug: // ---- build task 查询 Asset Bundle ----
-2023-9-8 13:40:12-debug: 查询 Asset Bundle start0%
-2023-9-8 13:40:12-debug: Process: heapTotal 229.71MB heapUsed 193.03MB rss 305.86MB
-2023-9-8 13:40:12-debug:   Number of all scenes: 1
-2023-9-8 13:40:12-debug: // ---- build task 查询 Asset Bundle ---- (3ms)
-2023-9-8 13:40:12-debug: run build task 查询 Asset Bundle success in 3 ms √3%
-2023-9-8 13:40:12-debug: Process: heapTotal 229.71MB heapUsed 194.60MB rss 305.67MB
-2023-9-8 13:40:12-debug: // ---- build task 查询使用的资源以及资源包配置 ----
-2023-9-8 13:40:12-debug: 查询使用的资源以及资源包配置 start3%
-2023-9-8 13:40:12-debug: init bundle assets
-2023-9-8 13:40:12-debug: Query preload assets from cc.config.json: 60f7195c-ec2a-45eb-ba94-8955f60e81d0,1c02ae6f-4492-4915-b8f8-7492a3b1e4cd,810e96e4-e456-4468-9b59-f4e8f39732c0,efe8e2a3-eace-427b-b4f1-cb8a937ec77d,e9aa9a3e-5b2b-4ac7-a2c7-073de2b2b24f,8bbdbcdd-5cd4-4100-b6d5-b7c9625b6107,50f4348b-c883-4e2f-8f11-ce233b859fa1,fda095cb-831d-4601-ad94-846013963de8,f92806d7-1768-443f-afe8-12bcde84d0f0,dd3a144d-ab7f-41f0-82b8-2e43a090d496,f0416e68-0200-4b77-a926-4f9d16e494da,ff9be190-20a4-4e48-b68c-76e3c7cff085,970b0598-bcb0-4714-91fb-2e81440dccd8,bcd64cc6-2dd9-43f6-abbe-66318d332032,d930590d-bb92-4cc8-8bd1-23cd027f9edf,a3cd009f-0ab0-420d-9278-b9fdab939bbc,9361fd90-ba52-4f84-aa93-6e878fd576ca,c27215d8-6835-4b68-bfbb-bdeac6100c04,b5d6115f-0370-4d7c-aad3-c194cc71cf98,871c3b6c-7379-419d-bda3-794b239ab90d
-2023-9-8 13:40:12-debug: Number of scenes: 1
-2023-9-8 13:40:12-debug: // ---- build task 查询使用的资源以及资源包配置 ---- (2ms)
-2023-9-8 13:40:12-debug: run build task 查询使用的资源以及资源包配置 success in 2 ms √7%
-2023-9-8 13:40:12-debug: 整理脚本分组与脚本数据 start7%
-2023-9-8 13:40:12-debug: Process: heapTotal 229.71MB heapUsed 194.78MB rss 305.71MB
-2023-9-8 13:40:12-debug: // ---- build task 整理脚本分组与脚本数据 ----
-2023-9-8 13:40:12-debug: sort script group...
-2023-9-8 13:40:12-debug: run build task 整理脚本分组与脚本数据 success in 0 ms √10%
-2023-9-8 13:40:12-debug: 初始化 settings.json 与 config.json start10%
-2023-9-8 13:40:12-debug: // ---- build task 初始化 settings.json 与 config.json ----
-2023-9-8 13:40:12-debug: Process: heapTotal 229.71MB heapUsed 194.81MB rss 305.71MB
-2023-9-8 13:40:12-debug: run build task 初始化 settings.json 与 config.json success in 0 ms √11%
-2023-9-8 13:40:12-debug: builder.tasks.settings.macro 字段未在编辑器多语言内定义
-2023-9-8 13:40:12-debug: builder.tasks.settings.macro start11%
-2023-9-8 13:40:12-debug: Process: heapTotal 229.71MB heapUsed 194.85MB rss 305.71MB
-2023-9-8 13:40:12-debug: // ---- build task builder.tasks.settings.macro ----
-2023-9-8 13:40:12-debug: run build task builder.tasks.settings.macro success in 0 ms √11%
-2023-9-8 13:40:12-debug: // ---- build task 整理部分构建选项内数据到 settings.json ----
-2023-9-8 13:40:12-debug: 整理部分构建选项内数据到 settings.json start11%
-2023-9-8 13:40:12-debug: Process: heapTotal 229.71MB heapUsed 194.88MB rss 305.70MB
-2023-9-8 13:40:12-debug: // ---- build task 整理部分构建选项内数据到 settings.json ---- (1ms)
-2023-9-8 13:40:12-debug: run build task 整理部分构建选项内数据到 settings.json success in 1 ms √12%
-2023-9-8 13:40:12-debug: Process: heapTotal 229.71MB heapUsed 194.95MB rss 305.75MB
-2023-9-8 13:40:12-debug: // ---- build task custom joint texture layouts ----
-2023-9-8 13:40:12-debug: custom joint texture layouts start12%
-2023-9-8 13:40:12-debug: run build task custom joint texture layouts success in 0 ms √12%
-2023-9-8 13:40:12-debug: custom joint physics start12%
-2023-9-8 13:40:12-debug: // ---- build task custom joint physics ----
-2023-9-8 13:40:12-debug: Process: heapTotal 229.71MB heapUsed 194.98MB rss 305.76MB
-2023-9-8 13:40:12-debug: run build task custom joint physics success in 0 ms √13%
-2023-9-8 13:40:12-debug: // ---- build task 填充脚本数据到 settings.json ----
-2023-9-8 13:40:12-debug: 填充脚本数据到 settings.json start13%
-2023-9-8 13:40:12-debug: Process: heapTotal 229.71MB heapUsed 195.00MB rss 305.76MB
-2023-9-8 13:40:12-debug: // ---- build task 填充脚本数据到 settings.json ---- (1ms)
-2023-9-8 13:40:12-debug: run build task 填充脚本数据到 settings.json success in 1 ms √13%
-2023-9-8 13:40:12-debug: 填充场景数据到 settings.json start13%
-2023-9-8 13:40:12-debug: // ---- build task 填充场景数据到 settings.json ----
-2023-9-8 13:40:12-debug: Process: heapTotal 229.71MB heapUsed 195.03MB rss 305.75MB
-2023-9-8 13:40:12-debug: run build task 填充场景数据到 settings.json success in 0 ms √14%
-2023-9-8 13:40:12-debug: 整理资源分组，生成 packedAssets 以及 rawAssets 数据 start14%
-2023-9-8 13:40:12-debug: // ---- build task 整理资源分组，生成 packedAssets 以及 rawAssets 数据 ----
-2023-9-8 13:40:12-debug: Process: heapTotal 229.71MB heapUsed 195.05MB rss 305.76MB
-2023-9-8 13:40:12-debug: run build task 整理资源分组，生成 packedAssets 以及 rawAssets 数据 success in 0 ms √14%
-2023-9-8 13:40:12-debug: 从 suffixMap 生成 md5AssetsMap 到 settings.json start14%
-2023-9-8 13:40:12-debug: // ---- build task 从 suffixMap 生成 md5AssetsMap 到 settings.json ----
-2023-9-8 13:40:12-debug: Process: heapTotal 229.71MB heapUsed 195.09MB rss 305.76MB
-2023-9-8 13:40:12-debug: options.md5Cache is false.
-2023-9-8 13:40:12-debug: // ---- build task 从 suffixMap 生成 md5AssetsMap 到 settings.json ---- (1ms)
-2023-9-8 13:40:12-debug: run build task 从 suffixMap 生成 md5AssetsMap 到 settings.json success in 1 ms √15%
-2023-9-8 13:41:47-debug: refresh db internal success
-2023-9-8 13:41:47-debug: asset-db:worker-effect-data-processing (147ms)
-2023-9-8 13:41:47-debug: refresh db assets success
-2023-9-8 13:41:47-debug: asset-db:refresh-all-database (181ms)
-2023-9-8 13:42:12-debug: start refresh asset from G:\Work\cocoscreator\MiniGame\assets\scenes\scene.scene...
-2023-9-8 13:42:12-debug: %cImport%c: G:\Work\cocoscreator\MiniGame\assets\scenes\scene.scenebackground: #aaff85; color: #000;color: #000;
-2023-9-8 13:42:12-debug: refresh asset G:\Work\cocoscreator\MiniGame\assets\scenes success
-2023-9-8 13:45:51-debug: refresh db internal success
-2023-9-8 13:45:51-debug: asset-db:worker-effect-data-processing (108ms)
-2023-9-8 13:45:51-debug: refresh db assets success
-2023-9-8 13:45:51-debug: asset-db:refresh-all-database (144ms)
-2023-9-8 13:45:53-debug: programming:execute-script (3ms)
-2023-9-8 13:45:54-debug: Query all assets info in project
-2023-9-8 13:45:54-debug: BuildAssetLibrary query-assets with assets 480
-2023-9-8 13:45:54-debug: init custom config: keepNodeUuid: false, useCache: true
-2023-9-8 13:45:54-debug:   Number of other assets: 321
-2023-9-8 13:45:54-debug:   Number of all scripts: 15
-2023-9-8 13:45:54-debug: // ---- build task 查询 Asset Bundle ----
-2023-9-8 13:45:54-debug: Process: heapTotal 228.20MB heapUsed 201.06MB rss 306.59MB
-2023-9-8 13:45:54-debug: 查询 Asset Bundle start0%
-2023-9-8 13:45:54-debug:   Number of all scenes: 1
-2023-9-8 13:45:54-debug: // ---- build task 查询 Asset Bundle ---- (3ms)
-2023-9-8 13:45:54-debug: run build task 查询 Asset Bundle success in 3 ms √3%
-2023-9-8 13:45:54-debug: Process: heapTotal 228.20MB heapUsed 202.63MB rss 306.25MB
-2023-9-8 13:45:54-debug: // ---- build task 查询使用的资源以及资源包配置 ----
-2023-9-8 13:45:54-debug: init bundle assets
-2023-9-8 13:45:54-debug: 查询使用的资源以及资源包配置 start3%
-2023-9-8 13:45:54-debug: Query preload assets from cc.config.json: 60f7195c-ec2a-45eb-ba94-8955f60e81d0,1c02ae6f-4492-4915-b8f8-7492a3b1e4cd,810e96e4-e456-4468-9b59-f4e8f39732c0,efe8e2a3-eace-427b-b4f1-cb8a937ec77d,e9aa9a3e-5b2b-4ac7-a2c7-073de2b2b24f,8bbdbcdd-5cd4-4100-b6d5-b7c9625b6107,50f4348b-c883-4e2f-8f11-ce233b859fa1,fda095cb-831d-4601-ad94-846013963de8,f92806d7-1768-443f-afe8-12bcde84d0f0,dd3a144d-ab7f-41f0-82b8-2e43a090d496,f0416e68-0200-4b77-a926-4f9d16e494da,ff9be190-20a4-4e48-b68c-76e3c7cff085,970b0598-bcb0-4714-91fb-2e81440dccd8,bcd64cc6-2dd9-43f6-abbe-66318d332032,d930590d-bb92-4cc8-8bd1-23cd027f9edf,a3cd009f-0ab0-420d-9278-b9fdab939bbc,9361fd90-ba52-4f84-aa93-6e878fd576ca,c27215d8-6835-4b68-bfbb-bdeac6100c04,b5d6115f-0370-4d7c-aad3-c194cc71cf98,871c3b6c-7379-419d-bda3-794b239ab90d
-2023-9-8 13:45:54-debug: Number of scenes: 1
-2023-9-8 13:45:54-debug: run build task 查询使用的资源以及资源包配置 success in 1 ms √7%
-2023-9-8 13:45:54-debug: // ---- build task 查询使用的资源以及资源包配置 ---- (1ms)
-2023-9-8 13:45:54-debug: 整理脚本分组与脚本数据 start7%
-2023-9-8 13:45:54-debug: // ---- build task 整理脚本分组与脚本数据 ----
-2023-9-8 13:45:54-debug: sort script group...
-2023-9-8 13:45:54-debug: Process: heapTotal 228.20MB heapUsed 202.78MB rss 306.51MB
-2023-9-8 13:45:54-debug: run build task 整理脚本分组与脚本数据 success in 0 ms √10%
-2023-9-8 13:45:54-debug: Process: heapTotal 228.20MB heapUsed 202.82MB rss 306.43MB
-2023-9-8 13:45:54-debug: // ---- build task 初始化 settings.json 与 config.json ----
-2023-9-8 13:45:54-debug: 初始化 settings.json 与 config.json start10%
-2023-9-8 13:45:54-debug: run build task 初始化 settings.json 与 config.json success in 0 ms √11%
-2023-9-8 13:45:54-debug: builder.tasks.settings.macro 字段未在编辑器多语言内定义
-2023-9-8 13:45:54-debug: // ---- build task builder.tasks.settings.macro ----
-2023-9-8 13:45:54-debug: builder.tasks.settings.macro start11%
-2023-9-8 13:45:54-debug: Process: heapTotal 228.20MB heapUsed 202.85MB rss 306.32MB
-2023-9-8 13:45:54-debug: run build task builder.tasks.settings.macro success in 0 ms √11%
-2023-9-8 13:45:54-debug: // ---- build task 整理部分构建选项内数据到 settings.json ----
-2023-9-8 13:45:54-debug: 整理部分构建选项内数据到 settings.json start11%
-2023-9-8 13:45:54-debug: Process: heapTotal 228.20MB heapUsed 202.88MB rss 306.30MB
-2023-9-8 13:45:54-debug: // ---- build task 整理部分构建选项内数据到 settings.json ---- (1ms)
-2023-9-8 13:45:54-debug: run build task 整理部分构建选项内数据到 settings.json success in 1 ms √12%
-2023-9-8 13:45:54-debug: custom joint texture layouts start12%
-2023-9-8 13:45:54-debug: // ---- build task custom joint texture layouts ----
-2023-9-8 13:45:54-debug: Process: heapTotal 228.20MB heapUsed 202.95MB rss 306.34MB
-2023-9-8 13:45:54-debug: // ---- build task custom joint texture layouts ---- (1ms)
-2023-9-8 13:45:54-debug: run build task custom joint texture layouts success in 1 ms √12%
-2023-9-8 13:45:54-debug: Process: heapTotal 228.20MB heapUsed 202.98MB rss 306.34MB
-2023-9-8 13:45:54-debug: custom joint physics start12%
-2023-9-8 13:45:54-debug: // ---- build task custom joint physics ----
-2023-9-8 13:45:54-debug: run build task custom joint physics success in 0 ms √13%
-2023-9-8 13:45:54-debug: // ---- build task 填充脚本数据到 settings.json ----
-2023-9-8 13:45:54-debug: 填充脚本数据到 settings.json start13%
-2023-9-8 13:45:54-debug: Process: heapTotal 228.20MB heapUsed 203.01MB rss 306.34MB
-2023-9-8 13:45:54-debug: // ---- build task 填充脚本数据到 settings.json ---- (1ms)
-2023-9-8 13:45:54-debug: run build task 填充脚本数据到 settings.json success in 1 ms √13%
-2023-9-8 13:45:54-debug: Process: heapTotal 228.20MB heapUsed 203.04MB rss 306.34MB
-2023-9-8 13:45:54-debug: // ---- build task 填充场景数据到 settings.json ----
-2023-9-8 13:45:54-debug: 填充场景数据到 settings.json start13%
-2023-9-8 13:45:54-debug: // ---- build task 填充场景数据到 settings.json ---- (1ms)
-2023-9-8 13:45:54-debug: run build task 填充场景数据到 settings.json success in 1 ms √14%
-2023-9-8 13:45:54-debug: // ---- build task 整理资源分组，生成 packedAssets 以及 rawAssets 数据 ----
-2023-9-8 13:45:54-debug: Process: heapTotal 228.20MB heapUsed 203.07MB rss 306.34MB
-2023-9-8 13:45:54-debug: 整理资源分组，生成 packedAssets 以及 rawAssets 数据 start14%
-2023-9-8 13:45:54-debug: // ---- build task 整理资源分组，生成 packedAssets 以及 rawAssets 数据 ---- (1ms)
-2023-9-8 13:45:54-debug: run build task 整理资源分组，生成 packedAssets 以及 rawAssets 数据 success in 1 ms √14%
-2023-9-8 13:45:54-debug: 从 suffixMap 生成 md5AssetsMap 到 settings.json start14%
-2023-9-8 13:45:54-debug: // ---- build task 从 suffixMap 生成 md5AssetsMap 到 settings.json ----
-2023-9-8 13:45:54-debug: Process: heapTotal 228.20MB heapUsed 203.11MB rss 306.36MB
-2023-9-8 13:45:54-debug: options.md5Cache is false.
-2023-9-8 13:45:54-debug: run build task 从 suffixMap 生成 md5AssetsMap 到 settings.json success in 0 ms √15%
-2023-9-8 13:47:03-debug: refresh db internal success
-2023-9-8 13:47:03-debug: asset-db:worker-effect-data-processing (139ms)
-2023-9-8 13:47:03-debug: %cImport%c: G:\Work\cocoscreator\MiniGame\assets\script\game\gameShulte\view\GameShulteBeginView.tsbackground: #aaff85; color: #000;color: #000;
-2023-9-8 13:47:03-debug: refresh db assets success
-2023-9-8 13:47:03-debug: asset-db:refresh-all-database (178ms)
-2023-9-8 13:47:06-debug: programming:execute-script (3ms)
-2023-9-8 13:47:07-debug: Query all assets info in project
-2023-9-8 13:47:07-debug: BuildAssetLibrary query-assets with assets 480
-2023-9-8 13:47:07-debug: init custom config: keepNodeUuid: false, useCache: true
-2023-9-8 13:47:07-debug:   Number of other assets: 321
-2023-9-8 13:47:07-debug:   Number of all scripts: 15
-2023-9-8 13:47:07-debug:   Number of all scenes: 1
-2023-9-8 13:47:07-debug: 查询 Asset Bundle start0%
-2023-9-8 13:47:07-debug: // ---- build task 查询 Asset Bundle ----
-2023-9-8 13:47:07-debug: Process: heapTotal 230.29MB heapUsed 194.43MB rss 305.66MB
-2023-9-8 13:47:07-debug: // ---- build task 查询 Asset Bundle ---- (3ms)
-2023-9-8 13:47:07-debug: run build task 查询 Asset Bundle success in 3 ms √3%
-2023-9-8 13:47:07-debug: Process: heapTotal 230.29MB heapUsed 196.00MB rss 305.53MB
-2023-9-8 13:47:07-debug: // ---- build task 查询使用的资源以及资源包配置 ----
-2023-9-8 13:47:07-debug: 查询使用的资源以及资源包配置 start3%
-2023-9-8 13:47:07-debug: init bundle assets
-2023-9-8 13:47:07-debug: Query preload assets from cc.config.json: 60f7195c-ec2a-45eb-ba94-8955f60e81d0,1c02ae6f-4492-4915-b8f8-7492a3b1e4cd,810e96e4-e456-4468-9b59-f4e8f39732c0,efe8e2a3-eace-427b-b4f1-cb8a937ec77d,e9aa9a3e-5b2b-4ac7-a2c7-073de2b2b24f,8bbdbcdd-5cd4-4100-b6d5-b7c9625b6107,50f4348b-c883-4e2f-8f11-ce233b859fa1,fda095cb-831d-4601-ad94-846013963de8,f92806d7-1768-443f-afe8-12bcde84d0f0,dd3a144d-ab7f-41f0-82b8-2e43a090d496,f0416e68-0200-4b77-a926-4f9d16e494da,ff9be190-20a4-4e48-b68c-76e3c7cff085,970b0598-bcb0-4714-91fb-2e81440dccd8,bcd64cc6-2dd9-43f6-abbe-66318d332032,d930590d-bb92-4cc8-8bd1-23cd027f9edf,a3cd009f-0ab0-420d-9278-b9fdab939bbc,9361fd90-ba52-4f84-aa93-6e878fd576ca,c27215d8-6835-4b68-bfbb-bdeac6100c04,b5d6115f-0370-4d7c-aad3-c194cc71cf98,871c3b6c-7379-419d-bda3-794b239ab90d
-2023-9-8 13:47:07-debug: Number of scenes: 1
-2023-9-8 13:47:07-debug: // ---- build task 查询使用的资源以及资源包配置 ---- (1ms)
-2023-9-8 13:47:07-debug: run build task 查询使用的资源以及资源包配置 success in 1 ms √7%
-2023-9-8 13:47:07-debug: Process: heapTotal 230.29MB heapUsed 196.17MB rss 305.56MB
-2023-9-8 13:47:07-debug: // ---- build task 整理脚本分组与脚本数据 ----
-2023-9-8 13:47:07-debug: 整理脚本分组与脚本数据 start7%
-2023-9-8 13:47:07-debug: sort script group...
-2023-9-8 13:47:07-debug: run build task 整理脚本分组与脚本数据 success in 0 ms √10%
-2023-9-8 13:47:07-debug: 初始化 settings.json 与 config.json start10%
-2023-9-8 13:47:07-debug: Process: heapTotal 230.29MB heapUsed 196.20MB rss 305.56MB
-2023-9-8 13:47:07-debug: // ---- build task 初始化 settings.json 与 config.json ----
-2023-9-8 13:47:07-debug: // ---- build task 初始化 settings.json 与 config.json ---- (1ms)
-2023-9-8 13:47:07-debug: run build task 初始化 settings.json 与 config.json success in 1 ms √11%
-2023-9-8 13:47:07-debug: builder.tasks.settings.macro 字段未在编辑器多语言内定义
-2023-9-8 13:47:07-debug: // ---- build task builder.tasks.settings.macro ----
-2023-9-8 13:47:07-debug: Process: heapTotal 230.29MB heapUsed 196.24MB rss 305.57MB
-2023-9-8 13:47:07-debug: builder.tasks.settings.macro start11%
-2023-9-8 13:47:07-debug: run build task builder.tasks.settings.macro success in 0 ms √11%
-2023-9-8 13:47:07-debug: // ---- build task 整理部分构建选项内数据到 settings.json ----
-2023-9-8 13:47:07-debug: Process: heapTotal 230.29MB heapUsed 196.27MB rss 305.56MB
-2023-9-8 13:47:07-debug: 整理部分构建选项内数据到 settings.json start11%
-2023-9-8 13:47:07-debug: // ---- build task 整理部分构建选项内数据到 settings.json ---- (1ms)
-2023-9-8 13:47:07-debug: run build task 整理部分构建选项内数据到 settings.json success in 1 ms √12%
-2023-9-8 13:47:07-debug: Process: heapTotal 230.29MB heapUsed 196.34MB rss 305.62MB
-2023-9-8 13:47:07-debug: custom joint texture layouts start12%
-2023-9-8 13:47:07-debug: // ---- build task custom joint texture layouts ----
-2023-9-8 13:47:07-debug: run build task custom joint texture layouts success in 0 ms √12%
-2023-9-8 13:47:07-debug: custom joint physics start12%
-2023-9-8 13:47:07-debug: // ---- build task custom joint physics ----
-2023-9-8 13:47:07-debug: Process: heapTotal 230.29MB heapUsed 196.37MB rss 305.64MB
-2023-9-8 13:47:07-debug: // ---- build task custom joint physics ---- (1ms)
-2023-9-8 13:47:07-debug: run build task custom joint physics success in 1 ms √13%
-2023-9-8 13:47:07-debug: Process: heapTotal 230.29MB heapUsed 196.40MB rss 305.65MB
-2023-9-8 13:47:07-debug: // ---- build task 填充脚本数据到 settings.json ----
-2023-9-8 13:47:07-debug: 填充脚本数据到 settings.json start13%
-2023-9-8 13:47:07-debug: run build task 填充脚本数据到 settings.json success in 0 ms √13%
-2023-9-8 13:47:07-debug: // ---- build task 填充场景数据到 settings.json ----
-2023-9-8 13:47:07-debug: 填充场景数据到 settings.json start13%
-2023-9-8 13:47:07-debug: Process: heapTotal 230.29MB heapUsed 196.42MB rss 305.64MB
-2023-9-8 13:47:07-debug: run build task 填充场景数据到 settings.json success in 0 ms √14%
-2023-9-8 13:47:07-debug: // ---- build task 整理资源分组，生成 packedAssets 以及 rawAssets 数据 ----
-2023-9-8 13:47:07-debug: Process: heapTotal 230.29MB heapUsed 196.45MB rss 305.64MB
-2023-9-8 13:47:07-debug: 整理资源分组，生成 packedAssets 以及 rawAssets 数据 start14%
-2023-9-8 13:47:07-debug: // ---- build task 整理资源分组，生成 packedAssets 以及 rawAssets 数据 ---- (1ms)
-2023-9-8 13:47:07-debug: run build task 整理资源分组，生成 packedAssets 以及 rawAssets 数据 success in 1 ms √14%
-2023-9-8 13:47:07-debug: // ---- build task 从 suffixMap 生成 md5AssetsMap 到 settings.json ----
-2023-9-8 13:47:07-debug: options.md5Cache is false.
-2023-9-8 13:47:07-debug: Process: heapTotal 230.29MB heapUsed 196.49MB rss 305.65MB
-2023-9-8 13:47:07-debug: 从 suffixMap 生成 md5AssetsMap 到 settings.json start14%
-2023-9-8 13:47:07-debug: // ---- build task 从 suffixMap 生成 md5AssetsMap 到 settings.json ---- (1ms)
-2023-9-8 13:47:07-debug: run build task 从 suffixMap 生成 md5AssetsMap 到 settings.json success in 1 ms √15%
-2023-9-8 13:49:16-debug: start refresh asset from G:\Work\cocoscreator\MiniGame\assets\game\gameGrid\GameShulte.prefab...
-2023-9-8 13:49:16-debug: %cImport%c: G:\Work\cocoscreator\MiniGame\assets\game\gameGrid\GameShulte.prefabbackground: #aaff85; color: #000;color: #000;
-2023-9-8 13:49:16-debug: refresh asset G:\Work\cocoscreator\MiniGame\assets\game\gameGrid success
-2023-9-8 13:49:16-debug: %cImport%c: G:\Work\cocoscreator\MiniGame\assets\game\gameGridbackground: #aaff85; color: #000;color: #000;
-2023-9-8 13:59:04-debug: refresh db internal success
-2023-9-8 13:59:04-debug: asset-db:worker-effect-data-processing (105ms)
-2023-9-8 13:59:04-debug: %cImport%c: G:\Work\cocoscreator\MiniGame\assets\script\game\gameShulte\view\GameShulteStartView.tsbackground: #aaff85; color: #000;color: #000;
-2023-9-8 13:59:04-debug: refresh db assets success
-2023-9-8 13:59:04-debug: asset-db:refresh-all-database (141ms)
-2023-9-8 14:02:29-debug: refresh db internal success
-2023-9-8 14:02:29-debug: asset-db:worker-effect-data-processing (148ms)
-2023-9-8 14:02:29-debug: refresh db assets success
-2023-9-8 14:02:29-debug: asset-db:refresh-all-database (191ms)
-2023-9-8 14:02:41-debug: start move asset from G:\Work\cocoscreator\MiniGame\assets\game\gameGrid\GameShulte.prefab -> G:\Work\cocoscreator\MiniGame\assets\game\gameShulte\GameShulte.prefab...
-2023-9-8 14:02:41-debug: start refresh asset from G:\Work\cocoscreator\MiniGame\assets\game\gameShulte\GameShulte.prefab...
-2023-9-8 14:02:41-debug: %cImport%c: G:\Work\cocoscreator\MiniGame\assets\game\gameShulte\GameShulte.prefabbackground: #aaff85; color: #000;color: #000;
-2023-9-8 14:02:41-debug: refresh asset G:\Work\cocoscreator\MiniGame\assets\game\gameShulte success
-2023-9-8 14:02:41-debug: start refresh asset from G:\Work\cocoscreator\MiniGame\assets\game\gameGrid...
-2023-9-8 14:02:41-debug: %cImport%c: G:\Work\cocoscreator\MiniGame\assets\game\gameGridbackground: #aaff85; color: #000;color: #000;
-2023-9-8 14:02:41-debug: move asset from G:\Work\cocoscreator\MiniGame\assets\game\gameGrid\GameShulte.prefab -> G:\Work\cocoscreator\MiniGame\assets\game\gameShulte\GameShulte.prefab success
-2023-9-8 14:02:41-debug: refresh asset G:\Work\cocoscreator\MiniGame\assets\game success
-2023-9-8 14:02:41-debug: %cImport%c: G:\Work\cocoscreator\MiniGame\assets\game\gameShultebackground: #aaff85; color: #000;color: #000;
-2023-9-8 14:06:17-debug: refresh db internal success
-2023-9-8 14:06:17-debug: asset-db:worker-effect-data-processing (106ms)
-2023-9-8 14:06:17-debug: %cImport%c: G:\Work\cocoscreator\MiniGame\assets\script\game\gameGrid\GameGridController.tsbackground: #aaff85; color: #000;color: #000;
-2023-9-8 14:06:17-debug: %cImport%c: G:\Work\cocoscreator\MiniGame\assets\script\game\gameShulte\view\ShulteGridItem.tsbackground: #aaff85; color: #000;color: #000;
-2023-9-8 14:06:17-debug: refresh db assets success
-2023-9-8 14:06:17-debug: asset-db:refresh-all-database (148ms)
-2023-9-8 14:06:50-debug: refresh db internal success
-2023-9-8 14:06:50-debug: %cImport%c: G:\Work\cocoscreator\MiniGame\assets\script\game\gameGrid\viewbackground: #aaff85; color: #000;color: #000;
-2023-9-8 14:06:50-debug: asset-db:worker-effect-data-processing (152ms)
-2023-9-8 14:06:50-debug: %cImport%c: G:\Work\cocoscreator\MiniGame\assets\script\game\gameGridbackground: #aaff85; color: #000;color: #000;
-2023-9-8 14:06:50-debug: %cImport%c: G:\Work\cocoscreator\MiniGame\assets\script\game\gameGrid\GameGridController.tsbackground: #aaff85; color: #000;color: #000;
-2023-9-8 14:06:50-debug: refresh db assets success
-2023-9-8 14:06:50-debug: asset-db:refresh-all-database (198ms)
-2023-9-8 14:07:05-debug: start refresh asset from G:\Work\cocoscreator\MiniGame\assets\script\game\gameGrid\view\GameGridStartView.ts...
-2023-9-8 14:07:05-debug: %cImport%c: G:\Work\cocoscreator\MiniGame\assets\script\game\gameGrid\view\GameGridStartView.tsbackground: #aaff85; color: #000;color: #000;
-2023-9-8 14:07:05-debug: refresh asset G:\Work\cocoscreator\MiniGame\assets\script\game\gameGrid\view success
-2023-9-8 14:07:05-debug: %cImport%c: G:\Work\cocoscreator\MiniGame\assets\script\game\gameGrid\viewbackground: #aaff85; color: #000;color: #000;
-2023-9-8 14:12:36-debug: refresh db internal success
-2023-9-8 14:12:36-debug: %cImport%c: G:\Work\cocoscreator\MiniGame\assets\script\common\TweenManager.tsbackground: #aaff85; color: #000;color: #000;
-2023-9-8 14:12:36-debug: asset-db:worker-effect-data-processing (160ms)
-2023-9-8 14:12:36-debug: %cImport%c: G:\Work\cocoscreator\MiniGame\assets\script\commonbackground: #aaff85; color: #000;color: #000;
-2023-9-8 14:12:36-debug: %cImport%c: G:\Work\cocoscreator\MiniGame\assets\script\game\gameGrid\view\GameGridStartView.tsbackground: #aaff85; color: #000;color: #000;
-2023-9-8 14:12:36-debug: refresh db assets success
-2023-9-8 14:12:36-debug: asset-db:refresh-all-database (209ms)
-2023-9-8 14:12:40-debug: refresh db internal success
-2023-9-8 14:12:40-debug: asset-db:worker-effect-data-processing (113ms)
-2023-9-8 14:12:40-debug: refresh db assets success
-2023-9-8 14:12:40-debug: asset-db:refresh-all-database (150ms)
-2023-9-8 14:13:47-debug: refresh db internal success
-2023-9-8 14:13:48-debug: asset-db:worker-effect-data-processing (136ms)
-2023-9-8 14:13:48-debug: refresh db assets success
-2023-9-8 14:13:48-debug: asset-db:refresh-all-database (174ms)
-2023-9-8 14:15:37-debug: refresh db internal success
-2023-9-8 14:15:37-debug: asset-db:worker-effect-data-processing (150ms)
-2023-9-8 14:15:37-debug: %cImport%c: G:\Work\cocoscreator\MiniGame\assets\script\common\TweenManager.tsbackground: #aaff85; color: #000;color: #000;
-2023-9-8 14:15:37-debug: refresh db assets success
-2023-9-8 14:15:37-debug: asset-db:refresh-all-database (193ms)
-2023-9-8 14:17:11-debug: refresh db internal success
-2023-9-8 14:17:11-debug: asset-db:worker-effect-data-processing (146ms)
-2023-9-8 14:17:11-debug: refresh db assets success
-2023-9-8 14:17:11-debug: asset-db:refresh-all-database (185ms)
-2023-9-8 14:30:22-debug: refresh db internal success
-2023-9-8 14:30:22-debug: asset-db:worker-effect-data-processing (139ms)
-2023-9-8 14:30:22-debug: %cImport%c: G:\Work\cocoscreator\MiniGame\assets\script\common\TweenManager.tsbackground: #aaff85; color: #000;color: #000;
-2023-9-8 14:30:22-debug: %cImport%c: G:\Work\cocoscreator\MiniGame\assets\script\game\gameGrid\view\GameGridStartView.tsbackground: #aaff85; color: #000;color: #000;
-2023-9-8 14:30:22-debug: refresh db assets success
-2023-9-8 14:30:22-debug: asset-db:refresh-all-database (175ms)
-2023-9-8 14:30:39-debug: refresh db internal success
-2023-9-8 14:30:40-debug: asset-db:worker-effect-data-processing (179ms)
-2023-9-8 14:30:40-debug: refresh db assets success
-2023-9-8 14:30:40-debug: asset-db:refresh-all-database (223ms)
-2023-9-8 14:30:44-debug: refresh db internal success
-2023-9-8 14:30:44-debug: asset-db:worker-effect-data-processing (132ms)
-2023-9-8 14:30:44-debug: refresh db assets success
-2023-9-8 14:30:44-debug: asset-db:refresh-all-database (174ms)
-2023-9-8 14:30:56-debug: refresh db internal success
-2023-9-8 14:30:56-debug: asset-db:worker-effect-data-processing (139ms)
-2023-9-8 14:30:56-debug: refresh db assets success
-2023-9-8 14:30:56-debug: asset-db:refresh-all-database (182ms)
-2023-9-8 14:31:12-debug: refresh db internal success
-2023-9-8 14:31:13-debug: asset-db:worker-effect-data-processing (184ms)
-2023-9-8 14:31:13-debug: refresh db assets success
-2023-9-8 14:31:13-debug: asset-db:refresh-all-database (226ms)
-2023-9-8 14:31:22-debug: refresh db internal success
-2023-9-8 14:31:23-debug: asset-db:worker-effect-data-processing (130ms)
-2023-9-8 14:31:23-debug: refresh db assets success
-2023-9-8 14:31:23-debug: asset-db:refresh-all-database (174ms)
-2023-9-8 14:31:39-debug: refresh db internal success
-2023-9-8 14:31:39-debug: asset-db:worker-effect-data-processing (175ms)
-2023-9-8 14:31:39-debug: refresh db assets success
-2023-9-8 14:31:39-debug: asset-db:refresh-all-database (214ms)
-2023-9-8 14:31:52-debug: refresh db internal success
-2023-9-8 14:31:52-debug: asset-db:worker-effect-data-processing (177ms)
-2023-9-8 14:31:52-debug: refresh db assets success
-2023-9-8 14:31:52-debug: asset-db:refresh-all-database (218ms)
-2023-9-8 14:32:01-debug: refresh db internal success
-2023-9-8 14:32:01-debug: asset-db:worker-effect-data-processing (133ms)
-2023-9-8 14:32:01-debug: refresh db assets success
-2023-9-8 14:32:01-debug: asset-db:refresh-all-database (183ms)
-2023-9-8 14:32:16-debug: refresh db internal success
-2023-9-8 14:32:16-debug: asset-db:worker-effect-data-processing (169ms)
-2023-9-8 14:32:16-debug: refresh db assets success
-2023-9-8 14:32:16-debug: asset-db:refresh-all-database (217ms)
-2023-9-8 14:32:28-debug: refresh db internal success
-2023-9-8 14:32:28-debug: asset-db:worker-effect-data-processing (141ms)
-2023-9-8 14:32:28-debug: refresh db assets success
-2023-9-8 14:32:28-debug: asset-db:refresh-all-database (187ms)
-2023-9-8 14:32:34-debug: refresh db internal success
-2023-9-8 14:32:34-debug: asset-db:worker-effect-data-processing (130ms)
-2023-9-8 14:32:34-debug: refresh db assets success
-2023-9-8 14:32:34-debug: asset-db:refresh-all-database (172ms)
-2023-9-8 14:32:49-debug: refresh db internal success
-2023-9-8 14:32:50-debug: asset-db:worker-effect-data-processing (181ms)
-2023-9-8 14:32:50-debug: refresh db assets success
-2023-9-8 14:32:50-debug: asset-db:refresh-all-database (229ms)
-2023-9-8 14:33:31-debug: refresh db internal success
-2023-9-8 14:33:31-debug: asset-db:worker-effect-data-processing (135ms)
-2023-9-8 14:33:31-debug: refresh db assets success
-2023-9-8 14:33:31-debug: asset-db:refresh-all-database (176ms)
-2023-9-8 14:33:38-debug: refresh db internal success
-2023-9-8 14:33:39-debug: asset-db:worker-effect-data-processing (180ms)
-2023-9-8 14:33:39-debug: refresh db assets success
-2023-9-8 14:33:39-debug: asset-db:refresh-all-database (223ms)
-2023-9-8 14:33:43-debug: refresh db internal success
-2023-9-8 14:33:43-debug: asset-db:worker-effect-data-processing (126ms)
-2023-9-8 14:33:43-debug: refresh db assets success
-2023-9-8 14:33:43-debug: asset-db:refresh-all-database (169ms)
-2023-9-8 14:33:53-debug: refresh db internal success
-2023-9-8 14:33:53-debug: asset-db:worker-effect-data-processing (139ms)
-2023-9-8 14:33:53-debug: refresh db assets success
-2023-9-8 14:33:53-debug: asset-db:refresh-all-database (187ms)
-2023-9-8 14:34:18-debug: refresh db internal success
-2023-9-8 14:34:18-debug: asset-db:worker-effect-data-processing (183ms)
-2023-9-8 14:34:18-debug: refresh db assets success
-2023-9-8 14:34:18-debug: asset-db:refresh-all-database (233ms)
-2023-9-8 14:34:36-debug: refresh db internal success
-2023-9-8 14:34:36-debug: asset-db:worker-effect-data-processing (141ms)
-2023-9-8 14:34:36-debug: refresh db assets success
-2023-9-8 14:34:36-debug: asset-db:refresh-all-database (176ms)
-2023-9-8 14:34:45-debug: refresh db internal success
-2023-9-8 14:34:46-debug: asset-db:worker-effect-data-processing (136ms)
-2023-9-8 14:34:46-debug: refresh db assets success
-2023-9-8 14:34:46-debug: asset-db:refresh-all-database (179ms)
-2023-9-8 14:35:09-debug: refresh db internal success
-2023-9-8 14:35:09-debug: asset-db:worker-effect-data-processing (172ms)
-2023-9-8 14:35:09-debug: refresh db assets success
-2023-9-8 14:35:09-debug: asset-db:refresh-all-database (219ms)
-2023-9-8 14:35:11-debug: refresh db internal success
-2023-9-8 14:35:11-debug: asset-db:worker-effect-data-processing (126ms)
-2023-9-8 14:35:11-debug: refresh db assets success
-2023-9-8 14:35:11-debug: asset-db:refresh-all-database (167ms)
-2023-9-8 14:35:21-debug: refresh db internal success
-2023-9-8 14:35:21-debug: asset-db:worker-effect-data-processing (134ms)
-2023-9-8 14:35:21-debug: refresh db assets success
-2023-9-8 14:35:21-debug: asset-db:refresh-all-database (171ms)
-2023-9-8 14:35:22-debug: refresh db internal success
-2023-9-8 14:35:23-debug: asset-db:worker-effect-data-processing (170ms)
-2023-9-8 14:35:23-debug: refresh db assets success
-2023-9-8 14:35:23-debug: asset-db:refresh-all-database (211ms)
-2023-9-8 14:35:29-debug: refresh db internal success
-2023-9-8 14:35:29-debug: asset-db:worker-effect-data-processing (127ms)
-2023-9-8 14:35:29-debug: refresh db assets success
-2023-9-8 14:35:29-debug: asset-db:refresh-all-database (169ms)
-2023-9-8 14:35:36-debug: refresh db internal success
-2023-9-8 14:35:37-debug: asset-db:worker-effect-data-processing (132ms)
-2023-9-8 14:35:37-debug: refresh db assets success
-2023-9-8 14:35:37-debug: asset-db:refresh-all-database (175ms)
-2023-9-8 14:35:45-debug: refresh db internal success
-2023-9-8 14:35:45-debug: asset-db:worker-effect-data-processing (131ms)
-2023-9-8 14:35:45-debug: refresh db assets success
-2023-9-8 14:35:45-debug: asset-db:refresh-all-database (175ms)
-2023-9-8 14:35:58-debug: refresh db internal success
-2023-9-8 14:35:59-debug: asset-db:worker-effect-data-processing (134ms)
-2023-9-8 14:35:59-debug: refresh db assets success
-2023-9-8 14:35:59-debug: asset-db:refresh-all-database (165ms)
-2023-9-8 14:36:42-debug: refresh db internal success
-2023-9-8 14:36:42-debug: asset-db:worker-effect-data-processing (199ms)
-2023-9-8 14:36:42-debug: refresh db assets success
-2023-9-8 14:36:42-debug: asset-db:refresh-all-database (242ms)
-2023-9-8 14:37:13-debug: refresh db internal success
-2023-9-8 14:37:13-debug: asset-db:worker-effect-data-processing (192ms)
-2023-9-8 14:37:13-debug: refresh db assets success
-2023-9-8 14:37:13-debug: asset-db:refresh-all-database (234ms)
-2023-9-8 14:37:33-debug: refresh db internal success
-2023-9-8 14:37:33-debug: asset-db:worker-effect-data-processing (140ms)
-2023-9-8 14:37:33-debug: refresh db assets success
-2023-9-8 14:37:33-debug: asset-db:refresh-all-database (171ms)
-2023-9-8 14:37:42-debug: refresh db internal success
-2023-9-8 14:37:42-debug: asset-db:worker-effect-data-processing (105ms)
-2023-9-8 14:37:42-debug: refresh db assets success
-2023-9-8 14:37:42-debug: asset-db:refresh-all-database (138ms)
-2023-9-8 14:37:52-debug: refresh db internal success
-2023-9-8 14:37:52-debug: asset-db:worker-effect-data-processing (132ms)
-2023-9-8 14:37:52-debug: refresh db assets success
-2023-9-8 14:37:52-debug: asset-db:refresh-all-database (164ms)
-2023-9-8 14:38:22-debug: refresh db internal success
-2023-9-8 14:38:22-debug: asset-db:worker-effect-data-processing (143ms)
-2023-9-8 14:38:22-debug: refresh db assets success
-2023-9-8 14:38:22-debug: asset-db:refresh-all-database (181ms)
-2023-9-8 14:38:33-debug: refresh db internal success
-2023-9-8 14:38:33-debug: asset-db:worker-effect-data-processing (113ms)
-2023-9-8 14:38:33-debug: refresh db assets success
-2023-9-8 14:38:33-debug: asset-db:refresh-all-database (145ms)
-2023-9-8 14:38:37-debug: refresh db internal success
-2023-9-8 14:38:37-debug: asset-db:worker-effect-data-processing (182ms)
-2023-9-8 14:38:37-debug: refresh db assets success
-2023-9-8 14:38:37-debug: asset-db:refresh-all-database (224ms)
-2023-9-8 14:39:01-debug: refresh db internal success
-2023-9-8 14:39:01-debug: asset-db:worker-effect-data-processing (185ms)
-2023-9-8 14:39:01-debug: refresh db assets success
-2023-9-8 14:39:01-debug: asset-db:refresh-all-database (223ms)
-2023-9-8 14:39:04-debug: start refresh asset from G:\Work\cocoscreator\MiniGame\assets\scenes\scene.scene...
-2023-9-8 14:39:04-debug: %cImport%c: G:\Work\cocoscreator\MiniGame\assets\scenes\scene.scenebackground: #aaff85; color: #000;color: #000;
-2023-9-8 14:39:04-debug: refresh asset G:\Work\cocoscreator\MiniGame\assets\scenes success
-2023-9-8 14:40:15-debug: refresh db internal success
-2023-9-8 14:40:16-debug: asset-db:worker-effect-data-processing (144ms)
-2023-9-8 14:40:16-debug: %cImport%c: G:\Work\cocoscreator\MiniGame\assets\script\game\gameGrid\view\GameGridStartView.tsbackground: #aaff85; color: #000;color: #000;
-2023-9-8 14:40:16-debug: refresh db assets success
-2023-9-8 14:40:16-debug: asset-db:refresh-all-database (181ms)
-2023-9-8 15:14:32-debug: refresh db internal success
-2023-9-8 15:14:32-debug: asset-db:worker-effect-data-processing (142ms)
-2023-9-8 15:14:32-debug: %cImport%c: G:\Work\cocoscreator\MiniGame\assets\script\game\gameGrid\view\GameGridStartView.tsbackground: #aaff85; color: #000;color: #000;
-2023-9-8 15:14:32-debug: refresh db assets success
-2023-9-8 15:14:32-debug: asset-db:refresh-all-database (180ms)
-2023-9-8 15:14:44-debug: start refresh asset from G:\Work\cocoscreator\MiniGame\assets\scenes\scene.scene...
-2023-9-8 15:14:44-debug: %cImport%c: G:\Work\cocoscreator\MiniGame\assets\scenes\scene.scenebackground: #aaff85; color: #000;color: #000;
-2023-9-8 15:14:44-debug: refresh asset G:\Work\cocoscreator\MiniGame\assets\scenes success
-2023-9-8 15:14:45-debug: start refresh asset from G:\Work\cocoscreator\MiniGame\assets\scenes\scene.scene...
-2023-9-8 15:14:45-debug: %cImport%c: G:\Work\cocoscreator\MiniGame\assets\scenes\scene.scenebackground: #aaff85; color: #000;color: #000;
-2023-9-8 15:14:45-debug: refresh asset G:\Work\cocoscreator\MiniGame\assets\scenes success
-2023-9-8 15:14:47-debug: programming:execute-script (2ms)
-2023-9-8 15:14:48-debug: Query all assets info in project
-2023-9-8 15:14:48-debug: BuildAssetLibrary query-assets with assets 483
-2023-9-8 15:14:48-debug: init custom config: keepNodeUuid: false, useCache: true
-2023-9-8 15:14:48-debug:   Number of all scenes: 1
-2023-9-8 15:14:48-debug:   Number of other assets: 322
-2023-9-8 15:14:48-debug:   Number of all scripts: 17
-2023-9-8 15:14:48-debug: // ---- build task 查询 Asset Bundle ----
-2023-9-8 15:14:48-debug: Process: heapTotal 209.82MB heapUsed 188.34MB rss 280.77MB
-2023-9-8 15:14:48-debug: 查询 Asset Bundle start0%
-2023-9-8 15:14:48-debug: // ---- build task 查询 Asset Bundle ---- (4ms)
-2023-9-8 15:14:48-debug: run build task 查询 Asset Bundle success in 4 ms √3%
-2023-9-8 15:14:48-debug: Process: heapTotal 209.82MB heapUsed 188.29MB rss 280.56MB
-2023-9-8 15:14:48-debug: // ---- build task 查询使用的资源以及资源包配置 ----
-2023-9-8 15:14:48-debug: init bundle assets
-2023-9-8 15:14:48-debug: 查询使用的资源以及资源包配置 start3%
-2023-9-8 15:14:48-debug: Query preload assets from cc.config.json: 60f7195c-ec2a-45eb-ba94-8955f60e81d0,1c02ae6f-4492-4915-b8f8-7492a3b1e4cd,810e96e4-e456-4468-9b59-f4e8f39732c0,efe8e2a3-eace-427b-b4f1-cb8a937ec77d,e9aa9a3e-5b2b-4ac7-a2c7-073de2b2b24f,8bbdbcdd-5cd4-4100-b6d5-b7c9625b6107,50f4348b-c883-4e2f-8f11-ce233b859fa1,fda095cb-831d-4601-ad94-846013963de8,f92806d7-1768-443f-afe8-12bcde84d0f0,dd3a144d-ab7f-41f0-82b8-2e43a090d496,f0416e68-0200-4b77-a926-4f9d16e494da,ff9be190-20a4-4e48-b68c-76e3c7cff085,970b0598-bcb0-4714-91fb-2e81440dccd8,bcd64cc6-2dd9-43f6-abbe-66318d332032,d930590d-bb92-4cc8-8bd1-23cd027f9edf,a3cd009f-0ab0-420d-9278-b9fdab939bbc,9361fd90-ba52-4f84-aa93-6e878fd576ca,c27215d8-6835-4b68-bfbb-bdeac6100c04,b5d6115f-0370-4d7c-aad3-c194cc71cf98,871c3b6c-7379-419d-bda3-794b239ab90d
-2023-9-8 15:14:48-debug: Number of scenes: 1
-2023-9-8 15:14:48-debug: // ---- build task 查询使用的资源以及资源包配置 ---- (2ms)
-2023-9-8 15:14:48-debug: run build task 查询使用的资源以及资源包配置 success in 2 ms √7%
-2023-9-8 15:14:48-debug: 整理脚本分组与脚本数据 start7%
-2023-9-8 15:14:48-debug: // ---- build task 整理脚本分组与脚本数据 ----
-2023-9-8 15:14:48-debug: Process: heapTotal 209.82MB heapUsed 188.45MB rss 280.90MB
-2023-9-8 15:14:48-debug: sort script group...
-2023-9-8 15:14:48-debug: // ---- build task 整理脚本分组与脚本数据 ---- (1ms)
-2023-9-8 15:14:48-debug: run build task 整理脚本分组与脚本数据 success in 1 ms √10%
-2023-9-8 15:14:48-debug: Process: heapTotal 209.82MB heapUsed 188.49MB rss 280.92MB
-2023-9-8 15:14:48-debug: // ---- build task 初始化 settings.json 与 config.json ----
-2023-9-8 15:14:48-debug: 初始化 settings.json 与 config.json start10%
-2023-9-8 15:14:48-debug: // ---- build task 初始化 settings.json 与 config.json ---- (1ms)
-2023-9-8 15:14:48-debug: run build task 初始化 settings.json 与 config.json success in 1 ms √11%
-2023-9-8 15:14:48-debug: // ---- build task builder.tasks.settings.macro ----
-2023-9-8 15:14:48-debug: builder.tasks.settings.macro 字段未在编辑器多语言内定义
-2023-9-8 15:14:48-debug: builder.tasks.settings.macro start11%
-2023-9-8 15:14:48-debug: Process: heapTotal 209.82MB heapUsed 188.53MB rss 280.91MB
-2023-9-8 15:14:48-debug: // ---- build task builder.tasks.settings.macro ---- (1ms)
-2023-9-8 15:14:48-debug: run build task builder.tasks.settings.macro success in 1 ms √11%
-2023-9-8 15:14:48-debug: Process: heapTotal 209.82MB heapUsed 188.56MB rss 280.88MB
-2023-9-8 15:14:48-debug: 整理部分构建选项内数据到 settings.json start11%
-2023-9-8 15:14:48-debug: // ---- build task 整理部分构建选项内数据到 settings.json ----
-2023-9-8 15:14:48-debug: // ---- build task 整理部分构建选项内数据到 settings.json ---- (2ms)
-2023-9-8 15:14:48-debug: run build task 整理部分构建选项内数据到 settings.json success in 2 ms √12%
-2023-9-8 15:14:48-debug: Process: heapTotal 209.82MB heapUsed 188.63MB rss 281.05MB
-2023-9-8 15:14:48-debug: custom joint texture layouts start12%
-2023-9-8 15:14:48-debug: // ---- build task custom joint texture layouts ----
-2023-9-8 15:14:48-debug: // ---- build task custom joint texture layouts ---- (1ms)
-2023-9-8 15:14:48-debug: run build task custom joint texture layouts success in 1 ms √12%
-2023-9-8 15:14:48-debug: Process: heapTotal 209.82MB heapUsed 188.66MB rss 281.09MB
-2023-9-8 15:14:48-debug: custom joint physics start12%
-2023-9-8 15:14:48-debug: // ---- build task custom joint physics ----
-2023-9-8 15:14:48-debug: run build task custom joint physics success in 0 ms √13%
-2023-9-8 15:14:48-debug: // ---- build task 填充脚本数据到 settings.json ----
-2023-9-8 15:14:48-debug: Process: heapTotal 209.82MB heapUsed 188.69MB rss 281.13MB
-2023-9-8 15:14:48-debug: 填充脚本数据到 settings.json start13%
-2023-9-8 15:14:48-debug: run build task 填充脚本数据到 settings.json success in 0 ms √13%
-2023-9-8 15:14:48-debug: 填充场景数据到 settings.json start13%
-2023-9-8 15:14:48-debug: // ---- build task 填充场景数据到 settings.json ----
-2023-9-8 15:14:48-debug: Process: heapTotal 209.82MB heapUsed 188.71MB rss 281.16MB
-2023-9-8 15:14:48-debug: // ---- build task 填充场景数据到 settings.json ---- (1ms)
-2023-9-8 15:14:48-debug: run build task 填充场景数据到 settings.json success in 1 ms √14%
-2023-9-8 15:14:48-debug: Process: heapTotal 209.82MB heapUsed 188.74MB rss 281.18MB
-2023-9-8 15:14:48-debug: 整理资源分组，生成 packedAssets 以及 rawAssets 数据 start14%
-2023-9-8 15:14:48-debug: // ---- build task 整理资源分组，生成 packedAssets 以及 rawAssets 数据 ----
-2023-9-8 15:14:48-debug: // ---- build task 整理资源分组，生成 packedAssets 以及 rawAssets 数据 ---- (1ms)
-2023-9-8 15:14:48-debug: run build task 整理资源分组，生成 packedAssets 以及 rawAssets 数据 success in 1 ms √14%
-2023-9-8 15:14:48-debug: Process: heapTotal 209.82MB heapUsed 188.80MB rss 281.23MB
-2023-9-8 15:14:48-debug: 从 suffixMap 生成 md5AssetsMap 到 settings.json start14%
-2023-9-8 15:14:48-debug: // ---- build task 从 suffixMap 生成 md5AssetsMap 到 settings.json ----
-2023-9-8 15:14:48-debug: options.md5Cache is false.
-2023-9-8 15:14:48-debug: run build task 从 suffixMap 生成 md5AssetsMap 到 settings.json success in 0 ms √15%
-2023-9-8 15:15:56-debug: refresh db internal success
-2023-9-8 15:15:56-debug: asset-db:worker-effect-data-processing (135ms)
-2023-9-8 15:15:56-debug: refresh db assets success
-2023-9-8 15:15:56-debug: asset-db:refresh-all-database (170ms)
-2023-9-8 15:16:15-debug: refresh db internal success
-2023-9-8 15:16:16-debug: asset-db:worker-effect-data-processing (142ms)
-2023-9-8 15:16:16-debug: %cImport%c: G:\Work\cocoscreator\MiniGame\assets\script\game\MainMenu.tsbackground: #aaff85; color: #000;color: #000;
-2023-9-8 15:16:16-debug: refresh db assets success
-2023-9-8 15:16:16-debug: asset-db:refresh-all-database (177ms)
-2023-9-8 15:16:17-debug: programming:execute-script (3ms)
-2023-9-8 15:16:17-debug: Query all assets info in project
-2023-9-8 15:16:17-debug: BuildAssetLibrary query-assets with assets 483
-2023-9-8 15:16:17-debug: init custom config: keepNodeUuid: false, useCache: true
-2023-9-8 15:16:17-debug:   Number of other assets: 322
-2023-9-8 15:16:17-debug:   Number of all scripts: 17
-2023-9-8 15:16:17-debug: // ---- build task 查询 Asset Bundle ----
-2023-9-8 15:16:17-debug: Process: heapTotal 225.36MB heapUsed 191.05MB rss 290.31MB
-2023-9-8 15:16:17-debug: 查询 Asset Bundle start0%
-2023-9-8 15:16:17-debug:   Number of all scenes: 1
-2023-9-8 15:16:17-debug: // ---- build task 查询 Asset Bundle ---- (4ms)
-2023-9-8 15:16:17-debug: run build task 查询 Asset Bundle success in 4 ms √3%
-2023-9-8 15:16:17-debug: Process: heapTotal 225.36MB heapUsed 192.63MB rss 290.84MB
-2023-9-8 15:16:17-debug: // ---- build task 查询使用的资源以及资源包配置 ----
-2023-9-8 15:16:17-debug: 查询使用的资源以及资源包配置 start3%
-2023-9-8 15:16:17-debug: init bundle assets
-2023-9-8 15:16:17-debug: Query preload assets from cc.config.json: 60f7195c-ec2a-45eb-ba94-8955f60e81d0,1c02ae6f-4492-4915-b8f8-7492a3b1e4cd,810e96e4-e456-4468-9b59-f4e8f39732c0,efe8e2a3-eace-427b-b4f1-cb8a937ec77d,e9aa9a3e-5b2b-4ac7-a2c7-073de2b2b24f,8bbdbcdd-5cd4-4100-b6d5-b7c9625b6107,50f4348b-c883-4e2f-8f11-ce233b859fa1,fda095cb-831d-4601-ad94-846013963de8,f92806d7-1768-443f-afe8-12bcde84d0f0,dd3a144d-ab7f-41f0-82b8-2e43a090d496,f0416e68-0200-4b77-a926-4f9d16e494da,ff9be190-20a4-4e48-b68c-76e3c7cff085,970b0598-bcb0-4714-91fb-2e81440dccd8,bcd64cc6-2dd9-43f6-abbe-66318d332032,d930590d-bb92-4cc8-8bd1-23cd027f9edf,a3cd009f-0ab0-420d-9278-b9fdab939bbc,9361fd90-ba52-4f84-aa93-6e878fd576ca,c27215d8-6835-4b68-bfbb-bdeac6100c04,b5d6115f-0370-4d7c-aad3-c194cc71cf98,871c3b6c-7379-419d-bda3-794b239ab90d
-2023-9-8 15:16:17-debug: Number of scenes: 1
-2023-9-8 15:16:17-debug: // ---- build task 查询使用的资源以及资源包配置 ---- (2ms)
-2023-9-8 15:16:17-debug: run build task 查询使用的资源以及资源包配置 success in 2 ms √7%
-2023-9-8 15:16:17-debug: 整理脚本分组与脚本数据 start7%
-2023-9-8 15:16:17-debug: // ---- build task 整理脚本分组与脚本数据 ----
-2023-9-8 15:16:17-debug: Process: heapTotal 225.36MB heapUsed 192.79MB rss 291.02MB
-2023-9-8 15:16:17-debug: sort script group...
-2023-9-8 15:16:17-debug: run build task 整理脚本分组与脚本数据 success in 0 ms √10%
-2023-9-8 15:16:17-debug: 初始化 settings.json 与 config.json start10%
-2023-9-8 15:16:17-debug: Process: heapTotal 225.36MB heapUsed 192.82MB rss 291.06MB
-2023-9-8 15:16:17-debug: // ---- build task 初始化 settings.json 与 config.json ----
-2023-9-8 15:16:17-debug: run build task 初始化 settings.json 与 config.json success in 0 ms √11%
-2023-9-8 15:16:17-debug: builder.tasks.settings.macro 字段未在编辑器多语言内定义
-2023-9-8 15:16:17-debug: builder.tasks.settings.macro start11%
-2023-9-8 15:16:17-debug: // ---- build task builder.tasks.settings.macro ----
-2023-9-8 15:16:17-debug: Process: heapTotal 225.36MB heapUsed 192.86MB rss 291.09MB
-2023-9-8 15:16:17-debug: run build task builder.tasks.settings.macro success in 0 ms √11%
-2023-9-8 15:16:17-debug: // ---- build task 整理部分构建选项内数据到 settings.json ----
-2023-9-8 15:16:17-debug: Process: heapTotal 225.36MB heapUsed 192.89MB rss 291.11MB
-2023-9-8 15:16:17-debug: 整理部分构建选项内数据到 settings.json start11%
-2023-9-8 15:16:17-debug: // ---- build task 整理部分构建选项内数据到 settings.json ---- (1ms)
-2023-9-8 15:16:17-debug: run build task 整理部分构建选项内数据到 settings.json success in 1 ms √12%
-2023-9-8 15:16:17-debug: Process: heapTotal 225.36MB heapUsed 192.95MB rss 291.22MB
-2023-9-8 15:16:17-debug: // ---- build task custom joint texture layouts ----
-2023-9-8 15:16:17-debug: custom joint texture layouts start12%
-2023-9-8 15:16:17-debug: // ---- build task custom joint texture layouts ---- (1ms)
-2023-9-8 15:16:17-debug: run build task custom joint texture layouts success in 1 ms √12%
-2023-9-8 15:16:17-debug: Process: heapTotal 225.36MB heapUsed 192.99MB rss 291.25MB
-2023-9-8 15:16:17-debug: // ---- build task custom joint physics ----
-2023-9-8 15:16:17-debug: custom joint physics start12%
-2023-9-8 15:16:17-debug: run build task custom joint physics success in 0 ms √13%
-2023-9-8 15:16:17-debug: 填充脚本数据到 settings.json start13%
-2023-9-8 15:16:17-debug: // ---- build task 填充脚本数据到 settings.json ----
-2023-9-8 15:16:17-debug: Process: heapTotal 225.36MB heapUsed 193.01MB rss 291.29MB
-2023-9-8 15:16:17-debug: run build task 填充脚本数据到 settings.json success in 0 ms √13%
-2023-9-8 15:16:17-debug: 填充场景数据到 settings.json start13%
-2023-9-8 15:16:17-debug: // ---- build task 填充场景数据到 settings.json ----
-2023-9-8 15:16:17-debug: Process: heapTotal 225.36MB heapUsed 193.04MB rss 291.30MB
-2023-9-8 15:16:17-debug: run build task 填充场景数据到 settings.json success in 0 ms √14%
-2023-9-8 15:16:17-debug: // ---- build task 整理资源分组，生成 packedAssets 以及 rawAssets 数据 ----
-2023-9-8 15:16:17-debug: 整理资源分组，生成 packedAssets 以及 rawAssets 数据 start14%
-2023-9-8 15:16:17-debug: Process: heapTotal 225.36MB heapUsed 193.06MB rss 291.33MB
-2023-9-8 15:16:17-debug: run build task 整理资源分组，生成 packedAssets 以及 rawAssets 数据 success in 0 ms √14%
-2023-9-8 15:16:17-debug: // ---- build task 从 suffixMap 生成 md5AssetsMap 到 settings.json ----
-2023-9-8 15:16:17-debug: 从 suffixMap 生成 md5AssetsMap 到 settings.json start14%
-2023-9-8 15:16:17-debug: Process: heapTotal 225.36MB heapUsed 193.10MB rss 291.36MB
-2023-9-8 15:16:17-debug: options.md5Cache is false.
-2023-9-8 15:16:17-debug: // ---- build task 从 suffixMap 生成 md5AssetsMap 到 settings.json ---- (1ms)
-2023-9-8 15:16:17-debug: run build task 从 suffixMap 生成 md5AssetsMap 到 settings.json success in 1 ms √15%
-2023-9-8 15:16:57-debug: refresh db internal success
-2023-9-8 15:16:58-debug: asset-db:worker-effect-data-processing (140ms)
-2023-9-8 15:16:58-debug: %cImport%c: G:\Work\cocoscreator\MiniGame\assets\script\game\MainMenu.tsbackground: #aaff85; color: #000;color: #000;
-2023-9-8 15:16:58-debug: refresh db assets success
-2023-9-8 15:16:58-debug: asset-db:refresh-all-database (177ms)
-2023-9-8 15:16:59-debug: programming:execute-script (2ms)
-2023-9-8 15:16:59-debug: Query all assets info in project
-2023-9-8 15:16:59-debug: BuildAssetLibrary query-assets with assets 483
-2023-9-8 15:16:59-debug: init custom config: keepNodeUuid: false, useCache: true
-2023-9-8 15:16:59-debug:   Number of other assets: 322
-2023-9-8 15:16:59-debug: 查询 Asset Bundle start0%
-2023-9-8 15:16:59-debug:   Number of all scenes: 1
-2023-9-8 15:16:59-debug:   Number of all scripts: 17
-2023-9-8 15:16:59-debug: // ---- build task 查询 Asset Bundle ----
-2023-9-8 15:16:59-debug: Process: heapTotal 217.14MB heapUsed 189.96MB rss 289.12MB
-2023-9-8 15:16:59-debug: // ---- build task 查询 Asset Bundle ---- (4ms)
-2023-9-8 15:16:59-debug: run build task 查询 Asset Bundle success in 4 ms √3%
-2023-9-8 15:16:59-debug: Process: heapTotal 225.14MB heapUsed 188.23MB rss 289.62MB
-2023-9-8 15:16:59-debug: // ---- build task 查询使用的资源以及资源包配置 ----
-2023-9-8 15:16:59-debug: 查询使用的资源以及资源包配置 start3%
-2023-9-8 15:16:59-debug: init bundle assets
-2023-9-8 15:16:59-debug: Query preload assets from cc.config.json: 60f7195c-ec2a-45eb-ba94-8955f60e81d0,1c02ae6f-4492-4915-b8f8-7492a3b1e4cd,810e96e4-e456-4468-9b59-f4e8f39732c0,efe8e2a3-eace-427b-b4f1-cb8a937ec77d,e9aa9a3e-5b2b-4ac7-a2c7-073de2b2b24f,8bbdbcdd-5cd4-4100-b6d5-b7c9625b6107,50f4348b-c883-4e2f-8f11-ce233b859fa1,fda095cb-831d-4601-ad94-846013963de8,f92806d7-1768-443f-afe8-12bcde84d0f0,dd3a144d-ab7f-41f0-82b8-2e43a090d496,f0416e68-0200-4b77-a926-4f9d16e494da,ff9be190-20a4-4e48-b68c-76e3c7cff085,970b0598-bcb0-4714-91fb-2e81440dccd8,bcd64cc6-2dd9-43f6-abbe-66318d332032,d930590d-bb92-4cc8-8bd1-23cd027f9edf,a3cd009f-0ab0-420d-9278-b9fdab939bbc,9361fd90-ba52-4f84-aa93-6e878fd576ca,c27215d8-6835-4b68-bfbb-bdeac6100c04,b5d6115f-0370-4d7c-aad3-c194cc71cf98,871c3b6c-7379-419d-bda3-794b239ab90d
-2023-9-8 15:16:59-debug: Number of scenes: 1
-2023-9-8 15:16:59-debug: // ---- build task 查询使用的资源以及资源包配置 ---- (2ms)
-2023-9-8 15:16:59-debug: run build task 查询使用的资源以及资源包配置 success in 2 ms √7%
-2023-9-8 15:16:59-debug: Process: heapTotal 225.14MB heapUsed 188.38MB rss 289.56MB
-2023-9-8 15:16:59-debug: 整理脚本分组与脚本数据 start7%
-2023-9-8 15:16:59-debug: // ---- build task 整理脚本分组与脚本数据 ----
-2023-9-8 15:16:59-debug: sort script group...
-2023-9-8 15:16:59-debug: run build task 整理脚本分组与脚本数据 success in 0 ms √10%
-2023-9-8 15:16:59-debug: 初始化 settings.json 与 config.json start10%
-2023-9-8 15:16:59-debug: Process: heapTotal 225.14MB heapUsed 188.42MB rss 289.56MB
-2023-9-8 15:16:59-debug: // ---- build task 初始化 settings.json 与 config.json ----
-2023-9-8 15:16:59-debug: run build task 初始化 settings.json 与 config.json success in 0 ms √11%
-2023-9-8 15:16:59-debug: builder.tasks.settings.macro 字段未在编辑器多语言内定义
-2023-9-8 15:16:59-debug: Process: heapTotal 225.14MB heapUsed 188.46MB rss 289.57MB
-2023-9-8 15:16:59-debug: builder.tasks.settings.macro start11%
-2023-9-8 15:16:59-debug: // ---- build task builder.tasks.settings.macro ----
-2023-9-8 15:16:59-debug: run build task builder.tasks.settings.macro success in 0 ms √11%
-2023-9-8 15:16:59-debug: // ---- build task 整理部分构建选项内数据到 settings.json ----
-2023-9-8 15:16:59-debug: 整理部分构建选项内数据到 settings.json start11%
-2023-9-8 15:16:59-debug: Process: heapTotal 225.14MB heapUsed 188.49MB rss 289.56MB
-2023-9-8 15:16:59-debug: // ---- build task 整理部分构建选项内数据到 settings.json ---- (1ms)
-2023-9-8 15:16:59-debug: run build task 整理部分构建选项内数据到 settings.json success in 1 ms √12%
-2023-9-8 15:16:59-debug: Process: heapTotal 225.14MB heapUsed 188.55MB rss 289.62MB
-2023-9-8 15:16:59-debug: // ---- build task custom joint texture layouts ----
-2023-9-8 15:16:59-debug: custom joint texture layouts start12%
-2023-9-8 15:16:59-debug: // ---- build task custom joint texture layouts ---- (1ms)
-2023-9-8 15:16:59-debug: run build task custom joint texture layouts success in 1 ms √12%
-2023-9-8 15:16:59-debug: // ---- build task custom joint physics ----
-2023-9-8 15:16:59-debug: Process: heapTotal 225.14MB heapUsed 188.58MB rss 289.62MB
-2023-9-8 15:16:59-debug: custom joint physics start12%
-2023-9-8 15:16:59-debug: run build task custom joint physics success in 0 ms √13%
-2023-9-8 15:16:59-debug: 填充脚本数据到 settings.json start13%
-2023-9-8 15:16:59-debug: Process: heapTotal 225.14MB heapUsed 188.61MB rss 289.63MB
-2023-9-8 15:16:59-debug: // ---- build task 填充脚本数据到 settings.json ----
-2023-9-8 15:16:59-debug: run build task 填充脚本数据到 settings.json success in 0 ms √13%
-2023-9-8 15:16:59-debug: 填充场景数据到 settings.json start13%
-2023-9-8 15:16:59-debug: // ---- build task 填充场景数据到 settings.json ----
-2023-9-8 15:16:59-debug: Process: heapTotal 225.14MB heapUsed 188.63MB rss 289.63MB
-2023-9-8 15:16:59-debug: // ---- build task 填充场景数据到 settings.json ---- (1ms)
-2023-9-8 15:16:59-debug: run build task 填充场景数据到 settings.json success in 1 ms √14%
-2023-9-8 15:16:59-debug: Process: heapTotal 225.14MB heapUsed 188.66MB rss 289.63MB
-2023-9-8 15:16:59-debug: 整理资源分组，生成 packedAssets 以及 rawAssets 数据 start14%
-2023-9-8 15:16:59-debug: // ---- build task 整理资源分组，生成 packedAssets 以及 rawAssets 数据 ----
-2023-9-8 15:16:59-debug: // ---- build task 整理资源分组，生成 packedAssets 以及 rawAssets 数据 ---- (1ms)
-2023-9-8 15:16:59-debug: run build task 整理资源分组，生成 packedAssets 以及 rawAssets 数据 success in 1 ms √14%
-2023-9-8 15:16:59-debug: // ---- build task 从 suffixMap 生成 md5AssetsMap 到 settings.json ----
-2023-9-8 15:16:59-debug: 从 suffixMap 生成 md5AssetsMap 到 settings.json start14%
-2023-9-8 15:16:59-debug: Process: heapTotal 225.14MB heapUsed 188.71MB rss 289.63MB
-2023-9-8 15:16:59-debug: options.md5Cache is false.
-2023-9-8 15:16:59-debug: run build task 从 suffixMap 生成 md5AssetsMap 到 settings.json success in 0 ms √15%
-2023-9-8 15:17:50-debug: refresh db internal success
-2023-9-8 15:17:51-debug: asset-db:worker-effect-data-processing (148ms)
-2023-9-8 15:17:51-debug: refresh db assets success
-2023-9-8 15:17:51-debug: asset-db:refresh-all-database (180ms)
-2023-9-8 15:20:03-debug: refresh db internal success
-2023-9-8 15:20:03-debug: asset-db:worker-effect-data-processing (141ms)
-2023-9-8 15:20:03-debug: %cImport%c: G:\Work\cocoscreator\MiniGame\assets\script\game\MainMenu.tsbackground: #aaff85; color: #000;color: #000;
-2023-9-8 15:20:03-debug: %cImport%c: G:\Work\cocoscreator\MiniGame\assets\script\game\gameGrid\view\GameGridStartView.tsbackground: #aaff85; color: #000;color: #000;
-2023-9-8 15:20:03-debug: refresh db assets success
-2023-9-8 15:20:03-debug: asset-db:refresh-all-database (179ms)
-2023-9-8 15:22:52-debug: refresh db internal success
-2023-9-8 15:22:53-debug: asset-db:worker-effect-data-processing (139ms)
-2023-9-8 15:22:53-debug: refresh db assets success
-2023-9-8 15:22:53-debug: asset-db:refresh-all-database (171ms)
-2023-9-8 15:23:37-debug: refresh db internal success
-2023-9-8 15:23:38-debug: asset-db:worker-effect-data-processing (134ms)
-2023-9-8 15:23:38-debug: refresh db assets success
-2023-9-8 15:23:38-debug: asset-db:refresh-all-database (168ms)
-2023-9-8 15:24:37-debug: refresh db internal success
-2023-9-8 15:24:37-debug: asset-db:worker-effect-data-processing (104ms)
-2023-9-8 15:24:37-debug: refresh db assets success
-2023-9-8 15:24:37-debug: asset-db:refresh-all-database (137ms)
-2023-9-8 15:37:10-debug: refresh db internal success
-2023-9-8 15:37:11-debug: asset-db:worker-effect-data-processing (139ms)
-2023-9-8 15:37:11-debug: %cImport%c: G:\Work\cocoscreator\MiniGame\assets\script\common\TweenManager.tsbackground: #aaff85; color: #000;color: #000;
-2023-9-8 15:37:11-debug: refresh db assets success
-2023-9-8 15:37:11-debug: asset-db:refresh-all-database (176ms)
-2023-9-8 15:37:38-debug: refresh db internal success
-2023-9-8 15:37:38-debug: asset-db:worker-effect-data-processing (137ms)
-2023-9-8 15:37:38-debug: refresh db assets success
-2023-9-8 15:37:38-debug: asset-db:refresh-all-database (170ms)
-2023-9-8 15:38:03-debug: refresh db internal success
-2023-9-8 15:38:03-debug: asset-db:worker-effect-data-processing (142ms)
-2023-9-8 15:38:03-debug: %cImport%c: G:\Work\cocoscreator\MiniGame\assets\script\common\TweenManager.tsbackground: #aaff85; color: #000;color: #000;
-2023-9-8 15:38:03-debug: refresh db assets success
-2023-9-8 15:38:03-debug: asset-db:refresh-all-database (177ms)
-2023-9-8 17:21:59-debug: refresh db internal success
-2023-9-8 17:21:59-debug: asset-db:worker-effect-data-processing (156ms)
-2023-9-8 17:21:59-debug: %cImport%c: G:\Work\cocoscreator\MiniGame\assets\script\common\TweenManager.tsbackground: #aaff85; color: #000;color: #000;
-2023-9-8 17:21:59-debug: %cImport%c: G:\Work\cocoscreator\MiniGame\assets\script\game\gameGrid\view\GameGridStartView.tsbackground: #aaff85; color: #000;color: #000;
-2023-9-8 17:21:59-debug: refresh db assets success
-2023-9-8 17:21:59-debug: asset-db:refresh-all-database (221ms)
-2023-9-8 17:22:04-debug: start refresh asset from G:\Work\cocoscreator\MiniGame\assets\scenes\scene.scene...
-2023-9-8 17:22:04-debug: %cImport%c: G:\Work\cocoscreator\MiniGame\assets\scenes\scene.scenebackground: #aaff85; color: #000;color: #000;
-2023-9-8 17:22:04-debug: refresh asset G:\Work\cocoscreator\MiniGame\assets\scenes success
-2023-9-8 17:22:56-debug: start refresh asset from G:\Work\cocoscreator\MiniGame\assets\scenes\scene.scene...
-2023-9-8 17:22:56-debug: %cImport%c: G:\Work\cocoscreator\MiniGame\assets\scenes\scene.scenebackground: #aaff85; color: #000;color: #000;
-2023-9-8 17:22:56-debug: refresh asset G:\Work\cocoscreator\MiniGame\assets\scenes success
-2023-9-8 17:23:32-debug: refresh db internal success
-2023-9-8 17:23:32-debug: asset-db:worker-effect-data-processing (136ms)
-2023-9-8 17:23:32-debug: refresh db assets success
-2023-9-8 17:23:32-debug: asset-db:refresh-all-database (171ms)
-2023-9-8 17:23:42-debug: refresh db internal success
-2023-9-8 17:23:42-debug: asset-db:worker-effect-data-processing (103ms)
-2023-9-8 17:23:42-debug: refresh db assets success
-2023-9-8 17:23:42-debug: asset-db:refresh-all-database (136ms)
-2023-9-8 17:24:08-debug: refresh db internal success
-2023-9-8 17:24:08-debug: asset-db:worker-effect-data-processing (140ms)
-2023-9-8 17:24:08-debug: refresh db assets success
-2023-9-8 17:24:08-debug: asset-db:refresh-all-database (173ms)
-2023-9-8 17:24:14-debug: refresh db internal success
-2023-9-8 17:24:14-debug: asset-db:worker-effect-data-processing (98ms)
-2023-9-8 17:24:14-debug: refresh db assets success
-2023-9-8 17:24:14-debug: asset-db:refresh-all-database (131ms)
-2023-9-8 17:24:29-debug: start refresh asset from G:\Work\cocoscreator\MiniGame\assets\scenes\scene.scene...
-2023-9-8 17:24:29-debug: %cImport%c: G:\Work\cocoscreator\MiniGame\assets\scenes\scene.scenebackground: #aaff85; color: #000;color: #000;
-2023-9-8 17:24:29-debug: refresh asset G:\Work\cocoscreator\MiniGame\assets\scenes success
-2023-9-8 17:26:34-debug: refresh db internal success
-2023-9-8 17:26:34-debug: asset-db:worker-effect-data-processing (110ms)
-2023-9-8 17:26:34-debug: refresh db assets success
-2023-9-8 17:26:34-debug: asset-db:refresh-all-database (141ms)
-2023-9-8 17:27:01-debug: start refresh asset from G:\Work\cocoscreator\MiniGame\assets\scenes\scene.scene...
-2023-9-8 17:27:01-debug: %cImport%c: G:\Work\cocoscreator\MiniGame\assets\scenes\scene.scenebackground: #aaff85; color: #000;color: #000;
-2023-9-8 17:27:01-debug: refresh asset G:\Work\cocoscreator\MiniGame\assets\scenes success
-2023-9-8 17:27:05-debug: refresh db internal success
-2023-9-8 17:27:05-debug: asset-db:worker-effect-data-processing (141ms)
-2023-9-8 17:27:05-debug: refresh db assets success
-2023-9-8 17:27:05-debug: asset-db:refresh-all-database (177ms)
-2023-9-8 17:37:14-debug: refresh db internal success
-2023-9-8 17:37:15-debug: asset-db:worker-effect-data-processing (144ms)
-2023-9-8 17:37:15-debug: %cImport%c: G:\Work\cocoscreator\MiniGame\assets\script\game\gameGrid\view\GameGridStartView.tsbackground: #aaff85; color: #000;color: #000;
-2023-9-8 17:37:15-debug: refresh db assets success
-2023-9-8 17:37:15-debug: asset-db:refresh-all-database (180ms)
-2023-9-8 17:37:17-debug: start refresh asset from G:\Work\cocoscreator\MiniGame\assets\scenes\scene.scene...
-2023-9-8 17:37:17-debug: %cImport%c: G:\Work\cocoscreator\MiniGame\assets\scenes\scene.scenebackground: #aaff85; color: #000;color: #000;
-2023-9-8 17:37:17-debug: refresh asset G:\Work\cocoscreator\MiniGame\assets\scenes success
-2023-9-8 17:37:30-debug: refresh db internal success
-2023-9-8 17:37:31-debug: asset-db:worker-effect-data-processing (178ms)
-2023-9-8 17:37:31-debug: refresh db assets success
-2023-9-8 17:37:31-debug: asset-db:refresh-all-database (220ms)
-2023-9-8 17:37:31-debug: refresh db internal success
-2023-9-8 17:37:31-debug: asset-db:worker-effect-data-processing (118ms)
-2023-9-8 17:37:31-debug: refresh db assets success
-2023-9-8 17:37:31-debug: asset-db:refresh-all-database (156ms)
-2023-9-8 17:37:58-debug: refresh db internal success
-2023-9-8 17:37:59-debug: asset-db:worker-effect-data-processing (132ms)
-2023-9-8 17:37:59-debug: refresh db assets success
-2023-9-8 17:37:59-debug: asset-db:refresh-all-database (175ms)
-2023-9-8 17:38:10-debug: refresh db internal success
-2023-9-8 17:38:10-debug: asset-db:worker-effect-data-processing (187ms)
-2023-9-8 17:38:10-debug: refresh db assets success
-2023-9-8 17:38:10-debug: asset-db:refresh-all-database (230ms)
-2023-9-8 17:38:18-debug: refresh db internal success
-2023-9-8 17:38:18-debug: asset-db:worker-effect-data-processing (131ms)
-2023-9-8 17:38:18-debug: refresh db assets success
-2023-9-8 17:38:18-debug: asset-db:refresh-all-database (176ms)
-2023-9-8 17:38:28-debug: refresh db internal success
-2023-9-8 17:38:29-debug: asset-db:worker-effect-data-processing (179ms)
-2023-9-8 17:38:29-debug: refresh db assets success
-2023-9-8 17:38:29-debug: asset-db:refresh-all-database (225ms)
-2023-9-8 17:38:52-debug: refresh db internal success
-2023-9-8 17:38:52-debug: asset-db:worker-effect-data-processing (140ms)
-2023-9-8 17:38:52-debug: refresh db assets success
-2023-9-8 17:38:52-debug: asset-db:refresh-all-database (182ms)
-2023-9-8 17:38:55-debug: refresh db internal success
-2023-9-8 17:38:55-debug: asset-db:worker-effect-data-processing (130ms)
-2023-9-8 17:38:55-debug: refresh db assets success
-2023-9-8 17:38:55-debug: asset-db:refresh-all-database (173ms)
-2023-9-8 17:39:00-debug: refresh db internal success
-2023-9-8 17:39:00-debug: asset-db:worker-effect-data-processing (138ms)
-2023-9-8 17:39:00-debug: refresh db assets success
-2023-9-8 17:39:00-debug: asset-db:refresh-all-database (171ms)
-2023-9-8 17:39:11-debug: refresh db internal success
-2023-9-8 17:39:11-debug: asset-db:worker-effect-data-processing (104ms)
-2023-9-8 17:39:11-debug: refresh db assets success
-2023-9-8 17:39:11-debug: asset-db:refresh-all-database (137ms)
-2023-9-8 17:39:30-debug: refresh db internal success
-2023-9-8 17:39:30-debug: asset-db:worker-effect-data-processing (136ms)
-2023-9-8 17:39:30-debug: refresh db assets success
-2023-9-8 17:39:30-debug: asset-db:refresh-all-database (171ms)
-2023-9-8 17:39:59-debug: refresh db internal success
-2023-9-8 17:39:59-debug: asset-db:worker-effect-data-processing (182ms)
-2023-9-8 17:39:59-debug: refresh db assets success
-2023-9-8 17:39:59-debug: asset-db:refresh-all-database (228ms)
-2023-9-8 17:40:16-debug: refresh db internal success
-2023-9-8 17:40:16-debug: asset-db:worker-effect-data-processing (135ms)
-2023-9-8 17:40:16-debug: refresh db assets success
-2023-9-8 17:40:16-debug: asset-db:refresh-all-database (178ms)
-2023-9-8 17:40:47-debug: refresh db internal success
-2023-9-8 17:40:47-debug: asset-db:worker-effect-data-processing (182ms)
-2023-9-8 17:40:47-debug: refresh db assets success
-2023-9-8 17:40:47-debug: asset-db:refresh-all-database (227ms)
-2023-9-8 17:40:59-debug: refresh db internal success
-2023-9-8 17:40:59-debug: asset-db:worker-effect-data-processing (179ms)
-2023-9-8 17:40:59-debug: refresh db assets success
-2023-9-8 17:40:59-debug: asset-db:refresh-all-database (223ms)
-2023-9-8 17:47:21-debug: refresh db internal success
-2023-9-8 17:47:21-debug: asset-db:worker-effect-data-processing (103ms)
-2023-9-8 17:47:21-debug: %cImport%c: G:\Work\cocoscreator\MiniGame\assets\script\common\TweenManager.tsbackground: #aaff85; color: #000;color: #000;
-2023-9-8 17:47:21-debug: %cImport%c: G:\Work\cocoscreator\MiniGame\assets\script\game\gameGrid\GameGridController.tsbackground: #aaff85; color: #000;color: #000;
-2023-9-8 17:47:21-debug: %cImport%c: G:\Work\cocoscreator\MiniGame\assets\script\game\gameGrid\view\GameGridStartView.tsbackground: #aaff85; color: #000;color: #000;
-2023-9-8 17:47:21-debug: refresh db assets success
-2023-9-8 17:47:21-debug: asset-db:refresh-all-database (138ms)
-2023-9-8 17:48:05-debug: start refresh asset from G:\Work\cocoscreator\MiniGame\assets\resources\prefab\PreviewGrid10.prefab...
-2023-9-8 17:48:05-debug: %cImport%c: G:\Work\cocoscreator\MiniGame\assets\resources\prefab\PreviewGrid10.prefabbackground: #aaff85; color: #000;color: #000;
-2023-9-8 17:48:05-debug: refresh asset G:\Work\cocoscreator\MiniGame\assets\resources\prefab success
-2023-9-8 17:48:06-debug: %cImport%c: G:\Work\cocoscreator\MiniGame\assets\resources\prefabbackground: #aaff85; color: #000;color: #000;
-2023-9-8 17:48:26-debug: refresh db internal success
-2023-9-8 17:48:26-debug: asset-db:worker-effect-data-processing (175ms)
-2023-9-8 17:48:26-debug: refresh db assets success
-2023-9-8 17:48:26-debug: asset-db:refresh-all-database (219ms)
-2023-9-8 17:48:33-debug: refresh db internal success
-2023-9-8 17:48:33-debug: asset-db:worker-effect-data-processing (177ms)
-2023-9-8 17:48:33-debug: refresh db assets success
-2023-9-8 17:48:33-debug: asset-db:refresh-all-database (223ms)
-2023-9-8 17:51:28-debug: refresh db internal success
-2023-9-8 17:51:28-debug: asset-db:worker-effect-data-processing (188ms)
-2023-9-8 17:51:28-debug: refresh db assets success
-2023-9-8 17:51:28-debug: asset-db:refresh-all-database (237ms)
-2023-9-8 17:51:32-debug: refresh db internal success
-2023-9-8 17:51:32-debug: asset-db:worker-effect-data-processing (135ms)
-2023-9-8 17:51:32-debug: refresh db assets success
-2023-9-8 17:51:32-debug: asset-db:refresh-all-database (175ms)
-2023-9-8 17:51:34-debug: refresh db internal success
-2023-9-8 17:51:34-debug: asset-db:worker-effect-data-processing (131ms)
-2023-9-8 17:51:34-debug: refresh db assets success
-2023-9-8 17:51:34-debug: asset-db:refresh-all-database (172ms)
-2023-9-8 17:51:36-debug: refresh db internal success
-2023-9-8 17:51:36-debug: asset-db:worker-effect-data-processing (132ms)
-2023-9-8 17:51:36-debug: refresh db assets success
-2023-9-8 17:51:36-debug: asset-db:refresh-all-database (172ms)
-2023-9-8 17:51:48-debug: refresh db internal success
-2023-9-8 17:51:48-debug: asset-db:worker-effect-data-processing (143ms)
-2023-9-8 17:51:48-debug: refresh db assets success
-2023-9-8 17:51:48-debug: asset-db:refresh-all-database (179ms)
-2023-9-8 17:51:49-debug: refresh db internal success
-2023-9-8 17:51:49-debug: asset-db:worker-effect-data-processing (185ms)
-2023-9-8 17:51:49-debug: refresh db assets success
-2023-9-8 17:51:49-debug: asset-db:refresh-all-database (230ms)
-2023-9-8 17:51:50-debug: refresh db internal success
-2023-9-8 17:51:50-debug: asset-db:worker-effect-data-processing (131ms)
-2023-9-8 17:51:50-debug: refresh db assets success
-2023-9-8 17:51:50-debug: asset-db:refresh-all-database (174ms)
-2023-9-8 17:51:51-debug: refresh db internal success
-2023-9-8 17:51:51-debug: asset-db:worker-effect-data-processing (130ms)
-2023-9-8 17:51:51-debug: refresh db assets success
-2023-9-8 17:51:51-debug: asset-db:refresh-all-database (166ms)
-2023-9-8 17:51:52-debug: refresh db internal success
-2023-9-8 17:51:53-debug: asset-db:worker-effect-data-processing (138ms)
-2023-9-8 17:51:53-debug: refresh db assets success
-2023-9-8 17:51:53-debug: asset-db:refresh-all-database (178ms)
-2023-9-8 18:00:18-debug: refresh db internal success
-2023-9-8 18:00:18-debug: asset-db:worker-effect-data-processing (141ms)
-2023-9-8 18:00:18-debug: refresh db assets success
-2023-9-8 18:00:18-debug: asset-db:refresh-all-database (173ms)
-2023-9-8 18:00:28-debug: refresh db internal success
-2023-9-8 18:00:28-debug: asset-db:worker-effect-data-processing (110ms)
-2023-9-8 18:00:28-debug: refresh db assets success
-2023-9-8 18:00:28-debug: asset-db:refresh-all-database (143ms)
-2023-9-8 18:01:49-debug: start refresh asset from G:\Work\cocoscreator\MiniGame\assets\resources\prefab\PreviewGrid9.prefab...
-2023-9-8 18:01:49-debug: %cImport%c: G:\Work\cocoscreator\MiniGame\assets\resources\prefab\PreviewGrid9.prefabbackground: #aaff85; color: #000;color: #000;
-2023-9-8 18:01:49-debug: refresh asset G:\Work\cocoscreator\MiniGame\assets\resources\prefab success
-2023-9-8 18:01:49-debug: start refresh asset from G:\Work\cocoscreator\MiniGame\assets\resources\prefab\PreviewGrid8.prefab...
-2023-9-8 18:01:49-debug: %cImport%c: G:\Work\cocoscreator\MiniGame\assets\resources\prefab\PreviewGrid8.prefabbackground: #aaff85; color: #000;color: #000;
-2023-9-8 18:01:49-debug: refresh asset G:\Work\cocoscreator\MiniGame\assets\resources\prefab success
-2023-9-8 18:01:49-debug: start refresh asset from G:\Work\cocoscreator\MiniGame\assets\resources\prefab\PreviewGrid7.prefab...
-2023-9-8 18:01:49-debug: %cImport%c: G:\Work\cocoscreator\MiniGame\assets\resources\prefab\PreviewGrid7.prefabbackground: #aaff85; color: #000;color: #000;
-2023-9-8 18:01:49-debug: refresh asset G:\Work\cocoscreator\MiniGame\assets\resources\prefab success
-2023-9-8 18:01:49-debug: start refresh asset from G:\Work\cocoscreator\MiniGame\assets\resources\prefab\PreviewGrid6.prefab...
-2023-9-8 18:01:49-debug: %cImport%c: G:\Work\cocoscreator\MiniGame\assets\resources\prefab\PreviewGrid6.prefabbackground: #aaff85; color: #000;color: #000;
-2023-9-8 18:01:49-debug: refresh asset G:\Work\cocoscreator\MiniGame\assets\resources\prefab success
-2023-9-8 18:01:49-debug: start refresh asset from G:\Work\cocoscreator\MiniGame\assets\resources\prefab\PreviewGrid5.prefab...
-2023-9-8 18:01:49-debug: %cImport%c: G:\Work\cocoscreator\MiniGame\assets\resources\prefab\PreviewGrid5.prefabbackground: #aaff85; color: #000;color: #000;
-2023-9-8 18:01:49-debug: refresh asset G:\Work\cocoscreator\MiniGame\assets\resources\prefab success
-2023-9-8 18:01:49-debug: start refresh asset from G:\Work\cocoscreator\MiniGame\assets\resources\prefab\PreviewGrid4.prefab...
-2023-9-8 18:01:49-debug: %cImport%c: G:\Work\cocoscreator\MiniGame\assets\resources\prefab\PreviewGrid4.prefabbackground: #aaff85; color: #000;color: #000;
-2023-9-8 18:01:49-debug: refresh asset G:\Work\cocoscreator\MiniGame\assets\resources\prefab success
-2023-9-8 18:01:49-debug: start refresh asset from G:\Work\cocoscreator\MiniGame\assets\resources\prefab\PreviewGrid3.prefab...
-2023-9-8 18:01:49-debug: %cImport%c: G:\Work\cocoscreator\MiniGame\assets\resources\prefab\PreviewGrid3.prefabbackground: #aaff85; color: #000;color: #000;
-2023-9-8 18:01:49-debug: refresh asset G:\Work\cocoscreator\MiniGame\assets\resources\prefab success
-2023-9-8 18:01:49-debug: start refresh asset from G:\Work\cocoscreator\MiniGame\assets\resources\prefab\PreviewGrid2.prefab...
-2023-9-8 18:01:49-debug: %cImport%c: G:\Work\cocoscreator\MiniGame\assets\resources\prefab\PreviewGrid2.prefabbackground: #aaff85; color: #000;color: #000;
-2023-9-8 18:01:49-debug: refresh asset G:\Work\cocoscreator\MiniGame\assets\resources\prefab success
-2023-9-8 18:01:49-debug: start refresh asset from G:\Work\cocoscreator\MiniGame\assets\resources\prefab\PreviewGrid1.prefab...
-2023-9-8 18:01:49-debug: %cImport%c: G:\Work\cocoscreator\MiniGame\assets\resources\prefab\PreviewGrid1.prefabbackground: #aaff85; color: #000;color: #000;
-2023-9-8 18:01:49-debug: refresh asset G:\Work\cocoscreator\MiniGame\assets\resources\prefab success
-2023-9-8 18:01:49-debug: %cImport%c: G:\Work\cocoscreator\MiniGame\assets\resources\prefabbackground: #aaff85; color: #000;color: #000;
-2023-9-8 18:02:22-debug: refresh db internal success
-2023-9-8 18:02:22-debug: asset-db:worker-effect-data-processing (144ms)
-2023-9-8 18:02:22-debug: refresh db assets success
-2023-9-8 18:02:22-debug: asset-db:refresh-all-database (180ms)
-2023-9-8 18:02:52-debug: refresh db internal success
-2023-9-8 18:02:52-debug: asset-db:worker-effect-data-processing (145ms)
-2023-9-8 18:02:52-debug: refresh db assets success
-2023-9-8 18:02:52-debug: asset-db:refresh-all-database (191ms)
-2023-9-8 18:03:02-debug: refresh db internal success
-2023-9-8 18:03:02-debug: asset-db:worker-effect-data-processing (140ms)
-2023-9-8 18:03:02-debug: refresh db assets success
-2023-9-8 18:03:02-debug: asset-db:refresh-all-database (175ms)
-2023-9-8 18:04:06-debug: refresh db internal success
-2023-9-8 18:04:06-debug: asset-db:worker-effect-data-processing (109ms)
-2023-9-8 18:04:06-debug: refresh db assets success
-2023-9-8 18:04:06-debug: asset-db:refresh-all-database (139ms)
-2023-9-8 18:05:00-debug: refresh db internal success
-2023-9-8 18:05:00-debug: asset-db:worker-effect-data-processing (140ms)
-2023-9-8 18:05:00-debug: refresh db assets success
-2023-9-8 18:05:00-debug: asset-db:refresh-all-database (174ms)
-2023-9-8 18:05:26-debug: refresh db internal success
-2023-9-8 18:05:26-debug: asset-db:worker-effect-data-processing (146ms)
-2023-9-8 18:05:26-debug: refresh db assets success
-2023-9-8 18:05:26-debug: asset-db:refresh-all-database (181ms)
-2023-9-8 18:05:50-debug: refresh db internal success
-2023-9-8 18:05:50-debug: asset-db:worker-effect-data-processing (114ms)
-2023-9-8 18:05:50-debug: refresh db assets success
-2023-9-8 18:05:50-debug: asset-db:refresh-all-database (149ms)
-2023-9-8 18:05:56-debug: refresh db internal success
-2023-9-8 18:05:56-debug: asset-db:worker-effect-data-processing (144ms)
-2023-9-8 18:05:56-debug: refresh db assets success
-2023-9-8 18:05:56-debug: asset-db:refresh-all-database (177ms)
-2023-9-8 18:06:04-debug: refresh db internal success
-2023-9-8 18:06:05-debug: asset-db:worker-effect-data-processing (133ms)
-2023-9-8 18:06:05-debug: refresh db assets success
-2023-9-8 18:06:05-debug: asset-db:refresh-all-database (182ms)
-2023-9-8 18:06:11-debug: refresh db internal success
-2023-9-8 18:06:11-debug: asset-db:worker-effect-data-processing (139ms)
-2023-9-8 18:06:11-debug: refresh db assets success
-2023-9-8 18:06:11-debug: asset-db:refresh-all-database (174ms)
-2023-9-8 18:06:24-debug: start refresh asset from G:\Work\cocoscreator\MiniGame\assets\resources\prefab\GameGridMapItem.prefab...
-2023-9-8 18:06:24-debug: %cImport%c: G:\Work\cocoscreator\MiniGame\assets\resources\prefab\GameGridMapItem.prefabbackground: #aaff85; color: #000;color: #000;
-2023-9-8 18:06:24-debug: refresh asset G:\Work\cocoscreator\MiniGame\assets\resources\prefab success
-2023-9-8 18:06:25-debug: %cImport%c: G:\Work\cocoscreator\MiniGame\assets\resources\prefabbackground: #aaff85; color: #000;color: #000;
-2023-9-8 18:06:53-debug: start refresh asset from G:\Work\cocoscreator\MiniGame\assets\resources\prefab\PreviewGrid1.prefab...
-2023-9-8 18:06:53-debug: %cImport%c: G:\Work\cocoscreator\MiniGame\assets\resources\prefab\PreviewGrid1.prefabbackground: #aaff85; color: #000;color: #000;
-2023-9-8 18:06:53-debug: refresh asset G:\Work\cocoscreator\MiniGame\assets\resources\prefab success
-2023-9-8 18:07:02-debug: start refresh asset from G:\Work\cocoscreator\MiniGame\assets\resources\prefab\PreviewGrid2.prefab...
-2023-9-8 18:07:02-debug: %cImport%c: G:\Work\cocoscreator\MiniGame\assets\resources\prefab\PreviewGrid2.prefabbackground: #aaff85; color: #000;color: #000;
-2023-9-8 18:07:02-debug: refresh asset G:\Work\cocoscreator\MiniGame\assets\resources\prefab success
-2023-9-8 18:07:07-debug: start refresh asset from G:\Work\cocoscreator\MiniGame\assets\resources\prefab\PreviewGrid3.prefab...
-2023-9-8 18:07:07-debug: %cImport%c: G:\Work\cocoscreator\MiniGame\assets\resources\prefab\PreviewGrid3.prefabbackground: #aaff85; color: #000;color: #000;
-2023-9-8 18:07:07-debug: refresh asset G:\Work\cocoscreator\MiniGame\assets\resources\prefab success
-2023-9-8 18:07:10-debug: start refresh asset from G:\Work\cocoscreator\MiniGame\assets\resources\prefab\PreviewGrid3.prefab...
-2023-9-8 18:07:10-debug: %cImport%c: G:\Work\cocoscreator\MiniGame\assets\resources\prefab\PreviewGrid3.prefabbackground: #aaff85; color: #000;color: #000;
-2023-9-8 18:07:10-debug: refresh asset G:\Work\cocoscreator\MiniGame\assets\resources\prefab success
-2023-9-8 18:07:15-debug: start refresh asset from G:\Work\cocoscreator\MiniGame\assets\resources\prefab\PreviewGrid4.prefab...
-2023-9-8 18:07:15-debug: %cImport%c: G:\Work\cocoscreator\MiniGame\assets\resources\prefab\PreviewGrid4.prefabbackground: #aaff85; color: #000;color: #000;
-2023-9-8 18:07:15-debug: refresh asset G:\Work\cocoscreator\MiniGame\assets\resources\prefab success
-2023-9-8 18:07:22-debug: start refresh asset from G:\Work\cocoscreator\MiniGame\assets\resources\prefab\PreviewGrid5.prefab...
-2023-9-8 18:07:22-debug: %cImport%c: G:\Work\cocoscreator\MiniGame\assets\resources\prefab\PreviewGrid5.prefabbackground: #aaff85; color: #000;color: #000;
-2023-9-8 18:07:22-debug: refresh asset G:\Work\cocoscreator\MiniGame\assets\resources\prefab success
-2023-9-8 18:07:30-debug: start refresh asset from G:\Work\cocoscreator\MiniGame\assets\resources\prefab\PreviewGrid6.prefab...
-2023-9-8 18:07:30-debug: %cImport%c: G:\Work\cocoscreator\MiniGame\assets\resources\prefab\PreviewGrid6.prefabbackground: #aaff85; color: #000;color: #000;
-2023-9-8 18:07:30-debug: refresh asset G:\Work\cocoscreator\MiniGame\assets\resources\prefab success
-2023-9-8 18:07:36-debug: start refresh asset from G:\Work\cocoscreator\MiniGame\assets\resources\prefab\PreviewGrid7.prefab...
-2023-9-8 18:07:36-debug: %cImport%c: G:\Work\cocoscreator\MiniGame\assets\resources\prefab\PreviewGrid7.prefabbackground: #aaff85; color: #000;color: #000;
-2023-9-8 18:07:36-debug: refresh asset G:\Work\cocoscreator\MiniGame\assets\resources\prefab success
-2023-9-8 18:07:40-debug: start refresh asset from G:\Work\cocoscreator\MiniGame\assets\resources\prefab\PreviewGrid8.prefab...
-2023-9-8 18:07:40-debug: %cImport%c: G:\Work\cocoscreator\MiniGame\assets\resources\prefab\PreviewGrid8.prefabbackground: #aaff85; color: #000;color: #000;
-2023-9-8 18:07:40-debug: refresh asset G:\Work\cocoscreator\MiniGame\assets\resources\prefab success
-2023-9-8 18:07:43-debug: start refresh asset from G:\Work\cocoscreator\MiniGame\assets\resources\prefab\PreviewGrid8.prefab...
-2023-9-8 18:07:43-debug: %cImport%c: G:\Work\cocoscreator\MiniGame\assets\resources\prefab\PreviewGrid8.prefabbackground: #aaff85; color: #000;color: #000;
-2023-9-8 18:07:43-debug: refresh asset G:\Work\cocoscreator\MiniGame\assets\resources\prefab success
-2023-9-8 18:07:43-debug: refresh db internal success
-2023-9-8 18:07:43-debug: asset-db:worker-effect-data-processing (120ms)
-2023-9-8 18:07:43-debug: refresh db assets success
-2023-9-8 18:07:43-debug: asset-db:refresh-all-database (158ms)
-2023-9-8 18:07:49-debug: start refresh asset from G:\Work\cocoscreator\MiniGame\assets\resources\prefab\PreviewGrid9.prefab...
-2023-9-8 18:07:49-debug: %cImport%c: G:\Work\cocoscreator\MiniGame\assets\resources\prefab\PreviewGrid9.prefabbackground: #aaff85; color: #000;color: #000;
-2023-9-8 18:07:49-debug: refresh asset G:\Work\cocoscreator\MiniGame\assets\resources\prefab success
-2023-9-8 18:07:50-debug: start refresh asset from G:\Work\cocoscreator\MiniGame\assets\resources\prefab\PreviewGrid9.prefab...
-2023-9-8 18:07:50-debug: %cImport%c: G:\Work\cocoscreator\MiniGame\assets\resources\prefab\PreviewGrid9.prefabbackground: #aaff85; color: #000;color: #000;
-2023-9-8 18:07:50-debug: refresh asset G:\Work\cocoscreator\MiniGame\assets\resources\prefab success
-2023-9-8 18:07:50-debug: refresh db internal success
-2023-9-8 18:07:51-debug: asset-db:worker-effect-data-processing (142ms)
-2023-9-8 18:07:51-debug: refresh db assets success
-2023-9-8 18:07:51-debug: asset-db:refresh-all-database (181ms)
-2023-9-8 18:07:53-debug: start refresh asset from G:\Work\cocoscreator\MiniGame\assets\resources\prefab\PreviewGrid8.prefab...
-2023-9-8 18:07:53-debug: %cImport%c: G:\Work\cocoscreator\MiniGame\assets\resources\prefab\PreviewGrid8.prefabbackground: #aaff85; color: #000;color: #000;
-2023-9-8 18:07:53-debug: refresh asset G:\Work\cocoscreator\MiniGame\assets\resources\prefab success
-2023-9-8 18:07:54-debug: start refresh asset from G:\Work\cocoscreator\MiniGame\assets\resources\prefab\PreviewGrid8.prefab...
-2023-9-8 18:07:54-debug: %cImport%c: G:\Work\cocoscreator\MiniGame\assets\resources\prefab\PreviewGrid8.prefabbackground: #aaff85; color: #000;color: #000;
-2023-9-8 18:07:54-debug: refresh asset G:\Work\cocoscreator\MiniGame\assets\resources\prefab success
-2023-9-8 18:08:26-debug: start refresh asset from G:\Work\cocoscreator\MiniGame\assets\scenes\scene.scene...
-2023-9-8 18:08:26-debug: %cImport%c: G:\Work\cocoscreator\MiniGame\assets\scenes\scene.scenebackground: #aaff85; color: #000;color: #000;
-2023-9-8 18:08:26-debug: refresh asset G:\Work\cocoscreator\MiniGame\assets\scenes success
-2023-9-8 18:09:02-debug: refresh db internal success
-2023-9-8 18:09:02-debug: asset-db:worker-effect-data-processing (143ms)
-2023-9-8 18:09:02-debug: refresh db assets success
-2023-9-8 18:09:02-debug: asset-db:refresh-all-database (178ms)
-2023-9-8 18:09:05-debug: start refresh asset from G:\Work\cocoscreator\MiniGame\assets\scenes\scene.scene...
-2023-9-8 18:09:05-debug: %cImport%c: G:\Work\cocoscreator\MiniGame\assets\scenes\scene.scenebackground: #aaff85; color: #000;color: #000;
-2023-9-8 18:09:05-debug: refresh asset G:\Work\cocoscreator\MiniGame\assets\scenes success
-2023-9-8 18:09:08-debug: start refresh asset from G:\Work\cocoscreator\MiniGame\assets\scenes\scene.scene...
-2023-9-8 18:09:08-debug: %cImport%c: G:\Work\cocoscreator\MiniGame\assets\scenes\scene.scenebackground: #aaff85; color: #000;color: #000;
-2023-9-8 18:09:08-debug: refresh asset G:\Work\cocoscreator\MiniGame\assets\scenes success
-2023-9-8 18:09:10-debug: programming:execute-script (4ms)
-2023-9-8 18:09:46-debug: start refresh asset from G:\Work\cocoscreator\MiniGame\assets\scenes\scene.scene...
-2023-9-8 18:09:46-debug: %cImport%c: G:\Work\cocoscreator\MiniGame\assets\scenes\scene.scenebackground: #aaff85; color: #000;color: #000;
-2023-9-8 18:09:46-debug: refresh asset G:\Work\cocoscreator\MiniGame\assets\scenes success
-2023-9-8 18:09:56-debug: refresh db internal success
-2023-9-8 18:09:57-debug: asset-db:worker-effect-data-processing (115ms)
-2023-9-8 18:09:57-debug: refresh db assets success
-2023-9-8 18:09:57-debug: asset-db:refresh-all-database (155ms)
-2023-9-8 18:09:58-debug: refresh db internal success
-2023-9-8 18:09:58-debug: asset-db:worker-effect-data-processing (136ms)
-2023-9-8 18:09:58-debug: refresh db assets success
-2023-9-8 18:09:58-debug: asset-db:refresh-all-database (170ms)
-2023-9-8 18:11:23-debug: refresh db internal success
-2023-9-8 18:11:23-debug: asset-db:worker-effect-data-processing (152ms)
-2023-9-8 18:11:23-debug: refresh db assets success
-2023-9-8 18:11:23-debug: asset-db:refresh-all-database (186ms)
-2023-9-8 18:11:29-debug: refresh db internal success
-2023-9-8 18:11:29-debug: asset-db:worker-effect-data-processing (104ms)
-2023-9-8 18:11:29-debug: refresh db assets success
-2023-9-8 18:11:29-debug: asset-db:refresh-all-database (137ms)
-2023-9-8 18:11:51-debug: start refresh asset from G:\Work\cocoscreator\MiniGame\assets\scenes\scene.scene...
-2023-9-8 18:11:51-debug: %cImport%c: G:\Work\cocoscreator\MiniGame\assets\scenes\scene.scenebackground: #aaff85; color: #000;color: #000;
-2023-9-8 18:11:51-debug: refresh asset G:\Work\cocoscreator\MiniGame\assets\scenes success

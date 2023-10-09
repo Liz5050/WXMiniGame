@@ -1,1 +1,0 @@
-{"version":3,"sources":["file:///G:/Work/cocoscreator/MiniGame/assets/script/enum/GameType.ts"],"names":["GameType"],"mappings":";;;;;;;;;;;;;;0BAAYA,Q,0BAAAA,Q;AAAAA,QAAAA,Q,CAAAA,Q;AAAAA,QAAAA,Q,CAAAA,Q;AAAAA,QAAAA,Q,CAAAA,Q;eAAAA,Q","sourcesContent":["export enum GameType {\r\n\tShulte = 1001,\r\n\tGrid,\r\n\tMemory,\r\n}"]}

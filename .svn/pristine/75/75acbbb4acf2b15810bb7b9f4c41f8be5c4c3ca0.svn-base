@@ -1,1801 +1,0 @@
-2023-9-7 22:14:36-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\chunksbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:36-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\default-terrainbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:36-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\default_cubemapbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:36-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\default_fontsbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:36-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\default_file_contentbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:36-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\default_materialsbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:36-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\default_renderpipelinebackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:36-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\default_prefabbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:36-debug: asset-db:worker-init (1082ms)
-2023-9-7 22:14:36-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\default_uibackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:36-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\default_skyboxbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:36-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\dependenciesbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:36-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\effectsbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:36-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\physicsbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:36-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\toolsbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:36-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\gizmobackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:36-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\chunks\builtinbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:36-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\chunks\lighting-modelsbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:36-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\chunks\post-processbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:36-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\chunks\commonbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:36-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\chunks\legacybackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:36-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\chunks\shading-entriesbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:36-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\chunks\surfacesbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:36-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\default_file_content\animbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:36-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\default_file_content\animaskbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:36-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\default_file_content\animgraphbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:36-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\default_file_content\animgraphvaribackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:36-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\default_file_content\chunkbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:36-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\default_file_content\effectbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:36-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\default_file_content\effect-surfacebackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:36-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\default_file_content\flowbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:36-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\default_file_content\forward-pipelinebackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:36-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\default_file_content\jsbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:36-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\default_file_content\mtlbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:36-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\default_file_content\pacbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:36-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\default_file_content\pmtlbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:36-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\default_file_content\prefabbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:36-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\default_file_content\rppbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:36-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\default_file_content\rtbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:36-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\default_file_content\scenebackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:36-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\default_file_content\scene-2dbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:36-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\default_file_content\scene-qualitybackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:36-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\default_file_content\stgbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:36-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\default_file_content\terrainbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:36-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\default_file_content\tsbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:36-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\default_file_content\ts-animation-graphbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:36-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\default_file_content\ts-render-flowbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:36-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\default_file_content\ts-render-pipelinebackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:36-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\default_file_content\ts-render-stagebackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:36-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\default_fonts\builtin-bitmapbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:36-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\default_fonts\builtin-freetypebackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:36-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\default_prefab\2dbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:36-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\default_prefab\3dbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:36-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\default_prefab\effectsbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:36-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\default_prefab\lightbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:36-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\default_prefab\uibackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:36-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\dependencies\texturesbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:36-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\effects\advancedbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:36-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\effects\for2dbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:36-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\effects\internalbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:36-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\effects\particlesbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:36-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\effects\pipelinebackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:36-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\effects\legacybackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:36-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\effects\utilbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:36-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\chunks\builtin\functionalitiesbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:36-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\chunks\builtin\internalbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:36-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\chunks\common\colorbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:36-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\chunks\builtin\uniformsbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:36-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\chunks\common\databackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:36-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\chunks\common\debugbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:36-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\chunks\common\effectbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:36-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\chunks\common\graph-expressionbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:36-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\chunks\common\lightingbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:36-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\chunks\common\mathbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:36-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\chunks\common\meshbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:36-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\chunks\common\shadowbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:36-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\chunks\common\texturebackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:36-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\chunks\legacy\main-functionsbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:36-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\chunks\lighting-models\data-structuresbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:36-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\chunks\lighting-models\default-functionsbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:36-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\chunks\lighting-models\includesbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:36-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\chunks\lighting-models\lighting-flowbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:36-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\chunks\shading-entries\data-structuresbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:36-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\chunks\shading-entries\main-functionsbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:36-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\chunks\lighting-models\model-functionsbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:36-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\chunks\surfaces\default-functionsbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:36-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\chunks\surfaces\data-structuresbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:36-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\chunks\surfaces\effect-macrosbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:36-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\chunks\surfaces\includesbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:36-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\chunks\surfaces\module-functionsbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:36-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\default_prefab\2d\uibackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:36-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\chunks\shading-entries\main-functions\miscbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:36-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\chunks\shading-entries\main-functions\render-to-reflectmapbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:36-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\effects\internal\editorbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:36-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\effects\util\dccbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:36-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\chunks\shading-entries\main-functions\render-to-scenebackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:36-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\chunks\shading-entries\main-functions\render-to-shadowmapbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:36-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\chunks\shading-entries\main-functions\render-to-scene\pipelinebackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:36-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\chunks\deprecated.chunkbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:36-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\chunks\legacy\decode-base.chunkbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:36-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\chunks\common\common-define.chunkbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:36-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\chunks\legacy\decode-standard.chunkbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:36-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\chunks\legacy\decode.chunkbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:36-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\chunks\legacy\fog-base.chunkbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:36-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\chunks\legacy\fog-fs.chunkbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:36-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\chunks\legacy\input-standard.chunkbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:36-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\chunks\legacy\lighting.chunkbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:36-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\chunks\legacy\lightingmap-fs.chunkbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:36-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\chunks\legacy\fog-vs.chunkbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:36-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\chunks\legacy\lightingmap-vs.chunkbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:36-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\chunks\legacy\local-batch.chunkbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:36-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\chunks\legacy\input.chunkbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:36-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\chunks\legacy\morph.chunkbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:36-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\chunks\legacy\output-standard.chunkbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:36-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\chunks\legacy\output.chunkbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:36-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\chunks\legacy\sh-fs.chunkbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:36-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\chunks\legacy\shading-cluster-additive.chunkbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:36-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\chunks\legacy\shading-standard-additive.chunkbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:36-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\chunks\legacy\sh-vs.chunkbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:36-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\chunks\legacy\shading-standard-base.chunkbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:36-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\chunks\legacy\shading-standard.chunkbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:36-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\chunks\legacy\shading-toon.chunkbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:36-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\chunks\legacy\shadow-map-base.chunkbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:36-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\chunks\legacy\shadow-map-fs.chunkbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:36-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\chunks\legacy\shadow-map-vs.chunkbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:36-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\chunks\legacy\standard-surface-entry.chunkbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:36-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\chunks\legacy\skinning.chunkbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:36-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\chunks\post-process\anti-aliasing.chunkbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:36-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\chunks\post-process\fxaa-hq.chunkbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:36-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\chunks\post-process\fxaa.chunkbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:36-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\effects\advanced\common-functions.chunkbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:36-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\chunks\builtin\functionalities\fog.chunkbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:36-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\chunks\builtin\functionalities\probe.chunkbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:36-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\chunks\builtin\functionalities\morph-animation.chunkbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:36-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\chunks\builtin\functionalities\sh.chunkbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:36-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\chunks\builtin\functionalities\skinning-animation-dqs.chunkbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:36-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\chunks\builtin\functionalities\shadow-map.chunkbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:36-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\effects\advanced\eye.chunkbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:36-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\chunks\builtin\functionalities\skinning-animation-lbs.chunkbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:36-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\chunks\builtin\functionalities\world-transform.chunkbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:36-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\chunks\builtin\internal\alpha-test.chunkbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:36-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\chunks\builtin\internal\embedded-alpha.chunkbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:36-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\chunks\builtin\internal\particle-common.chunkbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:36-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\chunks\builtin\internal\particle-trail.chunkbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:36-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\chunks\builtin\internal\particle-vs-gpu.chunkbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:36-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\chunks\builtin\internal\particle-vs-legacy.chunkbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:36-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\chunks\builtin\internal\sprite-texture.chunkbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:36-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\chunks\builtin\internal\sprite-common.chunkbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:36-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\chunks\builtin\uniforms\cc-csm.chunkbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:36-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\chunks\builtin\uniforms\cc-diffusemap.chunkbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:36-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\chunks\builtin\uniforms\cc-environment.chunkbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:36-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\chunks\builtin\uniforms\cc-forward-light.chunkbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:36-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\chunks\builtin\uniforms\cc-global.chunkbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:36-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\chunks\builtin\uniforms\cc-light-map.chunkbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:36-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\chunks\builtin\uniforms\cc-local-batched.chunkbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:36-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\chunks\builtin\uniforms\cc-morph.chunkbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:36-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\chunks\builtin\uniforms\cc-reflection-probe.chunkbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:36-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\chunks\builtin\uniforms\cc-local.chunkbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:36-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\chunks\builtin\uniforms\cc-sh.chunkbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:36-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\chunks\builtin\uniforms\cc-shadow-map.chunkbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:36-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\chunks\builtin\uniforms\cc-shadow.chunkbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:36-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\chunks\builtin\uniforms\cc-skinning.chunkbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:36-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\chunks\builtin\uniforms\cc-world-bound.chunkbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:36-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\chunks\common\color\tone-mapping.chunkbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:36-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\chunks\common\color\aces.chunkbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:36-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\chunks\common\data\packing.chunkbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:36-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\chunks\common\data\unpack.chunkbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:36-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\chunks\common\color\gamma.chunkbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:36-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\chunks\common\debug\debug-view-define.chunkbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:36-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\chunks\common\effect\special-effects.chunkbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:36-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\chunks\common\graph-expression\base.chunkbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:36-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\chunks\common\lighting\attenuation.chunkbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:36-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\chunks\common\effect\fog.chunkbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:36-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\chunks\common\lighting\brdf.chunkbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:36-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\chunks\common\lighting\light-map.chunkbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:36-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\chunks\common\lighting\rect-area-light.chunkbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:36-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\chunks\common\lighting\bxdf.chunkbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:36-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\chunks\common\lighting\functions.chunkbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:36-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\chunks\common\math\coordinates.chunkbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:36-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\chunks\common\math\number.chunkbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:36-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\chunks\common\math\octahedron-transform.chunkbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:36-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\chunks\common\math\transform.chunkbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:36-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\chunks\common\mesh\material.chunkbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:36-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\chunks\common\mesh\vat-animation.chunkbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:36-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\chunks\common\shadow\native-pcf.chunkbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:36-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\chunks\common\texture\texture-lod.chunkbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:36-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\chunks\common\texture\texture-misc.chunkbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:36-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\chunks\legacy\main-functions\outline-fs.chunkbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:36-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\chunks\legacy\main-functions\outline-vs.chunkbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:36-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\chunks\common\texture\cubemap.chunkbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:36-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\chunks\lighting-models\data-structures\lighting-intermediate-data.chunkbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:36-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\chunks\legacy\main-functions\general-vs.chunkbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:36-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\chunks\lighting-models\data-structures\lighting-misc-data.chunkbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:36-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\chunks\lighting-models\data-structures\lighting-result.chunkbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:36-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\chunks\lighting-models\default-functions\simple-skin.chunkbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:36-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\chunks\lighting-models\default-functions\standard.chunkbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:36-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\chunks\lighting-models\default-functions\toon.chunkbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:36-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\chunks\lighting-models\includes\common.chunkbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:36-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\chunks\lighting-models\includes\standard.chunkbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:36-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\chunks\lighting-models\includes\toon.chunkbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:36-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\chunks\lighting-models\lighting-flow\common-flow.chunkbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:36-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\chunks\lighting-models\model-functions\standard-common.chunkbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:36-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\chunks\lighting-models\model-functions\standard.chunkbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:36-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\chunks\lighting-models\model-functions\toon.chunkbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:36-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\chunks\shading-entries\data-structures\fs-input.chunkbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:36-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\chunks\shading-entries\data-structures\vs-fs.chunkbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:36-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\chunks\shading-entries\data-structures\vs-input.chunkbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:36-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\chunks\shading-entries\data-structures\vs-intermediate.chunkbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:36-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\chunks\surfaces\data-structures\toon.chunkbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:36-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\chunks\shading-entries\data-structures\vs-output.chunkbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:36-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\chunks\surfaces\default-functions\standard-fs.chunkbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:36-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\chunks\surfaces\data-structures\standard.chunkbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:36-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\chunks\surfaces\default-functions\common-vs.chunkbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:36-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\chunks\surfaces\default-functions\toon-fs.chunkbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:36-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\chunks\surfaces\effect-macros\common-macros.chunkbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:36-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\chunks\surfaces\effect-macros\render-to-shadowmap.chunkbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:36-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\chunks\surfaces\effect-macros\terrain.chunkbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:36-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\chunks\surfaces\effect-macros\silhouette-edge.chunkbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:36-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\chunks\surfaces\includes\common-vs.chunkbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:36-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\chunks\surfaces\effect-macros\sky.chunkbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:36-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\chunks\surfaces\includes\common-fs.chunkbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:36-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\chunks\surfaces\includes\standard-fs.chunkbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:36-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\chunks\surfaces\includes\standard-vs.chunkbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:36-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\chunks\surfaces\includes\toon-fs.chunkbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:36-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\chunks\surfaces\includes\toon-vs.chunkbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:36-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\chunks\surfaces\module-functions\common-vs.chunkbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:36-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\chunks\surfaces\module-functions\standard-fs.chunkbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:36-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\chunks\surfaces\module-functions\debug-view.chunkbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:36-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\chunks\surfaces\module-functions\toon-fs.chunkbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:36-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\chunks\shading-entries\main-functions\misc\silhouette-edge-vs.chunkbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:36-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\chunks\shading-entries\main-functions\misc\sky-fs.chunkbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:36-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\chunks\shading-entries\main-functions\misc\silhouette-edge-fs.chunkbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:36-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\chunks\shading-entries\main-functions\render-to-scene\fs.chunkbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:36-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\chunks\shading-entries\main-functions\render-to-reflectmap\fs.chunkbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:36-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\chunks\shading-entries\main-functions\misc\sky-vs.chunkbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:36-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\chunks\shading-entries\main-functions\render-to-scene\vs.chunkbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:36-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\chunks\shading-entries\main-functions\render-to-shadowmap\vs.chunkbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:36-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\chunks\shading-entries\main-functions\render-to-shadowmap\fs.chunkbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:36-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\chunks\shading-entries\main-functions\render-to-scene\pipeline\deferred-fs.chunkbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:36-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\chunks\shading-entries\main-functions\render-to-scene\pipeline\forward-fs.chunkbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:36-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\effects\builtin-standard.effectbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:37-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\effects\builtin-terrain.effectbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:37-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\effects\builtin-toon.effectbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:38-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\effects\builtin-unlit.effectbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:38-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\effects\advanced\eye.effectbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:39-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\effects\advanced\hair.effectbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:40-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\effects\advanced\simple-skin.effectbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:40-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\effects\advanced\sky.effectbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:40-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\effects\advanced\water.effectbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:41-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\effects\for2d\builtin-spine.effectbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:41-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\effects\for2d\builtin-sprite-renderer.effectbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:41-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\effects\for2d\builtin-sprite.effectbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:41-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\effects\internal\builtin-camera-texture.effectbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:41-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\effects\internal\builtin-clear-stencil.effectbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:41-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\effects\internal\builtin-debug-renderer.effectbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:41-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\effects\internal\builtin-geometry-renderer.effectbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:41-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\effects\internal\builtin-graphics.effectbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:41-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\effects\internal\builtin-occlusion-query.effectbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:41-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\effects\internal\builtin-reflection-deferred.effectbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:41-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\effects\internal\builtin-wireframe.effectbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:41-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\effects\legacy\standard.effectbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:42-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\effects\legacy\terrain.effectbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:42-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\effects\legacy\toon.effectbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:42-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\effects\particles\builtin-billboard.effectbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:42-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\effects\particles\builtin-particle-gpu.effectbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:43-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\effects\particles\builtin-particle-trail.effectbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:43-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\effects\particles\builtin-particle-xr-trail.effectbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:43-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\effects\particles\builtin-particle.effectbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:43-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\effects\pipeline\bloom.effectbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:43-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\effects\pipeline\deferred-lighting.effectbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:44-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\effects\pipeline\fxaa-hq.effectbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:44-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\effects\pipeline\planar-shadow.effectbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:44-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\effects\pipeline\post-process.effectbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:44-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\effects\pipeline\skybox.effectbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:44-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\effects\pipeline\smaa.effectbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:44-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\effects\pipeline\tonemap.effectbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:44-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\effects\util\batched-unlit.effectbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:44-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\effects\util\profiler.effectbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:44-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\effects\util\sequence-anim.effectbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:44-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\effects\util\splash-screen.effectbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:44-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\effects\internal\editor\box-height-light.effectbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:44-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\effects\internal\editor\gizmo.effectbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:44-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\effects\internal\editor\grid-2d.effectbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:44-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\effects\internal\editor\grid-stroke.effectbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:44-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\effects\internal\editor\grid.effectbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:44-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\effects\internal\editor\light-probe-visualization.effectbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:45-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\effects\internal\editor\light.effectbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:45-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\effects\internal\editor\terrain-circle-brush.effectbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:45-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\effects\internal\editor\terrain-image-brush.effectbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:45-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\effects\internal\editor\terrain-select-brush.effectbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:45-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\effects\util\dcc\imported-metallic-roughness.effectbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:45-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\effects\util\dcc\imported-specular-glossiness.effectbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:45-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\tools\debug-view-runtime-control.tsbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:45-debug: Preimport db internal success
-2023-9-7 22:14:45-debug: Preimport db assets success
-2023-9-7 22:14:46-debug: asset-db:worker-effect-data-processing (120ms)
-2023-9-7 22:14:49-debug: Set detail map pack:///resolution-detail-map.json: {}
-2023-9-7 22:14:49-debug: Start up the 'internal' database...
-2023-9-7 22:14:49-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\default-video.mp4background: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:49-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\Default-Particle.pngbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:49-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\default-terrain\default-layer-texture.jpgbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:49-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\default_cubemap\back.jpgbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:49-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\primitives.fbxbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:49-debug: asset-db:worker-init-script (33ms)
-2023-9-7 22:14:49-debug: Status file G:\Work\cocoscreator\MiniGame\temp\asset-db\internal\fbx.FBX-glTF-conv\1263d74c-8167-4928-91a6-4e2672411f47\status.json: Error: ENOENT: no such file or directory, open 'G:\Work\cocoscreator\MiniGame\temp\asset-db\internal\fbx.FBX-glTF-conv\1263d74c-8167-4928-91a6-4e2672411f47\status.json'
-2023-9-7 22:14:49-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\Default-Particle.png@6c48abackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:49-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\default_cubemap\back.jpg@6c48abackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:49-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\default-terrain\default-layer-texture.jpg@6c48abackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:49-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\default_cubemap\bottom.jpgbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:49-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\default_cubemap\front.jpgbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:49-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\default_cubemap\left.jpgbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:49-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\default_cubemap\right.jpgbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:49-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\default_cubemap\bottom.jpg@6c48abackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:49-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\default_cubemap\front.jpg@6c48abackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:49-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\default_cubemap\left.jpg@6c48abackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:49-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\default_cubemap\top.jpgbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:49-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\default_cubemap\right.jpg@6c48abackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:49-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\default_materials\default-billboard-material.mtlbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:49-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\default_materials\default-clear-stencil.mtlbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:49-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\default_materials\default-material-transparent.mtlbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:49-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\default_materials\default-material.mtlbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:49-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\default_materials\default-particle-gpu-material.mtlbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:49-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\default_materials\default-particle-material.mtlbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:49-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\default_materials\default-spine-material.mtlbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:49-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\default_materials\default-sprite-renderer-material.mtlbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:49-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\default_materials\default-trail-material.mtlbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:49-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\default_materials\missing-effect-material.mtlbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:49-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\default_cubemap\top.jpg@6c48abackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:49-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\default_materials\missing-material.mtlbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:49-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\default_materials\particle-add.mtlbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:49-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\default_materials\standard-material.mtlbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:49-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\default_materials\ui-alpha-test-material.mtlbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:49-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\default_materials\ui-base-material.mtlbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:49-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\default_materials\ui-graphics-material.mtlbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:49-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\default_materials\ui-sprite-alpha-sep-material.mtlbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:49-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\default_materials\ui-sprite-gray-alpha-sep-material.mtlbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:49-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\default_materials\ui-sprite-gray-material.mtlbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:49-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\default_materials\ui-sprite-material.mtlbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:49-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\default_prefab\Camera.prefabbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:49-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\default_prefab\Terrain.prefabbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:49-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\default_renderpipeline\builtin-deferred.rppbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:49-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\default_renderpipeline\builtin-forward.rppbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:49-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\default_renderpipeline\deferred-lighting.mtlbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:49-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\default_renderpipeline\post-process.mtlbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:49-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\default_renderpipeline\tonemap.mtlbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:49-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\default_skybox\default_skybox.hdrbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:49-debug: Start to conver asset {asset[d032ac98-05e1-4090-88bb-eb640dcb5fc1](d032ac98-05e1-4090-88bb-eb640dcb5fc1)}
-2023-9-7 22:14:49-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\default_skybox\default_skybox.pngbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:49-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\default_ui\atom.pngbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:49-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\default_ui\atom.plistbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:49-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\default_ui\atom.png@6c48abackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:49-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\default_skybox\default_skybox.png@b47c0background: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:49-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\default_ui\atom.png@f9941background: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:49-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\default_ui\atom_new.plistbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:49-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\default_ui\default_btn_disabled.pngbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:49-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\default_ui\default_btn_normal.pngbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:49-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\default_ui\default_btn_disabled.png@6c48abackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:49-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\default_ui\default_btn_disabled.png@f9941background: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:49-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\default_ui\default_btn_normal.png@6c48abackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:49-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\default_ui\default_btn_normal.png@f9941background: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:49-debug: Conver assetG:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\default_skybox\default_skybox.hdr -> PNG success.
-2023-9-7 22:14:49-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\default_ui\default_btn_pressed.pngbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:49-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\default_ui\default_editbox_bg.pngbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:49-debug: Frame rate: 24 [{asset(1263d74c-8167-4928-91a6-4e2672411f47)}]
-2023-9-7 22:14:49-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\default_ui\default_btn_pressed.png@6c48abackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:49-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\default_skybox\default_skybox.hdr@b47c0background: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:49-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\default_ui\default_editbox_bg.png@6c48abackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:49-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\primitives.fbx@17020background: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:49-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\default_ui\default_btn_pressed.png@f9941background: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:49-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\default_ui\default_editbox_bg.png@f9941background: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:49-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\primitives.fbx@801ecbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:50-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\default_ui\default_panel.pngbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:50-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\default_ui\default_progressbar.pngbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:50-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\default_skybox\default_skybox.png@b47c0@74afdbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:50-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\primitives.fbx@2e76ebackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:50-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\default_skybox\default_skybox.png@b47c0@8fd34background: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:50-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\default_ui\default_progressbar.png@6c48abackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:50-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\primitives.fbx@38fd2background: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:50-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\default_ui\default_panel.png@6c48abackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:50-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\default_ui\default_progressbar.png@f9941background: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:50-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\default_ui\default_panel.png@f9941background: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:50-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\default_skybox\default_skybox.png@b47c0@bb97fbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:50-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\primitives.fbx@40ecebackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:50-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\default_skybox\default_skybox.png@b47c0@7d38fbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:50-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\default_ui\default_progressbar_bg.pngbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:50-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\primitives.fbx@fc873background: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:50-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\default_ui\default_radio_button_off.pngbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:50-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\default_skybox\default_skybox.png@b47c0@e9a6dbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:50-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\primitives.fbx@8abdcbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:50-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\default_ui\default_progressbar_bg.png@6c48abackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:50-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\default_skybox\default_skybox.png@b47c0@40c10background: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:50-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\default_ui\default_progressbar_bg.png@f9941background: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:50-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\default_ui\default_radio_button_off.png@6c48abackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:50-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\primitives.fbx@a804abackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:50-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\default_ui\default_radio_button_off.png@f9941background: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:50-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\default_ui\default_radio_button_on.pngbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:50-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\primitives.fbx@8d883background: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:50-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\primitives.fbx@aae0fbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:50-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\default_ui\default_scrollbar.pngbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:50-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\default_ui\default_scrollbar_bg.pngbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:50-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\default_ui\default_scrollbar_vertical.pngbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:50-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\default_ui\default_radio_button_on.png@6c48abackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:50-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\default_ui\default_radio_button_on.png@f9941background: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:50-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\default_ui\default_scrollbar.png@6c48abackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:50-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\default_skybox\default_skybox.hdr@b47c0@74afdbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:50-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\default_ui\default_scrollbar_bg.png@6c48abackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:50-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\default_ui\default_scrollbar_vertical.png@6c48abackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:50-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\default_ui\default_scrollbar.png@f9941background: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:50-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\default_ui\default_scrollbar_bg.png@f9941background: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:50-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\default_ui\default_scrollbar_vertical.png@f9941background: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:50-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\default_skybox\default_skybox.hdr@b47c0@8fd34background: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:50-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\default_ui\default_scrollbar_vertical_bg.pngbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:50-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\default_skybox\default_skybox.hdr@b47c0@bb97fbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:50-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\default_skybox\default_skybox.hdr@b47c0@7d38fbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:50-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\default_ui\default_scrollbar_vertical_bg.png@6c48abackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:50-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\default_ui\default_scrollbar_vertical_bg.png@f9941background: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:50-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\default_ui\default_sprite.pngbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:50-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\default_skybox\default_skybox.hdr@b47c0@e9a6dbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:50-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\default_ui\default_sprite_splash.pngbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:50-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\default_ui\default_toggle_checkmark.pngbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:50-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\default_ui\default_toggle_disabled.pngbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:50-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\default_skybox\default_skybox.hdr@b47c0@40c10background: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:50-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\default_ui\default_sprite_splash.png@6c48abackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:50-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\default_ui\default_sprite.png@6c48abackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:50-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\default_ui\default_toggle_checkmark.png@6c48abackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:50-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\default_ui\default_sprite_splash.png@f9941background: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:50-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\default_ui\default_toggle_disabled.png@6c48abackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:50-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\default_ui\default_sprite.png@f9941background: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:50-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\default_ui\default_toggle_normal.pngbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:50-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\default_ui\default_toggle_checkmark.png@f9941background: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:50-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\default_ui\default_toggle_pressed.pngbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:50-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\gizmo\camera.pngbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:50-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\default_ui\default_toggle_normal.png@6c48abackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:50-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\default_ui\default_toggle_normal.png@f9941background: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:50-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\gizmo\directional-light.pngbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:50-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\default_ui\default_toggle_pressed.png@6c48abackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:50-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\gizmo\light-probe.pngbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:50-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\default_ui\default_toggle_pressed.png@f9941background: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:50-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\gizmo\particle-system.pngbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:50-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\gizmo\directional-light.png@6c48abackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:50-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\gizmo\reflection-probe.pngbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:50-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\gizmo\scene-gizmo.mtlbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:50-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\gizmo\sphere-light.pngbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:50-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\gizmo\camera.png@6c48abackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:50-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\gizmo\spot-light.pngbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:50-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\gizmo\light-probe.png@6c48abackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:50-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\gizmo\sphere-light.png@6c48abackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:50-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\gizmo\webview.pngbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:50-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\gizmo\x.pngbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:50-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\gizmo\webview.png@6c48abackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:50-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\gizmo\y.pngbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:50-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\gizmo\particle-system.png@6c48abackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:50-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\gizmo\spot-light.png@6c48abackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:50-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\gizmo\x.png@6c48abackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:50-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\gizmo\reflection-probe.png@6c48abackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:50-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\gizmo\z.pngbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:50-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\gizmo\x.png@f9941background: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:50-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\physics\default-physics-material.pmtlbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:50-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\tools\debug-view-runtime-control.prefabbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:50-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\tools\parsed-effect-info.jsonbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:50-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\default_fonts\builtin-bitmap\OpenSans-Bold.fntbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:50-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\default_fonts\builtin-bitmap\OpenSans-BoldItalic.fntbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:50-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\default_fonts\builtin-bitmap\OpenSans-BoldItalic_0.pngbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:50-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\default_fonts\builtin-bitmap\OpenSans-Bold_0.pngbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:50-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\gizmo\z.png@6c48abackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:50-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\gizmo\y.png@6c48abackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:50-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\default_fonts\builtin-bitmap\OpenSans-Italic.fntbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:50-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\gizmo\z.png@f9941background: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:50-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\gizmo\y.png@f9941background: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:50-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\default_fonts\builtin-bitmap\OpenSans-BoldItalic_0.png@6c48abackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:50-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\default_fonts\builtin-bitmap\OpenSans-Bold_0.png@6c48abackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:50-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\default_fonts\builtin-bitmap\OpenSans-Italic_0.pngbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:50-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\default_fonts\builtin-bitmap\OpenSans-BoldItalic_0.png@f9941background: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:50-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\default_fonts\builtin-bitmap\OpenSans-Bold_0.png@f9941background: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:50-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\default_fonts\builtin-bitmap\OpenSans-Regular.fntbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:50-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\default_fonts\builtin-bitmap\OpenSans-Regular_0.pngbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:50-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\default_fonts\builtin-bitmap\OpenSans-Italic_0.png@6c48abackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:50-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\default_fonts\builtin-freetype\OpenSans-Bold.ttfbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:50-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\default_fonts\builtin-bitmap\OpenSans-Italic_0.png@f9941background: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:50-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\default_fonts\builtin-freetype\OpenSans-Italic.ttfbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:50-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\default_fonts\builtin-bitmap\OpenSans-Regular_0.png@6c48abackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:50-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\default_fonts\builtin-freetype\OpenSans-BoldItalic.ttfbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:50-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\default_fonts\builtin-bitmap\OpenSans-Regular_0.png@f9941background: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:50-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\default_fonts\builtin-freetype\OpenSans-Regular.ttfbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:50-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\default_prefab\2d\Camera.prefabbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:50-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\default_prefab\3d\Cone.prefabbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:50-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\default_prefab\3d\Capsule.prefabbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:50-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\default_prefab\3d\Cube.prefabbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:50-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\default_prefab\3d\Cylinder.prefabbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:50-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\default_prefab\3d\Plane.prefabbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:50-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\default_prefab\3d\Quad.prefabbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:50-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\default_prefab\3d\Sphere.prefabbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:50-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\default_prefab\3d\Torus.prefabbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:50-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\default_prefab\effects\Particle System.prefabbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:50-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\default_prefab\light\Directional Light.prefabbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:50-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\default_prefab\light\Light Probe Group.prefabbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:50-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\default_prefab\light\Reflection Probe.prefabbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:50-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\default_prefab\light\Sphere Light.prefabbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:50-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\default_prefab\light\Spot Light.prefabbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:50-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\default_prefab\ui\Canvas.prefabbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:50-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\default_prefab\ui\Button.prefabbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:50-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\default_prefab\ui\EditBox.prefabbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:50-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\default_prefab\ui\Graphics.prefabbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:50-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\default_prefab\ui\Label.prefabbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:50-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\default_prefab\ui\Layout.prefabbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:50-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\default_prefab\ui\Mask.prefabbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:50-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\default_prefab\ui\pageView.prefabbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:50-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\default_prefab\ui\ParticleSystem2D.prefabbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:50-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\default_prefab\ui\ProgressBar.prefabbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:50-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\default_prefab\ui\RichText.prefabbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:50-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\default_prefab\ui\ScrollView.prefabbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:50-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\default_prefab\ui\Slider.prefabbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:50-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\default_prefab\ui\Sprite.prefabbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:50-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\default_prefab\ui\SpriteRenderer.prefabbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:50-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\default_prefab\ui\SpriteSplash.prefabbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:50-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\default_prefab\ui\TiledMap.prefabbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:50-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\default_prefab\ui\Toggle.prefabbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:50-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\default_prefab\ui\ToggleContainer.prefabbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:50-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\default_prefab\ui\VideoPlayer.prefabbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:50-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\default_prefab\ui\WebView.prefabbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:50-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\default_prefab\ui\Widget.prefabbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:50-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\dependencies\textures\preintegrated-skin.pngbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:50-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\default_prefab\2d\ui\Canvas.prefabbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:50-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\dependencies\textures\preintegrated-skin.png@6c48abackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:50-debug: start asset-db with asset: 419
-2023-9-7 22:14:50-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\default_ui\atom.plistbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:50-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\default_fonts\builtin-bitmap\OpenSans-BoldItalic.fntbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:50-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\default_fonts\builtin-bitmap\OpenSans-Bold.fntbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:50-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\default_fonts\builtin-bitmap\OpenSans-Italic.fntbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:50-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\default_ui\atom_new.plistbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:50-debug: %cImport%c: G:\Cocos\Download\Creator\3.7.4\resources\resources\3d\engine\editor\assets\default_fonts\builtin-bitmap\OpenSans-Regular.fntbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:14:50-debug: Start up the 'assets' database...
-2023-9-7 22:14:50-debug: start asset-db with asset: 0
-2023-9-7 22:14:50-debug: asset-db:worker-startup-database[internal] (14213ms)
-2023-9-7 22:14:50-debug: Asset DB is ready!
-2023-9-7 22:14:50-debug: asset-db:worker-startup-database[assets] (4512ms)
-2023-9-7 22:14:50-debug: init worker message success
-2023-9-7 22:14:51-debug: programming:execute-script (1ms)
-2023-9-7 22:14:52-debug: builder:worker-init (1325ms)
-2023-9-7 22:14:53-debug: programming:execute-script (2ms)
-2023-9-7 22:26:13-debug: refresh db internal success
-2023-9-7 22:26:13-debug: refresh db assets success
-2023-9-7 22:26:13-debug: asset-db:worker-effect-data-processing (173ms)
-2023-9-7 22:26:13-debug: asset-db:refresh-all-database (221ms)
-2023-9-7 22:27:27-debug: start refresh asset from G:\Work\cocoscreator\MiniGame\assets\scenes\scene.scene...
-2023-9-7 22:27:27-debug: %cImport%c: G:\Work\cocoscreator\MiniGame\assets\scenesbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:27:27-debug: %cImport%c: G:\Work\cocoscreator\MiniGame\assets\scenes\scene.scenebackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:27:27-debug: refresh asset G:\Work\cocoscreator\MiniGame\assets\scenes success
-2023-9-7 22:27:27-debug: refresh db internal success
-2023-9-7 22:27:27-debug: refresh db assets success
-2023-9-7 22:27:27-debug: asset-db:worker-effect-data-processing (155ms)
-2023-9-7 22:27:27-debug: asset-db:refresh-all-database (199ms)
-2023-9-7 22:27:36-debug: start refresh asset from G:\Work\cocoscreator\MiniGame\assets\scenes\folder...
-2023-9-7 22:27:36-debug: %cImport%c: G:\Work\cocoscreator\MiniGame\assets\scenes\folderbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:27:36-debug: refresh asset G:\Work\cocoscreator\MiniGame\assets\scenes success
-2023-9-7 22:27:36-debug: %cImport%c: G:\Work\cocoscreator\MiniGame\assets\scenesbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:27:39-debug: start move asset from G:\Work\cocoscreator\MiniGame\assets\scenes\folder -> G:\Work\cocoscreator\MiniGame\assets\folder...
-2023-9-7 22:27:39-debug: start refresh asset from G:\Work\cocoscreator\MiniGame\assets\folder...
-2023-9-7 22:27:39-debug: %cImport%c: G:\Work\cocoscreator\MiniGame\assets\folderbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:27:39-debug: refresh asset G:\Work\cocoscreator\MiniGame\assets success
-2023-9-7 22:27:39-debug: start refresh asset from G:\Work\cocoscreator\MiniGame\assets\scenes...
-2023-9-7 22:27:39-debug: %cImport%c: G:\Work\cocoscreator\MiniGame\assets\scenesbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:27:39-debug: move asset from G:\Work\cocoscreator\MiniGame\assets\scenes\folder -> G:\Work\cocoscreator\MiniGame\assets\folder success
-2023-9-7 22:27:39-debug: refresh asset G:\Work\cocoscreator\MiniGame\assets success
-2023-9-7 22:27:45-debug: start move asset from G:\Work\cocoscreator\MiniGame\assets\folder -> G:\Work\cocoscreator\MiniGame\assets\script...
-2023-9-7 22:27:45-debug: start refresh asset from G:\Work\cocoscreator\MiniGame\assets\script...
-2023-9-7 22:27:45-debug: %cImport%c: G:\Work\cocoscreator\MiniGame\assets\scriptbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:27:45-debug: refresh asset G:\Work\cocoscreator\MiniGame\assets success
-2023-9-7 22:27:45-debug: start refresh asset from G:\Work\cocoscreator\MiniGame\assets...
-2023-9-7 22:27:45-debug: move asset from G:\Work\cocoscreator\MiniGame\assets\folder -> G:\Work\cocoscreator\MiniGame\assets\script success
-2023-9-7 22:27:45-debug: refresh asset G:\Work\cocoscreator\MiniGame success
-2023-9-7 22:27:51-debug: start refresh asset from G:\Work\cocoscreator\MiniGame\assets\script\Main.ts...
-2023-9-7 22:27:51-debug: %cImport%c: G:\Work\cocoscreator\MiniGame\assets\script\Main.tsbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:27:51-debug: refresh asset G:\Work\cocoscreator\MiniGame\assets\script success
-2023-9-7 22:27:51-debug: %cImport%c: G:\Work\cocoscreator\MiniGame\assets\scriptbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:28:12-debug: refresh db internal success
-2023-9-7 22:28:12-debug: refresh db assets success
-2023-9-7 22:28:12-debug: asset-db:worker-effect-data-processing (147ms)
-2023-9-7 22:28:12-debug: asset-db:refresh-all-database (188ms)
-2023-9-7 22:28:36-debug: refresh db internal success
-2023-9-7 22:28:36-debug: refresh db assets success
-2023-9-7 22:28:36-debug: asset-db:worker-effect-data-processing (143ms)
-2023-9-7 22:28:36-debug: asset-db:refresh-all-database (181ms)
-2023-9-7 22:28:49-debug: refresh db internal success
-2023-9-7 22:28:49-debug: asset-db:worker-effect-data-processing (111ms)
-2023-9-7 22:28:49-debug: refresh db assets success
-2023-9-7 22:28:49-debug: asset-db:refresh-all-database (153ms)
-2023-9-7 22:29:10-debug: start refresh asset from G:\Work\cocoscreator\MiniGame\assets\scenes\scene.scene...
-2023-9-7 22:29:10-debug: %cImport%c: G:\Work\cocoscreator\MiniGame\assets\scenes\scene.scenebackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:29:10-debug: refresh asset G:\Work\cocoscreator\MiniGame\assets\scenes success
-2023-9-7 22:29:32-debug: refresh db internal success
-2023-9-7 22:29:32-debug: refresh db assets success
-2023-9-7 22:29:32-debug: asset-db:worker-effect-data-processing (150ms)
-2023-9-7 22:29:32-debug: asset-db:refresh-all-database (186ms)
-2023-9-7 22:29:45-debug: refresh db internal success
-2023-9-7 22:29:45-debug: refresh db assets success
-2023-9-7 22:29:45-debug: asset-db:worker-effect-data-processing (113ms)
-2023-9-7 22:29:45-debug: asset-db:refresh-all-database (153ms)
-2023-9-7 22:32:32-debug: refresh db internal success
-2023-9-7 22:32:32-debug: refresh db assets success
-2023-9-7 22:32:32-debug: asset-db:worker-effect-data-processing (152ms)
-2023-9-7 22:32:32-debug: asset-db:refresh-all-database (191ms)
-2023-9-7 22:32:39-debug: refresh db internal success
-2023-9-7 22:32:39-debug: refresh db assets success
-2023-9-7 22:32:39-debug: asset-db:worker-effect-data-processing (113ms)
-2023-9-7 22:32:39-debug: asset-db:refresh-all-database (145ms)
-2023-9-7 22:35:52-debug: start refresh asset from G:\Work\cocoscreator\MiniGame\assets\scenes\scene.scene...
-2023-9-7 22:35:52-debug: %cImport%c: G:\Work\cocoscreator\MiniGame\assets\scenes\scene.scenebackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:35:52-debug: refresh asset G:\Work\cocoscreator\MiniGame\assets\scenes success
-2023-9-7 22:36:01-debug: refresh db internal success
-2023-9-7 22:36:01-debug: refresh db assets success
-2023-9-7 22:36:01-debug: asset-db:worker-effect-data-processing (145ms)
-2023-9-7 22:36:01-debug: asset-db:refresh-all-database (180ms)
-2023-9-7 22:36:08-debug: refresh db internal success
-2023-9-7 22:36:08-debug: refresh db assets success
-2023-9-7 22:36:08-debug: asset-db:worker-effect-data-processing (144ms)
-2023-9-7 22:36:08-debug: asset-db:refresh-all-database (178ms)
-2023-9-7 22:36:45-debug: refresh db internal success
-2023-9-7 22:36:45-debug: refresh db assets success
-2023-9-7 22:36:45-debug: asset-db:worker-effect-data-processing (144ms)
-2023-9-7 22:36:45-debug: asset-db:refresh-all-database (182ms)
-2023-9-7 22:38:08-debug: refresh db internal success
-2023-9-7 22:38:08-debug: %cImport%c: G:\Work\cocoscreator\MiniGame\assets\script\Main.tsbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:38:08-debug: asset-db:worker-effect-data-processing (153ms)
-2023-9-7 22:38:08-debug: refresh db assets success
-2023-9-7 22:38:08-debug: asset-db:refresh-all-database (186ms)
-2023-9-7 22:38:24-debug: start refresh asset from G:\Work\cocoscreator\MiniGame\assets\script\manager...
-2023-9-7 22:38:24-debug: %cImport%c: G:\Work\cocoscreator\MiniGame\assets\script\managerbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:38:24-debug: refresh asset G:\Work\cocoscreator\MiniGame\assets\script success
-2023-9-7 22:38:24-debug: %cImport%c: G:\Work\cocoscreator\MiniGame\assets\scriptbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:38:33-debug: refresh db internal success
-2023-9-7 22:38:34-debug: refresh db assets success
-2023-9-7 22:38:34-debug: asset-db:worker-effect-data-processing (156ms)
-2023-9-7 22:38:34-debug: asset-db:refresh-all-database (192ms)
-2023-9-7 22:38:46-debug: refresh db internal success
-2023-9-7 22:38:46-debug: refresh db assets success
-2023-9-7 22:38:46-debug: asset-db:worker-effect-data-processing (119ms)
-2023-9-7 22:38:46-debug: asset-db:refresh-all-database (151ms)
-2023-9-7 22:38:53-debug: start refresh asset from G:\Work\cocoscreator\MiniGame\assets\script\manager\Mgr.ts...
-2023-9-7 22:38:53-debug: %cImport%c: G:\Work\cocoscreator\MiniGame\assets\script\manager\Mgr.tsbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:38:53-debug: refresh asset G:\Work\cocoscreator\MiniGame\assets\script\manager success
-2023-9-7 22:38:53-debug: %cImport%c: G:\Work\cocoscreator\MiniGame\assets\script\managerbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:38:55-debug: refresh db internal success
-2023-9-7 22:38:55-debug: refresh db assets success
-2023-9-7 22:38:55-debug: asset-db:worker-effect-data-processing (139ms)
-2023-9-7 22:38:55-debug: asset-db:refresh-all-database (171ms)
-2023-9-7 22:39:47-debug: refresh db internal success
-2023-9-7 22:39:47-debug: asset-db:worker-effect-data-processing (148ms)
-2023-9-7 22:39:47-debug: %cImport%c: G:\Work\cocoscreator\MiniGame\assets\script\Main.tsbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:39:47-debug: %cImport%c: G:\Work\cocoscreator\MiniGame\assets\script\manager\Mgr.tsbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:39:47-debug: refresh db assets success
-2023-9-7 22:39:47-debug: asset-db:refresh-all-database (183ms)
-2023-9-7 22:40:17-debug: refresh db internal success
-2023-9-7 22:40:17-debug: refresh db assets success
-2023-9-7 22:40:17-debug: asset-db:worker-effect-data-processing (155ms)
-2023-9-7 22:40:17-debug: asset-db:refresh-all-database (190ms)
-2023-9-7 22:40:24-debug: start refresh asset from G:\Work\cocoscreator\MiniGame\assets\script\manager\SoundManager.ts...
-2023-9-7 22:40:24-debug: %cImport%c: G:\Work\cocoscreator\MiniGame\assets\script\manager\SoundManager.tsbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:40:24-debug: refresh asset G:\Work\cocoscreator\MiniGame\assets\script\manager success
-2023-9-7 22:40:24-debug: %cImport%c: G:\Work\cocoscreator\MiniGame\assets\script\managerbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:40:42-debug: refresh db internal success
-2023-9-7 22:40:43-debug: asset-db:worker-effect-data-processing (150ms)
-2023-9-7 22:40:43-debug: %cImport%c: G:\Work\cocoscreator\MiniGame\assets\script\manager\SoundManager.tsbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:40:43-debug: refresh db assets success
-2023-9-7 22:40:43-debug: asset-db:refresh-all-database (205ms)
-2023-9-7 22:42:29-debug: refresh db internal success
-2023-9-7 22:42:29-debug: %cImport%c: G:\Work\cocoscreator\MiniGame\assets\script\gamebackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:42:29-debug: %cImport%c: G:\Work\cocoscreator\MiniGame\assets\script\game\gameShultebackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:42:29-debug: %cImport%c: G:\Work\cocoscreator\MiniGame\assets\script\game\gameGridbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:42:30-debug: asset-db:worker-effect-data-processing (161ms)
-2023-9-7 22:42:30-debug: %cImport%c: G:\Work\cocoscreator\MiniGame\assets\scriptbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:42:30-debug: %cImport%c: G:\Work\cocoscreator\MiniGame\assets\script\manager\Mgr.tsbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:42:30-debug: refresh db assets success
-2023-9-7 22:42:30-debug: asset-db:refresh-all-database (207ms)
-2023-9-7 22:42:40-debug: start refresh asset from G:\Work\cocoscreator\MiniGame\assets\script\game\gameGrid\GameGridController.ts...
-2023-9-7 22:42:40-debug: %cImport%c: G:\Work\cocoscreator\MiniGame\assets\script\game\gameGrid\GameGridController.tsbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:42:40-debug: refresh asset G:\Work\cocoscreator\MiniGame\assets\script\game\gameGrid success
-2023-9-7 22:42:40-debug: %cImport%c: G:\Work\cocoscreator\MiniGame\assets\script\game\gameGridbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:42:50-debug: start refresh asset from G:\Work\cocoscreator\MiniGame\assets\script\game\gameShulte\GameShulteController.ts...
-2023-9-7 22:42:50-debug: %cImport%c: G:\Work\cocoscreator\MiniGame\assets\script\game\gameShulte\GameShulteController.tsbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:42:50-debug: refresh asset G:\Work\cocoscreator\MiniGame\assets\script\game\gameShulte success
-2023-9-7 22:42:50-debug: %cImport%c: G:\Work\cocoscreator\MiniGame\assets\script\game\gameShultebackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:42:58-debug: start refresh asset from G:\Work\cocoscreator\MiniGame\assets\script\manager\EventManager.ts...
-2023-9-7 22:42:58-debug: %cImport%c: G:\Work\cocoscreator\MiniGame\assets\script\manager\EventManager.tsbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:42:58-debug: refresh asset G:\Work\cocoscreator\MiniGame\assets\script\manager success
-2023-9-7 22:42:59-debug: %cImport%c: G:\Work\cocoscreator\MiniGame\assets\script\managerbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:50:26-debug: refresh db internal success
-2023-9-7 22:50:26-debug: %cImport%c: G:\Work\cocoscreator\MiniGame\assets\script\manager\EventManager.tsbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:50:26-debug: %cImport%c: G:\Work\cocoscreator\MiniGame\assets\script\game\gameGrid\GameGridController.tsbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:50:26-debug: asset-db:worker-effect-data-processing (150ms)
-2023-9-7 22:50:26-debug: refresh db assets success
-2023-9-7 22:50:26-debug: asset-db:refresh-all-database (184ms)
-2023-9-7 22:50:32-debug: start refresh asset from G:\Work\cocoscreator\MiniGame\assets\resources...
-2023-9-7 22:50:32-debug: %cImport%c: G:\Work\cocoscreator\MiniGame\assets\resourcesbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:50:32-debug: refresh asset G:\Work\cocoscreator\MiniGame\assets success
-2023-9-7 22:50:37-debug: refresh db internal success
-2023-9-7 22:50:37-debug: asset-db:worker-effect-data-processing (149ms)
-2023-9-7 22:50:37-debug: refresh db assets success
-2023-9-7 22:50:37-debug: asset-db:refresh-all-database (183ms)
-2023-9-7 22:50:47-debug: start refresh asset from G:\Work\cocoscreator\MiniGame\assets\resources\audio...
-2023-9-7 22:50:47-debug: %cImport%c: G:\Work\cocoscreator\MiniGame\assets\resources\audiobackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:50:47-debug: refresh asset G:\Work\cocoscreator\MiniGame\assets\resources success
-2023-9-7 22:50:47-debug: %cImport%c: G:\Work\cocoscreator\MiniGame\assets\resourcesbackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:51:02-debug: refresh db internal success
-2023-9-7 22:51:02-debug: asset-db:worker-effect-data-processing (156ms)
-2023-9-7 22:51:02-debug: refresh db assets success
-2023-9-7 22:51:02-debug: asset-db:refresh-all-database (190ms)
-2023-9-7 22:51:25-debug: start refresh asset from G:\Work\cocoscreator\MiniGame\assets\game...
-2023-9-7 22:51:25-debug: %cImport%c: G:\Work\cocoscreator\MiniGame\assets\gamebackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:51:25-debug: refresh asset G:\Work\cocoscreator\MiniGame\assets success
-2023-9-7 22:51:39-debug: refresh db internal success
-2023-9-7 22:51:39-debug: asset-db:worker-effect-data-processing (148ms)
-2023-9-7 22:51:39-debug: refresh db assets success
-2023-9-7 22:51:39-debug: asset-db:refresh-all-database (180ms)
-2023-9-7 22:51:58-debug: refresh db internal success
-2023-9-7 22:51:58-debug: asset-db:worker-effect-data-processing (114ms)
-2023-9-7 22:51:58-debug: refresh db assets success
-2023-9-7 22:51:58-debug: asset-db:refresh-all-database (144ms)
-2023-9-7 22:52:09-debug: refresh db internal success
-2023-9-7 22:52:09-debug: asset-db:worker-effect-data-processing (139ms)
-2023-9-7 22:52:09-debug: %cImport%c: G:\Work\cocoscreator\MiniGame\assets\resources\audio\button1.mp3background: #aaff85; color: #000;color: #000;
-2023-9-7 22:52:09-debug: %cImport%c: G:\Work\cocoscreator\MiniGame\assets\resources\audio\crrect_answer1.mp3background: #aaff85; color: #000;color: #000;
-2023-9-7 22:52:09-debug: %cImport%c: G:\Work\cocoscreator\MiniGame\assets\resources\audio\crrect_answer2.mp3background: #aaff85; color: #000;color: #000;
-2023-9-7 22:52:09-debug: %cImport%c: G:\Work\cocoscreator\MiniGame\assets\resources\audio\crrect_answer3.mp3background: #aaff85; color: #000;color: #000;
-2023-9-7 22:52:09-debug: %cImport%c: G:\Work\cocoscreator\MiniGame\assets\resources\audio\error1.mp3background: #aaff85; color: #000;color: #000;
-2023-9-7 22:52:09-debug: %cImport%c: G:\Work\cocoscreator\MiniGame\assets\resources\audio\error999.mp3background: #aaff85; color: #000;color: #000;
-2023-9-7 22:52:09-debug: %cImport%c: G:\Work\cocoscreator\MiniGame\assets\resources\audio\game_start.mp3background: #aaff85; color: #000;color: #000;
-2023-9-7 22:52:09-debug: %cImport%c: G:\Work\cocoscreator\MiniGame\assets\resources\audio\mobile_phone_O.mp3background: #aaff85; color: #000;color: #000;
-2023-9-7 22:52:09-debug: %cImport%c: G:\Work\cocoscreator\MiniGame\assets\resources\audio\win.mp3background: #aaff85; color: #000;color: #000;
-2023-9-7 22:52:09-debug: %cImport%c: G:\Work\cocoscreator\MiniGame\assets\resources\audiobackground: #aaff85; color: #000;color: #000;
-2023-9-7 22:52:09-debug: refresh db assets success
-2023-9-7 22:52:09-debug: asset-db:refresh-all-database (256ms)
-2023-9-7 22:52:24-debug: refresh db internal success
-2023-9-7 22:52:24-debug: asset-db:worker-effect-data-processing (148ms)
-2023-9-7 22:52:24-debug: refresh db assets success
-2023-9-7 22:52:24-debug: asset-db:refresh-all-database (185ms)
-2023-9-7 22:54:09-debug: refresh db internal success
-2023-9-7 22:54:09-debug: asset-db:worker-effect-data-processing (149ms)
-2023-9-7 22:54:09-debug: refresh db assets success
-2023-9-7 22:54:09-debug: asset-db:refresh-all-database (180ms)
-2023-9-7 22:54:39-debug: refresh db internal success
-2023-9-7 22:54:39-debug: asset-db:worker-effect-data-processing (149ms)
-2023-9-7 22:54:39-debug: refresh db assets success
-2023-9-7 22:54:39-debug: asset-db:refresh-all-database (181ms)
-2023-9-7 23:00:55-debug: refresh db internal success
-2023-9-7 23:00:55-debug: asset-db:worker-effect-data-processing (141ms)
-2023-9-7 23:00:55-debug: %cImport%c: G:\Work\cocoscreator\MiniGame\assets\script\Main.tsbackground: #aaff85; color: #000;color: #000;
-2023-9-7 23:00:55-debug: %cImport%c: G:\Work\cocoscreator\MiniGame\assets\script\game\gameGrid\GameGridController.tsbackground: #aaff85; color: #000;color: #000;
-2023-9-7 23:00:55-debug: refresh db assets success
-2023-9-7 23:00:55-debug: asset-db:refresh-all-database (178ms)
-2023-9-7 23:02:01-debug: refresh db internal success
-2023-9-7 23:02:01-debug: asset-db:worker-effect-data-processing (105ms)
-2023-9-7 23:02:01-debug: refresh db assets success
-2023-9-7 23:02:01-debug: asset-db:refresh-all-database (140ms)
-2023-9-7 23:02:54-debug: refresh db internal success
-2023-9-7 23:02:54-debug: %cImport%c: G:\Work\cocoscreator\MiniGame\assets\script\enumbackground: #aaff85; color: #000;color: #000;
-2023-9-7 23:02:54-debug: asset-db:worker-effect-data-processing (145ms)
-2023-9-7 23:02:54-debug: %cImport%c: G:\Work\cocoscreator\MiniGame\assets\scriptbackground: #aaff85; color: #000;color: #000;
-2023-9-7 23:02:54-debug: %cImport%c: G:\Work\cocoscreator\MiniGame\assets\script\game\gameShulte\GameShulteController.tsbackground: #aaff85; color: #000;color: #000;
-2023-9-7 23:02:54-debug: refresh db assets success
-2023-9-7 23:02:54-debug: asset-db:refresh-all-database (178ms)
-2023-9-7 23:03:05-debug: start refresh asset from G:\Work\cocoscreator\MiniGame\assets\script\enum\EventEnum.ts...
-2023-9-7 23:03:05-debug: %cImport%c: G:\Work\cocoscreator\MiniGame\assets\script\enum\EventEnum.tsbackground: #aaff85; color: #000;color: #000;
-2023-9-7 23:03:05-debug: refresh asset G:\Work\cocoscreator\MiniGame\assets\script\enum success
-2023-9-7 23:03:05-debug: %cImport%c: G:\Work\cocoscreator\MiniGame\assets\script\enumbackground: #aaff85; color: #000;color: #000;
-2023-9-7 23:05:31-debug: refresh db internal success
-2023-9-7 23:05:31-debug: %cImport%c: G:\Work\cocoscreator\MiniGame\assets\script\enum\GameType.tsbackground: #aaff85; color: #000;color: #000;
-2023-9-7 23:05:32-debug: %cImport%c: G:\Work\cocoscreator\MiniGame\assets\script\enumbackground: #aaff85; color: #000;color: #000;
-2023-9-7 23:05:32-debug: asset-db:worker-effect-data-processing (166ms)
-2023-9-7 23:05:32-debug: %cImport%c: G:\Work\cocoscreator\MiniGame\assets\script\enum\EventEnum.tsbackground: #aaff85; color: #000;color: #000;
-2023-9-7 23:05:32-debug: %cImport%c: G:\Work\cocoscreator\MiniGame\assets\script\game\gameGrid\GameGridController.tsbackground: #aaff85; color: #000;color: #000;
-2023-9-7 23:05:32-debug: %cImport%c: G:\Work\cocoscreator\MiniGame\assets\script\game\gameShulte\GameShulteController.tsbackground: #aaff85; color: #000;color: #000;
-2023-9-7 23:05:32-debug: %cImport%c: G:\Work\cocoscreator\MiniGame\assets\script\manager\SoundManager.tsbackground: #aaff85; color: #000;color: #000;
-2023-9-7 23:05:32-debug: refresh db assets success
-2023-9-7 23:05:32-debug: asset-db:refresh-all-database (208ms)
-2023-9-7 23:05:49-debug: start refresh asset from G:\Work\cocoscreator\MiniGame\assets\scenes\scene.scene...
-2023-9-7 23:05:49-debug: %cImport%c: G:\Work\cocoscreator\MiniGame\assets\scenes\scene.scenebackground: #aaff85; color: #000;color: #000;
-2023-9-7 23:05:49-debug: refresh asset G:\Work\cocoscreator\MiniGame\assets\scenes success
-2023-9-7 23:05:53-debug: refresh db internal success
-2023-9-7 23:05:53-debug: asset-db:worker-effect-data-processing (142ms)
-2023-9-7 23:05:53-debug: refresh db assets success
-2023-9-7 23:05:53-debug: asset-db:refresh-all-database (178ms)
-2023-9-7 23:12:37-debug: refresh db internal success
-2023-9-7 23:12:37-debug: asset-db:worker-effect-data-processing (109ms)
-2023-9-7 23:12:37-debug: refresh db assets success
-2023-9-7 23:12:37-debug: asset-db:refresh-all-database (169ms)
-2023-9-7 23:18:39-debug: refresh db internal success
-2023-9-7 23:18:39-debug: asset-db:worker-effect-data-processing (140ms)
-2023-9-7 23:18:39-debug: %cImport%c: G:\Work\cocoscreator\MiniGame\assets\script\Main.tsbackground: #aaff85; color: #000;color: #000;
-2023-9-7 23:18:39-debug: %cImport%c: G:\Work\cocoscreator\MiniGame\assets\script\manager\SoundManager.tsbackground: #aaff85; color: #000;color: #000;
-2023-9-7 23:18:39-debug: refresh db assets success
-2023-9-7 23:18:39-debug: asset-db:refresh-all-database (172ms)
-2023-9-7 23:20:46-debug: refresh db internal success
-2023-9-7 23:20:46-debug: asset-db:worker-effect-data-processing (137ms)
-2023-9-7 23:20:46-debug: refresh db assets success
-2023-9-7 23:20:46-debug: asset-db:refresh-all-database (171ms)
-2023-9-7 23:21:05-debug: refresh db internal success
-2023-9-7 23:21:05-debug: asset-db:worker-effect-data-processing (136ms)
-2023-9-7 23:21:05-debug: refresh db assets success
-2023-9-7 23:21:05-debug: asset-db:refresh-all-database (170ms)
-2023-9-7 23:21:08-debug: refresh db internal success
-2023-9-7 23:21:09-debug: asset-db:worker-effect-data-processing (104ms)
-2023-9-7 23:21:09-debug: refresh db assets success
-2023-9-7 23:21:09-debug: asset-db:refresh-all-database (135ms)
-2023-9-7 23:21:23-debug: refresh db internal success
-2023-9-7 23:21:23-debug: asset-db:worker-effect-data-processing (104ms)
-2023-9-7 23:21:23-debug: refresh db assets success
-2023-9-7 23:21:23-debug: asset-db:refresh-all-database (135ms)
-2023-9-7 23:21:27-debug: refresh db internal success
-2023-9-7 23:21:27-debug: asset-db:worker-effect-data-processing (130ms)
-2023-9-7 23:21:27-debug: refresh db assets success
-2023-9-7 23:21:27-debug: asset-db:refresh-all-database (161ms)
-2023-9-7 23:21:48-debug: refresh db internal success
-2023-9-7 23:21:48-debug: asset-db:worker-effect-data-processing (134ms)
-2023-9-7 23:21:48-debug: refresh db assets success
-2023-9-7 23:21:48-debug: asset-db:refresh-all-database (163ms)
-2023-9-7 23:21:54-debug: start refresh asset from G:\Work\cocoscreator\MiniGame\assets\scenes\scene.scene...
-2023-9-7 23:21:54-debug: %cImport%c: G:\Work\cocoscreator\MiniGame\assets\scenes\scene.scenebackground: #aaff85; color: #000;color: #000;
-2023-9-7 23:21:54-debug: refresh asset G:\Work\cocoscreator\MiniGame\assets\scenes success
-2023-9-7 23:22:09-debug: start refresh asset from G:\Work\cocoscreator\MiniGame\assets\scenes\scene.scene...
-2023-9-7 23:22:09-debug: %cImport%c: G:\Work\cocoscreator\MiniGame\assets\scenes\scene.scenebackground: #aaff85; color: #000;color: #000;
-2023-9-7 23:22:09-debug: refresh asset G:\Work\cocoscreator\MiniGame\assets\scenes success
-2023-9-7 23:22:27-debug: refresh db internal success
-2023-9-7 23:22:27-debug: asset-db:worker-effect-data-processing (138ms)
-2023-9-7 23:22:27-debug: refresh db assets success
-2023-9-7 23:22:27-debug: asset-db:refresh-all-database (173ms)
-2023-9-7 23:22:49-debug: refresh db internal success
-2023-9-7 23:22:49-debug: asset-db:worker-effect-data-processing (137ms)
-2023-9-7 23:22:49-debug: refresh db assets success
-2023-9-7 23:22:49-debug: asset-db:refresh-all-database (172ms)
-2023-9-7 23:23:07-debug: refresh db internal success
-2023-9-7 23:23:07-debug: asset-db:worker-effect-data-processing (105ms)
-2023-9-7 23:23:07-debug: refresh db assets success
-2023-9-7 23:23:07-debug: asset-db:refresh-all-database (138ms)
-2023-9-7 23:23:13-debug: start refresh asset from G:\Work\cocoscreator\MiniGame\assets\scenes\scene.scene...
-2023-9-7 23:23:13-debug: %cImport%c: G:\Work\cocoscreator\MiniGame\assets\scenes\scene.scenebackground: #aaff85; color: #000;color: #000;
-2023-9-7 23:23:13-debug: refresh asset G:\Work\cocoscreator\MiniGame\assets\scenes success
-2023-9-7 23:23:27-debug: start refresh asset from G:\Work\cocoscreator\MiniGame\assets\scenes\scene.scene...
-2023-9-7 23:23:27-debug: %cImport%c: G:\Work\cocoscreator\MiniGame\assets\scenes\scene.scenebackground: #aaff85; color: #000;color: #000;
-2023-9-7 23:23:27-debug: refresh asset G:\Work\cocoscreator\MiniGame\assets\scenes success
-2023-9-7 23:38:34-debug: refresh db internal success
-2023-9-7 23:38:34-debug: asset-db:worker-effect-data-processing (143ms)
-2023-9-7 23:38:34-debug: refresh db assets success
-2023-9-7 23:38:34-debug: asset-db:refresh-all-database (179ms)
-2023-9-7 23:38:45-debug: refresh db internal success
-2023-9-7 23:38:45-debug: asset-db:worker-effect-data-processing (106ms)
-2023-9-7 23:38:45-debug: refresh db assets success
-2023-9-7 23:38:45-debug: asset-db:refresh-all-database (143ms)
-2023-9-7 23:39:08-debug: refresh db internal success
-2023-9-7 23:39:08-debug: asset-db:worker-effect-data-processing (142ms)
-2023-9-7 23:39:08-debug: refresh db assets success
-2023-9-7 23:39:08-debug: asset-db:refresh-all-database (175ms)
-2023-9-7 23:39:36-debug: refresh db internal success
-2023-9-7 23:39:37-debug: asset-db:worker-effect-data-processing (148ms)
-2023-9-7 23:39:37-debug: refresh db assets success
-2023-9-7 23:39:37-debug: asset-db:refresh-all-database (185ms)
-2023-9-7 23:39:43-debug: start refresh asset from G:\Work\cocoscreator\MiniGame\assets\scenes\scene.scene...
-2023-9-7 23:39:43-debug: %cImport%c: G:\Work\cocoscreator\MiniGame\assets\scenes\scene.scenebackground: #aaff85; color: #000;color: #000;
-2023-9-7 23:39:43-debug: refresh asset G:\Work\cocoscreator\MiniGame\assets\scenes success
-2023-9-7 23:42:51-debug: refresh db internal success
-2023-9-7 23:42:51-debug: asset-db:worker-effect-data-processing (146ms)
-2023-9-7 23:42:51-debug: refresh db assets success
-2023-9-7 23:42:51-debug: asset-db:refresh-all-database (192ms)
-2023-9-7 23:43:14-debug: %cImport%c: G:\Work\cocoscreator\MiniGame\assets\game\gameShultebackground: #aaff85; color: #000;color: #000;
-2023-9-7 23:43:14-debug: start refresh asset from G:\Work\cocoscreator\MiniGame\assets\game\gameShulte...
-2023-9-7 23:43:14-debug: refresh asset G:\Work\cocoscreator\MiniGame\assets\game success
-2023-9-7 23:43:15-debug: %cImport%c: G:\Work\cocoscreator\MiniGame\assets\gamebackground: #aaff85; color: #000;color: #000;
-2023-9-7 23:43:37-debug: refresh db internal success
-2023-9-7 23:43:37-debug: asset-db:worker-effect-data-processing (106ms)
-2023-9-7 23:43:37-debug: refresh db assets success
-2023-9-7 23:43:37-debug: asset-db:refresh-all-database (142ms)
-2023-9-7 23:43:42-debug: start refresh asset from G:\Work\cocoscreator\MiniGame\assets\game\common...
-2023-9-7 23:43:42-debug: %cImport%c: G:\Work\cocoscreator\MiniGame\assets\game\commonbackground: #aaff85; color: #000;color: #000;
-2023-9-7 23:43:42-debug: refresh asset G:\Work\cocoscreator\MiniGame\assets\game success
-2023-9-7 23:43:42-debug: %cImport%c: G:\Work\cocoscreator\MiniGame\assets\gamebackground: #aaff85; color: #000;color: #000;
-2023-9-7 23:43:46-debug: refresh db internal success
-2023-9-7 23:43:46-debug: asset-db:worker-effect-data-processing (135ms)
-2023-9-7 23:43:46-debug: refresh db assets success
-2023-9-7 23:43:46-debug: asset-db:refresh-all-database (167ms)
-2023-9-7 23:43:51-debug: start refresh asset from G:\Work\cocoscreator\MiniGame\assets\game\common\SoundNormal.png...
-2023-9-7 23:43:51-debug: %cImport%c: G:\Work\cocoscreator\MiniGame\assets\game\common\SoundNormal.pngbackground: #aaff85; color: #000;color: #000;
-2023-9-7 23:43:51-debug: start refresh asset from G:\Work\cocoscreator\MiniGame\assets\game\common\SoundMute.png...
-2023-9-7 23:43:51-debug: %cImport%c: G:\Work\cocoscreator\MiniGame\assets\game\common\SoundNormal.png@6c48abackground: #aaff85; color: #000;color: #000;
-2023-9-7 23:43:51-debug: %cImport%c: G:\Work\cocoscreator\MiniGame\assets\game\common\SoundNormal.png@f9941background: #aaff85; color: #000;color: #000;
-2023-9-7 23:43:51-debug: %cImport%c: G:\Work\cocoscreator\MiniGame\assets\game\common\SoundMute.pngbackground: #aaff85; color: #000;color: #000;
-2023-9-7 23:43:51-debug: %cImport%c: G:\Work\cocoscreator\MiniGame\assets\game\common\SoundMute.png@6c48abackground: #aaff85; color: #000;color: #000;
-2023-9-7 23:43:51-debug: %cImport%c: G:\Work\cocoscreator\MiniGame\assets\game\common\SoundMute.png@f9941background: #aaff85; color: #000;color: #000;
-2023-9-7 23:43:51-debug: refresh asset G:\Work\cocoscreator\MiniGame\assets\game\common success
-2023-9-7 23:43:51-debug: refresh asset G:\Work\cocoscreator\MiniGame\assets\game\common success
-2023-9-7 23:43:51-debug: refresh db internal success
-2023-9-7 23:43:51-debug: %cImport%c: G:\Work\cocoscreator\MiniGame\assets\game\commonbackground: #aaff85; color: #000;color: #000;
-2023-9-7 23:43:51-debug: asset-db:worker-effect-data-processing (105ms)
-2023-9-7 23:43:51-debug: refresh db assets success
-2023-9-7 23:43:51-debug: asset-db:refresh-all-database (138ms)
-2023-9-7 23:43:57-debug: refresh db internal success
-2023-9-7 23:43:57-debug: asset-db:worker-effect-data-processing (105ms)
-2023-9-7 23:43:57-debug: refresh db assets success
-2023-9-7 23:43:57-debug: asset-db:refresh-all-database (137ms)
-2023-9-7 23:44:02-debug: start refresh asset from G:\Work\cocoscreator\MiniGame\assets\game\gameGrid...
-2023-9-7 23:44:02-debug: %cImport%c: G:\Work\cocoscreator\MiniGame\assets\game\gameGridbackground: #aaff85; color: #000;color: #000;
-2023-9-7 23:44:02-debug: refresh asset G:\Work\cocoscreator\MiniGame\assets\game success
-2023-9-7 23:44:03-debug: %cImport%c: G:\Work\cocoscreator\MiniGame\assets\gamebackground: #aaff85; color: #000;color: #000;
-2023-9-7 23:44:09-debug: start refresh asset from G:\Work\cocoscreator\MiniGame\assets\game\gameGrid\grid.png...
-2023-9-7 23:44:09-debug: %cImport%c: G:\Work\cocoscreator\MiniGame\assets\game\gameGrid\grid.pngbackground: #aaff85; color: #000;color: #000;
-2023-9-7 23:44:09-debug: %cImport%c: G:\Work\cocoscreator\MiniGame\assets\game\gameGrid\grid.png@6c48abackground: #aaff85; color: #000;color: #000;
-2023-9-7 23:44:09-debug: %cImport%c: G:\Work\cocoscreator\MiniGame\assets\game\gameGrid\grid.png@f9941background: #aaff85; color: #000;color: #000;
-2023-9-7 23:44:09-debug: refresh asset G:\Work\cocoscreator\MiniGame\assets\game\gameGrid success
-2023-9-7 23:44:09-debug: refresh db internal success
-2023-9-7 23:44:09-debug: %cImport%c: G:\Work\cocoscreator\MiniGame\assets\game\gameGridbackground: #aaff85; color: #000;color: #000;
-2023-9-7 23:44:09-debug: asset-db:worker-effect-data-processing (154ms)
-2023-9-7 23:44:09-debug: refresh db assets success
-2023-9-7 23:44:09-debug: asset-db:refresh-all-database (208ms)
-2023-9-7 23:44:29-debug: start refresh asset from G:\Work\cocoscreator\MiniGame\assets\game\common\gridIcon.png...
-2023-9-7 23:44:29-debug: %cImport%c: G:\Work\cocoscreator\MiniGame\assets\game\common\gridIcon.pngbackground: #aaff85; color: #000;color: #000;
-2023-9-7 23:44:29-debug: %cImport%c: G:\Work\cocoscreator\MiniGame\assets\game\common\gridIcon.png@6c48abackground: #aaff85; color: #000;color: #000;
-2023-9-7 23:44:29-debug: %cImport%c: G:\Work\cocoscreator\MiniGame\assets\game\common\gridIcon.png@f9941background: #aaff85; color: #000;color: #000;
-2023-9-7 23:44:29-debug: refresh asset G:\Work\cocoscreator\MiniGame\assets\game\common success
-2023-9-7 23:44:29-debug: %cImport%c: G:\Work\cocoscreator\MiniGame\assets\game\commonbackground: #aaff85; color: #000;color: #000;
-2023-9-7 23:44:29-debug: refresh db internal success
-2023-9-7 23:44:29-debug: asset-db:worker-effect-data-processing (112ms)
-2023-9-7 23:44:29-debug: refresh db assets success
-2023-9-7 23:44:29-debug: asset-db:refresh-all-database (149ms)
-2023-9-7 23:44:33-debug: refresh db internal success
-2023-9-7 23:44:33-debug: asset-db:worker-effect-data-processing (136ms)
-2023-9-7 23:44:33-debug: refresh db assets success
-2023-9-7 23:44:33-debug: asset-db:refresh-all-database (168ms)
-2023-9-7 23:44:44-debug: refresh db internal success
-2023-9-7 23:44:44-debug: asset-db:worker-effect-data-processing (108ms)
-2023-9-7 23:44:44-debug: refresh db assets success
-2023-9-7 23:44:44-debug: asset-db:refresh-all-database (143ms)
-2023-9-7 23:45:03-debug: refresh db internal success
-2023-9-7 23:45:03-debug: asset-db:worker-effect-data-processing (193ms)
-2023-9-7 23:45:03-debug: refresh db assets success
-2023-9-7 23:45:03-debug: asset-db:refresh-all-database (248ms)
-2023-9-7 23:45:05-debug: refresh db internal success
-2023-9-7 23:45:05-debug: asset-db:worker-effect-data-processing (160ms)
-2023-9-7 23:45:05-debug: refresh db assets success
-2023-9-7 23:45:05-debug: asset-db:refresh-all-database (212ms)
-2023-9-7 23:45:21-debug: refresh db internal success
-2023-9-7 23:45:21-debug: asset-db:worker-effect-data-processing (151ms)
-2023-9-7 23:45:21-debug: refresh db assets success
-2023-9-7 23:45:21-debug: asset-db:refresh-all-database (196ms)
-2023-9-7 23:45:26-debug: refresh db internal success
-2023-9-7 23:45:27-debug: asset-db:worker-effect-data-processing (182ms)
-2023-9-7 23:45:27-debug: refresh db assets success
-2023-9-7 23:45:27-debug: asset-db:refresh-all-database (228ms)
-2023-9-7 23:45:35-debug: refresh db internal success
-2023-9-7 23:45:36-debug: asset-db:worker-effect-data-processing (101ms)
-2023-9-7 23:45:36-debug: refresh db assets success
-2023-9-7 23:45:36-debug: asset-db:refresh-all-database (138ms)
-2023-9-7 23:45:55-debug: refresh db internal success
-2023-9-7 23:45:55-debug: asset-db:worker-effect-data-processing (198ms)
-2023-9-7 23:45:55-debug: refresh db assets success
-2023-9-7 23:45:55-debug: asset-db:refresh-all-database (249ms)
-2023-9-7 23:46:03-debug: refresh db internal success
-2023-9-7 23:46:03-debug: asset-db:worker-effect-data-processing (161ms)
-2023-9-7 23:46:03-debug: refresh db assets success
-2023-9-7 23:46:03-debug: asset-db:refresh-all-database (210ms)
-2023-9-7 23:46:26-debug: refresh db internal success
-2023-9-7 23:46:26-debug: asset-db:worker-effect-data-processing (198ms)
-2023-9-7 23:46:26-debug: refresh db assets success
-2023-9-7 23:46:26-debug: asset-db:refresh-all-database (250ms)
-2023-9-7 23:46:43-debug: refresh db internal success
-2023-9-7 23:46:43-debug: asset-db:worker-effect-data-processing (178ms)
-2023-9-7 23:46:43-debug: refresh db assets success
-2023-9-7 23:46:43-debug: asset-db:refresh-all-database (229ms)
-2023-9-7 23:46:56-debug: refresh db internal success
-2023-9-7 23:46:57-debug: asset-db:worker-effect-data-processing (194ms)
-2023-9-7 23:46:57-debug: refresh db assets success
-2023-9-7 23:46:57-debug: asset-db:refresh-all-database (237ms)
-2023-9-7 23:47:07-debug: refresh db internal success
-2023-9-7 23:47:07-debug: asset-db:worker-effect-data-processing (152ms)
-2023-9-7 23:47:07-debug: refresh db assets success
-2023-9-7 23:47:07-debug: asset-db:refresh-all-database (202ms)
-2023-9-7 23:47:31-debug: refresh db internal success
-2023-9-7 23:47:31-debug: asset-db:worker-effect-data-processing (203ms)
-2023-9-7 23:47:31-debug: refresh db assets success
-2023-9-7 23:47:31-debug: asset-db:refresh-all-database (251ms)
-2023-9-7 23:47:52-debug: refresh db internal success
-2023-9-7 23:47:52-debug: asset-db:worker-effect-data-processing (163ms)
-2023-9-7 23:47:52-debug: refresh db assets success
-2023-9-7 23:47:52-debug: asset-db:refresh-all-database (214ms)
-2023-9-7 23:48:06-debug: refresh db internal success
-2023-9-7 23:48:06-debug: asset-db:worker-effect-data-processing (186ms)
-2023-9-7 23:48:06-debug: refresh db assets success
-2023-9-7 23:48:06-debug: asset-db:refresh-all-database (238ms)
-2023-9-7 23:48:20-debug: refresh db internal success
-2023-9-7 23:48:20-debug: asset-db:worker-effect-data-processing (158ms)
-2023-9-7 23:48:20-debug: refresh db assets success
-2023-9-7 23:48:20-debug: asset-db:refresh-all-database (209ms)
-2023-9-7 23:48:48-debug: refresh db internal success
-2023-9-7 23:48:48-debug: asset-db:worker-effect-data-processing (194ms)
-2023-9-7 23:48:48-debug: refresh db assets success
-2023-9-7 23:48:48-debug: asset-db:refresh-all-database (248ms)
-2023-9-7 23:48:58-debug: refresh db internal success
-2023-9-7 23:48:59-debug: asset-db:worker-effect-data-processing (152ms)
-2023-9-7 23:48:59-debug: refresh db assets success
-2023-9-7 23:48:59-debug: asset-db:refresh-all-database (206ms)
-2023-9-7 23:49:02-debug: refresh db internal success
-2023-9-7 23:49:03-debug: asset-db:worker-effect-data-processing (188ms)
-2023-9-7 23:49:03-debug: refresh db assets success
-2023-9-7 23:49:03-debug: asset-db:refresh-all-database (236ms)
-2023-9-7 23:50:27-debug: refresh db internal success
-2023-9-7 23:50:27-debug: asset-db:worker-effect-data-processing (199ms)
-2023-9-7 23:50:27-debug: refresh db assets success
-2023-9-7 23:50:27-debug: asset-db:refresh-all-database (251ms)
-2023-9-7 23:53:19-debug: refresh db internal success
-2023-9-7 23:53:19-debug: asset-db:worker-effect-data-processing (110ms)
-2023-9-7 23:53:19-debug: refresh db assets success
-2023-9-7 23:53:19-debug: asset-db:refresh-all-database (146ms)
-2023-9-7 23:54:08-debug: refresh db internal success
-2023-9-7 23:54:08-debug: asset-db:worker-effect-data-processing (139ms)
-2023-9-7 23:54:08-debug: refresh db assets success
-2023-9-7 23:54:08-debug: asset-db:refresh-all-database (173ms)
-2023-9-7 23:54:21-debug: start refresh asset from G:\Work\cocoscreator\MiniGame\assets\scenes\scene.scene...
-2023-9-7 23:54:21-debug: %cImport%c: G:\Work\cocoscreator\MiniGame\assets\scenes\scene.scenebackground: #aaff85; color: #000;color: #000;
-2023-9-7 23:54:21-debug: refresh asset G:\Work\cocoscreator\MiniGame\assets\scenes success
-2023-9-7 23:54:23-debug: refresh db internal success
-2023-9-7 23:54:23-debug: asset-db:worker-effect-data-processing (138ms)
-2023-9-7 23:54:23-debug: refresh db assets success
-2023-9-7 23:54:23-debug: asset-db:refresh-all-database (171ms)
-2023-9-7 23:55:25-debug: refresh db internal success
-2023-9-7 23:55:25-debug: asset-db:worker-effect-data-processing (148ms)
-2023-9-7 23:55:25-debug: refresh db assets success
-2023-9-7 23:55:25-debug: asset-db:refresh-all-database (184ms)
-2023-9-7 23:55:36-debug: start refresh asset from G:\Work\cocoscreator\MiniGame\assets\script\game\gameShulte\view...
-2023-9-7 23:55:36-debug: %cImport%c: G:\Work\cocoscreator\MiniGame\assets\script\game\gameShulte\viewbackground: #aaff85; color: #000;color: #000;
-2023-9-7 23:55:36-debug: refresh asset G:\Work\cocoscreator\MiniGame\assets\script\game\gameShulte success
-2023-9-7 23:55:36-debug: %cImport%c: G:\Work\cocoscreator\MiniGame\assets\script\game\gameShultebackground: #aaff85; color: #000;color: #000;
-2023-9-7 23:55:46-debug: start refresh asset from G:\Work\cocoscreator\MiniGame\assets\script\game\gameShulte\view\GameShulteBeginView.ts...
-2023-9-7 23:55:46-debug: %cImport%c: G:\Work\cocoscreator\MiniGame\assets\script\game\gameShulte\view\GameShulteBeginView.tsbackground: #aaff85; color: #000;color: #000;
-2023-9-7 23:55:46-debug: refresh asset G:\Work\cocoscreator\MiniGame\assets\script\game\gameShulte\view success
-2023-9-7 23:55:46-debug: %cImport%c: G:\Work\cocoscreator\MiniGame\assets\script\game\gameShulte\viewbackground: #aaff85; color: #000;color: #000;
-2023-9-7 23:56:05-debug: start refresh asset from G:\Work\cocoscreator\MiniGame\assets\script\game\gameShulte\view\GameShulteStartView.ts...
-2023-9-7 23:56:05-debug: %cImport%c: G:\Work\cocoscreator\MiniGame\assets\script\game\gameShulte\view\GameShulteStartView.tsbackground: #aaff85; color: #000;color: #000;
-2023-9-7 23:56:05-debug: refresh asset G:\Work\cocoscreator\MiniGame\assets\script\game\gameShulte\view success
-2023-9-7 23:56:05-debug: %cImport%c: G:\Work\cocoscreator\MiniGame\assets\script\game\gameShulte\viewbackground: #aaff85; color: #000;color: #000;
-2023-9-7 23:56:28-debug: refresh db internal success
-2023-9-7 23:56:28-debug: asset-db:worker-effect-data-processing (137ms)
-2023-9-7 23:56:28-debug: refresh db assets success
-2023-9-7 23:56:28-debug: asset-db:refresh-all-database (172ms)
-2023-9-7 23:59:32-debug: refresh db internal success
-2023-9-7 23:59:32-debug: asset-db:worker-effect-data-processing (142ms)
-2023-9-7 23:59:32-debug: %cImport%c: G:\Work\cocoscreator\MiniGame\assets\script\game\gameShulte\view\GameShulteBeginView.tsbackground: #aaff85; color: #000;color: #000;
-2023-9-7 23:59:32-debug: refresh db assets success
-2023-9-7 23:59:32-debug: asset-db:refresh-all-database (176ms)
-2023-9-7 23:59:35-debug: refresh db internal success
-2023-9-7 23:59:35-debug: asset-db:worker-effect-data-processing (109ms)
-2023-9-7 23:59:35-debug: refresh db assets success
-2023-9-7 23:59:35-debug: asset-db:refresh-all-database (140ms)
-2023-9-7 23:59:47-debug: refresh db internal success
-2023-9-7 23:59:47-debug: asset-db:worker-effect-data-processing (108ms)
-2023-9-7 23:59:47-debug: refresh db assets success
-2023-9-7 23:59:47-debug: asset-db:refresh-all-database (141ms)
-2023-9-8 00:00:12-debug: refresh db internal success
-2023-9-8 00:00:13-debug: asset-db:worker-effect-data-processing (202ms)
-2023-9-8 00:00:13-debug: refresh db assets success
-2023-9-8 00:00:13-debug: asset-db:refresh-all-database (251ms)
-2023-9-8 00:00:16-debug: refresh db internal success
-2023-9-8 00:00:16-debug: asset-db:worker-effect-data-processing (148ms)
-2023-9-8 00:00:16-debug: refresh db assets success
-2023-9-8 00:00:16-debug: asset-db:refresh-all-database (198ms)
-2023-9-8 00:00:20-debug: refresh db internal success
-2023-9-8 00:00:20-debug: asset-db:worker-effect-data-processing (147ms)
-2023-9-8 00:00:20-debug: refresh db assets success
-2023-9-8 00:00:20-debug: asset-db:refresh-all-database (195ms)
-2023-9-8 00:00:42-debug: refresh db internal success
-2023-9-8 00:00:42-debug: asset-db:worker-effect-data-processing (116ms)
-2023-9-8 00:00:42-debug: refresh db assets success
-2023-9-8 00:00:42-debug: asset-db:refresh-all-database (147ms)
-2023-9-8 00:01:13-debug: refresh db internal success
-2023-9-8 00:01:13-debug: asset-db:worker-effect-data-processing (143ms)
-2023-9-8 00:01:13-debug: refresh db assets success
-2023-9-8 00:01:13-debug: asset-db:refresh-all-database (175ms)
-2023-9-8 00:01:24-debug: refresh db internal success
-2023-9-8 00:01:24-debug: asset-db:worker-effect-data-processing (105ms)
-2023-9-8 00:01:24-debug: refresh db assets success
-2023-9-8 00:01:24-debug: asset-db:refresh-all-database (141ms)
-2023-9-8 00:02:19-debug: refresh db internal success
-2023-9-8 00:02:19-debug: asset-db:worker-effect-data-processing (149ms)
-2023-9-8 00:02:19-debug: refresh db assets success
-2023-9-8 00:02:19-debug: asset-db:refresh-all-database (185ms)
-2023-9-8 00:02:50-debug: refresh db internal success
-2023-9-8 00:02:50-debug: asset-db:worker-effect-data-processing (112ms)
-2023-9-8 00:02:50-debug: refresh db assets success
-2023-9-8 00:02:50-debug: asset-db:refresh-all-database (146ms)
-2023-9-8 00:03:13-debug: refresh db internal success
-2023-9-8 00:03:14-debug: asset-db:worker-effect-data-processing (191ms)
-2023-9-8 00:03:14-debug: refresh db assets success
-2023-9-8 00:03:14-debug: asset-db:refresh-all-database (237ms)
-2023-9-8 00:03:19-debug: refresh db internal success
-2023-9-8 00:03:20-debug: asset-db:worker-effect-data-processing (102ms)
-2023-9-8 00:03:20-debug: refresh db assets success
-2023-9-8 00:03:20-debug: asset-db:refresh-all-database (133ms)
-2023-9-8 00:03:33-debug: refresh db internal success
-2023-9-8 00:03:33-debug: asset-db:worker-effect-data-processing (138ms)
-2023-9-8 00:03:33-debug: refresh db assets success
-2023-9-8 00:03:33-debug: asset-db:refresh-all-database (171ms)
-2023-9-8 00:03:42-debug: refresh db internal success
-2023-9-8 00:03:42-debug: asset-db:worker-effect-data-processing (104ms)
-2023-9-8 00:03:42-debug: refresh db assets success
-2023-9-8 00:03:42-debug: asset-db:refresh-all-database (138ms)
-2023-9-8 00:03:49-debug: refresh db internal success
-2023-9-8 00:03:49-debug: asset-db:worker-effect-data-processing (198ms)
-2023-9-8 00:03:49-debug: refresh db assets success
-2023-9-8 00:03:49-debug: asset-db:refresh-all-database (255ms)
-2023-9-8 00:03:52-debug: refresh db internal success
-2023-9-8 00:03:52-debug: asset-db:worker-effect-data-processing (102ms)
-2023-9-8 00:03:52-debug: refresh db assets success
-2023-9-8 00:03:52-debug: asset-db:refresh-all-database (134ms)
-2023-9-8 00:04:01-debug: refresh db internal success
-2023-9-8 00:04:01-debug: asset-db:worker-effect-data-processing (110ms)
-2023-9-8 00:04:01-debug: refresh db assets success
-2023-9-8 00:04:01-debug: asset-db:refresh-all-database (142ms)
-2023-9-8 00:04:53-debug: refresh db internal success
-2023-9-8 00:04:53-debug: asset-db:worker-effect-data-processing (198ms)
-2023-9-8 00:04:53-debug: refresh db assets success
-2023-9-8 00:04:53-debug: asset-db:refresh-all-database (248ms)
-2023-9-8 00:05:00-debug: refresh db internal success
-2023-9-8 00:05:00-debug: asset-db:worker-effect-data-processing (111ms)
-2023-9-8 00:05:00-debug: refresh db assets success
-2023-9-8 00:05:00-debug: asset-db:refresh-all-database (149ms)
-2023-9-8 00:05:15-debug: refresh db internal success
-2023-9-8 00:05:15-debug: asset-db:worker-effect-data-processing (140ms)
-2023-9-8 00:05:15-debug: refresh db assets success
-2023-9-8 00:05:15-debug: asset-db:refresh-all-database (175ms)
-2023-9-8 00:05:29-debug: refresh db internal success
-2023-9-8 00:05:29-debug: asset-db:worker-effect-data-processing (150ms)
-2023-9-8 00:05:29-debug: refresh db assets success
-2023-9-8 00:05:29-debug: asset-db:refresh-all-database (199ms)
-2023-9-8 00:05:36-debug: refresh db internal success
-2023-9-8 00:05:36-debug: asset-db:worker-effect-data-processing (187ms)
-2023-9-8 00:05:36-debug: refresh db assets success
-2023-9-8 00:05:36-debug: asset-db:refresh-all-database (238ms)
-2023-9-8 00:05:41-debug: refresh db internal success
-2023-9-8 00:05:41-debug: asset-db:worker-effect-data-processing (161ms)
-2023-9-8 00:05:41-debug: refresh db assets success
-2023-9-8 00:05:41-debug: asset-db:refresh-all-database (207ms)
-2023-9-8 00:05:53-debug: refresh db internal success
-2023-9-8 00:05:53-debug: asset-db:worker-effect-data-processing (169ms)
-2023-9-8 00:05:53-debug: refresh db assets success
-2023-9-8 00:05:53-debug: asset-db:refresh-all-database (215ms)
-2023-9-8 00:06:33-debug: refresh db internal success
-2023-9-8 00:06:33-debug: asset-db:worker-effect-data-processing (212ms)
-2023-9-8 00:06:33-debug: refresh db assets success
-2023-9-8 00:06:33-debug: asset-db:refresh-all-database (261ms)
-2023-9-8 00:06:43-debug: refresh db internal success
-2023-9-8 00:06:43-debug: asset-db:worker-effect-data-processing (163ms)
-2023-9-8 00:06:43-debug: refresh db assets success
-2023-9-8 00:06:43-debug: asset-db:refresh-all-database (217ms)
-2023-9-8 00:06:54-debug: refresh db internal success
-2023-9-8 00:06:54-debug: asset-db:worker-effect-data-processing (195ms)
-2023-9-8 00:06:54-debug: refresh db assets success
-2023-9-8 00:06:54-debug: asset-db:refresh-all-database (243ms)
-2023-9-8 00:07:05-debug: refresh db internal success
-2023-9-8 00:07:05-debug: asset-db:worker-effect-data-processing (100ms)
-2023-9-8 00:07:05-debug: refresh db assets success
-2023-9-8 00:07:05-debug: asset-db:refresh-all-database (134ms)
-2023-9-8 00:07:08-debug: refresh db internal success
-2023-9-8 00:07:08-debug: asset-db:worker-effect-data-processing (183ms)
-2023-9-8 00:07:08-debug: refresh db assets success
-2023-9-8 00:07:08-debug: asset-db:refresh-all-database (229ms)
-2023-9-8 00:07:10-debug: refresh db internal success
-2023-9-8 00:07:10-debug: asset-db:worker-effect-data-processing (139ms)
-2023-9-8 00:07:10-debug: refresh db assets success
-2023-9-8 00:07:10-debug: asset-db:refresh-all-database (185ms)
-2023-9-8 00:07:11-debug: refresh db internal success
-2023-9-8 00:07:12-debug: asset-db:worker-effect-data-processing (127ms)
-2023-9-8 00:07:12-debug: refresh db assets success
-2023-9-8 00:07:12-debug: asset-db:refresh-all-database (171ms)
-2023-9-8 00:07:21-debug: refresh db internal success
-2023-9-8 00:07:21-debug: asset-db:worker-effect-data-processing (107ms)
-2023-9-8 00:07:21-debug: refresh db assets success
-2023-9-8 00:07:21-debug: asset-db:refresh-all-database (139ms)
-2023-9-8 00:07:54-debug: refresh db internal success
-2023-9-8 00:07:54-debug: asset-db:worker-effect-data-processing (174ms)
-2023-9-8 00:07:54-debug: refresh db assets success
-2023-9-8 00:07:54-debug: asset-db:refresh-all-database (227ms)
-2023-9-8 00:08:02-debug: refresh db internal success
-2023-9-8 00:08:02-debug: asset-db:worker-effect-data-processing (109ms)
-2023-9-8 00:08:02-debug: refresh db assets success
-2023-9-8 00:08:02-debug: asset-db:refresh-all-database (141ms)
-2023-9-8 00:08:16-debug: refresh db internal success
-2023-9-8 00:08:16-debug: asset-db:worker-effect-data-processing (148ms)
-2023-9-8 00:08:16-debug: refresh db assets success
-2023-9-8 00:08:16-debug: asset-db:refresh-all-database (202ms)
-2023-9-8 00:08:28-debug: refresh db internal success
-2023-9-8 00:08:28-debug: asset-db:worker-effect-data-processing (143ms)
-2023-9-8 00:08:28-debug: refresh db assets success
-2023-9-8 00:08:28-debug: asset-db:refresh-all-database (179ms)
-2023-9-8 00:08:35-debug: refresh db internal success
-2023-9-8 00:08:35-debug: asset-db:worker-effect-data-processing (102ms)
-2023-9-8 00:08:35-debug: refresh db assets success
-2023-9-8 00:08:35-debug: asset-db:refresh-all-database (131ms)
-2023-9-8 00:08:48-debug: refresh db internal success
-2023-9-8 00:08:48-debug: asset-db:worker-effect-data-processing (169ms)
-2023-9-8 00:08:48-debug: refresh db assets success
-2023-9-8 00:08:48-debug: asset-db:refresh-all-database (212ms)
-2023-9-8 00:09:03-debug: refresh db internal success
-2023-9-8 00:09:03-debug: asset-db:worker-effect-data-processing (197ms)
-2023-9-8 00:09:03-debug: refresh db assets success
-2023-9-8 00:09:03-debug: asset-db:refresh-all-database (247ms)
-2023-9-8 00:09:08-debug: refresh db internal success
-2023-9-8 00:09:08-debug: asset-db:worker-effect-data-processing (147ms)
-2023-9-8 00:09:08-debug: refresh db assets success
-2023-9-8 00:09:08-debug: asset-db:refresh-all-database (181ms)
-2023-9-8 00:09:15-debug: refresh db internal success
-2023-9-8 00:09:15-debug: asset-db:worker-effect-data-processing (149ms)
-2023-9-8 00:09:15-debug: refresh db assets success
-2023-9-8 00:09:15-debug: asset-db:refresh-all-database (194ms)
-2023-9-8 00:12:40-debug: refresh db internal success
-2023-9-8 00:12:41-debug: asset-db:worker-effect-data-processing (157ms)
-2023-9-8 00:12:41-debug: refresh db assets success
-2023-9-8 00:12:41-debug: asset-db:refresh-all-database (196ms)
-2023-9-8 00:15:21-debug: start refresh asset from G:\Work\cocoscreator\MiniGame\assets\scenes\scene.scene...
-2023-9-8 00:15:21-debug: %cImport%c: G:\Work\cocoscreator\MiniGame\assets\scenes\scene.scenebackground: #aaff85; color: #000;color: #000;
-2023-9-8 00:15:21-debug: refresh asset G:\Work\cocoscreator\MiniGame\assets\scenes success
-2023-9-8 00:15:34-debug: refresh db internal success
-2023-9-8 00:15:34-debug: asset-db:worker-effect-data-processing (160ms)
-2023-9-8 00:15:34-debug: refresh db assets success
-2023-9-8 00:15:34-debug: asset-db:refresh-all-database (209ms)
-2023-9-8 00:15:46-debug: refresh db internal success
-2023-9-8 00:15:46-debug: asset-db:worker-effect-data-processing (189ms)
-2023-9-8 00:15:46-debug: refresh db assets success
-2023-9-8 00:15:46-debug: asset-db:refresh-all-database (236ms)
-2023-9-8 00:15:53-debug: refresh db internal success
-2023-9-8 00:15:53-debug: asset-db:worker-effect-data-processing (159ms)
-2023-9-8 00:15:53-debug: refresh db assets success
-2023-9-8 00:15:53-debug: asset-db:refresh-all-database (208ms)
-2023-9-8 00:16:03-debug: refresh db internal success
-2023-9-8 00:16:04-debug: asset-db:worker-effect-data-processing (180ms)
-2023-9-8 00:16:04-debug: refresh db assets success
-2023-9-8 00:16:04-debug: asset-db:refresh-all-database (229ms)
-2023-9-8 00:16:25-debug: refresh db internal success
-2023-9-8 00:16:25-debug: asset-db:worker-effect-data-processing (207ms)
-2023-9-8 00:16:25-debug: refresh db assets success
-2023-9-8 00:16:25-debug: asset-db:refresh-all-database (265ms)
-2023-9-8 00:16:28-debug: refresh db internal success
-2023-9-8 00:16:28-debug: asset-db:worker-effect-data-processing (158ms)
-2023-9-8 00:16:28-debug: refresh db assets success
-2023-9-8 00:16:28-debug: asset-db:refresh-all-database (205ms)
-2023-9-8 00:16:36-debug: refresh db internal success
-2023-9-8 00:16:36-debug: asset-db:worker-effect-data-processing (173ms)
-2023-9-8 00:16:36-debug: refresh db assets success
-2023-9-8 00:16:36-debug: asset-db:refresh-all-database (213ms)
-2023-9-8 00:16:41-debug: start refresh asset from G:\Work\cocoscreator\MiniGame\assets\scenes\scene.scene...
-2023-9-8 00:16:41-debug: %cImport%c: G:\Work\cocoscreator\MiniGame\assets\scenes\scene.scenebackground: #aaff85; color: #000;color: #000;
-2023-9-8 00:16:41-debug: refresh asset G:\Work\cocoscreator\MiniGame\assets\scenes success
-2023-9-8 00:17:17-debug: refresh db internal success
-2023-9-8 00:17:17-debug: asset-db:worker-effect-data-processing (207ms)
-2023-9-8 00:17:17-debug: refresh db assets success
-2023-9-8 00:17:17-debug: asset-db:refresh-all-database (255ms)
-2023-9-8 00:17:22-debug: refresh db internal success
-2023-9-8 00:17:22-debug: asset-db:worker-effect-data-processing (143ms)
-2023-9-8 00:17:22-debug: refresh db assets success
-2023-9-8 00:17:22-debug: asset-db:refresh-all-database (194ms)
-2023-9-8 00:17:32-debug: refresh db internal success
-2023-9-8 00:17:33-debug: asset-db:worker-effect-data-processing (158ms)
-2023-9-8 00:17:33-debug: refresh db assets success
-2023-9-8 00:17:33-debug: asset-db:refresh-all-database (202ms)
-2023-9-8 00:17:36-debug: refresh db internal success
-2023-9-8 00:17:36-debug: asset-db:worker-effect-data-processing (141ms)
-2023-9-8 00:17:36-debug: refresh db assets success
-2023-9-8 00:17:36-debug: asset-db:refresh-all-database (173ms)
-2023-9-8 00:18:22-debug: start refresh asset from G:\Work\cocoscreator\MiniGame\assets\scenes\scene.scene...
-2023-9-8 00:18:22-debug: %cImport%c: G:\Work\cocoscreator\MiniGame\assets\scenes\scene.scenebackground: #aaff85; color: #000;color: #000;
-2023-9-8 00:18:22-debug: refresh asset G:\Work\cocoscreator\MiniGame\assets\scenes success
-2023-9-8 00:18:38-debug: refresh db internal success
-2023-9-8 00:18:38-debug: asset-db:worker-effect-data-processing (163ms)
-2023-9-8 00:18:38-debug: refresh db assets success
-2023-9-8 00:18:38-debug: asset-db:refresh-all-database (217ms)
-2023-9-8 00:19:39-debug: start refresh asset from G:\Work\cocoscreator\MiniGame\assets\scenes\scene.scene...
-2023-9-8 00:19:39-debug: %cImport%c: G:\Work\cocoscreator\MiniGame\assets\scenes\scene.scenebackground: #aaff85; color: #000;color: #000;
-2023-9-8 00:19:39-debug: refresh asset G:\Work\cocoscreator\MiniGame\assets\scenes success
-2023-9-8 00:20:01-debug: refresh db internal success
-2023-9-8 00:20:01-debug: asset-db:worker-effect-data-processing (149ms)
-2023-9-8 00:20:01-debug: refresh db assets success
-2023-9-8 00:20:01-debug: asset-db:refresh-all-database (189ms)
-2023-9-8 00:20:40-debug: refresh db internal success
-2023-9-8 00:20:40-debug: asset-db:worker-effect-data-processing (134ms)
-2023-9-8 00:20:40-debug: refresh db assets success
-2023-9-8 00:20:40-debug: asset-db:refresh-all-database (173ms)
-2023-9-8 00:20:44-debug: start refresh asset from G:\Work\cocoscreator\MiniGame\assets\scenes\scene.scene...
-2023-9-8 00:20:44-debug: %cImport%c: G:\Work\cocoscreator\MiniGame\assets\scenes\scene.scenebackground: #aaff85; color: #000;color: #000;
-2023-9-8 00:20:44-debug: refresh asset G:\Work\cocoscreator\MiniGame\assets\scenes success
-2023-9-8 00:20:45-debug: refresh db internal success
-2023-9-8 00:20:46-debug: asset-db:worker-effect-data-processing (110ms)
-2023-9-8 00:20:46-debug: refresh db assets success
-2023-9-8 00:20:46-debug: asset-db:refresh-all-database (144ms)
-2023-9-8 00:20:51-debug: refresh db internal success
-2023-9-8 00:20:51-debug: asset-db:worker-effect-data-processing (191ms)
-2023-9-8 00:20:51-debug: refresh db assets success
-2023-9-8 00:20:51-debug: asset-db:refresh-all-database (248ms)
-2023-9-8 00:20:59-debug: refresh db internal success
-2023-9-8 00:20:59-debug: asset-db:worker-effect-data-processing (161ms)
-2023-9-8 00:20:59-debug: refresh db assets success
-2023-9-8 00:20:59-debug: asset-db:refresh-all-database (210ms)
-2023-9-8 00:21:07-debug: refresh db internal success
-2023-9-8 00:21:07-debug: asset-db:worker-effect-data-processing (180ms)
-2023-9-8 00:21:07-debug: refresh db assets success
-2023-9-8 00:21:07-debug: asset-db:refresh-all-database (227ms)
-2023-9-8 00:21:10-debug: refresh db internal success
-2023-9-8 00:21:10-debug: asset-db:worker-effect-data-processing (149ms)
-2023-9-8 00:21:10-debug: refresh db assets success
-2023-9-8 00:21:10-debug: asset-db:refresh-all-database (197ms)
-2023-9-8 00:21:15-debug: refresh db internal success
-2023-9-8 00:21:15-debug: asset-db:worker-effect-data-processing (148ms)
-2023-9-8 00:21:15-debug: refresh db assets success
-2023-9-8 00:21:15-debug: asset-db:refresh-all-database (190ms)
-2023-9-8 00:21:18-debug: refresh db internal success
-2023-9-8 00:21:18-debug: asset-db:worker-effect-data-processing (133ms)
-2023-9-8 00:21:18-debug: refresh db assets success
-2023-9-8 00:21:18-debug: asset-db:refresh-all-database (176ms)
-2023-9-8 00:21:29-debug: refresh db internal success
-2023-9-8 00:21:30-debug: asset-db:worker-effect-data-processing (159ms)
-2023-9-8 00:21:30-debug: refresh db assets success
-2023-9-8 00:21:30-debug: asset-db:refresh-all-database (200ms)
-2023-9-8 00:22:34-debug: refresh db internal success
-2023-9-8 00:22:35-debug: asset-db:worker-effect-data-processing (220ms)
-2023-9-8 00:22:35-debug: refresh db assets success
-2023-9-8 00:22:35-debug: asset-db:refresh-all-database (274ms)
-2023-9-8 00:22:50-debug: refresh db internal success
-2023-9-8 00:22:50-debug: asset-db:worker-effect-data-processing (172ms)
-2023-9-8 00:22:50-debug: refresh db assets success
-2023-9-8 00:22:50-debug: asset-db:refresh-all-database (225ms)
-2023-9-8 00:22:58-debug: refresh db internal success
-2023-9-8 00:22:58-debug: asset-db:worker-effect-data-processing (154ms)
-2023-9-8 00:22:58-debug: refresh db assets success
-2023-9-8 00:22:58-debug: asset-db:refresh-all-database (209ms)
-2023-9-8 00:23:08-debug: refresh db internal success
-2023-9-8 00:23:08-debug: asset-db:worker-effect-data-processing (187ms)
-2023-9-8 00:23:08-debug: refresh db assets success
-2023-9-8 00:23:08-debug: asset-db:refresh-all-database (234ms)
-2023-9-8 00:23:13-debug: refresh db internal success
-2023-9-8 00:23:13-debug: asset-db:worker-effect-data-processing (153ms)
-2023-9-8 00:23:13-debug: refresh db assets success
-2023-9-8 00:23:13-debug: asset-db:refresh-all-database (201ms)
-2023-9-8 00:23:22-debug: refresh db internal success
-2023-9-8 00:23:22-debug: asset-db:worker-effect-data-processing (155ms)
-2023-9-8 00:23:22-debug: refresh db assets success
-2023-9-8 00:23:22-debug: asset-db:refresh-all-database (205ms)
-2023-9-8 00:23:30-debug: start refresh asset from G:\Work\cocoscreator\MiniGame\assets\scenes\scene.scene...
-2023-9-8 00:23:30-debug: %cImport%c: G:\Work\cocoscreator\MiniGame\assets\scenes\scene.scenebackground: #aaff85; color: #000;color: #000;
-2023-9-8 00:23:30-debug: refresh asset G:\Work\cocoscreator\MiniGame\assets\scenes success
-2023-9-8 00:24:01-debug: refresh db internal success
-2023-9-8 00:24:01-debug: asset-db:worker-effect-data-processing (196ms)
-2023-9-8 00:24:01-debug: refresh db assets success
-2023-9-8 00:24:01-debug: asset-db:refresh-all-database (241ms)
-2023-9-8 00:24:12-debug: start refresh asset from G:\Work\cocoscreator\MiniGame\assets\scenes\scene.scene...
-2023-9-8 00:24:12-debug: %cImport%c: G:\Work\cocoscreator\MiniGame\assets\scenes\scene.scenebackground: #aaff85; color: #000;color: #000;
-2023-9-8 00:24:12-debug: refresh asset G:\Work\cocoscreator\MiniGame\assets\scenes success
-2023-9-8 00:24:32-debug: refresh db internal success
-2023-9-8 00:24:33-debug: asset-db:worker-effect-data-processing (193ms)
-2023-9-8 00:24:33-debug: refresh db assets success
-2023-9-8 00:24:33-debug: asset-db:refresh-all-database (247ms)
-2023-9-8 00:24:40-debug: refresh db internal success
-2023-9-8 00:24:40-debug: asset-db:worker-effect-data-processing (164ms)
-2023-9-8 00:24:40-debug: refresh db assets success
-2023-9-8 00:24:40-debug: asset-db:refresh-all-database (226ms)
-2023-9-8 00:24:57-debug: refresh db internal success
-2023-9-8 00:24:57-debug: asset-db:worker-effect-data-processing (204ms)
-2023-9-8 00:24:57-debug: refresh db assets success
-2023-9-8 00:24:57-debug: asset-db:refresh-all-database (255ms)
-2023-9-8 00:25:10-debug: refresh db internal success
-2023-9-8 00:25:10-debug: asset-db:worker-effect-data-processing (168ms)
-2023-9-8 00:25:10-debug: refresh db assets success
-2023-9-8 00:25:10-debug: asset-db:refresh-all-database (223ms)
-2023-9-8 00:25:25-debug: refresh db internal success
-2023-9-8 00:25:25-debug: asset-db:worker-effect-data-processing (209ms)
-2023-9-8 00:25:25-debug: refresh db assets success
-2023-9-8 00:25:25-debug: asset-db:refresh-all-database (259ms)
-2023-9-8 00:25:38-debug: refresh db internal success
-2023-9-8 00:25:38-debug: asset-db:worker-effect-data-processing (139ms)
-2023-9-8 00:25:38-debug: refresh db assets success
-2023-9-8 00:25:38-debug: asset-db:refresh-all-database (175ms)
-2023-9-8 00:25:48-debug: refresh db internal success
-2023-9-8 00:25:48-debug: asset-db:worker-effect-data-processing (111ms)
-2023-9-8 00:25:48-debug: refresh db assets success
-2023-9-8 00:25:48-debug: asset-db:refresh-all-database (146ms)
-2023-9-8 00:25:53-debug: refresh db internal success
-2023-9-8 00:25:53-debug: asset-db:worker-effect-data-processing (138ms)
-2023-9-8 00:25:53-debug: refresh db assets success
-2023-9-8 00:25:53-debug: asset-db:refresh-all-database (170ms)
-2023-9-8 00:26:04-debug: refresh db internal success
-2023-9-8 00:26:04-debug: asset-db:worker-effect-data-processing (109ms)
-2023-9-8 00:26:04-debug: refresh db assets success
-2023-9-8 00:26:04-debug: asset-db:refresh-all-database (138ms)
-2023-9-8 00:26:21-debug: refresh db internal success
-2023-9-8 00:26:21-debug: asset-db:worker-effect-data-processing (211ms)
-2023-9-8 00:26:21-debug: refresh db assets success
-2023-9-8 00:26:21-debug: asset-db:refresh-all-database (270ms)
-2023-9-8 00:26:29-debug: refresh db internal success
-2023-9-8 00:26:29-debug: asset-db:worker-effect-data-processing (155ms)
-2023-9-8 00:26:29-debug: refresh db assets success
-2023-9-8 00:26:29-debug: asset-db:refresh-all-database (198ms)
-2023-9-8 00:26:38-debug: refresh db internal success
-2023-9-8 00:26:39-debug: asset-db:worker-effect-data-processing (211ms)
-2023-9-8 00:26:39-debug: refresh db assets success
-2023-9-8 00:26:39-debug: asset-db:refresh-all-database (262ms)
-2023-9-8 00:26:47-debug: refresh db internal success
-2023-9-8 00:26:47-debug: asset-db:worker-effect-data-processing (150ms)
-2023-9-8 00:26:47-debug: refresh db assets success
-2023-9-8 00:26:47-debug: asset-db:refresh-all-database (198ms)
-2023-9-8 00:26:53-debug: refresh db internal success
-2023-9-8 00:26:53-debug: asset-db:worker-effect-data-processing (191ms)
-2023-9-8 00:26:53-debug: refresh db assets success
-2023-9-8 00:26:53-debug: asset-db:refresh-all-database (240ms)
-2023-9-8 00:26:57-debug: refresh db internal success
-2023-9-8 00:26:58-debug: asset-db:worker-effect-data-processing (114ms)
-2023-9-8 00:26:58-debug: refresh db assets success
-2023-9-8 00:26:58-debug: asset-db:refresh-all-database (148ms)
-2023-9-8 00:27:37-debug: refresh db internal success
-2023-9-8 00:27:37-debug: asset-db:worker-effect-data-processing (157ms)
-2023-9-8 00:27:37-debug: refresh db assets success
-2023-9-8 00:27:37-debug: asset-db:refresh-all-database (193ms)
-2023-9-8 00:27:43-debug: refresh db internal success
-2023-9-8 00:27:44-debug: asset-db:worker-effect-data-processing (159ms)
-2023-9-8 00:27:44-debug: refresh db assets success
-2023-9-8 00:27:44-debug: asset-db:refresh-all-database (204ms)
-2023-9-8 00:27:45-debug: refresh db internal success
-2023-9-8 00:27:45-debug: asset-db:worker-effect-data-processing (191ms)
-2023-9-8 00:27:45-debug: refresh db assets success
-2023-9-8 00:27:45-debug: asset-db:refresh-all-database (235ms)
-2023-9-8 00:28:08-debug: refresh db internal success
-2023-9-8 00:28:09-debug: asset-db:worker-effect-data-processing (200ms)
-2023-9-8 00:28:09-debug: refresh db assets success
-2023-9-8 00:28:09-debug: asset-db:refresh-all-database (254ms)
-2023-9-8 00:28:14-debug: refresh db internal success
-2023-9-8 00:28:14-debug: asset-db:worker-effect-data-processing (152ms)
-2023-9-8 00:28:14-debug: refresh db assets success
-2023-9-8 00:28:14-debug: asset-db:refresh-all-database (199ms)
-2023-9-8 00:28:28-debug: refresh db internal success
-2023-9-8 00:28:28-debug: asset-db:worker-effect-data-processing (162ms)
-2023-9-8 00:28:28-debug: refresh db assets success
-2023-9-8 00:28:28-debug: asset-db:refresh-all-database (202ms)
-2023-9-8 00:29:04-debug: refresh db internal success
-2023-9-8 00:29:04-debug: asset-db:worker-effect-data-processing (148ms)
-2023-9-8 00:29:04-debug: refresh db assets success
-2023-9-8 00:29:04-debug: asset-db:refresh-all-database (185ms)
-2023-9-8 00:29:15-debug: refresh db internal success
-2023-9-8 00:29:15-debug: asset-db:worker-effect-data-processing (102ms)
-2023-9-8 00:29:15-debug: refresh db assets success
-2023-9-8 00:29:15-debug: asset-db:refresh-all-database (136ms)
-2023-9-8 00:29:28-debug: start refresh asset from G:\Work\cocoscreator\MiniGame\assets\scenes\scene.scene...
-2023-9-8 00:29:28-debug: %cImport%c: G:\Work\cocoscreator\MiniGame\assets\scenes\scene.scenebackground: #aaff85; color: #000;color: #000;
-2023-9-8 00:29:28-debug: refresh asset G:\Work\cocoscreator\MiniGame\assets\scenes success
-2023-9-8 00:29:37-debug: start refresh asset from G:\Work\cocoscreator\MiniGame\assets\scenes\scene.scene...
-2023-9-8 00:29:37-debug: %cImport%c: G:\Work\cocoscreator\MiniGame\assets\scenes\scene.scenebackground: #aaff85; color: #000;color: #000;
-2023-9-8 00:29:37-debug: refresh asset G:\Work\cocoscreator\MiniGame\assets\scenes success
-2023-9-8 00:29:45-debug: start refresh asset from G:\Work\cocoscreator\MiniGame\assets\scenes\scene.scene...
-2023-9-8 00:29:45-debug: %cImport%c: G:\Work\cocoscreator\MiniGame\assets\scenes\scene.scenebackground: #aaff85; color: #000;color: #000;
-2023-9-8 00:29:45-debug: refresh asset G:\Work\cocoscreator\MiniGame\assets\scenes success
-2023-9-8 00:29:55-debug: refresh db internal success
-2023-9-8 00:29:55-debug: asset-db:worker-effect-data-processing (189ms)
-2023-9-8 00:29:55-debug: refresh db assets success
-2023-9-8 00:29:55-debug: asset-db:refresh-all-database (242ms)
-2023-9-8 00:31:17-debug: refresh db internal success
-2023-9-8 00:31:18-debug: asset-db:worker-effect-data-processing (118ms)
-2023-9-8 00:31:18-debug: %cImport%c: G:\Work\cocoscreator\MiniGame\assets\script\game\gameShulte\view\GameShulteStartView.tsbackground: #aaff85; color: #000;color: #000;
-2023-9-8 00:31:18-debug: refresh db assets success
-2023-9-8 00:31:18-debug: asset-db:refresh-all-database (155ms)
-2023-9-8 00:31:28-debug: refresh db internal success
-2023-9-8 00:31:28-debug: asset-db:worker-effect-data-processing (216ms)
-2023-9-8 00:31:28-debug: refresh db assets success
-2023-9-8 00:31:28-debug: asset-db:refresh-all-database (268ms)
-2023-9-8 00:31:29-debug: refresh db internal success
-2023-9-8 00:31:29-debug: asset-db:worker-effect-data-processing (147ms)
-2023-9-8 00:31:29-debug: refresh db assets success
-2023-9-8 00:31:29-debug: asset-db:refresh-all-database (194ms)
-2023-9-8 00:31:31-debug: refresh db internal success
-2023-9-8 00:31:31-debug: asset-db:worker-effect-data-processing (140ms)
-2023-9-8 00:31:31-debug: refresh db assets success
-2023-9-8 00:31:31-debug: asset-db:refresh-all-database (181ms)
-2023-9-8 00:31:32-debug: refresh db internal success
-2023-9-8 00:31:32-debug: asset-db:worker-effect-data-processing (193ms)
-2023-9-8 00:31:32-debug: refresh db assets success
-2023-9-8 00:31:32-debug: asset-db:refresh-all-database (233ms)
-2023-9-8 00:31:54-debug: refresh db internal success
-2023-9-8 00:31:54-debug: asset-db:worker-effect-data-processing (153ms)
-2023-9-8 00:31:54-debug: refresh db assets success
-2023-9-8 00:31:54-debug: asset-db:refresh-all-database (194ms)
-2023-9-8 00:32:03-debug: start refresh asset from G:\Work\cocoscreator\MiniGame\assets\resources\prefab...
-2023-9-8 00:32:03-debug: %cImport%c: G:\Work\cocoscreator\MiniGame\assets\resources\prefabbackground: #aaff85; color: #000;color: #000;
-2023-9-8 00:32:03-debug: refresh asset G:\Work\cocoscreator\MiniGame\assets\resources success
-2023-9-8 00:32:03-debug: %cImport%c: G:\Work\cocoscreator\MiniGame\assets\resourcesbackground: #aaff85; color: #000;color: #000;
-2023-9-8 00:32:08-debug: refresh db internal success
-2023-9-8 00:32:08-debug: asset-db:worker-effect-data-processing (215ms)
-2023-9-8 00:32:08-debug: refresh db assets success
-2023-9-8 00:32:08-debug: asset-db:refresh-all-database (266ms)
-2023-9-8 00:32:24-debug: start refresh asset from G:\Work\cocoscreator\MiniGame\assets\resources\prefab\ShulteGridItem.prefab...
-2023-9-8 00:32:24-debug: %cImport%c: G:\Work\cocoscreator\MiniGame\assets\resources\prefab\ShulteGridItem.prefabbackground: #aaff85; color: #000;color: #000;
-2023-9-8 00:32:24-debug: refresh asset G:\Work\cocoscreator\MiniGame\assets\resources\prefab success
-2023-9-8 00:32:24-debug: %cImport%c: G:\Work\cocoscreator\MiniGame\assets\resources\prefabbackground: #aaff85; color: #000;color: #000;
-2023-9-8 00:32:56-debug: refresh db internal success
-2023-9-8 00:32:57-debug: asset-db:worker-effect-data-processing (198ms)
-2023-9-8 00:32:57-debug: refresh db assets success
-2023-9-8 00:32:57-debug: asset-db:refresh-all-database (245ms)
-2023-9-8 00:33:27-debug: refresh db internal success
-2023-9-8 00:33:28-debug: asset-db:worker-effect-data-processing (198ms)
-2023-9-8 00:33:28-debug: refresh db assets success
-2023-9-8 00:33:28-debug: asset-db:refresh-all-database (246ms)
-2023-9-8 00:34:03-debug: refresh db internal success
-2023-9-8 00:34:03-debug: asset-db:worker-effect-data-processing (162ms)
-2023-9-8 00:34:03-debug: refresh db assets success
-2023-9-8 00:34:03-debug: asset-db:refresh-all-database (211ms)
-2023-9-8 00:34:10-debug: refresh db internal success
-2023-9-8 00:34:11-debug: asset-db:worker-effect-data-processing (189ms)
-2023-9-8 00:34:11-debug: refresh db assets success
-2023-9-8 00:34:11-debug: asset-db:refresh-all-database (237ms)
-2023-9-8 00:34:31-debug: refresh db internal success
-2023-9-8 00:34:31-debug: asset-db:worker-effect-data-processing (113ms)
-2023-9-8 00:34:31-debug: refresh db assets success
-2023-9-8 00:34:31-debug: asset-db:refresh-all-database (147ms)
-2023-9-8 00:34:43-debug: refresh db internal success
-2023-9-8 00:34:43-debug: asset-db:worker-effect-data-processing (209ms)
-2023-9-8 00:34:43-debug: refresh db assets success
-2023-9-8 00:34:43-debug: asset-db:refresh-all-database (264ms)
-2023-9-8 00:36:04-debug: refresh db internal success
-2023-9-8 00:36:04-debug: asset-db:worker-effect-data-processing (207ms)
-2023-9-8 00:36:04-debug: refresh db assets success
-2023-9-8 00:36:04-debug: asset-db:refresh-all-database (263ms)
-2023-9-8 00:36:18-debug: start refresh asset from G:\Work\cocoscreator\MiniGame\assets\scenes\scene.scene...
-2023-9-8 00:36:18-debug: %cImport%c: G:\Work\cocoscreator\MiniGame\assets\scenes\scene.scenebackground: #aaff85; color: #000;color: #000;
-2023-9-8 00:36:18-debug: refresh asset G:\Work\cocoscreator\MiniGame\assets\scenes success
-2023-9-8 00:36:40-debug: refresh db internal success
-2023-9-8 00:36:40-debug: asset-db:worker-effect-data-processing (147ms)
-2023-9-8 00:36:40-debug: refresh db assets success
-2023-9-8 00:36:40-debug: asset-db:refresh-all-database (180ms)
-2023-9-8 00:37:45-debug: refresh db internal success
-2023-9-8 00:37:45-debug: asset-db:worker-effect-data-processing (112ms)
-2023-9-8 00:37:45-debug: refresh db assets success
-2023-9-8 00:37:45-debug: asset-db:refresh-all-database (147ms)
-2023-9-8 00:37:59-debug: refresh db internal success
-2023-9-8 00:38:00-debug: asset-db:worker-effect-data-processing (142ms)
-2023-9-8 00:38:00-debug: refresh db assets success
-2023-9-8 00:38:00-debug: asset-db:refresh-all-database (172ms)
-2023-9-8 00:38:12-debug: start refresh asset from G:\Work\cocoscreator\MiniGame\assets\scenes\scene.scene...
-2023-9-8 00:38:12-debug: %cImport%c: G:\Work\cocoscreator\MiniGame\assets\scenes\scene.scenebackground: #aaff85; color: #000;color: #000;
-2023-9-8 00:38:12-debug: refresh asset G:\Work\cocoscreator\MiniGame\assets\scenes success
-2023-9-8 00:38:26-debug: start remove asset G:\Work\cocoscreator\MiniGame\assets\resources\prefab\ShulteGridItem.prefab...
-2023-9-8 00:38:26-debug: start refresh asset from G:\Work\cocoscreator\MiniGame\assets\resources\prefab\ShulteGridItem.prefab...
-2023-9-8 00:38:26-debug: %cDestroy%c: G:\Work\cocoscreator\MiniGame\assets\resources\prefab\ShulteGridItem.prefabbackground: #ffb8b8; color: #000;color: #000;
-2023-9-8 00:38:26-debug: refresh asset G:\Work\cocoscreator\MiniGame\assets\resources\prefab success
-2023-9-8 00:38:26-debug: remove asset G:\Work\cocoscreator\MiniGame\assets\resources\prefab\ShulteGridItem.prefab success
-2023-9-8 00:38:26-debug: refresh db internal success
-2023-9-8 00:38:26-debug: %cImport%c: G:\Work\cocoscreator\MiniGame\assets\resources\prefabbackground: #aaff85; color: #000;color: #000;
-2023-9-8 00:38:27-debug: asset-db:worker-effect-data-processing (154ms)
-2023-9-8 00:38:27-debug: refresh db assets success
-2023-9-8 00:38:27-debug: asset-db:refresh-all-database (196ms)
-2023-9-8 00:38:29-debug: start refresh asset from G:\Work\cocoscreator\MiniGame\assets\resources\prefab\ShulteGridItem.prefab...
-2023-9-8 00:38:29-debug: %cImport%c: G:\Work\cocoscreator\MiniGame\assets\resources\prefab\ShulteGridItem.prefabbackground: #aaff85; color: #000;color: #000;
-2023-9-8 00:38:29-debug: refresh asset G:\Work\cocoscreator\MiniGame\assets\resources\prefab success
-2023-9-8 00:38:29-debug: %cImport%c: G:\Work\cocoscreator\MiniGame\assets\resources\prefabbackground: #aaff85; color: #000;color: #000;
-2023-9-8 00:38:58-debug: refresh db internal success
-2023-9-8 00:38:58-debug: asset-db:worker-effect-data-processing (165ms)
-2023-9-8 00:38:58-debug: refresh db assets success
-2023-9-8 00:38:58-debug: asset-db:refresh-all-database (219ms)
-2023-9-8 00:39:09-debug: refresh db internal success
-2023-9-8 00:39:09-debug: asset-db:worker-effect-data-processing (199ms)
-2023-9-8 00:39:09-debug: refresh db assets success
-2023-9-8 00:39:09-debug: asset-db:refresh-all-database (247ms)
-2023-9-8 00:41:04-debug: refresh db internal success
-2023-9-8 00:41:05-debug: asset-db:worker-effect-data-processing (146ms)
-2023-9-8 00:41:05-debug: refresh db assets success
-2023-9-8 00:41:05-debug: asset-db:refresh-all-database (185ms)
-2023-9-8 00:49:23-debug: refresh db internal success
-2023-9-8 00:49:23-debug: asset-db:worker-effect-data-processing (121ms)
-2023-9-8 00:49:23-debug: %cImport%c: G:\Work\cocoscreator\MiniGame\assets\script\game\gameGrid\GameGridController.tsbackground: #aaff85; color: #000;color: #000;
-2023-9-8 00:49:23-debug: %cImport%c: G:\Work\cocoscreator\MiniGame\assets\script\game\gameShulte\GameShulteController.tsbackground: #aaff85; color: #000;color: #000;
-2023-9-8 00:49:23-debug: refresh db assets success
-2023-9-8 00:49:23-debug: asset-db:refresh-all-database (156ms)
-2023-9-8 00:51:58-debug: refresh db internal success
-2023-9-8 00:51:58-debug: asset-db:worker-effect-data-processing (143ms)
-2023-9-8 00:51:58-debug: %cImport%c: G:\Work\cocoscreator\MiniGame\assets\script\game\gameShulte\GameShulteController.tsbackground: #aaff85; color: #000;color: #000;
-2023-9-8 00:51:58-debug: refresh db assets success
-2023-9-8 00:51:58-debug: asset-db:refresh-all-database (180ms)
-2023-9-8 00:52:03-debug: refresh db internal success
-2023-9-8 00:52:03-debug: asset-db:worker-effect-data-processing (108ms)
-2023-9-8 00:52:03-debug: refresh db assets success
-2023-9-8 00:52:03-debug: asset-db:refresh-all-database (142ms)
-2023-9-8 00:52:09-debug: refresh db internal success
-2023-9-8 00:52:09-debug: asset-db:worker-effect-data-processing (128ms)
-2023-9-8 00:52:09-debug: refresh db assets success
-2023-9-8 00:52:09-debug: asset-db:refresh-all-database (174ms)
-2023-9-8 00:52:18-debug: refresh db internal success
-2023-9-8 00:52:18-debug: asset-db:worker-effect-data-processing (141ms)
-2023-9-8 00:52:18-debug: refresh db assets success
-2023-9-8 00:52:18-debug: asset-db:refresh-all-database (184ms)
-2023-9-8 00:52:22-debug: refresh db internal success
-2023-9-8 00:52:22-debug: asset-db:worker-effect-data-processing (146ms)
-2023-9-8 00:52:22-debug: refresh db assets success
-2023-9-8 00:52:22-debug: asset-db:refresh-all-database (192ms)
-2023-9-8 00:52:31-debug: refresh db internal success
-2023-9-8 00:52:31-debug: asset-db:worker-effect-data-processing (151ms)
-2023-9-8 00:52:31-debug: refresh db assets success
-2023-9-8 00:52:31-debug: asset-db:refresh-all-database (202ms)
-2023-9-8 00:52:50-debug: refresh db internal success
-2023-9-8 00:52:50-debug: asset-db:worker-effect-data-processing (145ms)
-2023-9-8 00:52:50-debug: refresh db assets success
-2023-9-8 00:52:50-debug: asset-db:refresh-all-database (178ms)
-2023-9-8 00:52:55-debug: refresh db internal success
-2023-9-8 00:52:55-debug: asset-db:worker-effect-data-processing (201ms)
-2023-9-8 00:52:55-debug: refresh db assets success
-2023-9-8 00:52:55-debug: asset-db:refresh-all-database (246ms)
-2023-9-8 00:54:22-debug: refresh db internal success
-2023-9-8 00:54:22-debug: asset-db:worker-effect-data-processing (150ms)
-2023-9-8 00:54:22-debug: %cImport%c: G:\Work\cocoscreator\MiniGame\assets\script\game\gameShulte\GameShulteController.tsbackground: #aaff85; color: #000;color: #000;
-2023-9-8 00:54:22-debug: %cImport%c: G:\Work\cocoscreator\MiniGame\assets\script\game\gameShulte\view\GameShulteBeginView.tsbackground: #aaff85; color: #000;color: #000;
-2023-9-8 00:54:22-debug: refresh db assets success
-2023-9-8 00:54:22-debug: asset-db:refresh-all-database (186ms)
-2023-9-8 00:54:35-debug: refresh db internal success
-2023-9-8 00:54:35-debug: asset-db:worker-effect-data-processing (110ms)
-2023-9-8 00:54:35-debug: refresh db assets success
-2023-9-8 00:54:35-debug: asset-db:refresh-all-database (151ms)
-2023-9-8 00:54:40-debug: refresh db internal success
-2023-9-8 00:54:40-debug: asset-db:worker-effect-data-processing (135ms)
-2023-9-8 00:54:40-debug: refresh db assets success
-2023-9-8 00:54:40-debug: asset-db:refresh-all-database (167ms)
-2023-9-8 00:54:45-debug: refresh db internal success
-2023-9-8 00:54:46-debug: asset-db:worker-effect-data-processing (110ms)
-2023-9-8 00:54:46-debug: refresh db assets success
-2023-9-8 00:54:46-debug: asset-db:refresh-all-database (145ms)
-2023-9-8 00:57:11-debug: refresh db internal success
-2023-9-8 00:57:11-debug: asset-db:worker-effect-data-processing (109ms)
-2023-9-8 00:57:11-debug: %cImport%c: G:\Work\cocoscreator\MiniGame\assets\script\game\gameShulte\view\GameShulteBeginView.tsbackground: #aaff85; color: #000;color: #000;
-2023-9-8 00:57:11-debug: refresh db assets success
-2023-9-8 00:57:11-debug: asset-db:refresh-all-database (142ms)
-2023-9-8 00:57:17-debug: refresh db internal success
-2023-9-8 00:57:17-debug: asset-db:worker-effect-data-processing (140ms)
-2023-9-8 00:57:17-debug: refresh db assets success
-2023-9-8 00:57:17-debug: asset-db:refresh-all-database (173ms)
-2023-9-8 00:58:50-debug: refresh db internal success
-2023-9-8 00:58:50-debug: asset-db:worker-effect-data-processing (142ms)
-2023-9-8 00:58:50-debug: %cImport%c: G:\Work\cocoscreator\MiniGame\assets\script\game\gameShulte\view\GameShulteBeginView.tsbackground: #aaff85; color: #000;color: #000;
-2023-9-8 00:58:50-debug: refresh db assets success
-2023-9-8 00:58:50-debug: asset-db:refresh-all-database (174ms)
-2023-9-8 00:59:47-debug: refresh db internal success
-2023-9-8 00:59:47-debug: asset-db:worker-effect-data-processing (146ms)
-2023-9-8 00:59:47-debug: refresh db assets success
-2023-9-8 00:59:47-debug: asset-db:refresh-all-database (179ms)
-2023-9-8 01:00:00-debug: refresh db internal success
-2023-9-8 01:00:00-debug: asset-db:worker-effect-data-processing (106ms)
-2023-9-8 01:00:00-debug: refresh db assets success
-2023-9-8 01:00:00-debug: asset-db:refresh-all-database (140ms)
-2023-9-8 01:00:08-debug: refresh db internal success
-2023-9-8 01:00:08-debug: asset-db:worker-effect-data-processing (137ms)
-2023-9-8 01:00:08-debug: refresh db assets success
-2023-9-8 01:00:08-debug: asset-db:refresh-all-database (170ms)
-2023-9-8 01:01:05-debug: refresh db internal success
-2023-9-8 01:01:05-debug: asset-db:worker-effect-data-processing (117ms)
-2023-9-8 01:01:05-debug: refresh db assets success
-2023-9-8 01:01:05-debug: asset-db:refresh-all-database (149ms)
-2023-9-8 01:01:10-debug: refresh db internal success
-2023-9-8 01:01:10-debug: asset-db:worker-effect-data-processing (102ms)
-2023-9-8 01:01:10-debug: refresh db assets success
-2023-9-8 01:01:10-debug: asset-db:refresh-all-database (134ms)
-2023-9-8 01:01:12-debug: refresh db internal success
-2023-9-8 01:01:12-debug: asset-db:worker-effect-data-processing (139ms)
-2023-9-8 01:01:12-debug: refresh db assets success
-2023-9-8 01:01:12-debug: asset-db:refresh-all-database (170ms)
-2023-9-8 01:01:16-debug: refresh db internal success
-2023-9-8 01:01:17-debug: asset-db:worker-effect-data-processing (106ms)
-2023-9-8 01:01:17-debug: refresh db assets success
-2023-9-8 01:01:17-debug: asset-db:refresh-all-database (140ms)
-2023-9-8 01:01:25-debug: refresh db internal success
-2023-9-8 01:01:25-debug: asset-db:worker-effect-data-processing (104ms)
-2023-9-8 01:01:25-debug: refresh db assets success
-2023-9-8 01:01:25-debug: asset-db:refresh-all-database (136ms)
-2023-9-8 01:01:31-debug: refresh db internal success
-2023-9-8 01:01:31-debug: asset-db:worker-effect-data-processing (149ms)
-2023-9-8 01:01:31-debug: refresh db assets success
-2023-9-8 01:01:31-debug: asset-db:refresh-all-database (185ms)
-2023-9-8 01:17:02-debug: refresh db internal success
-2023-9-8 01:17:02-debug: asset-db:worker-effect-data-processing (143ms)
-2023-9-8 01:17:02-debug: %cImport%c: G:\Work\cocoscreator\MiniGame\assets\script\game\gameShulte\view\GameShulteBeginView.tsbackground: #aaff85; color: #000;color: #000;
-2023-9-8 01:17:02-debug: refresh db assets success
-2023-9-8 01:17:02-debug: asset-db:refresh-all-database (212ms)
-2023-9-8 01:17:28-debug: refresh db internal success
-2023-9-8 01:17:28-debug: asset-db:worker-effect-data-processing (189ms)
-2023-9-8 01:17:28-debug: refresh db assets success
-2023-9-8 01:17:28-debug: asset-db:refresh-all-database (235ms)
-2023-9-8 01:17:40-debug: refresh db internal success
-2023-9-8 01:17:40-debug: asset-db:worker-effect-data-processing (155ms)
-2023-9-8 01:17:40-debug: refresh db assets success
-2023-9-8 01:17:40-debug: asset-db:refresh-all-database (213ms)
-2023-9-8 01:36:25-debug: refresh db internal success
-2023-9-8 01:36:25-debug: asset-db:worker-effect-data-processing (147ms)
-2023-9-8 01:36:25-debug: refresh db assets success
-2023-9-8 01:36:25-debug: asset-db:refresh-all-database (183ms)
-2023-9-8 01:37:34-debug: refresh db internal success
-2023-9-8 01:37:34-debug: asset-db:worker-effect-data-processing (152ms)
-2023-9-8 01:37:34-debug: refresh db assets success
-2023-9-8 01:37:34-debug: asset-db:refresh-all-database (188ms)
-2023-9-8 01:37:59-debug: refresh db internal success
-2023-9-8 01:37:59-debug: asset-db:worker-effect-data-processing (112ms)
-2023-9-8 01:37:59-debug: refresh db assets success
-2023-9-8 01:37:59-debug: asset-db:refresh-all-database (144ms)
-2023-9-8 01:38:52-debug: refresh db internal success
-2023-9-8 01:38:52-debug: asset-db:worker-effect-data-processing (135ms)
-2023-9-8 01:38:52-debug: refresh db assets success
-2023-9-8 01:38:52-debug: asset-db:refresh-all-database (169ms)
-2023-9-8 01:38:55-debug: refresh db internal success
-2023-9-8 01:38:55-debug: asset-db:worker-effect-data-processing (106ms)
-2023-9-8 01:38:55-debug: refresh db assets success
-2023-9-8 01:38:55-debug: asset-db:refresh-all-database (145ms)
-2023-9-8 01:39:32-debug: refresh db internal success
-2023-9-8 01:39:32-debug: asset-db:worker-effect-data-processing (159ms)
-2023-9-8 01:39:32-debug: refresh db assets success
-2023-9-8 01:39:32-debug: asset-db:refresh-all-database (192ms)
-2023-9-8 01:40:01-debug: refresh db internal success
-2023-9-8 01:40:02-debug: asset-db:worker-effect-data-processing (142ms)
-2023-9-8 01:40:02-debug: refresh db assets success
-2023-9-8 01:40:02-debug: asset-db:refresh-all-database (176ms)
-2023-9-8 01:40:41-debug: start refresh asset from G:\Work\cocoscreator\MiniGame\assets\scenes\scene.scene...
-2023-9-8 01:40:41-debug: %cImport%c: G:\Work\cocoscreator\MiniGame\assets\scenes\scene.scenebackground: #aaff85; color: #000;color: #000;
-2023-9-8 01:40:41-debug: refresh asset G:\Work\cocoscreator\MiniGame\assets\scenes success
-2023-9-8 01:44:28-debug: refresh db internal success
-2023-9-8 01:44:28-debug: asset-db:worker-effect-data-processing (117ms)
-2023-9-8 01:44:28-debug: %cImport%c: G:\Work\cocoscreator\MiniGame\assets\script\game\gameShulte\view\GameShulteBeginView.tsbackground: #aaff85; color: #000;color: #000;
-2023-9-8 01:44:28-debug: refresh db assets success
-2023-9-8 01:44:28-debug: asset-db:refresh-all-database (156ms)
-2023-9-8 01:44:31-debug: refresh db internal success
-2023-9-8 01:44:31-debug: asset-db:worker-effect-data-processing (141ms)
-2023-9-8 01:44:31-debug: refresh db assets success
-2023-9-8 01:44:31-debug: asset-db:refresh-all-database (172ms)
-2023-9-8 01:45:30-debug: refresh db internal success
-2023-9-8 01:45:30-debug: asset-db:worker-effect-data-processing (145ms)
-2023-9-8 01:45:30-debug: %cImport%c: G:\Work\cocoscreator\MiniGame\assets\script\game\gameShulte\view\GameShulteBeginView.tsbackground: #aaff85; color: #000;color: #000;
-2023-9-8 01:45:30-debug: refresh db assets success
-2023-9-8 01:45:30-debug: asset-db:refresh-all-database (179ms)
-2023-9-8 01:46:33-debug: refresh db internal success
-2023-9-8 01:46:33-debug: asset-db:worker-effect-data-processing (143ms)
-2023-9-8 01:46:33-debug: %cImport%c: G:\Work\cocoscreator\MiniGame\assets\script\game\gameShulte\view\GameShulteBeginView.tsbackground: #aaff85; color: #000;color: #000;
-2023-9-8 01:46:33-debug: refresh db assets success
-2023-9-8 01:46:33-debug: asset-db:refresh-all-database (180ms)
-2023-9-8 01:47:02-debug: refresh db internal success
-2023-9-8 01:47:02-debug: asset-db:worker-effect-data-processing (141ms)
-2023-9-8 01:47:02-debug: refresh db assets success
-2023-9-8 01:47:02-debug: asset-db:refresh-all-database (173ms)
-2023-9-8 01:47:36-debug: refresh db internal success
-2023-9-8 01:47:36-debug: asset-db:worker-effect-data-processing (107ms)
-2023-9-8 01:47:36-debug: refresh db assets success
-2023-9-8 01:47:36-debug: asset-db:refresh-all-database (141ms)
-2023-9-8 01:47:48-debug: refresh db internal success
-2023-9-8 01:47:49-debug: asset-db:worker-effect-data-processing (142ms)
-2023-9-8 01:47:49-debug: refresh db assets success
-2023-9-8 01:47:49-debug: asset-db:refresh-all-database (173ms)
-2023-9-8 01:48:52-debug: refresh db internal success
-2023-9-8 01:48:52-debug: asset-db:worker-effect-data-processing (137ms)
-2023-9-8 01:48:52-debug: refresh db assets success
-2023-9-8 01:48:52-debug: asset-db:refresh-all-database (171ms)
-2023-9-8 01:48:55-debug: refresh db internal success
-2023-9-8 01:48:55-debug: asset-db:worker-effect-data-processing (103ms)
-2023-9-8 01:48:55-debug: refresh db assets success
-2023-9-8 01:48:55-debug: asset-db:refresh-all-database (134ms)
-2023-9-8 02:02:45-debug: refresh db internal success
-2023-9-8 02:02:45-debug: asset-db:worker-effect-data-processing (112ms)
-2023-9-8 02:02:45-debug: %cImport%c: G:\Work\cocoscreator\MiniGame\assets\script\game\gameShulte\view\GameShulteBeginView.tsbackground: #aaff85; color: #000;color: #000;
-2023-9-8 02:02:45-debug: refresh db assets success
-2023-9-8 02:02:45-debug: asset-db:refresh-all-database (143ms)
-2023-9-8 02:03:32-debug: refresh db internal success
-2023-9-8 02:03:32-debug: asset-db:worker-effect-data-processing (143ms)
-2023-9-8 02:03:32-debug: refresh db assets success
-2023-9-8 02:03:32-debug: asset-db:refresh-all-database (177ms)
-2023-9-8 02:04:57-debug: refresh db internal success
-2023-9-8 02:04:57-debug: asset-db:worker-effect-data-processing (140ms)
-2023-9-8 02:04:57-debug: refresh db assets success
-2023-9-8 02:04:57-debug: asset-db:refresh-all-database (171ms)
-2023-9-8 02:05:21-debug: refresh db internal success
-2023-9-8 02:05:22-debug: asset-db:worker-effect-data-processing (144ms)
-2023-9-8 02:05:22-debug: refresh db assets success
-2023-9-8 02:05:22-debug: asset-db:refresh-all-database (177ms)
-2023-9-8 02:10:40-debug: refresh db internal success
-2023-9-8 02:10:40-debug: asset-db:worker-effect-data-processing (113ms)
-2023-9-8 02:10:40-debug: %cImport%c: G:\Work\cocoscreator\MiniGame\assets\script\game\gameShulte\view\GameShulteBeginView.tsbackground: #aaff85; color: #000;color: #000;
-2023-9-8 02:10:40-debug: refresh db assets success
-2023-9-8 02:10:40-debug: asset-db:refresh-all-database (149ms)
-2023-9-8 02:10:52-debug: refresh db internal success
-2023-9-8 02:10:52-debug: asset-db:worker-effect-data-processing (143ms)
-2023-9-8 02:10:52-debug: refresh db assets success
-2023-9-8 02:10:52-debug: asset-db:refresh-all-database (177ms)
-2023-9-8 02:12:42-debug: refresh db internal success
-2023-9-8 02:12:43-debug: asset-db:worker-effect-data-processing (147ms)
-2023-9-8 02:12:43-debug: %cImport%c: G:\Work\cocoscreator\MiniGame\assets\script\game\gameShulte\view\GameShulteBeginView.tsbackground: #aaff85; color: #000;color: #000;
-2023-9-8 02:12:43-debug: refresh db assets success
-2023-9-8 02:12:43-debug: asset-db:refresh-all-database (181ms)
-2023-9-8 02:13:06-debug: start refresh asset from G:\Work\cocoscreator\MiniGame\assets\script\game\gameShulte\view\ShulteGridItem.ts...
-2023-9-8 02:13:06-debug: %cImport%c: G:\Work\cocoscreator\MiniGame\assets\script\game\gameShulte\view\ShulteGridItem.tsbackground: #aaff85; color: #000;color: #000;
-2023-9-8 02:13:06-debug: refresh asset G:\Work\cocoscreator\MiniGame\assets\script\game\gameShulte\view success
-2023-9-8 02:13:07-debug: %cImport%c: G:\Work\cocoscreator\MiniGame\assets\script\game\gameShulte\viewbackground: #aaff85; color: #000;color: #000;
-2023-9-8 02:13:22-debug: refresh db internal success
-2023-9-8 02:13:22-debug: asset-db:worker-effect-data-processing (140ms)
-2023-9-8 02:13:22-debug: refresh db assets success
-2023-9-8 02:13:22-debug: asset-db:refresh-all-database (176ms)
-2023-9-8 02:13:32-debug: refresh db internal success
-2023-9-8 02:13:32-debug: asset-db:worker-effect-data-processing (110ms)
-2023-9-8 02:13:32-debug: refresh db assets success
-2023-9-8 02:13:32-debug: asset-db:refresh-all-database (144ms)
-2023-9-8 02:13:33-debug: start refresh asset from G:\Work\cocoscreator\MiniGame\assets\resources\prefab\ShulteGridItem.prefab...
-2023-9-8 02:13:33-debug: %cImport%c: G:\Work\cocoscreator\MiniGame\assets\resources\prefab\ShulteGridItem.prefabbackground: #aaff85; color: #000;color: #000;
-2023-9-8 02:13:33-debug: refresh asset G:\Work\cocoscreator\MiniGame\assets\resources\prefab success

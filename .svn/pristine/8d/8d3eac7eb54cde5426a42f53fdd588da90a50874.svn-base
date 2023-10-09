@@ -1,154 +1,0 @@
-2023-9-9 04:12:34-debug: asset-db:worker-init (1005ms)
-2023-9-9 04:12:34-debug: Preimport db internal success
-2023-9-9 04:12:34-debug: %cImport%c: G:\Work\cocoscreator\svn\MiniGame\assets\gamebackground: #aaff85; color: #000;color: #000;
-2023-9-9 04:12:34-debug: %cImport%c: G:\Work\cocoscreator\svn\MiniGame\assets\resourcesbackground: #aaff85; color: #000;color: #000;
-2023-9-9 04:12:34-debug: %cImport%c: G:\Work\cocoscreator\svn\MiniGame\assets\game\commonbackground: #aaff85; color: #000;color: #000;
-2023-9-9 04:12:34-debug: %cImport%c: G:\Work\cocoscreator\svn\MiniGame\assets\game\gameGridbackground: #aaff85; color: #000;color: #000;
-2023-9-9 04:12:34-debug: %cImport%c: G:\Work\cocoscreator\svn\MiniGame\assets\scenesbackground: #aaff85; color: #000;color: #000;
-2023-9-9 04:12:34-debug: %cImport%c: G:\Work\cocoscreator\svn\MiniGame\assets\scriptbackground: #aaff85; color: #000;color: #000;
-2023-9-9 04:12:34-debug: %cImport%c: G:\Work\cocoscreator\svn\MiniGame\assets\resources\audiobackground: #aaff85; color: #000;color: #000;
-2023-9-9 04:12:34-debug: %cImport%c: G:\Work\cocoscreator\svn\MiniGame\assets\game\gameShultebackground: #aaff85; color: #000;color: #000;
-2023-9-9 04:12:34-debug: %cImport%c: G:\Work\cocoscreator\svn\MiniGame\assets\script\commonbackground: #aaff85; color: #000;color: #000;
-2023-9-9 04:12:34-debug: %cImport%c: G:\Work\cocoscreator\svn\MiniGame\assets\resources\prefabbackground: #aaff85; color: #000;color: #000;
-2023-9-9 04:12:34-debug: %cImport%c: G:\Work\cocoscreator\svn\MiniGame\assets\script\enumbackground: #aaff85; color: #000;color: #000;
-2023-9-9 04:12:34-debug: %cImport%c: G:\Work\cocoscreator\svn\MiniGame\assets\script\gamebackground: #aaff85; color: #000;color: #000;
-2023-9-9 04:12:34-debug: %cImport%c: G:\Work\cocoscreator\svn\MiniGame\assets\script\managerbackground: #aaff85; color: #000;color: #000;
-2023-9-9 04:12:34-debug: %cImport%c: G:\Work\cocoscreator\svn\MiniGame\assets\script\game\gameGridbackground: #aaff85; color: #000;color: #000;
-2023-9-9 04:12:34-debug: %cImport%c: G:\Work\cocoscreator\svn\MiniGame\assets\script\game\gameShultebackground: #aaff85; color: #000;color: #000;
-2023-9-9 04:12:34-debug: %cImport%c: G:\Work\cocoscreator\svn\MiniGame\assets\script\game\gameShulte\viewbackground: #aaff85; color: #000;color: #000;
-2023-9-9 04:12:34-debug: %cImport%c: G:\Work\cocoscreator\svn\MiniGame\assets\script\game\gameGrid\viewbackground: #aaff85; color: #000;color: #000;
-2023-9-9 04:12:34-debug: %cImport%c: G:\Work\cocoscreator\svn\MiniGame\assets\script\Main.tsbackground: #aaff85; color: #000;color: #000;
-2023-9-9 04:12:34-debug: %cImport%c: G:\Work\cocoscreator\svn\MiniGame\assets\script\common\AudioPlayer.tsbackground: #aaff85; color: #000;color: #000;
-2023-9-9 04:12:34-debug: %cImport%c: G:\Work\cocoscreator\svn\MiniGame\assets\script\common\TweenManager.tsbackground: #aaff85; color: #000;color: #000;
-2023-9-9 04:12:34-debug: %cImport%c: G:\Work\cocoscreator\svn\MiniGame\assets\script\enum\EventEnum.tsbackground: #aaff85; color: #000;color: #000;
-2023-9-9 04:12:34-debug: %cImport%c: G:\Work\cocoscreator\svn\MiniGame\assets\script\enum\GameState.tsbackground: #aaff85; color: #000;color: #000;
-2023-9-9 04:12:34-debug: %cImport%c: G:\Work\cocoscreator\svn\MiniGame\assets\script\enum\GameType.tsbackground: #aaff85; color: #000;color: #000;
-2023-9-9 04:12:34-debug: %cImport%c: G:\Work\cocoscreator\svn\MiniGame\assets\script\manager\EventManager.tsbackground: #aaff85; color: #000;color: #000;
-2023-9-9 04:12:34-debug: %cImport%c: G:\Work\cocoscreator\svn\MiniGame\assets\script\manager\SoundManager.tsbackground: #aaff85; color: #000;color: #000;
-2023-9-9 04:12:34-debug: %cImport%c: G:\Work\cocoscreator\svn\MiniGame\assets\script\game\MainMenu.tsbackground: #aaff85; color: #000;color: #000;
-2023-9-9 04:12:34-debug: %cImport%c: G:\Work\cocoscreator\svn\MiniGame\assets\script\manager\Mgr.tsbackground: #aaff85; color: #000;color: #000;
-2023-9-9 04:12:34-debug: %cImport%c: G:\Work\cocoscreator\svn\MiniGame\assets\script\game\gameGrid\GameGridController.tsbackground: #aaff85; color: #000;color: #000;
-2023-9-9 04:12:34-debug: %cImport%c: G:\Work\cocoscreator\svn\MiniGame\assets\script\game\gameShulte\GameShulteController.tsbackground: #aaff85; color: #000;color: #000;
-2023-9-9 04:12:34-debug: %cImport%c: G:\Work\cocoscreator\svn\MiniGame\assets\script\game\gameGrid\view\GameGridStartView.tsbackground: #aaff85; color: #000;color: #000;
-2023-9-9 04:12:34-debug: %cImport%c: G:\Work\cocoscreator\svn\MiniGame\assets\script\game\gameShulte\view\GameShulteBeginView.tsbackground: #aaff85; color: #000;color: #000;
-2023-9-9 04:12:34-debug: %cImport%c: G:\Work\cocoscreator\svn\MiniGame\assets\script\game\gameShulte\view\GameShulteStartView.tsbackground: #aaff85; color: #000;color: #000;
-2023-9-9 04:12:34-debug: %cImport%c: G:\Work\cocoscreator\svn\MiniGame\assets\script\game\gameShulte\view\ShulteGridItem.tsbackground: #aaff85; color: #000;color: #000;
-2023-9-9 04:12:34-debug: Preimport db assets success
-2023-9-9 04:12:34-debug: asset-db:worker-effect-data-processing (116ms)
-2023-9-9 04:12:37-debug: Set detail map pack:///resolution-detail-map.json: {}
-2023-9-9 04:12:37-debug: Start up the 'internal' database...
-2023-9-9 04:12:38-debug: asset-db:worker-init-script (12ms)
-2023-9-9 04:12:38-debug: start asset-db with asset: 419
-2023-9-9 04:12:38-debug: Start up the 'assets' database...
-2023-9-9 04:12:38-debug: asset-db:worker-startup-database[internal] (4955ms)
-2023-9-9 04:12:38-debug: %cImport%c: G:\Work\cocoscreator\svn\MiniGame\assets\scenes\scene.scenebackground: #aaff85; color: #000;color: #000;
-2023-9-9 04:12:38-debug: %cImport%c: G:\Work\cocoscreator\svn\MiniGame\assets\game\common\SoundMute.pngbackground: #aaff85; color: #000;color: #000;
-2023-9-9 04:12:38-debug: %cImport%c: G:\Work\cocoscreator\svn\MiniGame\assets\game\common\SoundNormal.pngbackground: #aaff85; color: #000;color: #000;
-2023-9-9 04:12:38-debug: %cImport%c: G:\Work\cocoscreator\svn\MiniGame\assets\game\common\gridIcon.pngbackground: #aaff85; color: #000;color: #000;
-2023-9-9 04:12:38-debug: %cImport%c: G:\Work\cocoscreator\svn\MiniGame\assets\game\gameGrid\grid.pngbackground: #aaff85; color: #000;color: #000;
-2023-9-9 04:12:38-debug: %cImport%c: G:\Work\cocoscreator\svn\MiniGame\assets\game\gameShulte\GameShulte.prefabbackground: #aaff85; color: #000;color: #000;
-2023-9-9 04:12:38-debug: %cImport%c: G:\Work\cocoscreator\svn\MiniGame\assets\game\common\gridIcon.png@6c48abackground: #aaff85; color: #000;color: #000;
-2023-9-9 04:12:38-debug: %cImport%c: G:\Work\cocoscreator\svn\MiniGame\assets\resources\audio\button1.mp3background: #aaff85; color: #000;color: #000;
-2023-9-9 04:12:38-debug: %cImport%c: G:\Work\cocoscreator\svn\MiniGame\assets\game\common\gridIcon.png@f9941background: #aaff85; color: #000;color: #000;
-2023-9-9 04:12:38-debug: %cImport%c: G:\Work\cocoscreator\svn\MiniGame\assets\resources\audio\crrect_answer1.mp3background: #aaff85; color: #000;color: #000;
-2023-9-9 04:12:38-debug: %cImport%c: G:\Work\cocoscreator\svn\MiniGame\assets\game\common\SoundMute.png@6c48abackground: #aaff85; color: #000;color: #000;
-2023-9-9 04:12:38-debug: %cImport%c: G:\Work\cocoscreator\svn\MiniGame\assets\game\common\SoundNormal.png@6c48abackground: #aaff85; color: #000;color: #000;
-2023-9-9 04:12:38-debug: %cImport%c: G:\Work\cocoscreator\svn\MiniGame\assets\game\common\SoundMute.png@f9941background: #aaff85; color: #000;color: #000;
-2023-9-9 04:12:38-debug: %cImport%c: G:\Work\cocoscreator\svn\MiniGame\assets\game\common\SoundNormal.png@f9941background: #aaff85; color: #000;color: #000;
-2023-9-9 04:12:38-debug: %cImport%c: G:\Work\cocoscreator\svn\MiniGame\assets\game\gameGrid\grid.png@6c48abackground: #aaff85; color: #000;color: #000;
-2023-9-9 04:12:38-debug: %cImport%c: G:\Work\cocoscreator\svn\MiniGame\assets\game\gameGrid\grid.png@f9941background: #aaff85; color: #000;color: #000;
-2023-9-9 04:12:38-debug: %cImport%c: G:\Work\cocoscreator\svn\MiniGame\assets\resources\audio\crrect_answer2.mp3background: #aaff85; color: #000;color: #000;
-2023-9-9 04:12:38-debug: %cImport%c: G:\Work\cocoscreator\svn\MiniGame\assets\resources\audio\crrect_answer3.mp3background: #aaff85; color: #000;color: #000;
-2023-9-9 04:12:38-debug: %cImport%c: G:\Work\cocoscreator\svn\MiniGame\assets\resources\audio\error1.mp3background: #aaff85; color: #000;color: #000;
-2023-9-9 04:12:38-debug: %cImport%c: G:\Work\cocoscreator\svn\MiniGame\assets\resources\audio\error999.mp3background: #aaff85; color: #000;color: #000;
-2023-9-9 04:12:38-debug: %cImport%c: G:\Work\cocoscreator\svn\MiniGame\assets\resources\prefab\GameGridMapItem.prefabbackground: #aaff85; color: #000;color: #000;
-2023-9-9 04:12:38-debug: %cImport%c: G:\Work\cocoscreator\svn\MiniGame\assets\resources\audio\game_start.mp3background: #aaff85; color: #000;color: #000;
-2023-9-9 04:12:38-debug: %cImport%c: G:\Work\cocoscreator\svn\MiniGame\assets\resources\audio\mobile_phone_O.mp3background: #aaff85; color: #000;color: #000;
-2023-9-9 04:12:38-debug: %cImport%c: G:\Work\cocoscreator\svn\MiniGame\assets\resources\audio\win.mp3background: #aaff85; color: #000;color: #000;
-2023-9-9 04:12:38-debug: %cImport%c: G:\Work\cocoscreator\svn\MiniGame\assets\resources\prefab\PreviewGrid1.prefabbackground: #aaff85; color: #000;color: #000;
-2023-9-9 04:12:38-debug: %cImport%c: G:\Work\cocoscreator\svn\MiniGame\assets\resources\prefab\PreviewGrid10.prefabbackground: #aaff85; color: #000;color: #000;
-2023-9-9 04:12:38-debug: %cImport%c: G:\Work\cocoscreator\svn\MiniGame\assets\resources\prefab\PreviewGrid2.prefabbackground: #aaff85; color: #000;color: #000;
-2023-9-9 04:12:38-debug: %cImport%c: G:\Work\cocoscreator\svn\MiniGame\assets\resources\prefab\PreviewGrid3.prefabbackground: #aaff85; color: #000;color: #000;
-2023-9-9 04:12:38-debug: %cImport%c: G:\Work\cocoscreator\svn\MiniGame\assets\resources\prefab\PreviewGrid4.prefabbackground: #aaff85; color: #000;color: #000;
-2023-9-9 04:12:38-debug: %cImport%c: G:\Work\cocoscreator\svn\MiniGame\assets\resources\prefab\PreviewGrid5.prefabbackground: #aaff85; color: #000;color: #000;
-2023-9-9 04:12:38-debug: %cImport%c: G:\Work\cocoscreator\svn\MiniGame\assets\resources\prefab\PreviewGrid6.prefabbackground: #aaff85; color: #000;color: #000;
-2023-9-9 04:12:38-debug: %cImport%c: G:\Work\cocoscreator\svn\MiniGame\assets\resources\prefab\PreviewGrid7.prefabbackground: #aaff85; color: #000;color: #000;
-2023-9-9 04:12:38-debug: %cImport%c: G:\Work\cocoscreator\svn\MiniGame\assets\resources\prefab\PreviewGrid8.prefabbackground: #aaff85; color: #000;color: #000;
-2023-9-9 04:12:38-debug: %cImport%c: G:\Work\cocoscreator\svn\MiniGame\assets\resources\prefab\PreviewGrid9.prefabbackground: #aaff85; color: #000;color: #000;
-2023-9-9 04:12:38-debug: %cImport%c: G:\Work\cocoscreator\svn\MiniGame\assets\resources\prefab\ShulteGridItem.prefabbackground: #aaff85; color: #000;color: #000;
-2023-9-9 04:12:38-debug: %cImport%c: G:\Work\cocoscreator\svn\MiniGame\assets\resources\prefab\ShulteGridItemShow.prefabbackground: #aaff85; color: #000;color: #000;
-2023-9-9 04:12:38-debug: start asset-db with asset: 61
-2023-9-9 04:12:39-debug: Asset DB is ready!
-2023-9-9 04:12:39-debug: asset-db:worker-startup-database[assets] (4576ms)
-2023-9-9 04:12:39-debug: init worker message success
-2023-9-9 04:12:40-debug: builder:worker-init (1429ms)
-2023-9-9 04:12:40-debug: refresh db internal success
-2023-9-9 04:12:40-debug: asset-db:worker-effect-data-processing (126ms)
-2023-9-9 04:12:40-debug: refresh db assets success
-2023-9-9 04:12:40-debug: asset-db:refresh-all-database (194ms)
-2023-9-9 04:12:42-debug: programming:execute-script (2ms)
-2023-9-9 04:12:46-debug: programming:execute-script (2ms)
-2023-9-9 04:12:47-debug: Query all assets info in project
-2023-9-9 04:12:47-debug: BuildAssetLibrary query-assets with assets 494
-2023-9-9 04:12:47-debug: init custom config: keepNodeUuid: false, useCache: true
-2023-9-9 04:12:47-debug:   Number of other assets: 333
-2023-9-9 04:12:47-debug:   Number of all scenes: 1
-2023-9-9 04:12:47-debug: // ---- build task 查询 Asset Bundle ----
-2023-9-9 04:12:47-debug: Process: heapTotal 254.75MB heapUsed 233.49MB rss 593.66MB
-2023-9-9 04:12:47-debug:   Number of all scripts: 17
-2023-9-9 04:12:47-debug: 查询 Asset Bundle start0%
-2023-9-9 04:12:47-debug: // ---- build task 查询 Asset Bundle ---- (4ms)
-2023-9-9 04:12:47-debug: run build task 查询 Asset Bundle success in 4 ms √3%
-2023-9-9 04:12:47-debug: Process: heapTotal 254.75MB heapUsed 235.10MB rss 593.67MB
-2023-9-9 04:12:47-debug: // ---- build task 查询使用的资源以及资源包配置 ----
-2023-9-9 04:12:47-debug: init bundle assets
-2023-9-9 04:12:47-debug: 查询使用的资源以及资源包配置 start3%
-2023-9-9 04:12:47-debug: Query preload assets from cc.config.json: 60f7195c-ec2a-45eb-ba94-8955f60e81d0,1c02ae6f-4492-4915-b8f8-7492a3b1e4cd,810e96e4-e456-4468-9b59-f4e8f39732c0,efe8e2a3-eace-427b-b4f1-cb8a937ec77d,e9aa9a3e-5b2b-4ac7-a2c7-073de2b2b24f,8bbdbcdd-5cd4-4100-b6d5-b7c9625b6107,50f4348b-c883-4e2f-8f11-ce233b859fa1,fda095cb-831d-4601-ad94-846013963de8,f92806d7-1768-443f-afe8-12bcde84d0f0,dd3a144d-ab7f-41f0-82b8-2e43a090d496,f0416e68-0200-4b77-a926-4f9d16e494da,1baf0fc9-befa-459c-8bdd-af1a450a0319,511d2633-09a7-4bdd-ac42-f778032124b3,5d45aa00-e064-4938-b314-4265f0c2258c,28d6d6b8-3f66-4a73-9795-17a0852ba2d4,ec8106fe-05bf-4e94-943c-e0d3b7bb5e45,620b6bf3-0369-4560-837f-2a2c00b73c26,2df0a40b-26c2-47ce-be0d-4d3cd4164737,ff9be190-20a4-4e48-b68c-76e3c7cff085,970b0598-bcb0-4714-91fb-2e81440dccd8,bcd64cc6-2dd9-43f6-abbe-66318d332032,d930590d-bb92-4cc8-8bd1-23cd027f9edf,a3cd009f-0ab0-420d-9278-b9fdab939bbc,9361fd90-ba52-4f84-aa93-6e878fd576ca,871c3b6c-7379-419d-bda3-794b239ab90d
-2023-9-9 04:12:47-debug: Number of scenes: 1
-2023-9-9 04:12:47-debug: // ---- build task 查询使用的资源以及资源包配置 ---- (2ms)
-2023-9-9 04:12:47-debug: run build task 查询使用的资源以及资源包配置 success in 2 ms √7%
-2023-9-9 04:12:47-debug: 整理脚本分组与脚本数据 start7%
-2023-9-9 04:12:47-debug: // ---- build task 整理脚本分组与脚本数据 ----
-2023-9-9 04:12:47-debug: Process: heapTotal 254.75MB heapUsed 235.26MB rss 593.70MB
-2023-9-9 04:12:47-debug: sort script group...
-2023-9-9 04:12:47-debug: run build task 整理脚本分组与脚本数据 success in 0 ms √10%
-2023-9-9 04:12:47-debug: 初始化 settings.json 与 config.json start10%
-2023-9-9 04:12:47-debug: // ---- build task 初始化 settings.json 与 config.json ----
-2023-9-9 04:12:47-debug: Process: heapTotal 254.75MB heapUsed 235.30MB rss 593.70MB
-2023-9-9 04:12:47-debug: run build task 初始化 settings.json 与 config.json success in 0 ms √11%
-2023-9-9 04:12:47-debug: builder.tasks.settings.macro 字段未在编辑器多语言内定义
-2023-9-9 04:12:47-debug: Process: heapTotal 254.75MB heapUsed 235.34MB rss 593.71MB
-2023-9-9 04:12:47-debug: // ---- build task builder.tasks.settings.macro ----
-2023-9-9 04:12:47-debug: builder.tasks.settings.macro start11%
-2023-9-9 04:12:47-debug: run build task builder.tasks.settings.macro success in 0 ms √11%
-2023-9-9 04:12:47-debug: // ---- build task 整理部分构建选项内数据到 settings.json ----
-2023-9-9 04:12:47-debug: 整理部分构建选项内数据到 settings.json start11%
-2023-9-9 04:12:47-debug: Process: heapTotal 254.75MB heapUsed 235.37MB rss 593.68MB
-2023-9-9 04:12:47-debug: // ---- build task 整理部分构建选项内数据到 settings.json ---- (1ms)
-2023-9-9 04:12:47-debug: run build task 整理部分构建选项内数据到 settings.json success in 1 ms √12%
-2023-9-9 04:12:47-debug: Process: heapTotal 254.75MB heapUsed 235.44MB rss 593.68MB
-2023-9-9 04:12:47-debug: custom joint texture layouts start12%
-2023-9-9 04:12:47-debug: // ---- build task custom joint texture layouts ----
-2023-9-9 04:12:47-debug: // ---- build task custom joint texture layouts ---- (1ms)
-2023-9-9 04:12:47-debug: run build task custom joint texture layouts success in 1 ms √12%
-2023-9-9 04:12:47-debug: Process: heapTotal 254.75MB heapUsed 235.47MB rss 593.68MB
-2023-9-9 04:12:47-debug: custom joint physics start12%
-2023-9-9 04:12:47-debug: // ---- build task custom joint physics ----
-2023-9-9 04:12:47-debug: run build task custom joint physics success in 0 ms √13%
-2023-9-9 04:12:47-debug: // ---- build task 填充脚本数据到 settings.json ----
-2023-9-9 04:12:47-debug: 填充脚本数据到 settings.json start13%
-2023-9-9 04:12:47-debug: Process: heapTotal 254.75MB heapUsed 235.50MB rss 593.68MB
-2023-9-9 04:12:47-debug: run build task 填充脚本数据到 settings.json success in 0 ms √13%
-2023-9-9 04:12:47-debug: // ---- build task 填充场景数据到 settings.json ----
-2023-9-9 04:12:47-debug: 填充场景数据到 settings.json start13%
-2023-9-9 04:12:47-debug: Process: heapTotal 254.75MB heapUsed 235.52MB rss 593.69MB
-2023-9-9 04:12:47-debug: run build task 填充场景数据到 settings.json success in 0 ms √14%
-2023-9-9 04:12:47-debug: // ---- build task 整理资源分组，生成 packedAssets 以及 rawAssets 数据 ----
-2023-9-9 04:12:47-debug: 整理资源分组，生成 packedAssets 以及 rawAssets 数据 start14%
-2023-9-9 04:12:47-debug: Process: heapTotal 254.75MB heapUsed 235.55MB rss 593.69MB
-2023-9-9 04:12:47-debug: run build task 整理资源分组，生成 packedAssets 以及 rawAssets 数据 success in 0 ms √14%
-2023-9-9 04:12:47-debug: // ---- build task 从 suffixMap 生成 md5AssetsMap 到 settings.json ----
-2023-9-9 04:12:47-debug: 从 suffixMap 生成 md5AssetsMap 到 settings.json start14%
-2023-9-9 04:12:47-debug: Process: heapTotal 254.75MB heapUsed 235.60MB rss 593.70MB
-2023-9-9 04:12:47-debug: options.md5Cache is false.
-2023-9-9 04:12:47-debug: run build task 从 suffixMap 生成 md5AssetsMap 到 settings.json success in 0 ms √15%
