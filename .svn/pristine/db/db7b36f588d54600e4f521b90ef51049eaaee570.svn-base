@@ -1,0 +1,33 @@
+import { sys } from "cc";
+
+export default class WXSDK {
+    public static showRank(rankKey:string){
+        WXSDK.postMessage({type:"ShowRank",width:1080,height:1800,x:540,y:1080,rankKey:rankKey});
+    }
+
+    public static postMessage(obj: object){
+        if(!sys.isMobile){
+            return;
+        }
+        wx.postMessage(obj);
+    }
+    
+    public static setUserCloudStorage(obj: object){
+        if(!sys.isMobile){
+            return;
+        }
+        wx.setUserCloudStorage(obj)
+    }
+
+    public static showToast(showTips = "",duration = 2000,icon:string = "none"){
+        if(!sys.isMobile){
+            console.log(showTips);
+            return;
+        }
+        wx.showToast({
+            title: showTips,
+            icon: icon,
+            duration: duration
+        });
+    }
+}

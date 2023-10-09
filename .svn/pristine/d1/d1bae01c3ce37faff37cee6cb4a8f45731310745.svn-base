@@ -1,0 +1,30 @@
+{
+    "description": "项目配置文件。",
+    "miniprogramRoot": "",
+    "setting": {
+        "urlCheck": true,
+        "postcss": true,
+        "minified": true,
+        "newFeature": false,
+        "enhance": true,
+        "useIsolateContext": true,
+        "babelSetting": {
+            "ignore": [],
+            "disablePlugins": [],
+            "outputPath": ""
+        }
+    },
+    "compileType": "game",
+    "libVersion": "3.0.2",
+    "appid": "wxb1abf8b9064892cc",
+    "projectname": "",
+    "condition": {},
+    "packOptions": {
+        "ignore": [],
+        "include": []
+    },
+    "editorSetting": {
+        "tabIndent": "insertSpaces",
+        "tabSize": 4
+    }
+}

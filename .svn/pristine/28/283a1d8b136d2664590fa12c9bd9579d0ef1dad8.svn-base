@@ -1,0 +1,12 @@
+System.register([], function (_export, _context) {
+  "use strict";
+
+  return {
+    setters: [],
+    execute: function () {
+      // This module is auto-generated to report error emitted when try to load module file:///G:/Work/cocoscreator/MiniGame/assets/script/game/gameGrid/view/GameGridStartView.ts at runtime.
+      throw new Error("SyntaxError: C:CocosDashboard_2.0.1\file:G:WorkcocoscreatorMiniGameassetsscriptgamegameGrid\x0BiewGameGridStartView.ts: Unexpected token ','. (418:56)\n\n  416 |                 let item:MapGridItem = itemList[i];\n  417 |                 let localPos:engine.Vector2 = this._randomGrid.transform2D.convertWorldPositionToLocal(item.getItemWorldPos());\n> 418 |                 this._randomGrid.inverseTransformPoint(,item.getItemWorldPos())\n      |                                                         ^\n  419 |                 let grid:Node = this._gridList[i];//GameUI.FindChild(this._randomGrid,\"grid\" + (i+1));\n  420 |                 TweenManager.addTween(grid).to({x:localPos.x,y:localPos.y},0.1).call(function(){\n  421 |                     grid.active = false;");
+    }
+  };
+});
+//# sourceMappingURL=0d507d49e4a24d5612982f02d930b20ff5ac6a94.js.map

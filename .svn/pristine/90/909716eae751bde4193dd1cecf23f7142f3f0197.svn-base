@@ -1,0 +1,69 @@
+import { _decorator, Component, AudioSource, resources, AudioClip } from 'cc';
+const { ccclass, property } = _decorator;
+
+@ccclass('AudioPlayer')
+export class AudioPlayer extends Component {
+    private _audioPlayers:AudioSource[];
+    private _audioIdx:number;
+    private _audioLastIdx:number;
+    private _isMute:boolean;
+
+    public start() {
+        this._audioPlayers = [];
+        this._audioIdx = 0;
+        this._audioLastIdx = -1;
+        let audio:AudioSource = this.node.getChildByName("Sound1").getComponent(AudioSource);
+        this._audioPlayers.push(audio);
+        audio = this.node.getChildByName("Sound2").getComponent(AudioSource);
+        this._audioPlayers.push(audio);
+        audio = this.node.getChildByName("Sound3").getComponent(AudioSource);
+        this._audioPlayers.push(audio);
+        // this._audioPlayer = this.getComponent(engine.AudioSource);
+    }
+
+    public onUpdate(dt) {
+
+    }
+
+    public play(audioName:string,stopLast:boolean = true) {
+        if (stopLast) {
+            if(this._audioLastIdx >= 0){
+                this._audioPlayers[this._audioLastIdx].stop();
+                this._audioPlayers[this._audioLastIdx].clip = null;
+            }
+        }
+        this._audioIdx = this._audioLastIdx + 1;
+        this._audioLastIdx = this._audioIdx;
+        if(this._audioIdx >= 3){
+            this._audioIdx = 0;
+            this._audioLastIdx = 0;
+        }
+        let self = this;
+        let url:string = "audio/" + audioName;
+        let audioClip = resources.get(url) as AudioClip;
+        let source:AudioSource = this._audioPlayers[this._audioIdx];
+        if(audioClip){
+            source.clip = audioClip;
+            source.play();
+        }else{
+            resources.load(url,function(error:Error,audio){
+                source.clip = audio as AudioClip;
+                source.play();
+            });
+        }
+    }
+
+    public setMute(isMute:boolean){
+        this._isMute = isMute;
+        for(let i = 0;i < this._audioPlayers.length; i++){
+            this._audioPlayers[i].volume = isMute ? 0 : 1;
+        }
+    }
+
+    public onDestroy() {
+
+    }
+}
+
+
+

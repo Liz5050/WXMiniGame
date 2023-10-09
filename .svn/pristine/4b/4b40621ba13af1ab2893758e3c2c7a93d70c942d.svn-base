@@ -1,0 +1,212 @@
+System.register(["__unresolved_0", "cc", "__unresolved_1", "__unresolved_2", "__unresolved_3", "__unresolved_4", "__unresolved_5", "__unresolved_6"], function (_export, _context) {
+  "use strict";
+
+  var _reporterNs, _cclegacy, __checkObsolete__, __checkObsoleteInNamespace__, _decorator, Button, Component, Toggle, EventManager, EventEnum, GameType, GameState, Mgr, WXSDK, _dec, _class, _crd, ccclass, property, MainMenu;
+
+  function _reportPossibleCrUseOfEventManager(extras) {
+    _reporterNs.report("EventManager", "../manager/EventManager", _context.meta, extras);
+  }
+
+  function _reportPossibleCrUseOfEventEnum(extras) {
+    _reporterNs.report("EventEnum", "../enum/EventEnum", _context.meta, extras);
+  }
+
+  function _reportPossibleCrUseOfGameType(extras) {
+    _reporterNs.report("GameType", "../enum/GameType", _context.meta, extras);
+  }
+
+  function _reportPossibleCrUseOfGameState(extras) {
+    _reporterNs.report("GameState", "../enum/GameState", _context.meta, extras);
+  }
+
+  function _reportPossibleCrUseOfMgr(extras) {
+    _reporterNs.report("Mgr", "../manager/Mgr", _context.meta, extras);
+  }
+
+  function _reportPossibleCrUseOfWXSDK(extras) {
+    _reporterNs.report("WXSDK", "../SDK/WXSDK", _context.meta, extras);
+  }
+
+  return {
+    setters: [function (_unresolved_) {
+      _reporterNs = _unresolved_;
+    }, function (_cc) {
+      _cclegacy = _cc.cclegacy;
+      __checkObsolete__ = _cc.__checkObsolete__;
+      __checkObsoleteInNamespace__ = _cc.__checkObsoleteInNamespace__;
+      _decorator = _cc._decorator;
+      Button = _cc.Button;
+      Component = _cc.Component;
+      Toggle = _cc.Toggle;
+    }, function (_unresolved_2) {
+      EventManager = _unresolved_2.EventManager;
+    }, function (_unresolved_3) {
+      EventEnum = _unresolved_3.EventEnum;
+    }, function (_unresolved_4) {
+      GameType = _unresolved_4.GameType;
+    }, function (_unresolved_5) {
+      GameState = _unresolved_5.GameState;
+    }, function (_unresolved_6) {
+      Mgr = _unresolved_6.default;
+    }, function (_unresolved_7) {
+      WXSDK = _unresolved_7.default;
+    }],
+    execute: function () {
+      _crd = true;
+
+      _cclegacy._RF.push({}, "d69f70BV2NEjagxbAXhqwVL", "MainMenu", undefined);
+
+      __checkObsolete__(['_decorator', 'Button', 'Component', 'director', 'Node', 'NodeEventType', 'SubContextView', 'Toggle']);
+
+      ({
+        ccclass,
+        property
+      } = _decorator);
+
+      _export("MainMenu", MainMenu = (_dec = ccclass('MainMenu'), _dec(_class = class MainMenu extends Component {
+        constructor() {
+          super(...arguments);
+          this._gameState = void 0;
+        }
+
+        update(deltaTime) {}
+
+        start() {
+          (_crd && EventManager === void 0 ? (_reportPossibleCrUseOfEventManager({
+            error: Error()
+          }), EventManager) : EventManager).addListener((_crd && EventEnum === void 0 ? (_reportPossibleCrUseOfEventEnum({
+            error: Error()
+          }), EventEnum) : EventEnum).OnGameExit, this.OnGameExit, this);
+          var self = this;
+          var muteToggle = this.node.getChildByName("muteToggle").getComponent(Toggle);
+          var soundNormal = muteToggle.node.getChildByName("normal");
+          muteToggle.node.on(Toggle.EventType.TOGGLE, function () {
+            soundNormal.active = !muteToggle.isChecked;
+            (_crd && Mgr === void 0 ? (_reportPossibleCrUseOfMgr({
+              error: Error()
+            }), Mgr) : Mgr).soundMgr.setMute(muteToggle.isChecked);
+          });
+          var btnShulte = this.node.getChildByName("btnShulte");
+          btnShulte.on(Button.EventType.CLICK, function () {
+            self.OnStartGame((_crd && GameType === void 0 ? (_reportPossibleCrUseOfGameType({
+              error: Error()
+            }), GameType) : GameType).Shulte);
+          });
+          var btnGridGame = this.node.getChildByName("btnGrid");
+          btnGridGame.on(Button.EventType.CLICK, function () {
+            self.OnStartGame((_crd && GameType === void 0 ? (_reportPossibleCrUseOfGameType({
+              error: Error()
+            }), GameType) : GameType).Grid);
+            (_crd && Mgr === void 0 ? (_reportPossibleCrUseOfMgr({
+              error: Error()
+            }), Mgr) : Mgr).soundMgr.play("game_start");
+          });
+          var btnNullify = this.node.getChildByName("btnNullify");
+          var clickCount = 0;
+          var targetNum = -1;
+          btnNullify.on(Button.EventType.CLICK, function () {
+            // self.OnStartGame(GameType.Nullify);
+            var showTips = "你别急，已经在开发中了~";
+            clickCount++;
+
+            if (targetNum == -1) {
+              targetNum = 1 + Math.round(Math.random() * 10);
+            }
+
+            if (clickCount >= targetNum) {
+              showTips = "跟你说了别急，你还点什么点？";
+            } else if (clickCount >= targetNum + 10) {
+              showTips = "这么期待？给你看一眼？";
+            } else if (clickCount >= targetNum + 11) {
+              self.OnStartGame((_crd && GameType === void 0 ? (_reportPossibleCrUseOfGameType({
+                error: Error()
+              }), GameType) : GameType).Nullify);
+            } else if (clickCount >= targetNum + 12) {
+              showTips = "你别急，已经在开发中了~";
+            } else if (clickCount >= targetNum + 20) {
+              showTips = "有话想对我说？vme50（vx：lizhi5050）";
+            }
+
+            wx.showToast({
+              title: showTips,
+              icon: 'none',
+              duration: 2000
+            });
+          });
+          var openDatacontext = this.node.getChildByName("openDataContext");
+          var btnRank = this.node.getChildByName("btnRank");
+          btnRank.on(Button.EventType.CLICK, function () {
+            openDatacontext.active = true;
+            (_crd && WXSDK === void 0 ? (_reportPossibleCrUseOfWXSDK({
+              error: Error()
+            }), WXSDK) : WXSDK).postMessage({
+              type: "ShowRank",
+              width: 1080,
+              height: 1800,
+              x: 540,
+              y: 1080
+            }); // wx.showToast({
+            //     title: `暂无排名`,
+            //     icon: 'none',
+            //     duration: 2000
+            // });
+          });
+          var btnClose = openDatacontext.getChildByName("btnClose");
+          btnClose.on(Button.EventType.CLICK, function () {
+            openDatacontext.active = false;
+          });
+          var btnTest = this.node.getChildByName("btnTest");
+          btnTest.on(Button.EventType.CLICK, function () {
+            (_crd && Mgr === void 0 ? (_reportPossibleCrUseOfMgr({
+              error: Error()
+            }), Mgr) : Mgr).sceneMgr.LoadScene("sceneTest");
+          });
+          this.SetGameState((_crd && GameState === void 0 ? (_reportPossibleCrUseOfGameState({
+            error: Error()
+          }), GameState) : GameState).Home);
+        }
+
+        OnStartGame(type) {
+          if (this._gameState == (_crd && GameState === void 0 ? (_reportPossibleCrUseOfGameState({
+            error: Error()
+          }), GameState) : GameState).Playing) {
+            return;
+          }
+
+          this.SetGameState((_crd && GameState === void 0 ? (_reportPossibleCrUseOfGameState({
+            error: Error()
+          }), GameState) : GameState).Playing);
+          (_crd && EventManager === void 0 ? (_reportPossibleCrUseOfEventManager({
+            error: Error()
+          }), EventManager) : EventManager).dispatch((_crd && EventEnum === void 0 ? (_reportPossibleCrUseOfEventEnum({
+            error: Error()
+          }), EventEnum) : EventEnum).OnGameStart, type);
+        }
+
+        OnGameExit() {
+          this.SetGameState((_crd && GameState === void 0 ? (_reportPossibleCrUseOfGameState({
+            error: Error()
+          }), GameState) : GameState).Home);
+        }
+
+        SetGameState(state) {
+          if (state == (_crd && GameState === void 0 ? (_reportPossibleCrUseOfGameState({
+            error: Error()
+          }), GameState) : GameState).Home) {
+            this.node.active = true;
+          } else if (state == (_crd && GameState === void 0 ? (_reportPossibleCrUseOfGameState({
+            error: Error()
+          }), GameState) : GameState).Playing) {
+            this.node.active = false;
+          }
+        }
+
+      }) || _class));
+
+      _cclegacy._RF.pop();
+
+      _crd = false;
+    }
+  };
+});
+//# sourceMappingURL=dcb7b66f7c801947b955fc2cddc2fb790839f77c.js.map

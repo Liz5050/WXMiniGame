@@ -1,0 +1,86 @@
+System.register(["__unresolved_0", "cc", "__unresolved_1", "__unresolved_2", "__unresolved_3", "__unresolved_4", "__unresolved_5"], function (_export, _context) {
+  "use strict";
+
+  var _reporterNs, _cclegacy, GameGridController, GameNumberController, GameShulteController, SceneManager, SoundManager, Mgr, _crd;
+
+  function _reportPossibleCrUseOfGameGridController(extras) {
+    _reporterNs.report("GameGridController", "../game/gameGrid/GameGridController", _context.meta, extras);
+  }
+
+  function _reportPossibleCrUseOfGameNumberController(extras) {
+    _reporterNs.report("GameNumberController", "../game/gameNumber/GameNumberController", _context.meta, extras);
+  }
+
+  function _reportPossibleCrUseOfGameShulteController(extras) {
+    _reporterNs.report("GameShulteController", "../game/gameShulte/GameShulteController", _context.meta, extras);
+  }
+
+  function _reportPossibleCrUseOfSceneManager(extras) {
+    _reporterNs.report("SceneManager", "./SceneManager", _context.meta, extras);
+  }
+
+  function _reportPossibleCrUseOfSoundManager(extras) {
+    _reporterNs.report("SoundManager", "./SoundManager", _context.meta, extras);
+  }
+
+  _export("default", void 0);
+
+  return {
+    setters: [function (_unresolved_) {
+      _reporterNs = _unresolved_;
+    }, function (_cc) {
+      _cclegacy = _cc.cclegacy;
+    }, function (_unresolved_2) {
+      GameGridController = _unresolved_2.default;
+    }, function (_unresolved_3) {
+      GameNumberController = _unresolved_3.default;
+    }, function (_unresolved_4) {
+      GameShulteController = _unresolved_4.default;
+    }, function (_unresolved_5) {
+      SceneManager = _unresolved_5.SceneManager;
+    }, function (_unresolved_6) {
+      SoundManager = _unresolved_6.default;
+    }],
+    execute: function () {
+      _crd = true;
+
+      _cclegacy._RF.push({}, "99ac55cqdtDb7pHu3bfqDaw", "Mgr", undefined);
+
+      _export("default", Mgr = class Mgr {
+        static Init() {
+          if (Mgr.isInit) return;
+          Mgr.InitCtrl();
+          Mgr.soundMgr = new (_crd && SoundManager === void 0 ? (_reportPossibleCrUseOfSoundManager({
+            error: Error()
+          }), SoundManager) : SoundManager)();
+          Mgr.sceneMgr = new (_crd && SceneManager === void 0 ? (_reportPossibleCrUseOfSceneManager({
+            error: Error()
+          }), SceneManager) : SceneManager)();
+          Mgr.isInit = true;
+        }
+
+        static InitCtrl() {
+          var ctrl = new (_crd && GameShulteController === void 0 ? (_reportPossibleCrUseOfGameShulteController({
+            error: Error()
+          }), GameShulteController) : GameShulteController)();
+          var ctrl2 = new (_crd && GameGridController === void 0 ? (_reportPossibleCrUseOfGameGridController({
+            error: Error()
+          }), GameGridController) : GameGridController)();
+          new (_crd && GameNumberController === void 0 ? (_reportPossibleCrUseOfGameNumberController({
+            error: Error()
+          }), GameNumberController) : GameNumberController)();
+        }
+
+      });
+
+      Mgr.soundMgr = void 0;
+      Mgr.sceneMgr = void 0;
+      Mgr.isInit = false;
+
+      _cclegacy._RF.pop();
+
+      _crd = false;
+    }
+  };
+});
+//# sourceMappingURL=245363a78b46473f87d462a040abbcf2726281e8.js.map

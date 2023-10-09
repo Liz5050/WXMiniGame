@@ -1,0 +1,305 @@
+System.register(["__unresolved_0", "cc", "__unresolved_1", "__unresolved_2", "__unresolved_3"], function (_export, _context) {
+  "use strict";
+
+  var _reporterNs, _cclegacy, __checkObsolete__, __checkObsoleteInNamespace__, _decorator, Button, Component, instantiate, Label, resources, UITransform, GameShulteBeginView, Mgr, ShulteGridItem, _dec, _class, _class2, _crd, ccclass, property, GameShulteStartView;
+
+  function _reportPossibleCrUseOfGameShulteBeginView(extras) {
+    _reporterNs.report("GameShulteBeginView", "./GameShulteBeginView", _context.meta, extras);
+  }
+
+  function _reportPossibleCrUseOfMgr(extras) {
+    _reporterNs.report("Mgr", "../../../manager/Mgr", _context.meta, extras);
+  }
+
+  function _reportPossibleCrUseOfShulteGridItem(extras) {
+    _reporterNs.report("ShulteGridItem", "./ShulteGridItem", _context.meta, extras);
+  }
+
+  return {
+    setters: [function (_unresolved_) {
+      _reporterNs = _unresolved_;
+    }, function (_cc) {
+      _cclegacy = _cc.cclegacy;
+      __checkObsolete__ = _cc.__checkObsolete__;
+      __checkObsoleteInNamespace__ = _cc.__checkObsoleteInNamespace__;
+      _decorator = _cc._decorator;
+      Button = _cc.Button;
+      Component = _cc.Component;
+      instantiate = _cc.instantiate;
+      Label = _cc.Label;
+      resources = _cc.resources;
+      UITransform = _cc.UITransform;
+    }, function (_unresolved_2) {
+      GameShulteBeginView = _unresolved_2.GameShulteBeginView;
+    }, function (_unresolved_3) {
+      Mgr = _unresolved_3.default;
+    }, function (_unresolved_4) {
+      ShulteGridItem = _unresolved_4.ShulteGridItem;
+    }],
+    execute: function () {
+      _crd = true;
+
+      _cclegacy._RF.push({}, "2b0c1wHzw5NY4T6FeB5wXbq", "GameShulteStartView", undefined);
+
+      __checkObsolete__(['_decorator', 'Button', 'Component', 'instantiate', 'Label', 'math', 'Node', 'Prefab', 'resources', 'UITransform']);
+
+      ({
+        ccclass,
+        property
+      } = _decorator);
+
+      _export("GameShulteStartView", GameShulteStartView = (_dec = ccclass('GameShulteStartView'), _dec(_class = (_class2 = class GameShulteStartView extends Component {
+        constructor(...args) {
+          super(...args);
+          this._beginNode = void 0;
+          this._gameStartNode = void 0;
+          this._gameContainer = void 0;
+          this._gameContainerSize = void 0;
+          this._itemNodes = [];
+          this._beginView = void 0;
+          // private _ap:AudioPlayer;
+          this._resultNode = void 0;
+          this._txtTime = void 0;
+          this._txtResultTime = void 0;
+          // private _errorAnim:engine.Animation;
+          this._indexList = [];
+          this._curType = void 0;
+          this._num = void 0;
+          this._time = 0;
+          this._deltaTime = 0;
+          this._isOver = true;
+          this._curClickIdx = 0;
+          this._clickRight = void 0;
+        }
+
+        start() {
+          this._beginView = this.getComponent(_crd && GameShulteBeginView === void 0 ? (_reportPossibleCrUseOfGameShulteBeginView({
+            error: Error()
+          }), GameShulteBeginView) : GameShulteBeginView);
+          this._beginNode = this.node.getChildByName("begin");
+          this._gameStartNode = this.node.getChildByName("gameStart");
+          this._gameContainer = this._gameStartNode.getChildByPath("group/gridGroup");
+          this._gameContainerSize = this._gameContainer.getComponent(UITransform).contentSize; // this._ap = Main.FindChild(this.Node,"Sound",AudioPlayer);
+
+          this._resultNode = this._gameStartNode.getChildByName("result");
+          this._txtTime = this._gameStartNode.getChildByName("txtTime").getComponent(Label);
+          this._txtResultTime = this._resultNode.getChildByName("txtResultTime").getComponent(Label); // this._errorAnim = GameUI.FindChild(this.Node,"GameStart/imgError",engine.Animation);
+
+          let self = this;
+
+          let btnExit = this._gameStartNode.getChildByName("btnBack");
+
+          btnExit.on(Button.EventType.CLICK, function () {
+            //退出游戏
+            self.gameExit();
+          });
+
+          let btnAgain = this._resultNode.getChildByName("btnAgain");
+
+          btnAgain.on(Button.EventType.CLICK, function () {
+            //再来一次
+            self.playAgain();
+          });
+        }
+
+        update(dt) {
+          if (this._isOver) return;
+          this._deltaTime += dt; //Time.deltaTime;
+
+          if (this._deltaTime >= 0.1) {
+            this._time += this._deltaTime;
+            let showTime = Math.floor(this._time * 1000) / 1000;
+            this._txtTime.string = showTime + "S";
+            this._deltaTime = 0;
+          }
+        }
+
+        playAgain() {
+          this._resultNode.active = false;
+          this._isOver = false;
+          this.updatePosition();
+        }
+
+        gameExit() {
+          this._curClickIdx = 0;
+          this._isOver = true;
+          this._indexList = [];
+          this.clearItemGrid();
+          this._txtTime.string = "";
+          this._deltaTime = 0;
+          this._time = 0;
+          this._resultNode.active = false;
+          this._gameStartNode.active = false;
+          this._beginNode.active = true;
+
+          this._beginView.gameExit();
+        }
+
+        gameOver() {
+          this._curClickIdx = 0;
+          this._isOver = true;
+          this._resultNode.active = true;
+          this._time = Math.floor(this._time * 1000) / 1000;
+          this._txtResultTime.string = "您的成绩是：" + this._time + "秒";
+          this._txtTime.string = "";
+          this._deltaTime = 0;
+          this._time = 0;
+        }
+
+        onItemClick(clickIdx) {
+          if (this._curClickIdx != clickIdx) {
+            // this._errorAnim.play("ClickError",0,engine.Animation.WrapMode.Once);//Play("ClickError", -1, 0);
+            // this._curClickIdx = 0;//点错一次是否重置点击
+            let stopLast = true;
+
+            if (this._clickRight) {
+              //上次点击如果是正确的，音效不要中断播放
+              stopLast = false;
+            }
+
+            (_crd && Mgr === void 0 ? (_reportPossibleCrUseOfMgr({
+              error: Error()
+            }), Mgr) : Mgr).soundMgr.play("error1", stopLast);
+            this._clickRight = false;
+          } else {
+            //right
+            this._curClickIdx++;
+            this._itemNodes[clickIdx].active = false;
+
+            if (this._curClickIdx >= this._num) {
+              this.gameOver();
+              (_crd && Mgr === void 0 ? (_reportPossibleCrUseOfMgr({
+                error: Error()
+              }), Mgr) : Mgr).soundMgr.play("win");
+            } else {
+              let stopLast = true;
+
+              if (!this._clickRight) {
+                //上次点击如果是错误的，音效不要中断播放
+                stopLast = false;
+              }
+
+              (_crd && Mgr === void 0 ? (_reportPossibleCrUseOfMgr({
+                error: Error()
+              }), Mgr) : Mgr).soundMgr.play("button1", stopLast);
+            }
+
+            this._clickRight = true;
+          }
+        }
+
+        updateGrid() {
+          this._isOver = false;
+          let curType = this._curType; // let offset = this._systemInfo.screenWidth / 1080;
+
+          let width = this._gameContainerSize.width;
+          let curSize = Math.floor(width / curType); // * offset;
+
+          let self = this;
+
+          for (let i = 0; i < this._num; i++) {
+            this._indexList.push(i);
+
+            let itemNode = this.getItemGrid();
+            itemNode.active = true;
+
+            this._gameContainer.addChild(itemNode);
+
+            let tr = itemNode.getComponent(UITransform);
+            tr.width = curSize;
+            tr.height = curSize;
+            itemNode.getComponent(_crd && ShulteGridItem === void 0 ? (_reportPossibleCrUseOfShulteGridItem({
+              error: Error()
+            }), ShulteGridItem) : ShulteGridItem).setIndex(i);
+
+            this._itemNodes.push(itemNode); // let btnCom:engine.UIButton = itemNode.getComponent(engine.UIButton);
+
+
+            itemNode.targetOff(Button.EventType.CLICK);
+            itemNode.on(Button.EventType.CLICK, function () {
+              self.onItemClick(i);
+            });
+          }
+
+          this.updatePosition();
+        }
+
+        updatePosition() {
+          // let curType = this._curType;
+          // let width = this._gameContainerSize.width;
+          // let curSize = Math.floor(width / curType);
+          let showList = [];
+
+          for (let i = 0; i < this._num; i++) {
+            let itemNode = this._itemNodes[i];
+
+            if (!itemNode.active) {
+              itemNode.active = true;
+            }
+
+            let randomIdx = Math.floor(this._indexList.length * Math.random());
+
+            let showIdx = this._indexList.splice(randomIdx, 1)[0];
+
+            showList.push(showIdx); // let col = showIdx % curType;
+            // let row = Math.floor(showIdx / curType);
+            // let x = col * curSize;
+            // let y = row * - curSize;
+            // itemNode.transform2D.position.x = x;
+            // itemNode.transform2D.position.y = y;
+          }
+
+          this._indexList = showList;
+        }
+
+        getItemGrid() {
+          let node = GameShulteStartView.ITEM_POOL.pop();
+
+          if (!node) {
+            let prefabAsset = resources.get("prefab/ShulteGridItem");
+
+            if (prefabAsset) {
+              node = instantiate(prefabAsset);
+            } else {
+              console.log("找不到资源");
+            }
+          }
+
+          return node;
+        }
+
+        clearItemGrid() {
+          for (let i = 0; i < this._itemNodes.length; i++) {
+            let Node = this._itemNodes[i];
+            Node.active = false;
+            GameShulteStartView.ITEM_POOL.push(Node);
+          }
+
+          this._itemNodes = [];
+        }
+
+        startGame(type) {
+          this._curType = type;
+          this._num = type * type;
+          let url = 'prefab/ShulteGridItem';
+
+          if (resources.get(url)) {
+            this.updateGrid();
+          } else {
+            let self = this;
+            resources.load(url, function () {
+              console.log("#######加载成功");
+              self.updateGrid();
+            });
+          }
+        }
+
+      }, _class2.ITEM_POOL = [], _class2)) || _class));
+
+      _cclegacy._RF.pop();
+
+      _crd = false;
+    }
+  };
+});
+//# sourceMappingURL=c546d3ac213cdceb3c64d1860175a02b5c20a71b.js.map

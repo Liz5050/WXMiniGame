@@ -1,0 +1,20 @@
+System.register([], function (_export, _context) {
+  "use strict";
+
+  return {
+    setters: [],
+    execute: function () {
+      // This module is auto-generated to report error emitted when try to load module file:///G:/Work/cocoscreator/MiniGame/assets/script/common/TweenManager.ts at runtime.
+      throw new Error(`SyntaxError: C:\CocosDashboard_2.0.1\file:\G:\Work\cocoscreator\MiniGame\assets\script\common\TweenManager.ts: Unexpected token, expected "(" (162:15)
+
+  160 |         let erropTips = ""
+  161 |         if (typeof(this._target) == "object") then
+> 162 |             if this._target[k] then
+      |                ^
+  163 |                 this.isTargetSelf = true
+  164 |             else
+  165 |                 errorTips = "not found "..k.." in tween target."`);
+    }
+  };
+});
+//# sourceMappingURL=25346d656851fcf28bb38bd604a2794e35d2eeb1.js.map

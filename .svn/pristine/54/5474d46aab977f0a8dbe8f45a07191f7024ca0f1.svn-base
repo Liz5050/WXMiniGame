@@ -1,0 +1,43 @@
+System.register(["cc"], function (_export, _context) {
+  "use strict";
+
+  var _cclegacy, Mgr, _crd;
+
+  _export("default", void 0);
+
+  return {
+    setters: [function (_cc) {
+      _cclegacy = _cc.cclegacy;
+    }],
+    execute: function () {
+      _crd = true;
+
+      _cclegacy._RF.push({}, "99ac55cqdtDb7pHu3bfqDaw", "Mgr", undefined);
+
+      _export("default", Mgr = class Mgr {
+        static Init() {
+          if (Mgr.isInit) return;
+          Mgr.InitCtrl();
+          Mgr.soundMgr = new SoundManager();
+          Mgr.gameMgr = new GameManager();
+          Mgr.isInit = true;
+        }
+
+        static InitCtrl() {
+          var ctrl = new GameShulteController();
+          var ctrl2 = new GameGridController();
+        }
+
+      });
+
+      Mgr.soundMgr = void 0;
+      Mgr.gameMgr = void 0;
+      Mgr.isInit = false;
+
+      _cclegacy._RF.pop();
+
+      _crd = false;
+    }
+  };
+});
+//# sourceMappingURL=971d03ecb0b17dfaa76d50218a17b6d18b643f8d.js.map

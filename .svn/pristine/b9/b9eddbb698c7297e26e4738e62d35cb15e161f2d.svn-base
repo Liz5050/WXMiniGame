@@ -1,0 +1,76 @@
+System.register(["__unresolved_0", "cc", "__unresolved_1", "__unresolved_2", "__unresolved_3"], function (_export, _context) {
+  "use strict";
+
+  var _reporterNs, _cclegacy, __checkObsolete__, __checkObsoleteInNamespace__, GameType, EventEnum, EventManager, utils, GameShulteController, _crd;
+
+  function _reportPossibleCrUseOfGameType(extras) {
+    _reporterNs.report("GameType", "../../enum/GameType", _context.meta, extras);
+  }
+
+  function _reportPossibleCrUseOfEventEnum(extras) {
+    _reporterNs.report("EventEnum", "../../enum/EventEnum", _context.meta, extras);
+  }
+
+  function _reportPossibleCrUseOfEventManager(extras) {
+    _reporterNs.report("EventManager", "../../manager/EventManager", _context.meta, extras);
+  }
+
+  _export("default", void 0);
+
+  return {
+    setters: [function (_unresolved_) {
+      _reporterNs = _unresolved_;
+    }, function (_cc) {
+      _cclegacy = _cc.cclegacy;
+      __checkObsolete__ = _cc.__checkObsolete__;
+      __checkObsoleteInNamespace__ = _cc.__checkObsoleteInNamespace__;
+      utils = _cc.utils;
+    }, function (_unresolved_2) {
+      GameType = _unresolved_2.GameType;
+    }, function (_unresolved_3) {
+      EventEnum = _unresolved_3.EventEnum;
+    }, function (_unresolved_4) {
+      EventManager = _unresolved_4.EventManager;
+    }],
+    execute: function () {
+      _crd = true;
+
+      _cclegacy._RF.push({}, "daa42tKp1BHCoqIkL8HDt2r", "GameShulteController", undefined);
+
+      __checkObsolete__(['Node', 'utils']);
+
+      _export("default", GameShulteController = class GameShulteController {
+        constructor() {
+          this._gameShulte = void 0;
+          this.init();
+        }
+
+        init() {
+          (_crd && EventManager === void 0 ? (_reportPossibleCrUseOfEventManager({
+            error: Error()
+          }), EventManager) : EventManager).addListener((_crd && EventEnum === void 0 ? (_reportPossibleCrUseOfEventEnum({
+            error: Error()
+          }), EventEnum) : EventEnum).OnGameStart, this.onGameStart, this);
+        }
+
+        onGameStart(type) {
+          if (type != (_crd && GameType === void 0 ? (_reportPossibleCrUseOfGameType({
+            error: Error()
+          }), GameType) : GameType).Shulte) return;
+
+          if (!this._gameShulte) {
+            this._gameShulte = utils.find("Main/Game/GameShulte"); //GameUI.FindChild(engine.game.activeScene2D.root,"Main/GameManager/GameContainer/GameShulte");
+          }
+
+          this._gameShulte.active = true;
+        }
+
+      });
+
+      _cclegacy._RF.pop();
+
+      _crd = false;
+    }
+  };
+});
+//# sourceMappingURL=da7a367b2e0b917925cdf150168fc80e33926641.js.map

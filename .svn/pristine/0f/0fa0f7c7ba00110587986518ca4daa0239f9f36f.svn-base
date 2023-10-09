@@ -1,0 +1,678 @@
+System.register(["__unresolved_0", "cc", "__unresolved_1", "__unresolved_2", "__unresolved_3", "__unresolved_4", "__unresolved_5"], function (_export, _context) {
+  "use strict";
+
+  var _reporterNs, _cclegacy, __checkObsolete__, __checkObsoleteInNamespace__, _decorator, Button, Component, instantiate, Label, math, Node, NodeEventType, resources, EventManager, EventEnum, TweenManager, Mgr, GameType, MapGridItem, BtnPreviewGrid, _dec, _class, _crd, ccclass, property, GameGridStartView;
+
+  function _reportPossibleCrUseOfEventManager(extras) {
+    _reporterNs.report("EventManager", "../../../manager/EventManager", _context.meta, extras);
+  }
+
+  function _reportPossibleCrUseOfEventEnum(extras) {
+    _reporterNs.report("EventEnum", "../../../enum/EventEnum", _context.meta, extras);
+  }
+
+  function _reportPossibleCrUseOfTweenManager(extras) {
+    _reporterNs.report("TweenManager", "../../../common/TweenManager", _context.meta, extras);
+  }
+
+  function _reportPossibleCrUseOfMgr(extras) {
+    _reporterNs.report("Mgr", "../../../manager/Mgr", _context.meta, extras);
+  }
+
+  function _reportPossibleCrUseOfGameType(extras) {
+    _reporterNs.report("GameType", "../../../enum/GameType", _context.meta, extras);
+  }
+
+  _export("MapGridItem", void 0);
+
+  return {
+    setters: [function (_unresolved_) {
+      _reporterNs = _unresolved_;
+    }, function (_cc) {
+      _cclegacy = _cc.cclegacy;
+      __checkObsolete__ = _cc.__checkObsolete__;
+      __checkObsoleteInNamespace__ = _cc.__checkObsoleteInNamespace__;
+      _decorator = _cc._decorator;
+      Button = _cc.Button;
+      Component = _cc.Component;
+      instantiate = _cc.instantiate;
+      Label = _cc.Label;
+      math = _cc.math;
+      Node = _cc.Node;
+      NodeEventType = _cc.NodeEventType;
+      resources = _cc.resources;
+    }, function (_unresolved_2) {
+      EventManager = _unresolved_2.EventManager;
+    }, function (_unresolved_3) {
+      EventEnum = _unresolved_3.EventEnum;
+    }, function (_unresolved_4) {
+      TweenManager = _unresolved_4.default;
+    }, function (_unresolved_5) {
+      Mgr = _unresolved_5.default;
+    }, function (_unresolved_6) {
+      GameType = _unresolved_6.GameType;
+    }],
+    execute: function () {
+      _crd = true;
+
+      _cclegacy._RF.push({}, "69e67CI+7tHQbqXh4SVvSKk", "GameGridStartView", undefined);
+
+      __checkObsolete__(['_decorator', 'Button', 'Component', 'EventHandler', 'EventTouch', 'instantiate', 'Label', 'math', 'Node', 'NodeEventType', 'Prefab', 'resources', 'Tween', 'tween']);
+
+      ({
+        ccclass,
+        property
+      } = _decorator);
+
+      _export("GameGridStartView", GameGridStartView = (_dec = ccclass('GameGridStartView'), _dec(_class = class GameGridStartView extends Component {
+        constructor() {
+          super(...arguments);
+          this._previewGrid1 = void 0;
+          this._previewGrid2 = void 0;
+          this._previewGrid3 = void 0;
+          this._txtScore = void 0;
+          this._mapItemList = void 0;
+          this._mapContainer = void 0;
+          this._rightCount = 0;
+          this._score = 0;
+          this._endCheckLocalPos = void 0;
+        }
+
+        update(dt) {}
+
+        start() {
+          console.log("onGameGridStart");
+          this._mapContainer = this.node.getChildByPath("gridMap/items");
+          this._previewGrid1 = new BtnPreviewGrid(this.node.getChildByName("BtnPreviewGrid1"));
+          this._previewGrid1.gridIndex = 1;
+          this._previewGrid2 = new BtnPreviewGrid(this.node.getChildByName("BtnPreviewGrid2"));
+          this._previewGrid2.gridIndex = 2;
+          this._previewGrid3 = new BtnPreviewGrid(this.node.getChildByName("BtnPreviewGrid3"));
+          this._previewGrid3.gridIndex = 3;
+          this._txtScore = this.node.getChildByName("txtScore").getComponent(Label);
+          this._txtScore.string = "0";
+          var btnExit = this.node.getChildByName("btnExit");
+          var self = this;
+          btnExit.on(Button.EventType.CLICK, function () {
+            //退出前回到初始化状态
+            self.uploadScore();
+            self.exitClear();
+            (_crd && EventManager === void 0 ? (_reportPossibleCrUseOfEventManager({
+              error: Error()
+            }), EventManager) : EventManager).dispatch((_crd && EventEnum === void 0 ? (_reportPossibleCrUseOfEventEnum({
+              error: Error()
+            }), EventEnum) : EventEnum).OnGameExit, (_crd && GameType === void 0 ? (_reportPossibleCrUseOfGameType({
+              error: Error()
+            }), GameType) : GameType).Grid);
+          });
+          this.initMapGrid();
+          (_crd && EventManager === void 0 ? (_reportPossibleCrUseOfEventManager({
+            error: Error()
+          }), EventManager) : EventManager).addListener((_crd && EventEnum === void 0 ? (_reportPossibleCrUseOfEventEnum({
+            error: Error()
+          }), EventEnum) : EventEnum).OnGameGridTouchEnd, this.OnTouchEndCheck, this);
+          (_crd && EventManager === void 0 ? (_reportPossibleCrUseOfEventManager({
+            error: Error()
+          }), EventManager) : EventManager).addListener((_crd && EventEnum === void 0 ? (_reportPossibleCrUseOfEventEnum({
+            error: Error()
+          }), EventEnum) : EventEnum).OnGameGridReqNextPreview, this.OnReqNextPreview, this);
+        }
+
+        uploadScore() {// wx.cloud.init();
+          // let db = wx.cloud.database()
+          // let rankData = db.collection('gamegrid_rank');
+          // console.log("获取排行榜数据",rankData);
+          // let openDataContext = wx.getOpenDataContext();
+          // let userStorage = wx.getUserCloudStorage()
+          // console.log("获取用户托管数据",userStorage);
+          // const score = this._score;//Math.floor(Math.random() * 100)
+          // wx.setUserCloudStorage({
+          // KVDataList: [
+          //         {
+          //             key: 'rankid',
+          //             value: JSON.stringify({
+          //                 wxgame: {
+          //                 score: String(score),
+          //                 update_time: String(+ new Date() / 1000)
+          //                 }
+          //             })
+          //         },
+          //     ],
+          //     success: () => {
+          //         wx.showToast({
+          //             title: `分数上报成功: ${score}分`,
+          //             icon: 'none',
+          //             duration: 2000
+          //         })
+          //         console.log('上传成功')
+          //     },
+          //     fail: (res) => {
+          //         console.log(res)
+          //     }
+          // })
+        }
+
+        initMapGrid() {
+          this._mapItemList = [];
+
+          for (var row = 0; row < 10; row++) {
+            for (var col = 0; col < 10; col++) {
+              if (!this._mapItemList[row]) {
+                this._mapItemList[row] = [];
+              }
+
+              var item = new MapGridItem();
+              this._mapItemList[row][col] = item;
+              item.init(col, row, this._mapContainer);
+            }
+          }
+        }
+
+        OnReqNextPreview() {
+          this._previewGrid1.updatePreviewGrid();
+
+          this._previewGrid2.updatePreviewGrid();
+
+          this._previewGrid3.updatePreviewGrid();
+        }
+
+        OnTouchEndCheck(index, gridList) {
+          if (!this._endCheckLocalPos) {
+            this._endCheckLocalPos = new math.Vec3();
+          }
+
+          var num = gridList.length;
+          var emptyNum = 0;
+          var itemArr = [];
+
+          for (var i = 0; i < num; i++) {
+            var grid = gridList[i]; //GameUI.FindChild(randomGrid,"grid" + i);
+
+            this._mapContainer.inverseTransformPoint(this._endCheckLocalPos, grid.worldPosition); // console.log("坐标转换" + i + "----x：" + localPos.x + "----y：" + localPos.y)
+
+
+            if (this._endCheckLocalPos.x >= -500 && this._endCheckLocalPos.x <= 500 && this._endCheckLocalPos.y >= -500 && this._endCheckLocalPos.y <= 500) {
+              //在范围内，进一步检测对应网格是否是空位
+              var idx = this.ConvertXYToIndex(this._endCheckLocalPos.x, this._endCheckLocalPos.y); // console.log("坐标转换行列值" + i + "----col：" + idx[0] + "----row：" + idx[1]);
+
+              var item = this._mapItemList[idx[1]][idx[0]];
+
+              if (item.isEmpty) {
+                emptyNum++;
+                itemArr.push(item);
+              } else {
+                //存在非空网格
+                break;
+              }
+            } else {
+              //不在网格地图范围内
+              break;
+            }
+          }
+
+          var checkListX = [];
+          var checkListY = [];
+
+          if (emptyNum == num) {
+            for (var _i = 0; _i < itemArr.length; _i++) {
+              itemArr[_i].setEmpty(false);
+
+              var col = itemArr[_i].col;
+              var row = itemArr[_i].row;
+
+              if (checkListX.indexOf(col) == -1) {
+                checkListX.push(col);
+              }
+
+              if (checkListY.indexOf(row) == -1) {
+                checkListY.push(row);
+              }
+            }
+
+            this._rightCount++;
+          }
+
+          this["_previewGrid" + index].UpdateTouchEndResult(emptyNum == num, itemArr);
+
+          if (this._rightCount >= 3) {
+            this._rightCount = 0;
+            this.OnReqNextPreview();
+          }
+
+          for (var _i2 = checkListX.length - 1; _i2 >= 0; _i2--) {
+            var _col = checkListX[_i2];
+
+            for (var _row = 0; _row < 10; _row++) {
+              if (this._mapItemList[_row][_col].isEmpty) {
+                checkListX.splice(_i2, 1);
+                break;
+              }
+            }
+          }
+
+          for (var _i3 = checkListY.length - 1; _i3 >= 0; _i3--) {
+            var _row2 = checkListY[_i3];
+
+            for (var _col2 = 0; _col2 < 10; _col2++) {
+              if (this._mapItemList[_row2][_col2].isEmpty) {
+                checkListY.splice(_i3, 1);
+                break;
+              }
+            }
+          }
+
+          var canRemove = false;
+          var lenX = checkListX.length;
+          var lenY = checkListY.length;
+
+          for (var _i4 = 0; _i4 < lenX; _i4++) {
+            var _col3 = checkListX[_i4];
+
+            for (var _row3 = 0; _row3 < 10; _row3++) {
+              this._mapItemList[_row3][_col3].setEmpty(true, true, 1); //1、纵向消除
+
+
+              canRemove = true;
+            }
+          }
+
+          for (var _i5 = 0; _i5 < lenY; _i5++) {
+            var _row4 = checkListY[_i5];
+
+            for (var _col4 = 0; _col4 < 10; _col4++) {
+              this._mapItemList[_row4][_col4].setEmpty(true, true, 2); //2、横向消除
+
+
+              canRemove = true;
+            }
+          }
+
+          this._score += lenX + lenY;
+          this._txtScore.string = this._score + "";
+          if (canRemove) (_crd && Mgr === void 0 ? (_reportPossibleCrUseOfMgr({
+            error: Error()
+          }), Mgr) : Mgr).soundMgr.play("crrect_answer3"); //存在可消除的行or列
+        } //局部坐标转换为网格索引
+
+
+        ConvertXYToIndex(posX, posY) {
+          var col = Math.round((posX + 450) / 100);
+          var row = Math.round(Math.abs(posY - 450) / 100);
+          return [col, row];
+        }
+
+        OnGameStart() {
+          this._score = 0;
+          this._txtScore.string = "0";
+          this.OnReqNextPreview();
+        }
+
+        exitClear() {
+          this._rightCount = 0;
+          this.node.active = false;
+          this._txtScore.string = "0";
+          this._score = 0;
+
+          for (var i = 0; i < this._mapItemList.length; i++) {
+            for (var k = 0; k < this._mapItemList[i].length; k++) {
+              this._mapItemList[i][k].setEmpty(true);
+            }
+          }
+        }
+
+      }) || _class));
+
+      _export("MapGridItem", MapGridItem = class MapGridItem {
+        constructor() {
+          this._col = void 0;
+          this._row = void 0;
+          this._posX = void 0;
+          this._posY = void 0;
+          this._itemEntity = void 0;
+          this._container = void 0;
+          this._posArr = void 0;
+          this._isEmpty = true;
+          this._playTween = void 0;
+        }
+
+        consturctor() {}
+
+        init(col, row, container) {
+          this._col = col;
+          this._row = row;
+          this._posX = -450 + col * 100;
+          this._posY = 450 - row * 100;
+          this._posArr = [this._posX, this._posY];
+          this._container = container;
+        }
+
+        initUI() {
+          var url = "prefab/GameGridMapItem";
+          var prefabAsset = resources.get(url);
+
+          if (prefabAsset) {
+            this._itemEntity = instantiate(prefabAsset);
+
+            this._container.addChild(this._itemEntity);
+
+            this._itemEntity.setPosition(this._posX, this._posY);
+          }
+        }
+
+        get isEmpty() {
+          return this._isEmpty;
+        }
+
+        setEmpty(bool, playTween, col_row) {
+          if (playTween === void 0) {
+            playTween = false;
+          }
+
+          if (col_row === void 0) {
+            col_row = 1;
+          }
+
+          this._isEmpty = bool;
+
+          if (!bool) {
+            if (this._itemEntity) {
+              this.clearTween();
+              this._itemEntity.active = true;
+            } else {
+              this.initUI();
+            }
+          } else {
+            if (this._itemEntity) {
+              if (playTween) {
+                if (!this._playTween) {
+                  this._playTween = true;
+                  var index = col_row == 1 ? this._row : this._col;
+                  (_crd && TweenManager === void 0 ? (_reportPossibleCrUseOfTweenManager({
+                    error: Error()
+                  }), TweenManager) : TweenManager).addTween(this._itemEntity).wait(50 * index).to({
+                    scaleX: 2,
+                    scaleY: 2
+                  }, 50).to({
+                    x: 0,
+                    y: 0
+                  }, 100);
+                }
+              } else {
+                this.clearTween();
+                this._itemEntity.active = false;
+              }
+            }
+          }
+        }
+
+        clearTween() {
+          if (this._playTween) {
+            (_crd && TweenManager === void 0 ? (_reportPossibleCrUseOfTweenManager({
+              error: Error()
+            }), TweenManager) : TweenManager).removeTweens(this._itemEntity);
+
+            this._itemEntity.setScale(1, 1);
+
+            this._playTween = false;
+          }
+        }
+
+        get position() {
+          return this._posArr;
+        }
+
+        get col() {
+          return this._col;
+        }
+
+        get row() {
+          return this._row;
+        }
+
+        getItemWorldPos() {
+          if (!this._itemEntity) {
+            return null;
+          }
+
+          return this._itemEntity.getWorldPosition();
+        }
+
+      });
+
+      BtnPreviewGrid = class BtnPreviewGrid {
+        constructor(node) {
+          this._touchMask = void 0;
+          this._preview = void 0;
+          this._previewPos = void 0;
+          this._previewScale = void 0;
+          this._previewX = void 0;
+          //初始X位置
+          this._previewY = void 0;
+          //初始Y位置
+          this._moveStartX = void 0;
+          this._moveStartY = void 0;
+          this._offsetX = void 0;
+          this._offsetY = void 0;
+          this._canMove = void 0;
+          this._gridIndex = void 0;
+          this._randomGrid = void 0;
+          this._lastRandomGrid = void 0;
+          this._gridList = void 0;
+          this._btnGrid = void 0;
+          this._node = void 0;
+          this._node = node;
+          this.initUI();
+        }
+
+        initUI() {
+          this._preview = this._node.getChildByName("preview");
+          this._previewPos = this._preview.getPosition();
+          this._previewScale = this._preview.getScale();
+          this._previewX = this._previewPos.x;
+          this._previewY = this._previewPos.y;
+          this._btnGrid = this._node.getChildByName("btnGrid");
+
+          this._btnGrid.on(Node.EventType.TOUCH_CANCEL, function () {
+            console.log("TOUCH_CANCEL");
+            self.touchEnd();
+          });
+
+          this._btnGrid.on(NodeEventType.TOUCH_END, function () {
+            console.log("TOUCH_END");
+            self.touchEnd();
+          });
+
+          var self = this;
+
+          this._btnGrid.on(NodeEventType.TOUCH_START, function (event) {
+            console.log("TOUCH_START");
+            console.log(event);
+            self.touchStart(event.getLocationX(), event.getLocationY());
+          });
+
+          this._btnGrid.on(NodeEventType.TOUCH_MOVE, function (event) {
+            console.log("TOUCH_MOVE");
+            console.log(event);
+            self.touchMove(event.getLocationX(), event.getLocationY());
+          });
+
+          this._touchMask = this._node.getChildByName("touchMask");
+          this._touchMask.active = false;
+          this.updatePreviewGrid();
+        }
+
+        touchStart(startX, startY) {
+          if (this._canMove) return;
+          this._moveStartX = startX;
+          this._moveStartY = startY + 200;
+          this._offsetX = startX;
+          this._offsetY = startY;
+          var self = this;
+          self._canMove = true;
+          (_crd && TweenManager === void 0 ? (_reportPossibleCrUseOfTweenManager({
+            error: Error()
+          }), TweenManager) : TweenManager).removeTweens(this._preview);
+          (_crd && TweenManager === void 0 ? (_reportPossibleCrUseOfTweenManager({
+            error: Error()
+          }), TweenManager) : TweenManager).addTween(this._preview).to({
+            scaleX: 2,
+            scaleY: 2,
+            x: this._moveStartX,
+            y: this._moveStartY
+          }, 0.1);
+          (_crd && Mgr === void 0 ? (_reportPossibleCrUseOfMgr({
+            error: Error()
+          }), Mgr) : Mgr).soundMgr.play("crrect_answer1", false);
+        }
+
+        touchMove(moveX, moveY) {
+          if (this._canMove) {
+            var offsetX = moveX - this._offsetX;
+            var offsetY = moveY - this._offsetY;
+            var posX = this._moveStartX + offsetX;
+            var posY = this._moveStartY + offsetY;
+
+            this._preview.setPosition(posX, posY);
+          }
+        }
+
+        touchEnd() {
+          if (this._canMove) {
+            this._canMove = false;
+            (_crd && EventManager === void 0 ? (_reportPossibleCrUseOfEventManager({
+              error: Error()
+            }), EventManager) : EventManager).dispatch((_crd && EventEnum === void 0 ? (_reportPossibleCrUseOfEventEnum({
+              error: Error()
+            }), EventEnum) : EventEnum).OnGameGridTouchEnd, this._gridIndex, this._gridList);
+          }
+        }
+
+        UpdateTouchEndResult(isRight, itemList) {
+          var _this = this;
+
+          if (isRight) {
+            this._touchMask.active = true;
+            (_crd && Mgr === void 0 ? (_reportPossibleCrUseOfMgr({
+              error: Error()
+            }), Mgr) : Mgr).soundMgr.play("crrect_answer2", false);
+            var self = this;
+
+            var _loop = function _loop() {
+              var item = itemList[i];
+              var localPos = new math.Vec3();
+
+              _this._randomGrid.inverseTransformPoint(localPos, item.getItemWorldPos());
+
+              var grid = _this._gridList[i];
+              (_crd && TweenManager === void 0 ? (_reportPossibleCrUseOfTweenManager({
+                error: Error()
+              }), TweenManager) : TweenManager).addTween(grid).to({
+                x: localPos.x,
+                y: localPos.y
+              }, 0.1).call(function () {
+                grid.active = false;
+              });
+            };
+
+            for (var i = 0; i < itemList.length; i++) {
+              _loop();
+            }
+          } else {
+            // Mgr.soundMgr.play("error999");
+            (_crd && Mgr === void 0 ? (_reportPossibleCrUseOfMgr({
+              error: Error()
+            }), Mgr) : Mgr).soundMgr.play("mobile_phone_O", false);
+            (_crd && TweenManager === void 0 ? (_reportPossibleCrUseOfTweenManager({
+              error: Error()
+            }), TweenManager) : TweenManager).removeTweens(this._preview);
+            (_crd && TweenManager === void 0 ? (_reportPossibleCrUseOfTweenManager({
+              error: Error()
+            }), TweenManager) : TweenManager).addTween(this._preview).to({
+              x: this._previewX,
+              y: this._previewY,
+              scaleX: 1,
+              scaleY: 1
+            }, 0.1);
+          }
+        }
+
+        set gridIndex(index) {
+          this._gridIndex = index;
+        }
+
+        get gridIndex() {
+          return this._gridIndex;
+        }
+
+        updatePreviewGrid() {
+          this._touchMask.active = false;
+
+          this._preview.setPosition(this._previewX, this._previewY);
+
+          this._preview.setScale(1, 1);
+
+          var gridIdx = 1 + Math.round(Math.random() * 9);
+          var url = "prefab/PreviewGrid" + gridIdx;
+
+          if (resources.get(url)) {
+            this.updatePreview(url);
+          } else {
+            var self = this;
+            resources.load(url, function () {
+              self.updatePreview(url);
+            });
+          }
+        }
+
+        updatePreview(url) {
+          var prefabAsset = resources.get(url);
+          var node;
+
+          if (prefabAsset) {
+            if (this._lastRandomGrid) {
+              this._lastRandomGrid.destroy();
+
+              this._lastRandomGrid = null;
+            }
+
+            if (this._randomGrid) {
+              //保存上一个格子对象，用于完成3个的缓动效果
+              this._lastRandomGrid = this._randomGrid;
+              this._randomGrid.active = false; //隐藏上一个，否则会影响下一个格子的布局位置
+            }
+
+            node = instantiate(prefabAsset);
+
+            this._preview.addChild(node);
+
+            this._randomGrid = node;
+            var num = node.children.length;
+            this._gridList = [];
+
+            for (var i = 1; i <= num; i++) {
+              var grid = node.getChildByName("grid" + i);
+
+              this._gridList.push(grid);
+            }
+
+            if (Math.random() > 0.5) {
+              node.angle = 90; // * Math.PI / 180;
+            }
+
+            var scaleX = Math.random() > 0.5 ? -1 : 1;
+            var scaleY = Math.random() > 0.5 ? -1 : 1;
+            node.setScale(scaleX, scaleY);
+          } else {
+            console.log("找不到资源");
+          }
+        }
+
+      };
+
+      _cclegacy._RF.pop();
+
+      _crd = false;
+    }
+  };
+});
+//# sourceMappingURL=ca4ffb0fde604df9731d9bb17cadcb5eca3a62e9.js.map

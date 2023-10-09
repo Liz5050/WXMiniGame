@@ -1,0 +1,47 @@
+System.register(["cc"], function (_export, _context) {
+  "use strict";
+
+  var _cclegacy, SoundManager, _crd;
+
+  _export("default", void 0);
+
+  return {
+    setters: [function (_cc) {
+      _cclegacy = _cc.cclegacy;
+    }],
+    execute: function () {
+      _crd = true;
+
+      _cclegacy._RF.push({}, "9b5c7cxlqBLULBFwM8IfXs3", "SoundManager", undefined);
+
+      _export("default", SoundManager = class SoundManager {
+        constructor() {
+          this._ap = void 0;
+          this.init();
+        }
+
+        init() {
+          let soundEntity = GameUI.FindChild(engine.game.activeScene2D.root, "Main/SoundManager");
+
+          if (soundEntity) {
+            this._ap = soundEntity.getComponent(AudioPlayer);
+          }
+        }
+
+        setMute(isMute) {
+          this._ap.setMute(isMute);
+        }
+
+        play(audioName, stopLast = true) {
+          this._ap.play(audioName, stopLast);
+        }
+
+      });
+
+      _cclegacy._RF.pop();
+
+      _crd = false;
+    }
+  };
+});
+//# sourceMappingURL=5ca022b4e8138e53cc25c6e560329ddc19af2050.js.map

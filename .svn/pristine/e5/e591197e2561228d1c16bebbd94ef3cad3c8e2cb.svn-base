@@ -1,0 +1,108 @@
+System.register(["cc"], function (_export, _context) {
+  "use strict";
+
+  var _cclegacy, __checkObsolete__, __checkObsoleteInNamespace__, _decorator, Component, AudioSource, resources, _dec, _class, _crd, ccclass, property, AudioPlayer;
+
+  return {
+    setters: [function (_cc) {
+      _cclegacy = _cc.cclegacy;
+      __checkObsolete__ = _cc.__checkObsolete__;
+      __checkObsoleteInNamespace__ = _cc.__checkObsoleteInNamespace__;
+      _decorator = _cc._decorator;
+      Component = _cc.Component;
+      AudioSource = _cc.AudioSource;
+      resources = _cc.resources;
+    }],
+    execute: function () {
+      _crd = true;
+
+      _cclegacy._RF.push({}, "b0ea8ulumpAtqEQSAwVIfVg", "AudioPlayer", undefined);
+
+      __checkObsolete__(['_decorator', 'Component', 'Node', 'AudioSource', 'resources', 'AudioClip']);
+
+      ({
+        ccclass,
+        property
+      } = _decorator);
+
+      _export("AudioPlayer", AudioPlayer = (_dec = ccclass('AudioPlayer'), _dec(_class = class AudioPlayer extends Component {
+        constructor(...args) {
+          super(...args);
+          this._audioPlayers = void 0;
+          this._audioIdx = void 0;
+          this._audioLastIdx = void 0;
+          this._isMute = void 0;
+        }
+
+        start() {
+          this._audioPlayers = [];
+          this._audioIdx = 0;
+          this._audioLastIdx = -1;
+          let audio = this.node.getChildByName("AudioSource1").getComponent(AudioSource);
+
+          this._audioPlayers.push(audio);
+
+          audio = this.node.getChildByName("AudioSource2").getComponent(AudioSource);
+
+          this._audioPlayers.push(audio);
+
+          audio = this.node.getChildByName("AudioSource3").getComponent(AudioSource);
+
+          this._audioPlayers.push(audio); // this._audioPlayer = this.getComponent(engine.AudioSource);
+
+        }
+
+        onUpdate(dt) {}
+
+        play(audioName, stopLast = true) {
+          if (stopLast) {
+            if (this._audioLastIdx >= 0) {
+              this._audioPlayers[this._audioLastIdx].stop();
+
+              this._audioPlayers[this._audioLastIdx].clip = null;
+            }
+          }
+
+          this._audioIdx = this._audioLastIdx + 1;
+          this._audioLastIdx = this._audioIdx;
+
+          if (this._audioIdx >= 3) {
+            this._audioIdx = 0;
+            this._audioLastIdx = 0;
+          }
+
+          let self = this;
+          let url = "audio/" + audioName;
+          let audioClip = resources.get(url);
+          let source = this._audioPlayers[this._audioIdx];
+
+          if (audioClip) {
+            source.clip = audioClip;
+            source.play();
+          } else {
+            resources.load(url, function (error, audio) {
+              source.clip = audio;
+              source.play();
+            });
+          }
+        }
+
+        setMute(isMute) {
+          this._isMute = isMute;
+
+          for (let i = 0; i < this._audioPlayers.length; i++) {
+            this._audioPlayers[i].volume = isMute ? 0 : 1;
+          }
+        }
+
+        onDestroy() {}
+
+      }) || _class));
+
+      _cclegacy._RF.pop();
+
+      _crd = false;
+    }
+  };
+});
+//# sourceMappingURL=1171add72930d55b98ea5930c619ded4c28df905.js.map

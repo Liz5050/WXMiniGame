@@ -1,0 +1,50 @@
+[
+    1,
+    [
+        "c89m0XNRpI2qEsAhLShXXE"
+    ],
+    [
+        "_effectAsset"
+    ],
+    [
+        [
+            "cc.Material",
+            [
+                "_name",
+                "_props"
+            ],
+            1
+        ]
+    ],
+    [
+        [
+            0,
+            0,
+            1,
+            3
+        ]
+    ],
+    [
+        [
+            0,
+            "standard-material",
+            [
+                {
+                    "roughness": 0.8,
+                    "metallic": 0.6
+                }
+            ]
+        ]
+    ],
+    0,
+    0,
+    [
+        0
+    ],
+    [
+        0
+    ],
+    [
+        0
+    ]
+]

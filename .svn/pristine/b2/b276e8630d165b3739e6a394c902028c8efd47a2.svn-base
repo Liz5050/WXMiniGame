@@ -1,0 +1,15 @@
+import { _decorator, Component } from 'cc';
+import Mgr from './manager/Mgr';
+const { ccclass, property } = _decorator;
+
+@ccclass('Main')
+export class Main extends Component {
+    start() {
+        Mgr.Init();
+    }
+
+    update(deltaTime: number) {
+    }
+}
+
+

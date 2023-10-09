@@ -1,0 +1,64 @@
+2023-9-15 00:58:19-debug: asset-db:worker-init (2374ms)
+2023-9-15 00:58:19-debug: Preimport db internal success
+2023-9-15 00:58:19-debug: Preimport db assets success
+2023-9-15 00:58:21-debug: asset-db:worker-effect-data-processing (1386ms)
+2023-9-15 00:58:28-debug: Set detail map pack:///resolution-detail-map.json: {}
+2023-9-15 00:58:28-debug: Start up the 'internal' database...
+2023-9-15 00:58:28-debug: asset-db:worker-init-script (4260ms)
+2023-9-15 00:58:29-debug: start asset-db with asset: 419
+2023-9-15 00:58:29-debug: Start up the 'assets' database...
+2023-9-15 00:58:29-debug: asset-db:worker-startup-database[internal] (11251ms)
+2023-9-15 00:58:29-debug: start asset-db with asset: 66
+2023-9-15 00:58:29-debug: Asset DB is ready!
+2023-9-15 00:58:29-debug: asset-db:worker-startup-database[assets] (10020ms)
+2023-9-15 00:58:29-debug: init worker message success
+2023-9-15 00:58:31-debug: builder:worker-init (1462ms)
+2023-9-15 00:58:33-debug: programming:execute-script (2ms)
+2023-9-15 01:01:15-debug: refresh db internal success
+2023-9-15 01:01:15-debug: asset-db:worker-effect-data-processing (143ms)
+2023-9-15 01:01:15-debug: refresh db assets success
+2023-9-15 01:01:15-debug: asset-db:refresh-all-database (191ms)
+2023-9-15 01:01:48-debug: refresh db internal success
+2023-9-15 01:01:48-debug: asset-db:worker-effect-data-processing (140ms)
+2023-9-15 01:01:48-debug: refresh db assets success
+2023-9-15 01:01:48-debug: asset-db:refresh-all-database (184ms)
+2023-9-15 01:03:57-debug: refresh db internal success
+2023-9-15 01:03:57-debug: asset-db:worker-effect-data-processing (151ms)
+2023-9-15 01:03:57-debug: refresh db assets success
+2023-9-15 01:03:57-debug: asset-db:refresh-all-database (200ms)
+2023-9-15 01:51:42-debug: refresh db internal success
+2023-9-15 01:51:42-debug: asset-db:worker-effect-data-processing (197ms)
+2023-9-15 01:51:42-debug: refresh db assets success
+2023-9-15 01:51:42-debug: asset-db:refresh-all-database (266ms)
+2023-9-15 01:51:52-debug: refresh db internal success
+2023-9-15 01:51:53-debug: asset-db:worker-effect-data-processing (114ms)
+2023-9-15 01:51:53-debug: refresh db assets success
+2023-9-15 01:51:53-debug: asset-db:refresh-all-database (152ms)
+2023-9-15 01:52:19-debug: refresh db internal success
+2023-9-15 01:52:19-debug: asset-db:worker-effect-data-processing (143ms)
+2023-9-15 01:52:19-debug: refresh db assets success
+2023-9-15 01:52:19-debug: asset-db:refresh-all-database (181ms)
+2023-9-15 02:06:50-debug: refresh db internal success
+2023-9-15 02:06:50-debug: asset-db:worker-effect-data-processing (151ms)
+2023-9-15 02:06:50-debug: refresh db assets success
+2023-9-15 02:06:50-debug: asset-db:refresh-all-database (201ms)
+2023-9-15 02:07:48-debug: refresh db internal success
+2023-9-15 02:07:48-debug: asset-db:worker-effect-data-processing (140ms)
+2023-9-15 02:07:48-debug: refresh db assets success
+2023-9-15 02:07:48-debug: asset-db:refresh-all-database (178ms)
+2023-9-15 02:17:02-debug: refresh db internal success
+2023-9-15 02:17:02-debug: asset-db:worker-effect-data-processing (141ms)
+2023-9-15 02:17:02-debug: refresh db assets success
+2023-9-15 02:17:02-debug: asset-db:refresh-all-database (177ms)
+2023-9-15 03:50:47-debug: refresh db internal success
+2023-9-15 03:50:47-debug: asset-db:worker-effect-data-processing (168ms)
+2023-9-15 03:50:47-debug: refresh db assets success
+2023-9-15 03:50:47-debug: asset-db:refresh-all-database (265ms)
+2023-9-15 03:50:51-debug: refresh db internal success
+2023-9-15 03:50:51-debug: asset-db:worker-effect-data-processing (108ms)
+2023-9-15 03:50:51-debug: refresh db assets success
+2023-9-15 03:50:51-debug: asset-db:refresh-all-database (146ms)
+2023-9-15 03:50:56-debug: refresh db internal success
+2023-9-15 03:50:56-debug: asset-db:worker-effect-data-processing (105ms)
+2023-9-15 03:50:56-debug: refresh db assets success
+2023-9-15 03:50:56-debug: asset-db:refresh-all-database (139ms)

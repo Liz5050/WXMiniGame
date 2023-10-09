@@ -1,0 +1,74 @@
+System.register(["__unresolved_0", "cc", "__unresolved_1", "__unresolved_2", "__unresolved_3"], function (_export, _context) {
+  "use strict";
+
+  var _reporterNs, _cclegacy, __checkObsolete__, __checkObsoleteInNamespace__, _decorator, Button, Component, EventManager, EventEnum, GameType, _dec, _class, _crd, ccclass, property, GameNumberStartView;
+
+  function _reportPossibleCrUseOfEventManager(extras) {
+    _reporterNs.report("EventManager", "../../../manager/EventManager", _context.meta, extras);
+  }
+
+  function _reportPossibleCrUseOfEventEnum(extras) {
+    _reporterNs.report("EventEnum", "../../../enum/EventEnum", _context.meta, extras);
+  }
+
+  function _reportPossibleCrUseOfGameType(extras) {
+    _reporterNs.report("GameType", "../../../enum/GameType", _context.meta, extras);
+  }
+
+  return {
+    setters: [function (_unresolved_) {
+      _reporterNs = _unresolved_;
+    }, function (_cc) {
+      _cclegacy = _cc.cclegacy;
+      __checkObsolete__ = _cc.__checkObsolete__;
+      __checkObsoleteInNamespace__ = _cc.__checkObsoleteInNamespace__;
+      _decorator = _cc._decorator;
+      Button = _cc.Button;
+      Component = _cc.Component;
+    }, function (_unresolved_2) {
+      EventManager = _unresolved_2.EventManager;
+    }, function (_unresolved_3) {
+      EventEnum = _unresolved_3.EventEnum;
+    }, function (_unresolved_4) {
+      GameType = _unresolved_4.GameType;
+    }],
+    execute: function () {
+      _crd = true;
+
+      _cclegacy._RF.push({}, "935fdpnHy9CO56OGAlbKVIf", "GameNumberStartView", undefined);
+
+      __checkObsolete__(['_decorator', 'Button', 'Component', 'Node']);
+
+      ({
+        ccclass,
+        property
+      } = _decorator);
+
+      _export("GameNumberStartView", GameNumberStartView = (_dec = ccclass('GameNumberStartView'), _dec(_class = class GameNumberStartView extends Component {
+        start() {
+          var self = this;
+          var btnExit = this.node.getChildByName("btnExit");
+          btnExit.on(Button.EventType.CLICK, function () {
+            //退出前回到初始化状态
+            self.node.active = false;
+            (_crd && EventManager === void 0 ? (_reportPossibleCrUseOfEventManager({
+              error: Error()
+            }), EventManager) : EventManager).dispatch((_crd && EventEnum === void 0 ? (_reportPossibleCrUseOfEventEnum({
+              error: Error()
+            }), EventEnum) : EventEnum).OnGameExit, (_crd && GameType === void 0 ? (_reportPossibleCrUseOfGameType({
+              error: Error()
+            }), GameType) : GameType).Nullify);
+          });
+        }
+
+        update(deltaTime) {}
+
+      }) || _class));
+
+      _cclegacy._RF.pop();
+
+      _crd = false;
+    }
+  };
+});
+//# sourceMappingURL=5916723d6e9837b711736eaa3d65a543ca959c9f.js.map

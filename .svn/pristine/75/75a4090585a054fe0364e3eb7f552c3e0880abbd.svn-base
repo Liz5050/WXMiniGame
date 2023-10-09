@@ -1,0 +1,141 @@
+System.register(["cc"], function (_export, _context) {
+  "use strict";
+
+  var _cclegacy, EventManager, _crd;
+
+  _export("EventManager", void 0);
+
+  return {
+    setters: [function (_cc) {
+      _cclegacy = _cc.cclegacy;
+    }],
+    execute: function () {
+      _crd = true;
+
+      _cclegacy._RF.push({}, "f71fbEVJ8ZPWLql8qocTil7", "EventManager", undefined);
+
+      /**
+       * 事件管理
+       */
+      _export("EventManager", EventManager = class EventManager {
+        /**
+            * 添加消息监听
+            * @param name 消息唯一标识
+            * @param listener 侦听函数
+            * @param listenerObj 侦听函数所属对象
+            *
+            */
+        static addListener(name, listener, listenerObj) {
+          if (!name) {
+            return;
+          }
+
+          if (this.events[name] == null) {
+            this.events[name] = [];
+          }
+
+          if (!this.isExist(name, listener, listenerObj)) {
+            this.events[name].push({
+              "listener": listener,
+              "listenerObj": listenerObj
+            });
+          }
+        }
+        /**
+            * 移除消息监听
+            * @param name 消息唯一标识
+            * @param listener 侦听函数
+            * @param listenerObj 侦听函数所属对象
+            */
+
+
+        static removeListener(name, listener, listenerObj) {
+          if (!name) {
+            return;
+          }
+
+          var arr = this.events[name];
+
+          if (arr == null) {
+            return;
+          }
+
+          var i = 0;
+          var len = arr.length;
+
+          for (i; i < len; i++) {
+            if (arr[i]["listener"] == listener && arr[i]["listenerObj"] == listenerObj) {
+              arr.splice(i, 1);
+              break;
+            }
+          }
+
+          if (arr.length == 0) {
+            this.events[name] = null;
+            delete this.events[name];
+          }
+        }
+        /**
+         * 消息是否存在
+         */
+
+
+        static isExist(name, listener, listenerObj) {
+          var isExist = false;
+          var oneEvents = this.events[name];
+
+          if (oneEvents != null) {
+            for (var d of oneEvents) {
+              if (d['listener'] == listener && d['listenerObj'] == listenerObj) {
+                isExist = true;
+                break;
+              }
+            }
+          }
+
+          return isExist;
+        }
+        /**
+         * 分派事件
+         */
+
+
+        static dispatch(name) {
+          if (!name) {
+            return;
+          }
+
+          var oneEvents = this.events[name];
+
+          if (oneEvents != null) {
+            var event;
+
+            for (var _len = arguments.length, params = new Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
+              params[_key - 1] = arguments[_key];
+            }
+
+            for (var i = oneEvents.length - 1; i >= 0; i--) {
+              event = oneEvents[i];
+
+              if (event != null && event.hasOwnProperty("listener")) {
+                event['listener'].apply(event['listenerObj'], params);
+              }
+            }
+          }
+        }
+
+        static clear() {
+          this.events = {};
+        }
+
+      });
+
+      EventManager.events = {};
+
+      _cclegacy._RF.pop();
+
+      _crd = false;
+    }
+  };
+});
+//# sourceMappingURL=a267f304bf693d853a163c8a572d20ae7a786cac.js.map

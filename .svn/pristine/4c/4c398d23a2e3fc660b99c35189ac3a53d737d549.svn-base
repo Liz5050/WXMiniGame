@@ -1,0 +1,569 @@
+System.register(["cc"], function (_export, _context) {
+  "use strict";
+
+  var _cclegacy, __checkObsolete__, __checkObsoleteInNamespace__, Component, UITransform, error, game, GTween, TweenManager, _crd;
+
+  _export("default", void 0);
+
+  return {
+    setters: [function (_cc) {
+      _cclegacy = _cc.cclegacy;
+      __checkObsolete__ = _cc.__checkObsolete__;
+      __checkObsoleteInNamespace__ = _cc.__checkObsoleteInNamespace__;
+      Component = _cc.Component;
+      UITransform = _cc.UITransform;
+      error = _cc.error;
+      game = _cc.game;
+    }],
+    execute: function () {
+      _crd = true;
+
+      _cclegacy._RF.push({}, "da12cDhFVtHvL4JEX8vVU8W", "TweenManager", undefined);
+
+      /**
+       * 对象池管理缓动
+       * @author Liz 2019年4月18日21:10:57
+       */
+      __checkObsolete__(['Component', 'Director', 'UITransform', '_decorator', 'director', 'error', 'game', 'math']);
+
+      GTween = class GTween {
+        constructor() {
+          this._target = void 0;
+          this._targetName = void 0;
+          this._targetTransform = void 0;
+          this._targetPos = void 0;
+          this._targetScale = void 0;
+          this._targetRotation = void 0;
+          this._isTargetSelf = void 0;
+          this._targetProps = void 0;
+          this._steps = void 0;
+          this._initialProps = void 0;
+          this._stepProps = void 0;
+          this._isStart = false;
+          this._stepTime = void 0;
+          this._curStep = void 0;
+          this._lastStep = void 0;
+          this._loop = false;
+          this._loopCount = 0;
+          this._loopTotalCount = 0;
+          this._loopComplete = void 0;
+          this._stepIdx = 0;
+          this._onChange = void 0;
+          this._onChangeObj = void 0;
+          this._tweenId = 0;
+          this.resetTime = 0;
+          this.timeIndex = -1;
+        }
+
+        setProps(props) {
+          if (!props) return;
+          this._loopTotalCount = props.loopTotalCount;
+
+          if (props.loop || this._loopTotalCount && this._loopTotalCount > 0) {
+            this._loop = true;
+          }
+
+          this._onChange = props.onChange;
+          this._onChangeObj = props.onChangeObj;
+          this._loopComplete = props._loopComplete;
+        }
+
+        setTarget(t, tweenId) {
+          this._target = t;
+          this._tweenId = tweenId;
+          this._initialProps = null;
+        }
+
+        get tweenId() {
+          return this._tweenId;
+        }
+
+        getTarget() {
+          return this._target;
+        }
+
+        to(props, duration, ease) {
+          if (!this._target) return;
+          if (!props || typeof props != "object") return;
+
+          if (!duration || duration < 0) {
+            return;
+          }
+
+          if (!this._initialProps) {
+            this._initialProps = {};
+
+            for (var key in props) {
+              this._initialProps[key] = this.getTargetAttr(key);
+              this.clearTargetByKey(key);
+            }
+          }
+
+          this.addStep({
+            type: "to",
+            props: props,
+            duration: duration,
+            ease: ease
+          });
+          return this;
+        }
+
+        call(callback, thisObj, params) {
+          this.addStep({
+            type: "call",
+            callBack: callback,
+            thisObj: thisObj,
+            params: params
+          });
+          return this;
+        }
+
+        wait(time) {
+          this.addStep({
+            type: "wait",
+            duration: time
+          });
+          return this;
+        }
+
+        addStep(step) {
+          if (!this._steps) {
+            this._steps = [];
+          }
+
+          this._steps.push(step);
+
+          this.beginTween();
+        }
+
+        beginTween() {
+          if (this._isStart) return;
+          this._isStart = true;
+          this.getStep();
+        }
+
+        getStep() {
+          if (!this._isStart) return;
+
+          if (this._loop) {
+            if (this._stepIdx >= this._steps.length) {
+              this._loopCount++;
+
+              if (this._loopTotalCount && this._loopTotalCount > 0 && this._loopCount >= this._loopTotalCount) {
+                //loopComplete
+                if (this._loopComplete) {
+                  this._loopComplete.apply(this._curStep.thisObj); // this._loopComplete.call();
+
+                }
+
+                this.stopAction();
+                return;
+              }
+
+              this._stepIdx = 0;
+
+              if (this._initialProps) {
+                for (var key in this._initialProps) {
+                  this.setTargetAttr(key, this._initialProps[key]); // this._target[key] = this._initialProps[key];
+                }
+              } //一轮循环结束，属性已经重设到初始值，不用校正
+
+
+              this._lastStep = null;
+            }
+
+            this._curStep = this._steps[this._stepIdx];
+            this._stepIdx++;
+          } else {
+            this._curStep = this._steps.shift();
+          } //属性校正
+
+
+          if (this._lastStep && this._lastStep.props) {
+            for (var _key in this._lastStep.props) {
+              this._target[_key] = this._lastStep.props[_key];
+              this.setTargetAttr(_key, this._lastStep.props[_key]);
+            }
+          }
+
+          this._lastStep = this._curStep;
+
+          if (!this._curStep) {
+            this.stopAction();
+            return;
+          }
+
+          if (this._curStep.type == "call") {
+            this._curStep.callBack.apply(this._curStep.thisObj, this._curStep.params);
+
+            this.getStep();
+            return;
+          }
+
+          this._stepTime = game.totalTime + this._curStep.duration;
+          this._stepProps = {};
+          this.runAction();
+        }
+
+        runAction() {
+          if (this.timeIndex == -1) {
+            var self = this;
+            this.timeIndex = setInterval(function () {
+              var curTime = game.totalTime;
+
+              if (curTime >= self._stepTime) {
+                self.getStep();
+                return;
+              }
+
+              if (self._curStep.type == "to") {
+                var props = self._curStep.props;
+                var ratio = (self._curStep.duration - (self._stepTime - curTime)) / self._curStep.duration;
+                ratio = Math.min(ratio, 1);
+
+                if (self._curStep.ease) {
+                  ratio = self._curStep.ease(ratio, 0, 1, 1);
+                }
+
+                for (var keyName in props) {
+                  if (self._stepProps[keyName] == undefined) {
+                    self._stepProps[keyName] = this.getTargetAttr(keyName);
+                  }
+
+                  var diff = props[keyName] - self._stepProps[keyName];
+                  var value = this.stepProps[keyName] + diff * ratio;
+                  self._targetProps[keyName] = value;
+                  self.setTargetAttr(keyName, value);
+                }
+              }
+
+              if (self._onChange && self._onChangeObj) {
+                self._onChange.apply(self._onChangeObj, self._targetProps);
+              }
+            }, 1);
+          }
+        }
+
+        checkTargetAttr(k) {
+          var errorTips = "";
+
+          if (typeof this._target == "object" && !(this._target instanceof Component)) {
+            if (this._target[k]) {
+              this._isTargetSelf = true;
+            } else {
+              errorTips = "not found " + k + " in tween target.";
+            }
+          } else {
+            if (this._target == null) {
+              errorTips = "tween target is null";
+            } else {
+              if (!this._targetTransform) {
+                this._targetTransform = this._target.getComponent(UITransform);
+              }
+
+              if (!this._targetTransform) {
+                errorTips = "not found transform in tween target. ----key：" + k;
+              }
+            }
+          }
+
+          if (errorTips == "") {
+            if (k == "x" || k == "y" || k == "z") {
+              if (!this._targetPos) {
+                this._targetPos = this._target.getPosition();
+              }
+            } else if (k == "scaleX" || k == "scaleY" || k == "scaleZ") {
+              if (!this._targetScale) {
+                this._targetScale = this._target.getScale();
+              }
+            } else if (k == "rotationX" || k == "rotationY" || k == "rotationZ") {
+              if (!this._targetRotation) {
+                this._targetRotation = this._target.getRotation();
+              }
+            } else if (k == "width" || k == "height") {} else if (!this._target[k]) {
+              errorTips = "not found " + k + " in tween target.";
+            }
+          }
+
+          if (errorTips != "") {
+            var curStepStr = this.getStepTestStr(this._curStep);
+            var stepStr = "";
+
+            if (this._steps) {
+              for (var i = 0; i < this._steps.length; i++) {
+                stepStr = stepStr + "(step" + i + ")" + this.getStepTestStr(this._steps[i]);
+              }
+            }
+
+            var targetName = this._targetName; // TweenUtil.RemoveTween(self.tweenId)
+
+            error(errorTips + "--->>>targetName：" + targetName + "，curStep：" + curStepStr + "，stepList：" + stepStr);
+          }
+        }
+
+        getStepTestStr(step) {
+          var stepStr = "";
+
+          if (step) {
+            stepStr = step.type;
+
+            if (step.props) {
+              for (var key in step.props) {
+                var v = step.props[key];
+                stepStr = stepStr + "-->" + key + "=" + v + ",";
+              }
+            }
+
+            if (step.duration) {
+              stepStr = stepStr + "time：" + step.duration;
+            }
+          }
+
+          return stepStr;
+        }
+
+        setTargetAttr(k, v) {
+          this.checkTargetAttr(k);
+
+          if (this._isTargetSelf) {
+            this._target[k] = v;
+            return;
+          }
+
+          if (k == "x" || k == "y" || k == "z") {
+            this._targetPos[k] = v;
+
+            this._target.setPosition(this._targetPos);
+          } else if (k == "scaleX" || k == "scaleY" || k == "scaleZ") {
+            this._targetScale[TweenManager.GetTweenAttrName(k)] = v;
+
+            this._target.setScale(this._targetScale);
+          } else if (k == "rotationX" || k == "rotationY" || k == "rotationZ") {
+            this._targetRotation[TweenManager.GetTweenAttrName(k)] = v;
+
+            this._target.setRotation(this._targetRotation);
+          } else if (k == "width" || k == "height") {
+            this._targetTransform[k] = v;
+          } else if (this._target[k]) {
+            this._target[k] = v;
+          }
+        }
+
+        getTargetAttr(k) {
+          this.checkTargetAttr(k);
+
+          if (this._isTargetSelf) {
+            return this._target[k];
+          }
+
+          if (k == "x" || k == "y" || k == "z") {
+            return this._targetPos[k];
+          } else if (k == "scaleX" || k == "scaleY" || k == "scaleZ") {
+            return this._targetScale[TweenManager.GetTweenAttrName(k)];
+          } else if (k == "rotationX" || k == "rotationY" || k == "rotationZ") {
+            return this._targetRotation[TweenManager.GetTweenAttrName(k)];
+          } else {
+            return this._target[k];
+          }
+        }
+
+        stopAction() {
+          // if not self.isStart or self.tweenId == 0 then return end
+          //     TweenUtil.RemoveTween(self.tweenId)
+          if (!this._isStart || this._tweenId == 0) return;
+          TweenManager.RemoveTweenById(this._tweenId);
+        }
+
+        reset() {
+          if (!this._isStart) return;
+
+          if (this.timeIndex != -1) {
+            clearInterval(this.timeIndex);
+            this.timeIndex = -1;
+          }
+
+          this._stepIdx = 0;
+          this._loop = false;
+          this._loopTotalCount = -1;
+          this._loopCount = 0;
+          this._loopComplete = null;
+          this._onChangeObj = null;
+          this._onChange = null;
+          this.clearTarget();
+          this._initialProps = {};
+          this._steps = null;
+          this._curStep = null;
+          this._lastStep = null;
+          this._isStart = false;
+          this._tweenId = 0;
+        } // function public:Reset()
+        // 	    private.canUpdate = false
+        // 	    private.stepIdx = 1
+        // 	    private.loop = false
+        // 	    private.loopTotalCount = -1
+        // 	    private.loopCount = 0
+        // 	    private.onChange = nil
+        // 	    private.loopComplete = nil
+        // 	    private:ClearTarget()
+        // 	    private.steps = nil
+        // 	    private.curStepStr = nil
+        // 	    private.lastStep = nil
+        // 	    private.initialProps = nil
+        // 	    private.isStart = false
+        // 	    private.tweenId = 0
+        // 	    private.timeCount = 0
+        // 	end
+
+
+        clearTarget() {
+          this._target = null;
+          this._targetPos = null;
+          this._targetTransform = null;
+          this._targetScale = null;
+          this._targetRotation = null;
+          this._isTargetSelf = false;
+          this._targetName = "";
+        }
+
+        clearTargetByKey(k) {
+          if (k == "x" || k == "y" || k == "z") {
+            this._targetPos = null;
+          } else if (k == "scaleX" || k == "scaleY" || k == "scaleZ") {
+            this._targetScale = null;
+          } else if (k == "rotationX" || k == "rotationY" || k == "rotationZ") {
+            this._targetRotation = null;
+          } else if (k == "width" || k == "height") {
+            this._targetTransform = null;
+          }
+        }
+
+      };
+
+      _export("default", TweenManager = class TweenManager {
+        static getTween() {
+          var tw;
+          var time = game.totalTime;
+
+          for (var i = 0; i < TweenManager.TweenPool.length; i++) {
+            var pool = TweenManager.TweenPool[i];
+
+            if (time - pool.resetTime > 0.034) {
+              tw = TweenManager.TweenPool.shift();
+              break;
+            }
+          }
+
+          if (!tw) {
+            tw = new GTween();
+          }
+
+          return tw;
+        } // public static TweenList:GTween[] = [];
+
+
+        static addTween(target, props) {
+          if (!target) return;
+          var tw = TweenManager.getTween();
+          var tweenId = TweenManager.TweenId + 1;
+          tw.setTarget(target, tweenId);
+          tw.setProps(props);
+          TweenManager.TweenId = tweenId; // if(!target.gtween_count) {
+          //     target.gtween_count = 0;
+          // }
+          // target.gtween_count++;
+          // TweenManager.TweenList.push(tw);
+
+          TweenManager.TweenList[tweenId] = tw;
+          TweenManager.TweenTargets[tweenId] = target;
+          TweenManager.TweenCount++; // console.log("当前缓动数量：",TweenManager.TweenList.length,"缓动池数量：",TweenManager.TweenPool.length);
+
+          return tw;
+        }
+
+        static removeTweens(target) {
+          if (!target) {
+            return;
+          } // if(!target.gtween_count || target.gtween_count == 0) return;
+
+
+          for (var tweenId in TweenManager.TweenTargets) {
+            var id = Number(tweenId);
+            var t = TweenManager.TweenTargets[id];
+
+            if (t == target) {
+              TweenManager.RemoveTweenById(id);
+            }
+          } // let tws:GTween[] = TweenManager.TweenList;
+          // for(let i:number = tws.length - 1; i >= 0; i--) {
+          //     if(tws[i].getTarget() == target) {
+          //         tws[i].reset();
+          //         tws.splice(i,1);
+          //     }
+          // }
+          // target.gtween_count = 0;
+
+        }
+
+        static RemoveTweenById(tweenId) {
+          if (!tweenId || tweenId == 0) {
+            return;
+          }
+
+          var tw = TweenManager.TweenList[tweenId];
+
+          if (!tw) {
+            return;
+          }
+
+          tw.reset();
+          TweenManager.TweenList[tweenId] = null;
+          TweenManager.TweenTargets[tweenId] = null;
+          TweenManager.TweenCount--;
+          tw.resetTime = game.totalTime;
+          TweenManager.TweenPool.push(tw);
+        } // 	public.RemoveTween = function(tweenId)
+        //     if not tweenId or tweenId == 0 then
+        //         return 
+        //     end
+        //     local tw = private.TweenList[tweenId]
+        //     if not tw then
+        //         return
+        //     end
+        //     tw:Reset()
+        //     private.TweenList[tweenId] = nil
+        //     private.TweenTargets[tweenId] = nil
+        //     private.tweenCount = private.tweenCount - 1
+        //     tw.resetTime = Time.time
+        //     table.insert(private.TweenPool,tw)
+        // end
+
+
+        static GetTweenAttrName(attrName) {
+          return TweenManager.TweenAttrMap[attrName] || attrName;
+        }
+
+      });
+
+      TweenManager.TweenPool = [];
+      TweenManager.TweenAttrMap = {
+        scaleX: "x",
+        scaleY: "y",
+        scaleZ: "z",
+        rotationX: "x",
+        rotationY: "y",
+        rotationZ: "z",
+        width: "width",
+        height: "height"
+      };
+      TweenManager.TweenId = 0;
+      TweenManager.TweenCount = 0;
+      TweenManager.TweenList = {};
+      TweenManager.TweenTargets = {};
+
+      _cclegacy._RF.pop();
+
+      _crd = false;
+    }
+  };
+});
+//# sourceMappingURL=f930b2cb5bf5f669e45a12a9a1d10038a505d8a0.js.map

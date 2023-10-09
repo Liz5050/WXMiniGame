@@ -1,0 +1,2083 @@
+{
+  "modules": {
+    "cce:/internal/x/cc": {
+      "mTimestamp": 30837925.7275,
+      "chunkId": "944f39c144b0a2ceda12f426fc64f433ff94e706",
+      "imports": [
+        {
+          "value": "cce:/internal/x/cc-fu/2d",
+          "resolved": "__unresolved_0",
+          "loc": {
+            "start": {
+              "line": 1,
+              "column": 14
+            },
+            "end": {
+              "line": 1,
+              "column": 40
+            }
+          }
+        },
+        {
+          "value": "cce:/internal/x/cc-fu/sorting",
+          "resolved": "__unresolved_1",
+          "loc": {
+            "start": {
+              "line": 2,
+              "column": 14
+            },
+            "end": {
+              "line": 2,
+              "column": 45
+            }
+          }
+        },
+        {
+          "value": "cce:/internal/x/cc-fu/3d",
+          "resolved": "__unresolved_2",
+          "loc": {
+            "start": {
+              "line": 3,
+              "column": 14
+            },
+            "end": {
+              "line": 3,
+              "column": 40
+            }
+          }
+        },
+        {
+          "value": "cce:/internal/x/cc-fu/audio",
+          "resolved": "__unresolved_3",
+          "loc": {
+            "start": {
+              "line": 4,
+              "column": 14
+            },
+            "end": {
+              "line": 4,
+              "column": 43
+            }
+          }
+        },
+        {
+          "value": "cce:/internal/x/cc-fu/base",
+          "resolved": "__unresolved_4",
+          "loc": {
+            "start": {
+              "line": 5,
+              "column": 14
+            },
+            "end": {
+              "line": 5,
+              "column": 42
+            }
+          }
+        },
+        {
+          "value": "cce:/internal/x/cc-fu/gfx-webgl",
+          "resolved": "__unresolved_5",
+          "loc": {
+            "start": {
+              "line": 6,
+              "column": 14
+            },
+            "end": {
+              "line": 6,
+              "column": 47
+            }
+          }
+        },
+        {
+          "value": "cce:/internal/x/cc-fu/profiler",
+          "resolved": "__unresolved_6",
+          "loc": {
+            "start": {
+              "line": 7,
+              "column": 14
+            },
+            "end": {
+              "line": 7,
+              "column": 46
+            }
+          }
+        },
+        {
+          "value": "cce:/internal/x/cc-fu/ui",
+          "resolved": "__unresolved_7",
+          "loc": {
+            "start": {
+              "line": 8,
+              "column": 14
+            },
+            "end": {
+              "line": 8,
+              "column": 40
+            }
+          }
+        }
+      ],
+      "type": "esm",
+      "resolutions": [
+        {
+          "resolved": {
+            "type": "external",
+            "specifierOrURL": "cce:/internal/x/cc-fu/2d"
+          },
+          "messages": []
+        },
+        {
+          "resolved": {
+            "type": "external",
+            "specifierOrURL": "cce:/internal/x/cc-fu/sorting"
+          },
+          "messages": []
+        },
+        {
+          "resolved": {
+            "type": "external",
+            "specifierOrURL": "cce:/internal/x/cc-fu/3d"
+          },
+          "messages": []
+        },
+        {
+          "resolved": {
+            "type": "external",
+            "specifierOrURL": "cce:/internal/x/cc-fu/audio"
+          },
+          "messages": []
+        },
+        {
+          "resolved": {
+            "type": "external",
+            "specifierOrURL": "cce:/internal/x/cc-fu/base"
+          },
+          "messages": []
+        },
+        {
+          "resolved": {
+            "type": "external",
+            "specifierOrURL": "cce:/internal/x/cc-fu/gfx-webgl"
+          },
+          "messages": []
+        },
+        {
+          "resolved": {
+            "type": "external",
+            "specifierOrURL": "cce:/internal/x/cc-fu/profiler"
+          },
+          "messages": []
+        },
+        {
+          "resolved": {
+            "type": "external",
+            "specifierOrURL": "cce:/internal/x/cc-fu/ui"
+          },
+          "messages": []
+        }
+      ]
+    },
+    "cce:/internal/x/prerequisite-imports": {
+      "mTimestamp": 33366411.5018,
+      "chunkId": "9648ccf095d53cc6ca2c7ac2e859e5c3dc37571c",
+      "imports": [
+        {
+          "value": "file:///G:/Cocos/Download/Creator/3.7.4/resources/resources/3d/engine/editor/assets/tools/debug-view-runtime-control.ts",
+          "resolved": "__unresolved_0",
+          "loc": {
+            "start": {
+              "line": 4,
+              "column": 7
+            },
+            "end": {
+              "line": 4,
+              "column": 128
+            }
+          }
+        },
+        {
+          "value": "file:///G:/Work/cocoscreator/MiniGame/assets/script/Main.ts",
+          "resolved": "__unresolved_1",
+          "loc": {
+            "start": {
+              "line": 5,
+              "column": 7
+            },
+            "end": {
+              "line": 5,
+              "column": 68
+            }
+          }
+        },
+        {
+          "value": "file:///G:/Work/cocoscreator/MiniGame/assets/script/common/AudioPlayer.ts",
+          "resolved": "__unresolved_2",
+          "loc": {
+            "start": {
+              "line": 6,
+              "column": 7
+            },
+            "end": {
+              "line": 6,
+              "column": 82
+            }
+          }
+        },
+        {
+          "value": "file:///G:/Work/cocoscreator/MiniGame/assets/script/common/TweenManager.ts",
+          "resolved": "__unresolved_3",
+          "loc": {
+            "start": {
+              "line": 7,
+              "column": 7
+            },
+            "end": {
+              "line": 7,
+              "column": 83
+            }
+          }
+        },
+        {
+          "value": "file:///G:/Work/cocoscreator/MiniGame/assets/script/enum/EventEnum.ts",
+          "resolved": "__unresolved_4",
+          "loc": {
+            "start": {
+              "line": 8,
+              "column": 7
+            },
+            "end": {
+              "line": 8,
+              "column": 78
+            }
+          }
+        },
+        {
+          "value": "file:///G:/Work/cocoscreator/MiniGame/assets/script/enum/GameState.ts",
+          "resolved": "__unresolved_5",
+          "loc": {
+            "start": {
+              "line": 9,
+              "column": 7
+            },
+            "end": {
+              "line": 9,
+              "column": 78
+            }
+          }
+        },
+        {
+          "value": "file:///G:/Work/cocoscreator/MiniGame/assets/script/enum/GameType.ts",
+          "resolved": "__unresolved_6",
+          "loc": {
+            "start": {
+              "line": 10,
+              "column": 7
+            },
+            "end": {
+              "line": 10,
+              "column": 77
+            }
+          }
+        },
+        {
+          "value": "file:///G:/Work/cocoscreator/MiniGame/assets/script/game/MainMenu.ts",
+          "resolved": "__unresolved_7",
+          "loc": {
+            "start": {
+              "line": 11,
+              "column": 7
+            },
+            "end": {
+              "line": 11,
+              "column": 77
+            }
+          }
+        },
+        {
+          "value": "file:///G:/Work/cocoscreator/MiniGame/assets/script/game/gameGrid/GameGridController.ts",
+          "resolved": "__unresolved_8",
+          "loc": {
+            "start": {
+              "line": 12,
+              "column": 7
+            },
+            "end": {
+              "line": 12,
+              "column": 96
+            }
+          }
+        },
+        {
+          "value": "file:///G:/Work/cocoscreator/MiniGame/assets/script/game/gameGrid/view/GameGridStartView.ts",
+          "resolved": "__unresolved_9",
+          "loc": {
+            "start": {
+              "line": 13,
+              "column": 7
+            },
+            "end": {
+              "line": 13,
+              "column": 100
+            }
+          }
+        },
+        {
+          "value": "file:///G:/Work/cocoscreator/MiniGame/assets/script/game/gameShulte/GameShulteController.ts",
+          "resolved": "__unresolved_10",
+          "loc": {
+            "start": {
+              "line": 14,
+              "column": 7
+            },
+            "end": {
+              "line": 14,
+              "column": 100
+            }
+          }
+        },
+        {
+          "value": "file:///G:/Work/cocoscreator/MiniGame/assets/script/game/gameShulte/view/GameShulteBeginView.ts",
+          "resolved": "__unresolved_11",
+          "loc": {
+            "start": {
+              "line": 15,
+              "column": 7
+            },
+            "end": {
+              "line": 15,
+              "column": 104
+            }
+          }
+        },
+        {
+          "value": "file:///G:/Work/cocoscreator/MiniGame/assets/script/game/gameShulte/view/GameShulteStartView.ts",
+          "resolved": "__unresolved_12",
+          "loc": {
+            "start": {
+              "line": 16,
+              "column": 7
+            },
+            "end": {
+              "line": 16,
+              "column": 104
+            }
+          }
+        },
+        {
+          "value": "file:///G:/Work/cocoscreator/MiniGame/assets/script/game/gameShulte/view/ShulteGridItem.ts",
+          "resolved": "__unresolved_13",
+          "loc": {
+            "start": {
+              "line": 17,
+              "column": 7
+            },
+            "end": {
+              "line": 17,
+              "column": 99
+            }
+          }
+        },
+        {
+          "value": "file:///G:/Work/cocoscreator/MiniGame/assets/script/manager/EventManager.ts",
+          "resolved": "__unresolved_14",
+          "loc": {
+            "start": {
+              "line": 18,
+              "column": 7
+            },
+            "end": {
+              "line": 18,
+              "column": 84
+            }
+          }
+        },
+        {
+          "value": "file:///G:/Work/cocoscreator/MiniGame/assets/script/manager/Mgr.ts",
+          "resolved": "__unresolved_15",
+          "loc": {
+            "start": {
+              "line": 19,
+              "column": 7
+            },
+            "end": {
+              "line": 19,
+              "column": 75
+            }
+          }
+        },
+        {
+          "value": "file:///G:/Work/cocoscreator/MiniGame/assets/script/manager/SoundManager.ts",
+          "resolved": "__unresolved_16",
+          "loc": {
+            "start": {
+              "line": 20,
+              "column": 7
+            },
+            "end": {
+              "line": 20,
+              "column": 84
+            }
+          }
+        }
+      ],
+      "type": "esm",
+      "resolutions": [
+        {
+          "resolved": {
+            "type": "module",
+            "url": "file:///G:/Cocos/Download/Creator/3.7.4/resources/resources/3d/engine/editor/assets/tools/debug-view-runtime-control.ts"
+          },
+          "messages": []
+        },
+        {
+          "resolved": {
+            "type": "module",
+            "url": "file:///G:/Work/cocoscreator/MiniGame/assets/script/Main.ts"
+          },
+          "messages": []
+        },
+        {
+          "resolved": {
+            "type": "module",
+            "url": "file:///G:/Work/cocoscreator/MiniGame/assets/script/common/AudioPlayer.ts"
+          },
+          "messages": []
+        },
+        {
+          "resolved": {
+            "type": "module",
+            "url": "file:///G:/Work/cocoscreator/MiniGame/assets/script/common/TweenManager.ts"
+          },
+          "messages": []
+        },
+        {
+          "resolved": {
+            "type": "module",
+            "url": "file:///G:/Work/cocoscreator/MiniGame/assets/script/enum/EventEnum.ts"
+          },
+          "messages": []
+        },
+        {
+          "resolved": {
+            "type": "module",
+            "url": "file:///G:/Work/cocoscreator/MiniGame/assets/script/enum/GameState.ts"
+          },
+          "messages": []
+        },
+        {
+          "resolved": {
+            "type": "module",
+            "url": "file:///G:/Work/cocoscreator/MiniGame/assets/script/enum/GameType.ts"
+          },
+          "messages": []
+        },
+        {
+          "resolved": {
+            "type": "module",
+            "url": "file:///G:/Work/cocoscreator/MiniGame/assets/script/game/MainMenu.ts"
+          },
+          "messages": []
+        },
+        {
+          "resolved": {
+            "type": "module",
+            "url": "file:///G:/Work/cocoscreator/MiniGame/assets/script/game/gameGrid/GameGridController.ts"
+          },
+          "messages": []
+        },
+        {
+          "resolved": {
+            "type": "module",
+            "url": "file:///G:/Work/cocoscreator/MiniGame/assets/script/game/gameGrid/view/GameGridStartView.ts"
+          },
+          "messages": []
+        },
+        {
+          "resolved": {
+            "type": "module",
+            "url": "file:///G:/Work/cocoscreator/MiniGame/assets/script/game/gameShulte/GameShulteController.ts"
+          },
+          "messages": []
+        },
+        {
+          "resolved": {
+            "type": "module",
+            "url": "file:///G:/Work/cocoscreator/MiniGame/assets/script/game/gameShulte/view/GameShulteBeginView.ts"
+          },
+          "messages": []
+        },
+        {
+          "resolved": {
+            "type": "module",
+            "url": "file:///G:/Work/cocoscreator/MiniGame/assets/script/game/gameShulte/view/GameShulteStartView.ts"
+          },
+          "messages": []
+        },
+        {
+          "resolved": {
+            "type": "module",
+            "url": "file:///G:/Work/cocoscreator/MiniGame/assets/script/game/gameShulte/view/ShulteGridItem.ts"
+          },
+          "messages": []
+        },
+        {
+          "resolved": {
+            "type": "module",
+            "url": "file:///G:/Work/cocoscreator/MiniGame/assets/script/manager/EventManager.ts"
+          },
+          "messages": []
+        },
+        {
+          "resolved": {
+            "type": "module",
+            "url": "file:///G:/Work/cocoscreator/MiniGame/assets/script/manager/Mgr.ts"
+          },
+          "messages": []
+        },
+        {
+          "resolved": {
+            "type": "module",
+            "url": "file:///G:/Work/cocoscreator/MiniGame/assets/script/manager/SoundManager.ts"
+          },
+          "messages": []
+        }
+      ]
+    },
+    "file:///G:/Cocos/Download/Creator/3.7.4/resources/resources/3d/engine/editor/assets/tools/debug-view-runtime-control.ts": {
+      "mTimestamp": {
+        "mtime": 1694095856504.7808,
+        "uuid": "b2bd1fa7-8d7c-49c5-a158-df29a6d3a594"
+      },
+      "chunkId": "68c862b9d72dbf5f5fb2d2e3c0b13a3e593e141a",
+      "imports": [
+        {
+          "value": "cc"
+        },
+        {
+          "value": "cc"
+        },
+        {
+          "value": "cc",
+          "loc": {
+            "start": {
+              "line": 1,
+              "column": 220
+            },
+            "end": {
+              "line": 1,
+              "column": 224
+            }
+          }
+        }
+      ],
+      "type": "esm",
+      "resolutions": [
+        {
+          "resolved": {
+            "type": "module",
+            "url": "cce:/internal/x/cc"
+          },
+          "messages": []
+        },
+        {
+          "resolved": {
+            "type": "module",
+            "url": "cce:/internal/x/cc"
+          },
+          "messages": []
+        },
+        {
+          "resolved": {
+            "type": "module",
+            "url": "cce:/internal/x/cc"
+          },
+          "messages": []
+        }
+      ]
+    },
+    "file:///G:/Work/cocoscreator/MiniGame/assets/script/Main.ts": {
+      "mTimestamp": {
+        "mtime": 1694195874596.6965,
+        "uuid": "266d1296-3f46-422c-a0a1-279b6fc7528c"
+      },
+      "chunkId": "fbafb835e4395b9fa2f9770b1347ff2e2e82d176",
+      "imports": [
+        {
+          "value": "cce:/internal/code-quality/cr.mjs",
+          "resolved": "__unresolved_0"
+        },
+        {
+          "value": "cc"
+        },
+        {
+          "value": "cc"
+        },
+        {
+          "value": "cc",
+          "loc": {
+            "start": {
+              "line": 1,
+              "column": 38
+            },
+            "end": {
+              "line": 1,
+              "column": 42
+            }
+          }
+        },
+        {
+          "value": "./manager/Mgr",
+          "resolved": "__unresolved_1",
+          "loc": {
+            "start": {
+              "line": 2,
+              "column": 16
+            },
+            "end": {
+              "line": 2,
+              "column": 31
+            }
+          }
+        }
+      ],
+      "type": "esm",
+      "resolutions": [
+        {
+          "resolved": {
+            "type": "module",
+            "url": "cce:/internal/code-quality/cr.mjs"
+          },
+          "messages": []
+        },
+        {
+          "resolved": {
+            "type": "module",
+            "url": "cce:/internal/x/cc"
+          },
+          "messages": []
+        },
+        {
+          "resolved": {
+            "type": "module",
+            "url": "cce:/internal/x/cc"
+          },
+          "messages": []
+        },
+        {
+          "resolved": {
+            "type": "module",
+            "url": "cce:/internal/x/cc"
+          },
+          "messages": []
+        },
+        {
+          "resolved": {
+            "type": "module",
+            "url": "file:///G:/Work/cocoscreator/MiniGame/assets/script/manager/Mgr.ts"
+          },
+          "messages": []
+        }
+      ]
+    },
+    "file:///G:/Work/cocoscreator/MiniGame/assets/script/manager/Mgr.ts": {
+      "mTimestamp": {
+        "mtime": 1694198262879.8845,
+        "uuid": "99ac5e5c-a9db-436f-ba47-bb76dfa836b0"
+      },
+      "chunkId": "11b381476cf001445a536b8e153c33a5f4bc1ada",
+      "imports": [
+        {
+          "value": "cce:/internal/code-quality/cr.mjs",
+          "resolved": "__unresolved_0"
+        },
+        {
+          "value": "cc"
+        },
+        {
+          "value": "../game/gameGrid/GameGridController",
+          "resolved": "__unresolved_1",
+          "loc": {
+            "start": {
+              "line": 1,
+              "column": 31
+            },
+            "end": {
+              "line": 1,
+              "column": 68
+            }
+          }
+        },
+        {
+          "value": "../game/gameShulte/GameShulteController",
+          "resolved": "__unresolved_2",
+          "loc": {
+            "start": {
+              "line": 2,
+              "column": 33
+            },
+            "end": {
+              "line": 2,
+              "column": 74
+            }
+          }
+        },
+        {
+          "value": "./SoundManager",
+          "resolved": "__unresolved_3",
+          "loc": {
+            "start": {
+              "line": 3,
+              "column": 25
+            },
+            "end": {
+              "line": 3,
+              "column": 41
+            }
+          }
+        }
+      ],
+      "type": "esm",
+      "resolutions": [
+        {
+          "resolved": {
+            "type": "module",
+            "url": "cce:/internal/code-quality/cr.mjs"
+          },
+          "messages": []
+        },
+        {
+          "resolved": {
+            "type": "module",
+            "url": "cce:/internal/x/cc"
+          },
+          "messages": []
+        },
+        {
+          "resolved": {
+            "type": "module",
+            "url": "file:///G:/Work/cocoscreator/MiniGame/assets/script/game/gameGrid/GameGridController.ts"
+          },
+          "messages": []
+        },
+        {
+          "resolved": {
+            "type": "module",
+            "url": "file:///G:/Work/cocoscreator/MiniGame/assets/script/game/gameShulte/GameShulteController.ts"
+          },
+          "messages": []
+        },
+        {
+          "resolved": {
+            "type": "module",
+            "url": "file:///G:/Work/cocoscreator/MiniGame/assets/script/manager/SoundManager.ts"
+          },
+          "messages": []
+        }
+      ]
+    },
+    "cce:/internal/code-quality/cr.mjs": {
+      "mTimestamp": 1694167930879,
+      "chunkId": "cceb4f795e6e637cc67c120b5b44ef3a584b486a",
+      "imports": [],
+      "type": "esm",
+      "resolutions": []
+    },
+    "file:///G:/Work/cocoscreator/MiniGame/assets/script/manager/SoundManager.ts": {
+      "mTimestamp": {
+        "mtime": 1694198237588.3157,
+        "uuid": "9b5c7731-96a0-4b50-b045-c0cf087d7b37"
+      },
+      "chunkId": "aa0f0ead19962319c1e7b0a2f4a6ba308f8198cb",
+      "imports": [
+        {
+          "value": "cce:/internal/code-quality/cr.mjs",
+          "resolved": "__unresolved_0"
+        },
+        {
+          "value": "cc"
+        },
+        {
+          "value": "cc"
+        },
+        {
+          "value": "cc",
+          "loc": {
+            "start": {
+              "line": 1,
+              "column": 22
+            },
+            "end": {
+              "line": 1,
+              "column": 26
+            }
+          }
+        },
+        {
+          "value": "../common/AudioPlayer",
+          "resolved": "__unresolved_1",
+          "loc": {
+            "start": {
+              "line": 2,
+              "column": 28
+            },
+            "end": {
+              "line": 2,
+              "column": 51
+            }
+          }
+        }
+      ],
+      "type": "esm",
+      "resolutions": [
+        {
+          "resolved": {
+            "type": "module",
+            "url": "cce:/internal/code-quality/cr.mjs"
+          },
+          "messages": []
+        },
+        {
+          "resolved": {
+            "type": "module",
+            "url": "cce:/internal/x/cc"
+          },
+          "messages": []
+        },
+        {
+          "resolved": {
+            "type": "module",
+            "url": "cce:/internal/x/cc"
+          },
+          "messages": []
+        },
+        {
+          "resolved": {
+            "type": "module",
+            "url": "cce:/internal/x/cc"
+          },
+          "messages": []
+        },
+        {
+          "resolved": {
+            "type": "module",
+            "url": "file:///G:/Work/cocoscreator/MiniGame/assets/script/common/AudioPlayer.ts"
+          },
+          "messages": []
+        }
+      ]
+    },
+    "file:///G:/Work/cocoscreator/MiniGame/assets/script/game/gameGrid/GameGridController.ts": {
+      "mTimestamp": {
+        "mtime": 1694166407102.8003,
+        "uuid": "59f13fed-e943-4b9c-9d4f-4904abb914b1"
+      },
+      "chunkId": "2da40acb8945e7392c08c1cd449fe647e7359917",
+      "imports": [
+        {
+          "value": "cce:/internal/code-quality/cr.mjs",
+          "resolved": "__unresolved_0"
+        },
+        {
+          "value": "cc"
+        },
+        {
+          "value": "cc"
+        },
+        {
+          "value": "../../enum/GameType",
+          "resolved": "__unresolved_1",
+          "loc": {
+            "start": {
+              "line": 1,
+              "column": 25
+            },
+            "end": {
+              "line": 1,
+              "column": 46
+            }
+          }
+        },
+        {
+          "value": "../../enum/EventEnum",
+          "resolved": "__unresolved_2",
+          "loc": {
+            "start": {
+              "line": 2,
+              "column": 26
+            },
+            "end": {
+              "line": 2,
+              "column": 48
+            }
+          }
+        },
+        {
+          "value": "../../manager/EventManager",
+          "resolved": "__unresolved_3",
+          "loc": {
+            "start": {
+              "line": 3,
+              "column": 29
+            },
+            "end": {
+              "line": 3,
+              "column": 57
+            }
+          }
+        },
+        {
+          "value": "cc",
+          "loc": {
+            "start": {
+              "line": 4,
+              "column": 39
+            },
+            "end": {
+              "line": 4,
+              "column": 43
+            }
+          }
+        },
+        {
+          "value": "./view/GameGridStartView",
+          "resolved": "__unresolved_4",
+          "loc": {
+            "start": {
+              "line": 5,
+              "column": 34
+            },
+            "end": {
+              "line": 5,
+              "column": 60
+            }
+          }
+        }
+      ],
+      "type": "esm",
+      "resolutions": [
+        {
+          "resolved": {
+            "type": "module",
+            "url": "cce:/internal/code-quality/cr.mjs"
+          },
+          "messages": []
+        },
+        {
+          "resolved": {
+            "type": "module",
+            "url": "cce:/internal/x/cc"
+          },
+          "messages": []
+        },
+        {
+          "resolved": {
+            "type": "module",
+            "url": "cce:/internal/x/cc"
+          },
+          "messages": []
+        },
+        {
+          "resolved": {
+            "type": "module",
+            "url": "file:///G:/Work/cocoscreator/MiniGame/assets/script/enum/GameType.ts"
+          },
+          "messages": []
+        },
+        {
+          "resolved": {
+            "type": "module",
+            "url": "file:///G:/Work/cocoscreator/MiniGame/assets/script/enum/EventEnum.ts"
+          },
+          "messages": []
+        },
+        {
+          "resolved": {
+            "type": "module",
+            "url": "file:///G:/Work/cocoscreator/MiniGame/assets/script/manager/EventManager.ts"
+          },
+          "messages": []
+        },
+        {
+          "resolved": {
+            "type": "module",
+            "url": "cce:/internal/x/cc"
+          },
+          "messages": []
+        },
+        {
+          "resolved": {
+            "type": "module",
+            "url": "file:///G:/Work/cocoscreator/MiniGame/assets/script/game/gameGrid/view/GameGridStartView.ts"
+          },
+          "messages": []
+        }
+      ]
+    },
+    "file:///G:/Work/cocoscreator/MiniGame/assets/script/game/gameShulte/GameShulteController.ts": {
+      "mTimestamp": {
+        "mtime": 1694198616376.953,
+        "uuid": "daa42b4a-a750-470a-8a88-90bf070eddab"
+      },
+      "chunkId": "034e6f9cf8ff8418e849a0898dac49f6f6d72956",
+      "imports": [
+        {
+          "value": "cce:/internal/code-quality/cr.mjs",
+          "resolved": "__unresolved_0"
+        },
+        {
+          "value": "cc"
+        },
+        {
+          "value": "cc"
+        },
+        {
+          "value": "../../enum/GameType",
+          "resolved": "__unresolved_1",
+          "loc": {
+            "start": {
+              "line": 1,
+              "column": 25
+            },
+            "end": {
+              "line": 1,
+              "column": 46
+            }
+          }
+        },
+        {
+          "value": "../../enum/EventEnum",
+          "resolved": "__unresolved_2",
+          "loc": {
+            "start": {
+              "line": 2,
+              "column": 26
+            },
+            "end": {
+              "line": 2,
+              "column": 48
+            }
+          }
+        },
+        {
+          "value": "../../manager/EventManager",
+          "resolved": "__unresolved_3",
+          "loc": {
+            "start": {
+              "line": 3,
+              "column": 29
+            },
+            "end": {
+              "line": 3,
+              "column": 57
+            }
+          }
+        },
+        {
+          "value": "cc",
+          "loc": {
+            "start": {
+              "line": 4,
+              "column": 28
+            },
+            "end": {
+              "line": 4,
+              "column": 32
+            }
+          }
+        }
+      ],
+      "type": "esm",
+      "resolutions": [
+        {
+          "resolved": {
+            "type": "module",
+            "url": "cce:/internal/code-quality/cr.mjs"
+          },
+          "messages": []
+        },
+        {
+          "resolved": {
+            "type": "module",
+            "url": "cce:/internal/x/cc"
+          },
+          "messages": []
+        },
+        {
+          "resolved": {
+            "type": "module",
+            "url": "cce:/internal/x/cc"
+          },
+          "messages": []
+        },
+        {
+          "resolved": {
+            "type": "module",
+            "url": "file:///G:/Work/cocoscreator/MiniGame/assets/script/enum/GameType.ts"
+          },
+          "messages": []
+        },
+        {
+          "resolved": {
+            "type": "module",
+            "url": "file:///G:/Work/cocoscreator/MiniGame/assets/script/enum/EventEnum.ts"
+          },
+          "messages": []
+        },
+        {
+          "resolved": {
+            "type": "module",
+            "url": "file:///G:/Work/cocoscreator/MiniGame/assets/script/manager/EventManager.ts"
+          },
+          "messages": []
+        },
+        {
+          "resolved": {
+            "type": "module",
+            "url": "cce:/internal/x/cc"
+          },
+          "messages": []
+        }
+      ]
+    },
+    "file:///G:/Work/cocoscreator/MiniGame/assets/script/manager/EventManager.ts": {
+      "mTimestamp": {
+        "mtime": 1694097795548.9368,
+        "uuid": "f71fb115-27c6-4f58-baa5-f2aa1c4e297b"
+      },
+      "chunkId": "b9b5e9bc42ff943283ffa6f53c96e07eba37568e",
+      "imports": [
+        {
+          "value": "cc"
+        }
+      ],
+      "type": "esm",
+      "resolutions": [
+        {
+          "resolved": {
+            "type": "module",
+            "url": "cce:/internal/x/cc"
+          },
+          "messages": []
+        }
+      ]
+    },
+    "file:///G:/Work/cocoscreator/MiniGame/assets/script/Manager/EventManager.ts": {
+      "mTimestamp": 1694097795548.9368,
+      "chunkId": "4f7662cd61f863f33d9f6207d286817d874fd0db",
+      "imports": [],
+      "type": "esm",
+      "resolutions": []
+    },
+    "file:///G:/Work/cocoscreator/MiniGame/assets/script/enum/EventEnum.ts": {
+      "mTimestamp": {
+        "mtime": 1694099008629.8035,
+        "uuid": "de7abda7-bc27-423a-8e61-410edb778854"
+      },
+      "chunkId": "be69e0b9e125482d60c6e7420593affa88eb4a36",
+      "imports": [
+        {
+          "value": "cc"
+        }
+      ],
+      "type": "esm",
+      "resolutions": [
+        {
+          "resolved": {
+            "type": "module",
+            "url": "cce:/internal/x/cc"
+          },
+          "messages": []
+        }
+      ]
+    },
+    "file:///G:/Work/cocoscreator/MiniGame/assets/script/enum/GameType.ts": {
+      "mTimestamp": {
+        "mtime": 1694199767281.2249,
+        "uuid": "ee0df9fc-ca7a-4534-8485-384a9fcedbe3"
+      },
+      "chunkId": "5916686adceef6d1360fd67872176b9ced03cac3",
+      "imports": [
+        {
+          "value": "cc"
+        }
+      ],
+      "type": "esm",
+      "resolutions": [
+        {
+          "resolved": {
+            "type": "module",
+            "url": "cce:/internal/x/cc"
+          },
+          "messages": []
+        }
+      ]
+    },
+    "file:///G:/Work/cocoscreator/MiniGame/assets/script/Enum/GameType.ts": {
+      "mTimestamp": 1694099103160.249,
+      "chunkId": "91e3d7ab09c3b9d0a3fd76c36f510ea7a7a6f4d0",
+      "imports": [],
+      "type": "esm",
+      "resolutions": []
+    },
+    "file:///G:/Work/cocoscreator/MiniGame/assets/script/game/gameShulte/view/GameShulteBeginView.ts": {
+      "mTimestamp": {
+        "mtime": 1694199468771.6746,
+        "uuid": "c39d54dd-8e15-4af1-a5cb-06f7a5a1e0a4"
+      },
+      "chunkId": "fea5b9a8cee1b86c423232477f6699e03e6add86",
+      "imports": [
+        {
+          "value": "cce:/internal/code-quality/cr.mjs",
+          "resolved": "__unresolved_0"
+        },
+        {
+          "value": "cc"
+        },
+        {
+          "value": "cc"
+        },
+        {
+          "value": "cc",
+          "loc": {
+            "start": {
+              "line": 1,
+              "column": 111
+            },
+            "end": {
+              "line": 1,
+              "column": 115
+            }
+          }
+        },
+        {
+          "value": "./GameShulteStartView",
+          "resolved": "__unresolved_1",
+          "loc": {
+            "start": {
+              "line": 2,
+              "column": 36
+            },
+            "end": {
+              "line": 2,
+              "column": 59
+            }
+          }
+        },
+        {
+          "value": "../../../manager/EventManager",
+          "resolved": "__unresolved_2",
+          "loc": {
+            "start": {
+              "line": 3,
+              "column": 29
+            },
+            "end": {
+              "line": 3,
+              "column": 60
+            }
+          }
+        },
+        {
+          "value": "../../../enum/EventEnum",
+          "resolved": "__unresolved_3",
+          "loc": {
+            "start": {
+              "line": 4,
+              "column": 26
+            },
+            "end": {
+              "line": 4,
+              "column": 51
+            }
+          }
+        },
+        {
+          "value": "../../../enum/GameType",
+          "resolved": "__unresolved_4",
+          "loc": {
+            "start": {
+              "line": 5,
+              "column": 25
+            },
+            "end": {
+              "line": 5,
+              "column": 49
+            }
+          }
+        },
+        {
+          "value": "./ShulteGridItem",
+          "resolved": "__unresolved_5",
+          "loc": {
+            "start": {
+              "line": 6,
+              "column": 31
+            },
+            "end": {
+              "line": 6,
+              "column": 49
+            }
+          }
+        }
+      ],
+      "type": "esm",
+      "resolutions": [
+        {
+          "resolved": {
+            "type": "module",
+            "url": "cce:/internal/code-quality/cr.mjs"
+          },
+          "messages": []
+        },
+        {
+          "resolved": {
+            "type": "module",
+            "url": "cce:/internal/x/cc"
+          },
+          "messages": []
+        },
+        {
+          "resolved": {
+            "type": "module",
+            "url": "cce:/internal/x/cc"
+          },
+          "messages": []
+        },
+        {
+          "resolved": {
+            "type": "module",
+            "url": "cce:/internal/x/cc"
+          },
+          "messages": []
+        },
+        {
+          "resolved": {
+            "type": "module",
+            "url": "file:///G:/Work/cocoscreator/MiniGame/assets/script/game/gameShulte/view/GameShulteStartView.ts"
+          },
+          "messages": []
+        },
+        {
+          "resolved": {
+            "type": "module",
+            "url": "file:///G:/Work/cocoscreator/MiniGame/assets/script/manager/EventManager.ts"
+          },
+          "messages": []
+        },
+        {
+          "resolved": {
+            "type": "module",
+            "url": "file:///G:/Work/cocoscreator/MiniGame/assets/script/enum/EventEnum.ts"
+          },
+          "messages": []
+        },
+        {
+          "resolved": {
+            "type": "module",
+            "url": "file:///G:/Work/cocoscreator/MiniGame/assets/script/enum/GameType.ts"
+          },
+          "messages": []
+        },
+        {
+          "resolved": {
+            "type": "module",
+            "url": "file:///G:/Work/cocoscreator/MiniGame/assets/script/game/gameShulte/view/ShulteGridItem.ts"
+          },
+          "messages": []
+        }
+      ]
+    },
+    "file:///G:/Work/cocoscreator/MiniGame/assets/script/game/gameShulte/view/GameShulteStartView.ts": {
+      "mTimestamp": {
+        "mtime": 1694199454250.1108,
+        "uuid": "2b0c1c07-cf0e-4d63-84fa-15e079c176ea"
+      },
+      "chunkId": "c5fa0cde422fe951eb21bf3f2e2418fc3ce5c2d1",
+      "imports": [
+        {
+          "value": "cce:/internal/code-quality/cr.mjs",
+          "resolved": "__unresolved_0"
+        },
+        {
+          "value": "cc"
+        },
+        {
+          "value": "cc"
+        },
+        {
+          "value": "cc",
+          "loc": {
+            "start": {
+              "line": 1,
+              "column": 109
+            },
+            "end": {
+              "line": 1,
+              "column": 113
+            }
+          }
+        },
+        {
+          "value": "./GameShulteBeginView",
+          "resolved": "__unresolved_1",
+          "loc": {
+            "start": {
+              "line": 2,
+              "column": 36
+            },
+            "end": {
+              "line": 2,
+              "column": 59
+            }
+          }
+        },
+        {
+          "value": "../../../manager/Mgr",
+          "resolved": "__unresolved_2",
+          "loc": {
+            "start": {
+              "line": 3,
+              "column": 16
+            },
+            "end": {
+              "line": 3,
+              "column": 38
+            }
+          }
+        },
+        {
+          "value": "./ShulteGridItem",
+          "resolved": "__unresolved_3",
+          "loc": {
+            "start": {
+              "line": 4,
+              "column": 31
+            },
+            "end": {
+              "line": 4,
+              "column": 49
+            }
+          }
+        }
+      ],
+      "type": "esm",
+      "resolutions": [
+        {
+          "resolved": {
+            "type": "module",
+            "url": "cce:/internal/code-quality/cr.mjs"
+          },
+          "messages": []
+        },
+        {
+          "resolved": {
+            "type": "module",
+            "url": "cce:/internal/x/cc"
+          },
+          "messages": []
+        },
+        {
+          "resolved": {
+            "type": "module",
+            "url": "cce:/internal/x/cc"
+          },
+          "messages": []
+        },
+        {
+          "resolved": {
+            "type": "module",
+            "url": "cce:/internal/x/cc"
+          },
+          "messages": []
+        },
+        {
+          "resolved": {
+            "type": "module",
+            "url": "file:///G:/Work/cocoscreator/MiniGame/assets/script/game/gameShulte/view/GameShulteBeginView.ts"
+          },
+          "messages": []
+        },
+        {
+          "resolved": {
+            "type": "module",
+            "url": "file:///G:/Work/cocoscreator/MiniGame/assets/script/manager/Mgr.ts"
+          },
+          "messages": []
+        },
+        {
+          "resolved": {
+            "type": "module",
+            "url": "file:///G:/Work/cocoscreator/MiniGame/assets/script/game/gameShulte/view/ShulteGridItem.ts"
+          },
+          "messages": []
+        }
+      ]
+    },
+    "file:///G:/Work/cocoscreator/MiniGame/assets/script/game/gameShulte/view/ShulteGridItem.ts": {
+      "mTimestamp": {
+        "mtime": 1694153006099.6433,
+        "uuid": "8921f274-bc7c-4e46-a84a-dc6665f76c91"
+      },
+      "chunkId": "ffff2c182c13b8c6e3c9df0fb65968cbac0e55d0",
+      "imports": [
+        {
+          "value": "cc"
+        },
+        {
+          "value": "cc"
+        },
+        {
+          "value": "cc",
+          "loc": {
+            "start": {
+              "line": 1,
+              "column": 59
+            },
+            "end": {
+              "line": 1,
+              "column": 63
+            }
+          }
+        }
+      ],
+      "type": "esm",
+      "resolutions": [
+        {
+          "resolved": {
+            "type": "module",
+            "url": "cce:/internal/x/cc"
+          },
+          "messages": []
+        },
+        {
+          "resolved": {
+            "type": "module",
+            "url": "cce:/internal/x/cc"
+          },
+          "messages": []
+        },
+        {
+          "resolved": {
+            "type": "module",
+            "url": "cce:/internal/x/cc"
+          },
+          "messages": []
+        }
+      ]
+    },
+    "file:///G:/Work/cocoscreator/MiniGame/assets/script/common.ts": {
+      "mTimestamp": {
+        "mtime": 1694113488676.5696,
+        "uuid": "5e429d53-1e9d-49c7-82d8-56b43e757621"
+      },
+      "chunkId": "f5cbe81260746bca07dd2a0dc4e000f30e440bab",
+      "imports": [
+        {
+          "value": "cc"
+        },
+        {
+          "value": "cc"
+        },
+        {
+          "value": "cc",
+          "loc": {
+            "start": {
+              "line": 1,
+              "column": 44
+            },
+            "end": {
+              "line": 1,
+              "column": 48
+            }
+          }
+        }
+      ],
+      "type": "esm",
+      "resolutions": [
+        {
+          "resolved": {
+            "type": "module",
+            "url": "cce:/internal/x/cc"
+          },
+          "messages": []
+        },
+        {
+          "resolved": {
+            "type": "module",
+            "url": "cce:/internal/x/cc"
+          },
+          "messages": []
+        },
+        {
+          "resolved": {
+            "type": "module",
+            "url": "cce:/internal/x/cc"
+          },
+          "messages": []
+        }
+      ]
+    },
+    "file:///G:/Work/cocoscreator/MiniGame/assets/script/common/AudioPlayer.ts": {
+      "mTimestamp": {
+        "mtime": 1694195979927.464,
+        "uuid": "b0ea8ba5-ba6a-40b6-a110-480c1521f560"
+      },
+      "chunkId": "978ae37d0f073d3eca6509beb7f03ef90a59080e",
+      "imports": [
+        {
+          "value": "cc"
+        },
+        {
+          "value": "cc"
+        },
+        {
+          "value": "cc",
+          "loc": {
+            "start": {
+              "line": 1,
+              "column": 73
+            },
+            "end": {
+              "line": 1,
+              "column": 77
+            }
+          }
+        }
+      ],
+      "type": "esm",
+      "resolutions": [
+        {
+          "resolved": {
+            "type": "module",
+            "url": "cce:/internal/x/cc"
+          },
+          "messages": []
+        },
+        {
+          "resolved": {
+            "type": "module",
+            "url": "cce:/internal/x/cc"
+          },
+          "messages": []
+        },
+        {
+          "resolved": {
+            "type": "module",
+            "url": "cce:/internal/x/cc"
+          },
+          "messages": []
+        }
+      ]
+    },
+    "file:///G:/Work/cocoscreator/MiniGame/assets/script/game/MainMenu.ts": {
+      "mTimestamp": {
+        "mtime": 1694200411347.6123,
+        "uuid": "d69f7d01-5763-448d-a831-6c05e1ab054b"
+      },
+      "chunkId": "61b3b895ac1c4d7259ed9934c849072467275f6d",
+      "imports": [
+        {
+          "value": "cce:/internal/code-quality/cr.mjs",
+          "resolved": "__unresolved_0"
+        },
+        {
+          "value": "cc"
+        },
+        {
+          "value": "cc"
+        },
+        {
+          "value": "cc",
+          "loc": {
+            "start": {
+              "line": 1,
+              "column": 75
+            },
+            "end": {
+              "line": 1,
+              "column": 79
+            }
+          }
+        },
+        {
+          "value": "../manager/EventManager",
+          "resolved": "__unresolved_1",
+          "loc": {
+            "start": {
+              "line": 2,
+              "column": 29
+            },
+            "end": {
+              "line": 2,
+              "column": 54
+            }
+          }
+        },
+        {
+          "value": "../enum/EventEnum",
+          "resolved": "__unresolved_2",
+          "loc": {
+            "start": {
+              "line": 3,
+              "column": 26
+            },
+            "end": {
+              "line": 3,
+              "column": 45
+            }
+          }
+        },
+        {
+          "value": "../enum/GameType",
+          "resolved": "__unresolved_3",
+          "loc": {
+            "start": {
+              "line": 4,
+              "column": 25
+            },
+            "end": {
+              "line": 4,
+              "column": 43
+            }
+          }
+        },
+        {
+          "value": "../enum/GameState",
+          "resolved": "__unresolved_4",
+          "loc": {
+            "start": {
+              "line": 5,
+              "column": 26
+            },
+            "end": {
+              "line": 5,
+              "column": 45
+            }
+          }
+        },
+        {
+          "value": "../manager/Mgr",
+          "resolved": "__unresolved_5",
+          "loc": {
+            "start": {
+              "line": 6,
+              "column": 16
+            },
+            "end": {
+              "line": 6,
+              "column": 32
+            }
+          }
+        }
+      ],
+      "type": "esm",
+      "resolutions": [
+        {
+          "resolved": {
+            "type": "module",
+            "url": "cce:/internal/code-quality/cr.mjs"
+          },
+          "messages": []
+        },
+        {
+          "resolved": {
+            "type": "module",
+            "url": "cce:/internal/x/cc"
+          },
+          "messages": []
+        },
+        {
+          "resolved": {
+            "type": "module",
+            "url": "cce:/internal/x/cc"
+          },
+          "messages": []
+        },
+        {
+          "resolved": {
+            "type": "module",
+            "url": "cce:/internal/x/cc"
+          },
+          "messages": []
+        },
+        {
+          "resolved": {
+            "type": "module",
+            "url": "file:///G:/Work/cocoscreator/MiniGame/assets/script/manager/EventManager.ts"
+          },
+          "messages": []
+        },
+        {
+          "resolved": {
+            "type": "module",
+            "url": "file:///G:/Work/cocoscreator/MiniGame/assets/script/enum/EventEnum.ts"
+          },
+          "messages": []
+        },
+        {
+          "resolved": {
+            "type": "module",
+            "url": "file:///G:/Work/cocoscreator/MiniGame/assets/script/enum/GameType.ts"
+          },
+          "messages": []
+        },
+        {
+          "resolved": {
+            "type": "module",
+            "url": "file:///G:/Work/cocoscreator/MiniGame/assets/script/enum/GameState.ts"
+          },
+          "messages": []
+        },
+        {
+          "resolved": {
+            "type": "module",
+            "url": "file:///G:/Work/cocoscreator/MiniGame/assets/script/manager/Mgr.ts"
+          },
+          "messages": []
+        }
+      ]
+    },
+    "file:///G:/Work/cocoscreator/MiniGame/assets/script/enum/GameState.ts": {
+      "mTimestamp": {
+        "mtime": 1694149864082.9546,
+        "uuid": "b99d3871-329e-49cb-98ef-4694c2e8b401"
+      },
+      "chunkId": "62a0dddc88a8e69663797257cc6b999cce0760a2",
+      "imports": [
+        {
+          "value": "cc"
+        }
+      ],
+      "type": "esm",
+      "resolutions": [
+        {
+          "resolved": {
+            "type": "module",
+            "url": "cce:/internal/x/cc"
+          },
+          "messages": []
+        }
+      ]
+    },
+    "file:///G:/Work/cocoscreator/MiniGame/assets/script/game/gameGrid/view/GameGridStartView.ts": {
+      "mTimestamp": {
+        "mtime": 1694201288598.4294,
+        "uuid": "69e67088-fbbb-4741-ba97-878495bd22a4"
+      },
+      "chunkId": "7cb0823e56a286749e0f9b70b51f6f083ca8ef5d",
+      "imports": [
+        {
+          "value": "cce:/internal/code-quality/cr.mjs",
+          "resolved": "__unresolved_0"
+        },
+        {
+          "value": "cc"
+        },
+        {
+          "value": "cc"
+        },
+        {
+          "value": "cc",
+          "loc": {
+            "start": {
+              "line": 1,
+              "column": 123
+            },
+            "end": {
+              "line": 1,
+              "column": 127
+            }
+          }
+        },
+        {
+          "value": "../../../manager/EventManager",
+          "resolved": "__unresolved_1",
+          "loc": {
+            "start": {
+              "line": 2,
+              "column": 29
+            },
+            "end": {
+              "line": 2,
+              "column": 60
+            }
+          }
+        },
+        {
+          "value": "../../../enum/EventEnum",
+          "resolved": "__unresolved_2",
+          "loc": {
+            "start": {
+              "line": 3,
+              "column": 26
+            },
+            "end": {
+              "line": 3,
+              "column": 51
+            }
+          }
+        },
+        {
+          "value": "../../../common/TweenManager",
+          "resolved": "__unresolved_3",
+          "loc": {
+            "start": {
+              "line": 4,
+              "column": 25
+            },
+            "end": {
+              "line": 4,
+              "column": 55
+            }
+          }
+        },
+        {
+          "value": "../../../manager/Mgr",
+          "resolved": "__unresolved_4",
+          "loc": {
+            "start": {
+              "line": 5,
+              "column": 16
+            },
+            "end": {
+              "line": 5,
+              "column": 38
+            }
+          }
+        },
+        {
+          "value": "../../../enum/GameType",
+          "resolved": "__unresolved_5",
+          "loc": {
+            "start": {
+              "line": 6,
+              "column": 25
+            },
+            "end": {
+              "line": 6,
+              "column": 49
+            }
+          }
+        }
+      ],
+      "type": "esm",
+      "resolutions": [
+        {
+          "resolved": {
+            "type": "module",
+            "url": "cce:/internal/code-quality/cr.mjs"
+          },
+          "messages": []
+        },
+        {
+          "resolved": {
+            "type": "module",
+            "url": "cce:/internal/x/cc"
+          },
+          "messages": []
+        },
+        {
+          "resolved": {
+            "type": "module",
+            "url": "cce:/internal/x/cc"
+          },
+          "messages": []
+        },
+        {
+          "resolved": {
+            "type": "module",
+            "url": "cce:/internal/x/cc"
+          },
+          "messages": []
+        },
+        {
+          "resolved": {
+            "type": "module",
+            "url": "file:///G:/Work/cocoscreator/MiniGame/assets/script/manager/EventManager.ts"
+          },
+          "messages": []
+        },
+        {
+          "resolved": {
+            "type": "module",
+            "url": "file:///G:/Work/cocoscreator/MiniGame/assets/script/enum/EventEnum.ts"
+          },
+          "messages": []
+        },
+        {
+          "resolved": {
+            "type": "module",
+            "url": "file:///G:/Work/cocoscreator/MiniGame/assets/script/common/TweenManager.ts"
+          },
+          "messages": []
+        },
+        {
+          "resolved": {
+            "type": "module",
+            "url": "file:///G:/Work/cocoscreator/MiniGame/assets/script/manager/Mgr.ts"
+          },
+          "messages": []
+        },
+        {
+          "resolved": {
+            "type": "module",
+            "url": "file:///G:/Work/cocoscreator/MiniGame/assets/script/enum/GameType.ts"
+          },
+          "messages": []
+        }
+      ]
+    },
+    "file:///G:/Work/cocoscreator/MiniGame/assets/script/common/TweenManager.ts": {
+      "mTimestamp": {
+        "mtime": 1694195974725.5474,
+        "uuid": "da12c0e1-155b-47bc-be09-117f2f554f16"
+      },
+      "chunkId": "70d2c5ed4b7da2390ea795b9b0d1271461916fcc",
+      "imports": [
+        {
+          "value": "cc"
+        },
+        {
+          "value": "cc"
+        },
+        {
+          "value": "cc",
+          "loc": {
+            "start": {
+              "line": 1,
+              "column": 59
+            },
+            "end": {
+              "line": 1,
+              "column": 63
+            }
+          }
+        }
+      ],
+      "type": "esm",
+      "resolutions": [
+        {
+          "resolved": {
+            "type": "module",
+            "url": "cce:/internal/x/cc"
+          },
+          "messages": []
+        },
+        {
+          "resolved": {
+            "type": "module",
+            "url": "cce:/internal/x/cc"
+          },
+          "messages": []
+        },
+        {
+          "resolved": {
+            "type": "module",
+            "url": "cce:/internal/x/cc"
+          },
+          "messages": []
+        }
+      ]
+    }
+  }
+}

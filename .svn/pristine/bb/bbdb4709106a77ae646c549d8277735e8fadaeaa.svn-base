@@ -1,0 +1,43 @@
+System.register(["cc"], function (_export, _context) {
+  "use strict";
+
+  var _cclegacy, __checkObsolete__, __checkObsoleteInNamespace__, _decorator, director, SceneManager, _crd, ccclass, property;
+
+  _export("SceneManager", void 0);
+
+  return {
+    setters: [function (_cc) {
+      _cclegacy = _cc.cclegacy;
+      __checkObsolete__ = _cc.__checkObsolete__;
+      __checkObsoleteInNamespace__ = _cc.__checkObsoleteInNamespace__;
+      _decorator = _cc._decorator;
+      director = _cc.director;
+    }],
+    execute: function () {
+      _crd = true;
+
+      _cclegacy._RF.push({}, "5287a+137ZKS7NBKEmKaYDr", "SceneManager", undefined);
+
+      __checkObsolete__(['_decorator', 'Component', 'director', 'Node']);
+
+      ({
+        ccclass,
+        property
+      } = _decorator);
+
+      _export("SceneManager", SceneManager = class SceneManager {
+        constructor() {}
+
+        LoadScene(sceneName) {
+          director.loadScene(sceneName);
+        }
+
+      });
+
+      _cclegacy._RF.pop();
+
+      _crd = false;
+    }
+  };
+});
+//# sourceMappingURL=93c33a50af17f01cb91acde574c3fb75d32e4eaa.js.map

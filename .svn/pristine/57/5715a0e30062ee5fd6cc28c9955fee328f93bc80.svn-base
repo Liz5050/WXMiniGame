@@ -1,0 +1,27 @@
+System.register(["cc"], function (_export, _context) {
+  "use strict";
+
+  var _cclegacy, _crd, GameState;
+
+  return {
+    setters: [function (_cc) {
+      _cclegacy = _cc.cclegacy;
+    }],
+    execute: function () {
+      _crd = true;
+
+      _cclegacy._RF.push({}, "b99d3hxMp5Jy5jvRpTC6LQB", "GameState", undefined);
+
+      _export("GameState", GameState = /*#__PURE__*/function (GameState) {
+        GameState[GameState["Home"] = 1] = "Home";
+        GameState[GameState["Playing"] = 2] = "Playing";
+        return GameState;
+      }({}));
+
+      _cclegacy._RF.pop();
+
+      _crd = false;
+    }
+  };
+});
+//# sourceMappingURL=b18c3f8441a5b50d7e5ac5f9a14fcba6b1566058.js.map

@@ -1,0 +1,11 @@
+{
+    "systemInfo": {
+        "arch": "x64",
+        "cpu": "AMD Ryzen 7 5800X 8-Core Processor             ",
+        "version": "Windows 10 Home"
+    },
+    "sceneListMap": {
+        "2deac0bd-c922-4eb4-93c5-c744c0c5c81c": "G:\\Work\\cocoscreator\\MiniGame\\assets\\scenes\\scene.scene"
+    },
+    "deviceMd5": "287639df73b84725e9c6a553738b7c02"
+}

@@ -1,0 +1,139 @@
+System.register(["__unresolved_0", "cc", "__unresolved_1", "__unresolved_2", "__unresolved_3", "__unresolved_4", "__unresolved_5"], function (_export, _context) {
+  "use strict";
+
+  var _reporterNs, _cclegacy, __checkObsolete__, __checkObsoleteInNamespace__, _decorator, Component, NodeEventType, EventManager, EventEnum, GameType, GameState, Mgr, _dec, _class, _crd, ccclass, property, MainMenu;
+
+  function _reportPossibleCrUseOfEventManager(extras) {
+    _reporterNs.report("EventManager", "../manager/EventManager", _context.meta, extras);
+  }
+
+  function _reportPossibleCrUseOfEventEnum(extras) {
+    _reporterNs.report("EventEnum", "../enum/EventEnum", _context.meta, extras);
+  }
+
+  function _reportPossibleCrUseOfGameType(extras) {
+    _reporterNs.report("GameType", "../enum/GameType", _context.meta, extras);
+  }
+
+  function _reportPossibleCrUseOfGameState(extras) {
+    _reporterNs.report("GameState", "../enum/GameState", _context.meta, extras);
+  }
+
+  function _reportPossibleCrUseOfMgr(extras) {
+    _reporterNs.report("Mgr", "../manager/Mgr", _context.meta, extras);
+  }
+
+  return {
+    setters: [function (_unresolved_) {
+      _reporterNs = _unresolved_;
+    }, function (_cc) {
+      _cclegacy = _cc.cclegacy;
+      __checkObsolete__ = _cc.__checkObsolete__;
+      __checkObsoleteInNamespace__ = _cc.__checkObsoleteInNamespace__;
+      _decorator = _cc._decorator;
+      Component = _cc.Component;
+      NodeEventType = _cc.NodeEventType;
+    }, function (_unresolved_2) {
+      EventManager = _unresolved_2.EventManager;
+    }, function (_unresolved_3) {
+      EventEnum = _unresolved_3.EventEnum;
+    }, function (_unresolved_4) {
+      GameType = _unresolved_4.GameType;
+    }, function (_unresolved_5) {
+      GameState = _unresolved_5.GameState;
+    }, function (_unresolved_6) {
+      Mgr = _unresolved_6.default;
+    }],
+    execute: function () {
+      _crd = true;
+
+      _cclegacy._RF.push({}, "d69f70BV2NEjagxbAXhqwVL", "MainMenu", undefined);
+
+      __checkObsolete__(['_decorator', 'Button', 'Component', 'Node', 'NodeEventType']);
+
+      ({
+        ccclass,
+        property
+      } = _decorator);
+
+      _export("MainMenu", MainMenu = (_dec = ccclass('MainMenu'), _dec(_class = class MainMenu extends Component {
+        constructor(...args) {
+          super(...args);
+          this._homeEntity = void 0;
+          this._gameState = void 0;
+        }
+
+        update(deltaTime) {}
+
+        start() {
+          (_crd && EventManager === void 0 ? (_reportPossibleCrUseOfEventManager({
+            error: Error()
+          }), EventManager) : EventManager).addListener((_crd && EventEnum === void 0 ? (_reportPossibleCrUseOfEventEnum({
+            error: Error()
+          }), EventEnum) : EventEnum).OnGameExit, this.OnGameExit, this);
+          this._homeEntity = GameUI.FindChild(this.entity, "Home");
+          let self = this;
+          let btnShulte = this.node.getChildByName("btnShulte");
+          btnShulte.on(NodeEventType.TOUCH_START, function () {
+            self.OnStartGame((_crd && GameType === void 0 ? (_reportPossibleCrUseOfGameType({
+              error: Error()
+            }), GameType) : GameType).Shulte);
+          });
+          let btnGridGame = this.node.getChildByName("btnGridGame");
+          btnGridGame.onClick.add(function () {
+            self.OnStartGame((_crd && GameType === void 0 ? (_reportPossibleCrUseOfGameType({
+              error: Error()
+            }), GameType) : GameType).Grid);
+            (_crd && Mgr === void 0 ? (_reportPossibleCrUseOfMgr({
+              error: Error()
+            }), Mgr) : Mgr).soundMgr.play("game_start");
+          });
+          this.SetGameState((_crd && GameState === void 0 ? (_reportPossibleCrUseOfGameState({
+            error: Error()
+          }), GameState) : GameState).Home);
+        }
+
+        OnStartGame(type) {
+          if (this._gameState == (_crd && GameState === void 0 ? (_reportPossibleCrUseOfGameState({
+            error: Error()
+          }), GameState) : GameState).Playing) {
+            return;
+          }
+
+          this.SetGameState((_crd && GameState === void 0 ? (_reportPossibleCrUseOfGameState({
+            error: Error()
+          }), GameState) : GameState).Playing);
+          (_crd && EventManager === void 0 ? (_reportPossibleCrUseOfEventManager({
+            error: Error()
+          }), EventManager) : EventManager).dispatch((_crd && EventEnum === void 0 ? (_reportPossibleCrUseOfEventEnum({
+            error: Error()
+          }), EventEnum) : EventEnum).OnGameStart, type);
+        }
+
+        OnGameExit() {
+          this.SetGameState((_crd && GameState === void 0 ? (_reportPossibleCrUseOfGameState({
+            error: Error()
+          }), GameState) : GameState).Home);
+        }
+
+        SetGameState(state) {
+          if (state == (_crd && GameState === void 0 ? (_reportPossibleCrUseOfGameState({
+            error: Error()
+          }), GameState) : GameState).Home) {
+            this.node.active = true;
+          } else if (state == (_crd && GameState === void 0 ? (_reportPossibleCrUseOfGameState({
+            error: Error()
+          }), GameState) : GameState).Playing) {
+            this.node.active = false;
+          }
+        }
+
+      }) || _class));
+
+      _cclegacy._RF.pop();
+
+      _crd = false;
+    }
+  };
+});
+//# sourceMappingURL=b942a0f48b37e4ca58fb4d8a311426bd7c614628.js.map

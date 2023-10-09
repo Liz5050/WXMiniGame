@@ -1,0 +1,12 @@
+System.register([], function (_export, _context) {
+  "use strict";
+
+  return {
+    setters: [],
+    execute: function () {
+      // This module is auto-generated to report error emitted when try to load module file:///G:/Work/cocoscreator/svn/MiniGame/assets/script/TestScene.ts at runtime.
+      throw new Error("SyntaxError: C:CocosDashboard_2.0.1\file:G:WorkcocoscreatorsvnMiniGameassetsscriptTestScene.ts: Identifier 'btnPlay' has already been declared. (14:12)\n\n  12 |         });\n  13 |\n> 14 |         let btnPlay = this.node.getChildByName(\"btnPlay\");\n     |             ^\n  15 |         btnPlay.on(Button.EventType.CLICK,function(){\n  16 |             Mgr.soundMgr.play(\"bgm1\");\n  17 |         });");
+    }
+  };
+});
+//# sourceMappingURL=4f60ddee5f3bdf840b47eea4dca11c98653fb2e0.js.map

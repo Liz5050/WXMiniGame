@@ -1,0 +1,5 @@
+export enum GameType {
+	Shulte = 1001,
+	Grid,
+	Memory,
+}

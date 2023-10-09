@@ -1,0 +1,143 @@
+System.register(["cc"], function (_export, _context) {
+  "use strict";
+
+  var _cclegacy, __checkObsolete__, __checkObsoleteInNamespace__, _decorator, Component, AudioSource, resources, _dec, _class, _crd, ccclass, property, AudioPlayer;
+
+  return {
+    setters: [function (_cc) {
+      _cclegacy = _cc.cclegacy;
+      __checkObsolete__ = _cc.__checkObsolete__;
+      __checkObsoleteInNamespace__ = _cc.__checkObsoleteInNamespace__;
+      _decorator = _cc._decorator;
+      Component = _cc.Component;
+      AudioSource = _cc.AudioSource;
+      resources = _cc.resources;
+    }],
+    execute: function () {
+      _crd = true;
+
+      _cclegacy._RF.push({}, "b0ea8ulumpAtqEQSAwVIfVg", "AudioPlayer", undefined);
+
+      __checkObsolete__(['_decorator', 'Component', 'AudioSource', 'resources', 'AudioClip']);
+
+      ({
+        ccclass,
+        property
+      } = _decorator);
+
+      _export("AudioPlayer", AudioPlayer = (_dec = ccclass('AudioPlayer'), _dec(_class = class AudioPlayer extends Component {
+        constructor() {
+          super(...arguments);
+          this._audioPlayers = void 0;
+          this._audioIdx = void 0;
+          this._audioLastIdx = void 0;
+          this._bgmPlayer = void 0;
+          this._isMute = void 0;
+        }
+
+        start() {
+          this._audioPlayers = [];
+          this._audioIdx = 0;
+          this._audioLastIdx = -1;
+          var audio = this.node.getChildByName("Sound1").getComponent(AudioSource);
+
+          this._audioPlayers.push(audio);
+
+          audio = this.node.getChildByName("Sound2").getComponent(AudioSource);
+
+          this._audioPlayers.push(audio);
+
+          audio = this.node.getChildByName("Sound3").getComponent(AudioSource);
+
+          this._audioPlayers.push(audio);
+
+          this._bgmPlayer = this.node.getChildByName("BGM").getComponent(AudioSource); // this._audioPlayer = this.getComponent(engine.AudioSource);
+        }
+
+        onUpdate(dt) {}
+
+        play(audioName, stopLast) {
+          if (stopLast === void 0) {
+            stopLast = true;
+          }
+
+          if (stopLast) {
+            if (this._audioLastIdx >= 0) {
+              this._audioPlayers[this._audioLastIdx].stop();
+
+              this._audioPlayers[this._audioLastIdx].clip = null;
+            }
+          }
+
+          this._audioIdx = this._audioLastIdx + 1;
+          this._audioLastIdx = this._audioIdx;
+
+          if (this._audioIdx >= 3) {
+            this._audioIdx = 0;
+            this._audioLastIdx = 0;
+          }
+
+          var source = this._audioPlayers[this._audioIdx];
+          var url = "audio/" + audioName;
+          this.playByUrl(url, source);
+        }
+
+        playBGM(audioName) {
+          var url = "audio/bgm/" + audioName;
+          this.playByUrl(url, this._bgmPlayer);
+        }
+
+        stopBGM() {
+          this._bgmPlayer.stop();
+
+          this._bgmPlayer.clip = null;
+        }
+
+        playByUrl(url, source) {
+          if (!source) {
+            var idx = this._audioLastIdx >= 0 ? this._audioLastIdx : 0;
+            source = this._audioPlayers[idx];
+          }
+
+          var audioClip = resources.get(url);
+
+          if (audioClip) {
+            source.clip = audioClip;
+            source.play();
+          } else {
+            resources.load(url, function (error, audio) {
+              source.clip = audio;
+              source.play();
+            });
+          }
+        }
+
+        setMute(isMute) {
+          this._isMute = isMute;
+
+          for (var i = 0; i < this._audioPlayers.length; i++) {
+            this._audioPlayers[i].volume = isMute ? 0 : 1;
+          }
+
+          this._bgmPlayer.volume = isMute ? 0 : 1;
+        }
+
+        onPause() {
+          this._bgmPlayer.pause();
+        }
+
+        onResume() {
+          this._bgmPlayer.play();
+        }
+
+        onDestroy() {}
+
+      }) || _class));
+
+      _cclegacy._RF.pop();
+
+      _crd = false;
+    }
+  };
+});
+//# sourceMappingURL=6e3dc66e84da73ab70b35ba9381596bc3b07fdd4.js.map

@@ -1,0 +1,32 @@
+import { utils } from "cc";
+import { AudioPlayer } from "../common/AudioPlayer";
+
+export default class SoundManager {
+    private _ap:AudioPlayer;
+    private _isInit:boolean;
+    public constructor() {
+    }
+
+    public init(){
+        let soundEntity = utils.find("Canvas/Main/SoundManager");
+        if(soundEntity){
+            this._ap = soundEntity.getComponent(AudioPlayer);
+        }
+        else{
+            console.log("sound不存在");
+        }
+        this._isInit = true;
+    }
+
+    public get isInit():boolean{
+        return this._isInit;
+    }
+
+    public setMute(isMute:boolean){
+        this._ap.setMute(isMute);
+    }
+
+    public play(audioName:string,stopLast:boolean = true) {
+        this._ap.play(audioName,stopLast);
+    }
+}

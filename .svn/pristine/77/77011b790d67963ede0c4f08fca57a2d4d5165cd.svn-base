@@ -1,0 +1,318 @@
+System.register(["__unresolved_0", "cc", "__unresolved_1", "__unresolved_2", "__unresolved_3", "__unresolved_4", "__unresolved_5"], function (_export, _context) {
+  "use strict";
+
+  var _reporterNs, _cclegacy, __checkObsolete__, __checkObsoleteInNamespace__, _decorator, Button, Component, instantiate, Label, resources, UITransform, GameShulteStartView, EventManager, EventEnum, GameType, ShulteGridItem, BtnType, _dec, _class, _class2, _crd, ccclass, property, GameShulteBeginView;
+
+  function _reportPossibleCrUseOfGameShulteStartView(extras) {
+    _reporterNs.report("GameShulteStartView", "./GameShulteStartView", _context.meta, extras);
+  }
+
+  function _reportPossibleCrUseOfEventManager(extras) {
+    _reporterNs.report("EventManager", "../../../manager/EventManager", _context.meta, extras);
+  }
+
+  function _reportPossibleCrUseOfEventEnum(extras) {
+    _reporterNs.report("EventEnum", "../../../enum/EventEnum", _context.meta, extras);
+  }
+
+  function _reportPossibleCrUseOfGameType(extras) {
+    _reporterNs.report("GameType", "../../../enum/GameType", _context.meta, extras);
+  }
+
+  function _reportPossibleCrUseOfShulteGridItem(extras) {
+    _reporterNs.report("ShulteGridItem", "./ShulteGridItem", _context.meta, extras);
+  }
+
+  return {
+    setters: [function (_unresolved_) {
+      _reporterNs = _unresolved_;
+    }, function (_cc) {
+      _cclegacy = _cc.cclegacy;
+      __checkObsolete__ = _cc.__checkObsolete__;
+      __checkObsoleteInNamespace__ = _cc.__checkObsoleteInNamespace__;
+      _decorator = _cc._decorator;
+      Button = _cc.Button;
+      Component = _cc.Component;
+      instantiate = _cc.instantiate;
+      Label = _cc.Label;
+      resources = _cc.resources;
+      UITransform = _cc.UITransform;
+    }, function (_unresolved_2) {
+      GameShulteStartView = _unresolved_2.GameShulteStartView;
+    }, function (_unresolved_3) {
+      EventManager = _unresolved_3.EventManager;
+    }, function (_unresolved_4) {
+      EventEnum = _unresolved_4.EventEnum;
+    }, function (_unresolved_5) {
+      GameType = _unresolved_5.GameType;
+    }, function (_unresolved_6) {
+      ShulteGridItem = _unresolved_6.ShulteGridItem;
+    }],
+    execute: function () {
+      _crd = true;
+
+      _cclegacy._RF.push({}, "c39d5TdjhVK8aXLBveloeCk", "GameShulteBeginView", undefined);
+
+      __checkObsolete__(['_decorator', 'Asset', 'Button', 'Component', 'instantiate', 'Label', 'math', 'Node', 'NodeEventType', 'Prefab', 'resources', 'Toggle', 'ToggleContainer', 'UITransform', 'utils']);
+
+      ({
+        ccclass,
+        property
+      } = _decorator);
+
+      _export("GameShulteBeginView", GameShulteBeginView = (_dec = ccclass('GameShulteBeginView'), _dec(_class = (_class2 = class GameShulteBeginView extends Component {
+        constructor() {
+          super(...arguments);
+          this._itemContainer = void 0;
+          this._beginNode = void 0;
+          this._gameStartNode = void 0;
+          // private _beginAnim:engine.Animator;
+          this._gameStart = void 0;
+          this._curTypeIdx = -1;
+          this._num = void 0;
+          this._btns = [];
+          this._items = [];
+          this._typeList = [3, 4, 5, 6, 7, 8];
+          this._isStart = false;
+        }
+
+        update(deltaTime) {}
+
+        start() {
+          var _this = this;
+
+          this._gameStart = this.getComponent(_crd && GameShulteStartView === void 0 ? (_reportPossibleCrUseOfGameShulteStartView({
+            error: Error()
+          }), GameShulteStartView) : GameShulteStartView);
+          var self = this; //   let muteToggle:engine.UIToggle = GameUI.FindChild(this.entity,"MuteToggle",engine.UIToggle);
+          //   let soundNormal:engine.Entity = GameUI.FindChild(muteToggle.entity,"Normal");//this.entity.transform2D.findChildByName("MuteToggle/Normal").entity;
+          //   muteToggle.onClick.add(function(comp,event){
+          //       soundNormal.active = !muteToggle.isChecked;
+          //       Mgr.soundMgr.setMute(muteToggle.isChecked);
+          //   });
+
+          this._gameStartNode = this.node.getChildByName("gameStart");
+          this._gameStartNode.active = false;
+          this._beginNode = this.node.getChildByName("begin");
+          this._beginNode.active = true;
+          this._itemContainer = this.node.getChildByPath("begin/group/gridGroup");
+          var toggleGroup = this.node.getChildByPath("begin/ToggleGroup").getComponent("ToggleContainer");
+
+          var _loop = function _loop(i) {
+            var type = _this._typeList[i];
+            var btn = new BtnType();
+
+            var btnNode = _this.node.getChildByPath("begin/ToggleGroup/btn" + (i + 1));
+
+            btn.init(btnNode, type, i);
+            btnNode.on(Button.EventType.CLICK, function () {
+              self.setIndex(i);
+            });
+
+            _this._btns.push(btn);
+          };
+
+          for (var i = 0; i < this._typeList.length; i++) {
+            _loop(i);
+          }
+
+          var btnStart = this._beginNode.getChildByPath("group/btnStart");
+
+          btnStart.on(Button.EventType.CLICK, function () {
+            self.OnStartClick();
+          });
+
+          var btnExit = this._beginNode.getChildByName("btnExit");
+
+          btnExit.on(Button.EventType.CLICK, function () {
+            self.OnStartClick();
+            self.setIndex(0);
+            self.node.active = false;
+            (_crd && EventManager === void 0 ? (_reportPossibleCrUseOfEventManager({
+              error: Error()
+            }), EventManager) : EventManager).dispatch((_crd && EventEnum === void 0 ? (_reportPossibleCrUseOfEventEnum({
+              error: Error()
+            }), EventEnum) : EventEnum).OnGameExit, (_crd && GameType === void 0 ? (_reportPossibleCrUseOfGameType({
+              error: Error()
+            }), GameType) : GameType).Shulte);
+          });
+          this.setIndex(0);
+        }
+
+        OnStartClick() {
+          if (this._isStart) return;
+          console.log("开始游戏");
+          this._gameStartNode.active = true;
+          this._beginNode.active = false;
+
+          this._gameStart.startGame(this._typeList[this._curTypeIdx]);
+
+          this._isStart = true;
+        }
+
+        gameExit() {
+          this._isStart = false;
+        }
+
+        setIndex(index) {
+          if (this._curTypeIdx == index) return;
+
+          if (this._curTypeIdx >= 0) {
+            this.clearShowGrid();
+
+            this._btns[this._curTypeIdx].setSelected(false);
+          }
+
+          this._curTypeIdx = index;
+
+          this._btns[index].setSelected(true);
+
+          var curType = this._typeList[index];
+          this._num = curType * curType;
+          var url = 'Resources/prefab/ItemShowGrid.prefab';
+          resources.load(url, function () {});
+
+          if (resources.get(url)) {
+            this.updateShowGrid();
+          } else {
+            var self = this;
+            resources.load(url, function (error, asset) {
+              // 将 prefab 资源实例化
+              console.log("#######加载成功");
+              self.updateShowGrid();
+            });
+          }
+        }
+
+        updateShowGrid() {
+          var curType = this._typeList[this._curTypeIdx];
+
+          var width = this._itemContainer.getComponent(UITransform).contentSize.width; // let offset = this._systemInfo.screenWidth / 1080;
+
+
+          var curSize = Math.floor(width / curType); // * offset;
+
+          for (var i = 0; i < this._num; i++) {
+            if (!this.canShowGrid(i)) continue;
+            var itemNode = this.getShowItemGrid();
+            var transform = itemNode.getComponent(UITransform);
+            transform.width = curSize;
+            transform.height = curSize;
+
+            this._itemContainer.addChild(itemNode);
+
+            itemNode.active = true; //   let col = i % curType;
+            //   let row = Math.floor(i / curType);
+            //   let x = col * curSize;
+            //   let y = row * - curSize;
+            //   itemNode.setPosition(x,y);
+
+            itemNode.getComponent(_crd && ShulteGridItem === void 0 ? (_reportPossibleCrUseOfShulteGridItem({
+              error: Error()
+            }), ShulteGridItem) : ShulteGridItem).setIndex(i);
+
+            this._items.push(itemNode);
+          }
+        }
+
+        getShowItemGrid() {
+          var node = GameShulteBeginView.ITEM_POOL.pop();
+
+          if (!node) {
+            var prefabAsset = resources.get("prefab/ItemShowGrid.prefab");
+
+            if (prefabAsset) {
+              node = instantiate(prefabAsset);
+            } else {
+              console.log("找不到资源");
+            }
+          }
+
+          return node;
+        }
+
+        clearShowGrid() {
+          for (var i = 0; i < this._items.length; i++) {
+            var item = this._items[i];
+            item.active = false;
+            GameShulteBeginView.ITEM_POOL.push(item);
+          }
+
+          this._items = [];
+        }
+
+        canShowGrid(index) {
+          var curType = this._typeList[this._curTypeIdx];
+
+          if (curType == 3) {
+            return index != 4;
+          }
+
+          if (curType == 4) {
+            return index != 5 && index != 6 && index != 9 && index != 10;
+          }
+
+          if (curType == 5) {
+            return (index < 6 || index > 8) && (index < 11 || index > 13) && (index < 16 || index > 18);
+          }
+
+          if (curType == 6) {
+            return index != 14 && index != 15 && index != 20 && index != 21;
+          }
+
+          if (curType == 7) {
+            return (index < 16 || index > 18) && (index < 23 || index > 25) && (index < 30 || index > 32);
+          }
+
+          return (index < 18 || index > 21) && (index < 26 || index > 29) && (index < 34 || index > 37) && (index < 42 || index > 45);
+        }
+
+      }, _class2.ITEM_POOL = new Array(), _class2)) || _class));
+
+      BtnType = class BtnType {
+        constructor() {
+          this._isSelected = void 0;
+          this._index = void 0;
+          this._type = void 0;
+          this._itemNode = void 0;
+          this._normalNode = void 0;
+          this._selectedNode = void 0;
+        }
+
+        consturctor() {}
+
+        init(node, type, index) {
+          this._itemNode = node;
+          this._type = type;
+          this._index = index;
+          this.initUI();
+        }
+
+        initUI() {
+          this._normalNode = this._itemNode.getChildByName("normal");
+          this._selectedNode = this._itemNode.getChildByName("selected");
+
+          var txtType = this._itemNode.getChildByName("txtType").getComponent(Label);
+
+          txtType.string = this._type + "X" + this._type;
+        }
+
+        setSelected(isSelected) {
+          if (this._isSelected == isSelected) {
+            return;
+          }
+
+          this._normalNode.active = !isSelected;
+          this._selectedNode.active = isSelected;
+          this._isSelected = isSelected;
+        }
+
+      };
+
+      _cclegacy._RF.pop();
+
+      _crd = false;
+    }
+  };
+});
+//# sourceMappingURL=bd557d65b6ad48b4402493d58b484ef0b3197791.js.map
