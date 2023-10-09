@@ -105,16 +105,18 @@ export class GameShulteStartView extends Component {
     }
 
     private uploadResult(time){
+        let recordTime = String(+ new Date() / 1000)
         let value = {
             "wxgame": {
                 "score": time,
-                "update_time": String(+ new Date() / 1000)
+                "update_time": recordTime
             },
             "unitStr":"秒",
             "order":1
         }
         let KVData = { key: "rank_" + GameType.Shulte, value: value };
         WXSDK.postMessage({type:"UploadScore",KVData:KVData});
+        WXSDK.UploadUserGameData({game_type:GameType.Shulte,score:time,record_time:recordTime});
     }
 
     private _clickRight:boolean;

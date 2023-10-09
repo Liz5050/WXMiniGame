@@ -2,6 +2,7 @@ import { sys } from "cc";
 import { GameType } from "../enum/GameType";
 import { EventManager } from "../manager/EventManager";
 import { EventEnum } from "../enum/EventEnum";
+import { CloudApi } from "../enum/CloudDefine";
 
 export default class WXSDK {
     public static CloudId:string = "cloud1-0gg6h5ch5e3c80fc";
@@ -131,61 +132,38 @@ export default class WXSDK {
     }
 
     public static UploadUserGameData(data){
+        if(!WXSDK.UserInfo || !data || data.score <= 0){
+			return;
+		}
+        let userInfo = WXSDK.UserInfo; 
+        let postData = {
+            game_data:data,
+            user_info:userInfo
+        }
+		WXSDK.WXCloudRequire(CloudApi.user_game_data,postData,"POST");
+    }
+
+    public static WXCloudRequire(url:string,reqData?:any,method:string = "GET",callBack?:Function){
         if(!sys.isMobile){
             return;
         }
-		WXSDK.WXCloudPost(data);
-    }
-
-    public static WXCloudPost(gameData){
-		if(!WXSDK.UserInfo || !gameData || gameData.score <= 0){
-			return;
-		}
-		let userInfo = WXSDK.UserInfo; 
-		// if(!userInfo){
-		// 	userInfo = {nickName:"未授权",avatarUrl:"",is_auth:0};
-		// }
         wx.cloud.callContainer({
             config: {
               "env": "prod-2gue9n1kd74122cb"
             },
-            path: "/api/user_game_data",
+            path: url,
             header: {
               "X-WX-SERVICE": "express-589u"
             },
-            data:{
-                game_data:gameData,
-                user_info:userInfo
-            },
-            method: "POST",
+            data:reqData,
+            method: method,
             timeout:15000,
             complete:function(res){
-                console.log("POST callContainer user_game_data",res);
+                console.log(method + " callContainer url:" + url,res);
+                if(callBack){
+                    callBack.apply(callBack,res);
+                }
             }
         })
-    }
-
-    public static WXCloudGet(game_type:GameType){
-        wx.cloud.callContainer({
-            config: {
-              "env": "prod-2gue9n1kd74122cb"
-            },
-            path: "/api/user_game_data",
-            header: {
-              "X-WX-SERVICE": "express-589u"
-            },
-            data:{
-                game_type:game_type
-            },
-            method: "GET",
-            timeout:15000,
-            complete:function(res){
-                console.log("GET callContainer user_game_data",res);
-            }
-        })
-    }
-
-    public static PlatformCheck(){
-        return sys.isMobile;
     }
 }
