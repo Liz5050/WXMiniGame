@@ -1,4 +1,4 @@
-import { sys } from "cc";
+import { Game, sys } from "cc";
 import { GameType } from "../enum/GameType";
 import { EventManager } from "../manager/EventManager";
 import { EventEnum } from "../enum/EventEnum";
@@ -131,6 +131,7 @@ export default class WXSDK {
         });
     }
 
+    //上传自己的游戏数据
     public static UploadUserGameData(data){
         if(!WXSDK.UserInfo || !data || data.score <= 0){
 			return;
@@ -140,10 +141,20 @@ export default class WXSDK {
             game_data:data,
             user_info:userInfo
         }
-		WXSDK.WXCloudRequire(CloudApi.user_game_data,postData,"POST");
+		WXSDK.WXCloudPOST(CloudApi.user_game_data,postData);
     }
 
-    public static WXCloudRequire(url:string,reqData?:any,method:string = "GET",callBack?:Function){
+    //自己的数据
+    public static GetUserGameData(gametype:GameType,callBack?:Function){
+        WXSDK.WXCloudGET(CloudApi.user_game_data,[gametype],callBack);
+    }
+
+    //所有玩家数据
+    public static GetAllUserGameData(gametype:GameType,callBack?:Function){
+        WXSDK.WXCloudGET(CloudApi.all_user_game_data,[gametype],callBack);
+    }
+
+    public static WXCloudPOST(url:string,reqData?:any,callBack?:Function){
         if(!sys.isMobile){
             return;
         }
@@ -156,14 +167,47 @@ export default class WXSDK {
               "X-WX-SERVICE": "express-589u"
             },
             data:reqData,
-            method: method,
+            method: "POST",
             timeout:15000,
             complete:function(res){
-                console.log(method + " callContainer url:" + url,res);
+                console.log("POST callContainer url:" + url,res);
                 if(callBack){
                     callBack.apply(callBack,res);
                 }
             }
         })
+    }
+
+    public static WXCloudGET(url:string,reqData?:Array<any>,callBack?:Function){
+        if(!sys.isMobile){
+            return;
+        }
+        let reqUrl = url;
+        if(reqData && reqData.length > 0){
+            for(let i = 0; i < reqData.length; i++){
+                reqUrl += "/" + reqData[i];
+            }
+        }
+        wx.cloud.callContainer({
+            config: {
+              "env": "prod-2gue9n1kd74122cb"
+            },
+            path: reqUrl,
+            header: {
+              "X-WX-SERVICE": "express-589u"
+            },
+            method: "GET",
+            timeout:15000,
+            complete:function(res){
+                console.log("GET callContainer url:" + reqUrl,res);
+                if(callBack){
+                    callBack.apply(callBack,res);
+                }
+            }
+        })
+    }
+
+    public static isMobile():boolean{
+        return sys.isMobile;
     }
 }

@@ -51,10 +51,11 @@ export class GameGridStartView extends Component {
         let btnRestart:Node = this.node.getChildByName("btnRestart");
         btnRestart.on(Button.EventType.CLICK,function(){
             self.OnGameRestart();
-            self._btnSave.active = true;
+            // self._btnSave.active = true;
         });
 
         this._btnSave = this.node.getChildByName("btnSave");
+        this._btnSave.active = false;
         this._btnSave.on(Button.EventType.CLICK,function(){
             self._btnSave.active = false;
             self.saveCurData();//保存当前游戏进度
@@ -104,25 +105,6 @@ export class GameGridStartView extends Component {
                 WXSDK.showToast("保存失败");
             }
         });
-        // tb.get({
-        //     success:function(res){
-        //         console.log("get success",res,res.data);
-        //         tb.set({
-        //             data:gameData
-        //         });
-        //     },
-        //     fail:function(res){
-        //         console.log("get fail",res);
-        //         tb.add({
-        //             _id:"game_cur_data",
-        //             data:gameData,
-        //             success:function(res){
-        //                 // res 是一个对象，其中有 _id 字段标记刚创建的记录的 id
-        //                 console.log("add success",res);
-        //             }
-        //         });
-        //     }
-        // });
     }
     private uploadScore(){
         let time = String(+ new Date() / 1000)
@@ -138,16 +120,6 @@ export class GameGridStartView extends Component {
         let KVData = { key: "rank_" + GameType.Grid, value: value };
         WXSDK.postMessage({type:"UploadScore",KVData:KVData});
         WXSDK.UploadUserGameData({game_type:GameType.Grid,score:score,time:time});
-        // let KVDataList = [KVData];
-        // WXSDK.setUserCloudStorage({
-        //     KVDataList: KVDataList,
-        //     success(res) {
-        //         console.log("[WxPlatform] 保存用户数据成功:", KVDataList);
-        //     },
-        //     fail(res) {
-        //         console.log("[WxPlatform] 保存用户数据失败:", KVDataList,res);
-        //     }
-        // });
     }
 
     private initMapGrid(){
@@ -326,40 +298,35 @@ export class GameGridStartView extends Component {
 
     //开始游戏
     public OnGameStart(){
-        let self = this;
-        this._btnSave.active = false;
-        
-        WXSDK.DB.collection('gamegrid_userdata').doc("game_cur_data").get({
-            success: function(res) {
-                console.log("get success",res);
-                if(res.data.is_valid){
-                    self._userdata = res.data;
-                    self.OnResume(res.data);
-                }
-                else{
-                    self.OnStart();
-                }
-            },
-            fail: function(res){
-                console.log("get fail",res);
-                self.OnStart();
-            }
-        });
-        // tb.get({
-        //     success:function(res){
-        //         console.log("get success",res,res.data);
-        //     },
-        //     fail:function(res){
-        //         console.log("get fail",res);
-        //     }
-        // });
-        // this.OnStart();
+        // this._btnSave.active = false;
+        this.OnStart();
+        // if(WXSDK.isMobile()) {
+        //     WXSDK.DB.collection('gamegrid_userdata').doc("game_cur_data").get({
+        //         success: function(res) {
+        //             console.log("get success",res);
+        //             if(res.data.is_valid){
+        //                 self._userdata = res.data;
+        //                 self.OnResume(res.data);
+        //             }
+        //             else{
+        //                 self.OnStart();
+        //             }
+        //         },
+        //         fail: function(res){
+        //             console.log("get fail",res);
+        //             self.OnStart();
+        //         }
+        //     });
+        // }
+        // else {
+        //     this.OnStart();
+        // }
     }
 
     private OnStart(){
         this._score = 0;
         this._txtScore.string = "得分：0";
-        this._btnSave.active = true;
+        // this._btnSave.active = true;
         this.OnReqNextPreview();
     }
 

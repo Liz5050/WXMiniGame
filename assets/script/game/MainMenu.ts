@@ -5,6 +5,7 @@ import { GameType } from '../enum/GameType';
 import { GameState } from '../enum/GameState';
 import Mgr from '../manager/Mgr';
 import WXSDK from '../SDK/WXSDK';
+import { CloudApi } from '../enum/CloudDefine';
 const { ccclass, property } = _decorator;
 
 @ccclass('MainMenu')
@@ -78,6 +79,7 @@ export class MainMenu extends Component {
         btnWorldRank.on(Button.EventType.CLICK,function(){
             if(WXSDK.UserInfo){
                 WXSDK.showToast("正在开发接入中...");
+                // WXSDK.GetAllUserGameData(GameType.Grid);
             }
             else{
                 WXSDK.showToast("请先登录授权");
