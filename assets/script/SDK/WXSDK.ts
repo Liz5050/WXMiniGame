@@ -9,11 +9,27 @@ export default class WXSDK {
     public static ShareTicket:string = "";
     private static _UserInfo:any;
     private static DBInstance;
+    private static RewardedVideoAd;
+    private static BannerVideoState:boolean = false;//广告组件是否显示中
     public static get DB(){
         if(!WXSDK.DBInstance){
             WXSDK.DBInstance = wx.cloud.database();
         }
         return WXSDK.DBInstance;
+    }
+
+    public static Init(){
+        WXSDK.CloudInit();
+        WXSDK.VideoAdInit();
+    }
+
+    public static CloudInit(){
+        if(!sys.isMobile){
+            return;
+        }
+        wx.cloud.init({
+            env:"cloud1-0gg6h5ch5e3c80fc"
+        });
     }
 
 	public static get UserInfo(){
@@ -113,22 +129,20 @@ export default class WXSDK {
             withShareTicket: true,
             menus: ['shareAppMessage', 'shareTimeline'],
             success:function(res){
-                console.log("share success:",res)
+                console.log("show share success:",res)
                 // WXSDK.ShareTicket = res;
             },
             complete:function(res){
-                console.log("share complete:",res)
+                console.log("show share complete:",res)
             }
         })
-    }
 
-    public static CloudInit(){
-        if(!sys.isMobile){
-            return;
-        }
-        wx.cloud.init({
-            env:"cloud1-0gg6h5ch5e3c80fc"
-        });
+        wx.onShareAppMessage(function () {
+            // 用户点击了“转发”按钮
+            return {
+                title: '舒尔特方格挑战'
+            }
+        })
     }
 
     //上传自己的游戏数据
@@ -209,5 +223,55 @@ export default class WXSDK {
 
     public static isMobile():boolean{
         return sys.isMobile;
+    }
+
+    public static VideoAdInit(){
+        if(!WXSDK.isMobile()){
+            return;
+        }
+        if(!WXSDK.RewardedVideoAd){
+            WXSDK.RewardedVideoAd = wx.createRewardedVideoAd({
+                adUnitId: 'adunit-920d6a49941c8cb3'
+            })
+        }
+        let videoAd = WXSDK.RewardedVideoAd;
+        videoAd.onLoad(() => {
+            console.log('激励视频 广告加载成功');
+        })
+        videoAd.onError(err => {
+            console.log("onError",err);
+        })
+
+        videoAd.onClose(res => {
+            // 用户点击了【关闭广告】按钮
+            // 小于 2.1.0 的基础库版本，res 是一个 undefined
+            WXSDK.BannerVideoState = false;
+            if (res && res.isEnded || res === undefined) {
+              // 正常播放结束，可以下发游戏奖励
+              EventManager.dispatch(EventEnum.OnBannerAdComplete);
+            }
+            else {
+                // 播放中途退出，不下发游戏奖励
+                console.log("中途退出，无法获得道具奖励")
+            }
+        })
+    }
+
+    public static ShowRewardBanner(){
+        if(!WXSDK.isMobile()){
+            return
+        }
+        if(WXSDK.BannerVideoState){
+            return;
+        }
+        let videoAd = WXSDK.RewardedVideoAd;
+        WXSDK.BannerVideoState = true;
+        videoAd.show().catch(() => {
+            // 失败重试
+            videoAd.load().then(() => videoAd.show()).catch(err => {
+                console.log('激励视频 广告显示失败');
+                WXSDK.BannerVideoState = false;
+            })
+        })
     }
 }

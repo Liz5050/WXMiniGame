@@ -1,4 +1,4 @@
-import { _decorator, Button, Component, EventTouch, instantiate, Label, math, Node, NodeEventType, Prefab, resources, sys} from 'cc';
+import { _decorator, Animation, Button, Component, EventTouch, instantiate, Label, math, Node, NodeEventType, Prefab, resources, sys} from 'cc';
 import { EventManager } from '../../../manager/EventManager';
 import { EventEnum } from '../../../enum/EventEnum';
 import TweenManager from '../../../common/TweenManager';
@@ -13,6 +13,10 @@ export class GameGridStartView extends Component {
 
     private _txtScore:Label;
     private _btnSave:Node;
+    private _txtRefreshNum:Label;
+    private _imgVideo:Node;
+    private _btnRefresh:Node;
+    private _refreshAnim:Animation;
 
     private _mapItemList:MapGridItem[][];
     private _mapContainer:Node;
@@ -24,6 +28,8 @@ export class GameGridStartView extends Component {
     private _userdata:any;
     private _scoreAddItemList:Node[] = [];
     private ScoreItemPool:Node[] = [];
+    private _refreshNum = 1;//刷新次数
+    private _hadGetVideoReward:boolean = false;//是否获取过广告奖励（每局游戏仅可获得1次广告奖励）
     public update(dt) {
 
     }
@@ -61,65 +67,21 @@ export class GameGridStartView extends Component {
             self.saveCurData();//保存当前游戏进度
         });
 
+        this._refreshAnim = this.node.getChildByName("refreshAnim").getComponent(Animation)
+        this._btnRefresh = this.node.getChildByName("btnRefresh");
+        this._txtRefreshNum = this._btnRefresh.getChildByName("txtRefreshNum").getComponent(Label);
+        this._imgVideo = this._btnRefresh.getChildByName("img_video");
+        this._btnRefresh.on(Button.EventType.CLICK,function(){
+            self.OnUseRefresh();
+        });
+
         this.initMapGrid();
         EventManager.addListener(EventEnum.OnGameGridTouchEnd,this.OnTouchEndCheck,this);
+        EventManager.addListener(EventEnum.OnBannerAdComplete,this.OnBannerAdComplete,this);
     }
 
     public onDisable(): void {
         Mgr.soundMgr.stopBGM();    
-    }
-
-    private saveCurData(){
-        let score = this._score;
-        let mapItemData = [];
-        for(let row = 0; row < 10; row++){
-            for(let col = 0; col < 10; col++){
-                if(!mapItemData[row]){
-                    mapItemData[row] = [];
-                }
-                mapItemData[row][col] = this._mapItemList[row][col].isEmpty;
-            }
-        }
-        let gridInfoList = [];
-        for(let i = 0; i < this._btns.length; i++){
-            let info = this._btns[i].getCurGridInfo();
-            gridInfoList.push(info);
-        }
-        
-        let time = String(+ new Date() / 1000);
-        let gameData = {
-            time:time,
-            score:score,
-            game_data:mapItemData,
-            gridInfos:gridInfoList,
-            is_valid:true,
-        }
-        WXSDK.DB.collection('gamegrid_userdata').doc("game_cur_data").set({
-            data:gameData,
-            success: function(res) {
-                console.log("doc set success",res,res.data);
-                WXSDK.showToast("保存成功");
-            },
-            fail: function(res){
-                console.log("doc set fail",res,res.data);
-                WXSDK.showToast("保存失败");
-            }
-        });
-    }
-    private uploadScore(){
-        let time = String(+ new Date() / 1000)
-        let score = this._score;
-        let value = {
-            "wxgame": {
-                "score": score,
-                "update_time": time
-            },
-            "unitStr":"分",
-            "order":2
-        }
-        let KVData = { key: "rank_" + GameType.Grid, value: value };
-        WXSDK.postMessage({type:"UploadScore",KVData:KVData});
-        WXSDK.UploadUserGameData({game_type:GameType.Grid,score:score,time:time});
     }
 
     private initMapGrid(){
@@ -137,7 +99,50 @@ export class GameGridStartView extends Component {
         this.OnGameStart();
     }
 
+    private OnBannerAdComplete(){
+        this._hadGetVideoReward = true;
+        this._refreshNum += 1;
+        this._refreshAnim.node.active = true;
+        this._refreshAnim.play();
+        this.OnRefreshNumUpdate();
+    }
+
+    private OnRefreshNumUpdate(){
+        this._txtRefreshNum.string = this._refreshNum.toString();
+        if(this._refreshNum > 0){
+            this._txtRefreshNum.node.active = true;
+            this._imgVideo.active = false;
+        }else{
+            if(this._hadGetVideoReward){
+                //该局游戏已经获得过广告奖励了
+                this._imgVideo.active = false;
+                this._txtRefreshNum.node.active = true;
+            }
+            else {
+                this._imgVideo.active = true;
+                this._txtRefreshNum.node.active = false;
+            }
+        }
+    }
+
+    private OnUseRefresh(){
+        if(this._refreshNum > 0){
+            this.OnReqNextPreview();
+            this._refreshNum -= 1;
+            this.OnRefreshNumUpdate();
+        }
+        else{
+            if(this._hadGetVideoReward){
+                WXSDK.showToast("刷新次数不足!");
+            }
+            else {
+                WXSDK.ShowRewardBanner();
+            }
+        }
+    }
+
     private OnReqNextPreview(){
+        this._rightCount = 0;
         for(let i = 0; i < this._btns.length; i++){
             this._btns[i].updatePreviewGrid();
         }
@@ -195,7 +200,6 @@ export class GameGridStartView extends Component {
             this._btns[index].ShowError();
         }
         if(this._rightCount >= 3){
-            this._rightCount = 0;
             this.OnReqNextPreview();
         }
 
@@ -326,6 +330,9 @@ export class GameGridStartView extends Component {
     private OnStart(){
         this._score = 0;
         this._txtScore.string = "得分：0";
+        this._refreshNum = 1;
+        this._hadGetVideoReward = false;
+        this.OnRefreshNumUpdate();
         // this._btnSave.active = true;
         this.OnReqNextPreview();
     }
@@ -386,6 +393,60 @@ export class GameGridStartView extends Component {
             this.ScoreItemPool.push(item);
         }
         this._scoreAddItemList = [];
+    }
+
+    private saveCurData(){
+        let score = this._score;
+        let mapItemData = [];
+        for(let row = 0; row < 10; row++){
+            for(let col = 0; col < 10; col++){
+                if(!mapItemData[row]){
+                    mapItemData[row] = [];
+                }
+                mapItemData[row][col] = this._mapItemList[row][col].isEmpty;
+            }
+        }
+        let gridInfoList = [];
+        for(let i = 0; i < this._btns.length; i++){
+            let info = this._btns[i].getCurGridInfo();
+            gridInfoList.push(info);
+        }
+        
+        let time = String(+ new Date() / 1000);
+        let gameData = {
+            time:time,
+            score:score,
+            game_data:mapItemData,
+            gridInfos:gridInfoList,
+            is_valid:true,
+        }
+        WXSDK.DB.collection('gamegrid_userdata').doc("game_cur_data").set({
+            data:gameData,
+            success: function(res) {
+                console.log("doc set success",res,res.data);
+                WXSDK.showToast("保存成功");
+            },
+            fail: function(res){
+                console.log("doc set fail",res,res.data);
+                WXSDK.showToast("保存失败");
+            }
+        });
+    }
+    
+    private uploadScore(){
+        let time = String(+ new Date() / 1000)
+        let score = this._score;
+        let value = {
+            "wxgame": {
+                "score": score,
+                "update_time": time
+            },
+            "unitStr":"分",
+            "order":2
+        }
+        let KVData = { key: "rank_" + GameType.Grid, value: value };
+        WXSDK.postMessage({type:"UploadScore",KVData:KVData});
+        WXSDK.UploadUserGameData({game_type:GameType.Grid,score:score,time:time});
     }
 
     private hide(){

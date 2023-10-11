@@ -17,7 +17,7 @@ export default class Mgr {
         Mgr.soundMgr = new SoundManager();
         Mgr.sceneMgr = new SceneManager();
 
-        WXSDK.CloudInit();
+        WXSDK.Init();
         Mgr.isInit = true;
     }
 

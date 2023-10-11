@@ -6,4 +6,5 @@ export enum EventEnum {
     OnGameGridReqNextPreview,
 
     OnUserInfoUpdate,
+    OnBannerAdComplete,
 }

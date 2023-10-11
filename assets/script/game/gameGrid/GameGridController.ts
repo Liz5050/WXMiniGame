@@ -43,7 +43,6 @@ export default class GameGridController {
         if(!resources.get(scoreItemUrl)){
             resources.load(scoreItemUrl,function(){
                 let itemPrefab = resources.get(scoreItemUrl);
-                console.log("ScoreAddItem load complete",itemPrefab);
             });
         }
         // Mgr.soundMgr.playBGM("bgm1");
