@@ -4,6 +4,7 @@ import { EventManager } from "../../manager/EventManager";
 import { resources , Node, utils} from "cc";
 import { GameGridStartView } from "./view/GameGridStartView";
 import Mgr from "../../manager/Mgr";
+import WXSDK from "../../SDK/WXSDK";
 
 export default class GameGridController {
     private _gameGridNode:Node;
@@ -18,7 +19,7 @@ export default class GameGridController {
 
     private onGameStart(type:GameType):void {
         if(type != GameType.Grid) return;
-        
+        WXSDK.VideoAdInit();
         let url:string = "prefab/GameGridMapItem";
         if(resources.get(url)){
             this.start();
@@ -39,7 +40,7 @@ export default class GameGridController {
             this._gameStartView.OnGameStart();
         }
         this._gameGridNode.active = true;
-        let scoreItemUrl = "prefab/ScoreAddItem"
+        let scoreItemUrl = "prefab/ScoreAddItem";
         if(!resources.get(scoreItemUrl)){
             resources.load(scoreItemUrl,function(){
                 let itemPrefab = resources.get(scoreItemUrl);

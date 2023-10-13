@@ -116,7 +116,7 @@ export class GameShulteStartView extends Component {
         }
         let KVData = { key: "rank_" + GameType.Shulte, value: value };
         WXSDK.postMessage({type:"UploadScore",KVData:KVData});
-        WXSDK.UploadUserGameData({game_type:GameType.Shulte,score:time,record_time:recordTime});
+        WXSDK.UploadUserGameData({game_type:GameType.Shulte,score:time,sub_type:this._curType,record_time:recordTime,add_play_time:time});
     }
 
     private _clickRight:boolean;

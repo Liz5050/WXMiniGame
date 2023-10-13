@@ -20,7 +20,6 @@ export default class WXSDK {
 
     public static Init(){
         WXSDK.CloudInit();
-        WXSDK.VideoAdInit();
     }
 
     public static CloudInit(){
@@ -233,33 +232,33 @@ export default class WXSDK {
             WXSDK.RewardedVideoAd = wx.createRewardedVideoAd({
                 adUnitId: 'adunit-920d6a49941c8cb3'
             })
+            let videoAd = WXSDK.RewardedVideoAd;
+            videoAd.onLoad(() => {
+                console.log('激励视频 广告加载成功');
+            })
+            videoAd.onError(err => {
+                console.log("onError",err);
+            })
+    
+            videoAd.onClose(res => {
+                // 用户点击了【关闭广告】按钮
+                // 小于 2.1.0 的基础库版本，res 是一个 undefined
+                WXSDK.BannerVideoState = false;
+                if (res && res.isEnded || res === undefined) {
+                  // 正常播放结束，可以下发游戏奖励
+                  EventManager.dispatch(EventEnum.OnBannerAdComplete);
+                }
+                else {
+                    // 播放中途退出，不下发游戏奖励
+                    console.log("中途退出，无法获得道具奖励");
+                }
+            })
         }
-        let videoAd = WXSDK.RewardedVideoAd;
-        videoAd.onLoad(() => {
-            console.log('激励视频 广告加载成功');
-        })
-        videoAd.onError(err => {
-            console.log("onError",err);
-        })
-
-        videoAd.onClose(res => {
-            // 用户点击了【关闭广告】按钮
-            // 小于 2.1.0 的基础库版本，res 是一个 undefined
-            WXSDK.BannerVideoState = false;
-            if (res && res.isEnded || res === undefined) {
-              // 正常播放结束，可以下发游戏奖励
-              EventManager.dispatch(EventEnum.OnBannerAdComplete);
-            }
-            else {
-                // 播放中途退出，不下发游戏奖励
-                console.log("中途退出，无法获得道具奖励")
-            }
-        })
     }
 
     public static ShowRewardBanner(){
         if(!WXSDK.isMobile()){
-            return
+            return;
         }
         if(WXSDK.BannerVideoState){
             return;

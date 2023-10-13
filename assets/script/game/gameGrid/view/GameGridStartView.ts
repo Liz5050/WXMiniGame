@@ -24,6 +24,7 @@ export class GameGridStartView extends Component {
     private _rightCount:number = 0;
     private _score:number = 0;
     private _removeCount:number = 0;//连消计数
+    private _playTime:number = 0;
     
     private _userdata:any;
     private _scoreAddItemList:Node[] = [];
@@ -31,7 +32,7 @@ export class GameGridStartView extends Component {
     private _refreshNum = 1;//刷新次数
     private _hadGetVideoReward:boolean = false;//是否获取过广告奖励（每局游戏仅可获得1次广告奖励）
     public update(dt) {
-
+        this._playTime += dt;
     }
     public start(): void {
         this._mapContainer = this.node.getChildByPath("gridMap/items");
@@ -328,6 +329,7 @@ export class GameGridStartView extends Component {
     }
 
     private OnStart(){
+        this._playTime = 0;
         this._score = 0;
         this._txtScore.string = "得分：0";
         this._refreshNum = 1;
@@ -361,6 +363,9 @@ export class GameGridStartView extends Component {
 
     //重新开始游戏
     private OnGameRestart(){
+        if(this._score > 0){
+            this.uploadScore();//上传成绩
+        }
         this.exitClear(true);
         this.OnStart();
     }
@@ -393,6 +398,7 @@ export class GameGridStartView extends Component {
             this.ScoreItemPool.push(item);
         }
         this._scoreAddItemList = [];
+        this._playTime = 0;
     }
 
     private saveCurData(){
@@ -445,8 +451,9 @@ export class GameGridStartView extends Component {
             "order":2
         }
         let KVData = { key: "rank_" + GameType.Grid, value: value };
+        let timeFormat = Math.floor(this._playTime * 1000) / 1000;
         WXSDK.postMessage({type:"UploadScore",KVData:KVData});
-        WXSDK.UploadUserGameData({game_type:GameType.Grid,score:score,time:time});
+        WXSDK.UploadUserGameData({game_type:GameType.Grid,score:score,record_time:time,add_play_time:timeFormat});
     }
 
     private hide(){
