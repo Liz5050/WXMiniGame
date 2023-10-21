@@ -7,4 +7,11 @@ export enum EventEnum {
 
     OnUserInfoUpdate,
     OnBannerAdComplete,
+
+    OnShowWorldRank,
+    OnCloudGetUpdate,
+
+    OnGameGridRankUpdate,
+
+    OnGameResLoadComplete,
 }

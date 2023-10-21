@@ -90,6 +90,7 @@ export class GameShulteStartView extends Component {
         this._gameStartNode.active = false;
         this._beginNode.active = true;
         this._beginView.gameExit();
+        WXSDK.HideBannerAd();
     }
 
     private gameOver(){
@@ -235,6 +236,7 @@ export class GameShulteStartView extends Component {
     }
 
     public startGame(type:number){
+        WXSDK.ShowBannerAd();
         this._curType = type;
         this._num = type * type;
 

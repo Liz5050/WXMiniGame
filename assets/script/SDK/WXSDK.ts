@@ -4,13 +4,29 @@ import { EventManager } from "../manager/EventManager";
 import { EventEnum } from "../enum/EventEnum";
 import { CloudApi } from "../enum/CloudDefine";
 
+//开发者工具版本号1.06.2307260stable
 export default class WXSDK {
     public static CloudId:string = "cloud1-0gg6h5ch5e3c80fc";
     public static ShareTicket:string = "";
     private static _UserInfo:any;
+    private static _openid:string;
     private static DBInstance;
     private static RewardedVideoAd;
     private static BannerVideoState:boolean = false;//广告组件是否显示中
+    private static _CanShowBanner:boolean = true;
+    public static set CanShowBanner(val:boolean){
+        WXSDK._CanShowBanner = val;
+        if(val){
+            WXSDK.showToast("谢谢支持~");
+        }
+        else {
+        }
+    }
+    public static get CanShowBanner(){
+        return WXSDK._CanShowBanner;
+    }
+
+    private static BannerVideoAd;
     public static get DB(){
         if(!WXSDK.DBInstance){
             WXSDK.DBInstance = wx.cloud.database();
@@ -31,6 +47,10 @@ export default class WXSDK {
         });
     }
 
+    public static get openid():string{
+        return WXSDK._openid;
+    }
+
 	public static get UserInfo(){
 		return WXSDK._UserInfo;
 	}
@@ -44,6 +64,9 @@ export default class WXSDK {
         if(!sys.isMobile){
             return;
         }
+        WXSDK.WXCloudGET(CloudApi.wx_openid,null,function(openid){
+            WXSDK._openid = openid;
+        });
         wx.getSetting({
             success (res){
                 if (res.authSetting['scope.userInfo']) {
@@ -157,16 +180,6 @@ export default class WXSDK {
 		WXSDK.WXCloudPOST(CloudApi.user_game_data,postData);
     }
 
-    //自己的数据
-    public static GetUserGameData(gametype:GameType,callBack?:Function){
-        WXSDK.WXCloudGET(CloudApi.user_game_data,[gametype],callBack);
-    }
-
-    //所有玩家数据
-    public static GetAllUserGameData(gametype:GameType,callBack?:Function){
-        WXSDK.WXCloudGET(CloudApi.all_user_game_data,[gametype],callBack);
-    }
-
     public static WXCloudPOST(url:string,reqData?:any,callBack?:Function){
         if(!sys.isMobile){
             return;
@@ -185,10 +198,20 @@ export default class WXSDK {
             complete:function(res){
                 console.log("POST callContainer url:" + url,res);
                 if(callBack){
-                    callBack.apply(callBack,res);
+                    callBack(res.data);
                 }
             }
         })
+    }
+
+    //自己的数据
+    public static GetUserGameData(gametype:GameType,callBack?:Function){
+        WXSDK.WXCloudGET(CloudApi.user_game_data,[gametype],callBack);
+    }
+
+    //所有玩家数据
+    public static GetAllUserGameData(gametype:GameType,subtype:number = 0,callBack?:Function){
+        WXSDK.WXCloudGET(CloudApi.all_user_game_data,[gametype,subtype],callBack);
     }
 
     public static WXCloudGET(url:string,reqData?:Array<any>,callBack?:Function){
@@ -214,7 +237,7 @@ export default class WXSDK {
             complete:function(res){
                 console.log("GET callContainer url:" + reqUrl,res);
                 if(callBack){
-                    callBack.apply(callBack,res);
+                    callBack(res.data);
                 }
             }
         })
@@ -270,7 +293,39 @@ export default class WXSDK {
             videoAd.load().then(() => videoAd.show()).catch(err => {
                 console.log('激励视频 广告显示失败');
                 WXSDK.BannerVideoState = false;
+                WXSDK.showToast("暂无广告");
             })
         })
+    }
+
+    public static ShowBannerAd(){
+        if(!WXSDK.CanShowBanner){
+            return;
+        }
+        if(!WXSDK.BannerVideoAd){
+            let bannerAd = wx.createBannerAd({
+                adUnitId: 'adunit-a49e81e575b7ba93',
+                style: {
+                    top:625,
+                    left:55,
+                    width: 300,
+                    adIntervals:30,
+                }
+            });
+            WXSDK.BannerVideoAd = bannerAd;
+            bannerAd.onError(err => {
+                console.log("banner 广告加载失败" + err);
+                WXSDK.BannerVideoAd = null;
+            })
+        }
+        if(WXSDK.BannerVideoAd){
+            WXSDK.BannerVideoAd.show();
+        }
+    }
+
+    public static HideBannerAd(){
+        if(WXSDK.BannerVideoAd){
+            WXSDK.BannerVideoAd.hide();
+        }
     }
 }

@@ -78,8 +78,9 @@ export class MainMenu extends Component {
         let btnWorldRank = this.node.getChildByName("btnWorldRank");
         btnWorldRank.on(Button.EventType.CLICK,function(){
             if(WXSDK.UserInfo){
-                WXSDK.showToast("正在开发接入中...");
+                // WXSDK.showToast("正在开发接入中...");
                 // WXSDK.GetAllUserGameData(GameType.Grid);
+                EventManager.dispatch(EventEnum.OnShowWorldRank);
             }
             else{
                 WXSDK.showToast("请先登录授权");
@@ -118,13 +119,14 @@ export class MainMenu extends Component {
     private OnUserInfoUpdate(){
         if(WXSDK.UserInfo){
             let self = this;
-            assetManager.loadRemote<ImageAsset>(WXSDK.UserInfo.avatarUrl + "?aaa=aa.jpg", function (err, imageAsset) {
-                console.log("avatar loadComplete")
-                let texture = new Texture2D();
-                texture.image = imageAsset;
-                self._imgAvatar.node.active = true;
-                self._imgAvatar.spriteFrame.texture = texture;
-            })
+            Mgr.loader.SetSpriteFrame(this._imgAvatar,WXSDK.UserInfo.avatarUrl);
+            // assetManager.loadRemote<ImageAsset>(WXSDK.UserInfo.avatarUrl + "?aaa=aa.jpg", function (err, imageAsset) {
+            //     console.log("avatar loadComplete")
+            //     let texture = new Texture2D();
+            //     texture.image = imageAsset;
+            //     self._imgAvatar.node.active = true;
+            //     self._imgAvatar.spriteFrame.texture = texture;
+            // })
         }
         else{
             this._imgAvatar.node.active = false;
@@ -139,8 +141,11 @@ export class MainMenu extends Component {
         EventManager.dispatch(EventEnum.OnGameStart,type);
     }
 
-    private OnGameExit(){
+    private OnGameExit(type:GameType){
         this.SetGameState(GameState.Home);
+        if(type == GameType.Shulte){
+            WXSDK.HideBannerAd();
+        }
     }
 
     private SetGameState(state:GameState){

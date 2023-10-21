@@ -151,13 +151,13 @@
     "_dstBlendFactor": 4,
     "_color": {
       "__type__": "cc.Color",
-      "r": 204,
-      "g": 80,
-      "b": 80,
+      "r": 255,
+      "g": 255,
+      "b": 255,
       "a": 255
     },
     "_spriteFrame": {
-      "__uuid__": "7d8f9b89-4fd1-4c9f-a3ab-38ec7cded7ca@f9941",
+      "__uuid__": "94d1de8d-5e53-4242-88d7-dfcd3dd2f1ea@76bea",
       "__expectedType__": "cc.SpriteFrame"
     },
     "_type": 1,
@@ -172,7 +172,10 @@
     "_fillRange": 0,
     "_isTrimmedMode": true,
     "_useGrayscale": false,
-    "_atlas": null,
+    "_atlas": {
+      "__uuid__": "94d1de8d-5e53-4242-88d7-dfcd3dd2f1ea",
+      "__expectedType__": "cc.SpriteAtlas"
+    },
     "_id": ""
   },
   {
@@ -228,6 +231,7 @@
       "__id__": 0
     },
     "fileId": "adXd+w6txO8pjkV+SRbdTn",
+    "instance": null,
     "targetOverrides": null
   }
 ]

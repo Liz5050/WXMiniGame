@@ -1,9 +1,10 @@
-import { _decorator, Asset, Button, Component, instantiate, Label, Node, Prefab, resources, UITransform } from 'cc';
+import { _decorator, Asset, Button, Component, instantiate, Label, math, Node, Prefab, resources, Toggle, UITransform } from 'cc';
 import { GameShulteStartView } from './GameShulteStartView';
 import { EventManager } from '../../../manager/EventManager';
 import { EventEnum } from '../../../enum/EventEnum';
-import { GameType } from '../../../enum/GameType';
+import { GameDefine, GameType } from '../../../enum/GameType';
 import { ShulteGridItem } from './ShulteGridItem';
+import WXSDK from '../../../SDK/WXSDK';
 const { ccclass, property } = _decorator;
 
 @ccclass('GameShulteBeginView')
@@ -21,7 +22,8 @@ export class GameShulteBeginView extends Component {
     private _num:number;
     private _btns:BtnType[] = [];
     private _items:Node[] = [];
-    private _typeList:number[] = [3,4,5,6,7,8];
+    private _typeList:number[];
+    private _toggleBannerAd:Toggle;
 
     private _isStart:boolean = false;
     update(deltaTime: number) {
@@ -29,7 +31,9 @@ export class GameShulteBeginView extends Component {
     }
 
     public start() {
+        console.log("begin start");
 		this._gameStart = this.getComponent(GameShulteStartView);
+        this._typeList = GameDefine.ShulteSubTypes;
 
 		let self = this;
     //   let muteToggle:engine.UIToggle = GameUI.FindChild(this.entity,"MuteToggle",engine.UIToggle);
@@ -45,6 +49,13 @@ export class GameShulteBeginView extends Component {
 
 		this._beginNode = this.node.getChildByName("begin");
 		this._beginNode.active = true;
+        this._toggleBannerAd = this._beginNode.getChildByName("ToggleBannerAd").getComponent(Toggle);
+        this._toggleBannerAd.isChecked = true;
+        this._toggleBannerAd.node.on(Toggle.EventType.TOGGLE,function(){
+            let isShow = self._toggleBannerAd.isChecked;
+            WXSDK.CanShowBanner = isShow;
+            console.log("切换toggle状态",self._toggleBannerAd.isChecked);
+        });
       
 		this._itemContainer = this._beginNode.getChildByPath("group/gridGroup");
 		for (let i = 0; i < this._typeList.length; i++) {
@@ -191,9 +202,10 @@ class BtnType {
   private _itemNode:Node;
   private _normalNode:Node;
   private _selectedNode:Node;
+  private _txtType:Label;
+  private _txtColor:math.Color = new math.Color();
 
   public consturctor(){
-
   }
 
   public init(node:Node,type:number,index:number){
@@ -206,17 +218,24 @@ class BtnType {
   private initUI(){
       this._normalNode = this._itemNode.getChildByName("normal");
       this._selectedNode = this._itemNode.getChildByName("selected");
-      let txtType:Label = this._itemNode.getChildByName("txtType").getComponent(Label);
-      txtType.string = this._type + "X" + this._type;
+      this._txtType = this._itemNode.getChildByName("txtType").getComponent(Label);
+      this._txtType.string = this._type + "X" + this._type;
   }
 
   public setSelected(isSelected:boolean){
-      if (this._isSelected == isSelected){
-          return;
-      }
-      this._normalNode.active = !isSelected;
-      this._selectedNode.active = isSelected;
-      this._isSelected = isSelected;
+    if (this._isSelected == isSelected){
+        return;
+    }
+    if(isSelected){
+        this._txtColor.set(255,255,255);
+    }
+    else {
+        this._txtColor.set(0,0,0);
+    }
+    this._txtType.color = this._txtColor;
+    this._normalNode.active = !isSelected;
+    this._selectedNode.active = isSelected;
+    this._isSelected = isSelected;
   }
 }
 
