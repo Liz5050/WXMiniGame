@@ -19,6 +19,9 @@
       },
       {
         "__id__": 11
+      },
+      {
+        "__id__": 21
       }
     ],
     "_exoticAnimation": null,
@@ -434,7 +437,7 @@
         "__type__": "cc.RealKeyframeValue",
         "interpolationMode": 0,
         "tangentWeightMode": 0,
-        "value": -202,
+        "value": -573,
         "rightTangent": 0,
         "rightTangentWeight": 1,
         "leftTangent": 0,
@@ -525,5 +528,49 @@
     "_values": [],
     "preExtrapolation": 1,
     "postExtrapolation": 1
+  },
+  {
+    "__type__": "cc.animation.ObjectTrack",
+    "_binding": {
+      "__type__": "cc.animation.TrackBinding",
+      "path": {
+        "__id__": 22
+      },
+      "proxy": null
+    },
+    "_channel": {
+      "__id__": 24
+    }
+  },
+  {
+    "__type__": "cc.animation.TrackPath",
+    "_paths": [
+      {
+        "__id__": 23
+      },
+      "spriteFrame"
+    ]
+  },
+  {
+    "__type__": "cc.animation.ComponentPath",
+    "component": "cc.Sprite"
+  },
+  {
+    "__type__": "cc.animation.Channel",
+    "_curve": {
+      "__id__": 25
+    }
+  },
+  {
+    "__type__": "cc.ObjectCurve",
+    "_times": [
+      0
+    ],
+    "_values": [
+      {
+        "__uuid__": "d8f0e3af-40d5-47e0-a84f-8d0cc8e53348@f9941",
+        "__expectedType__": "cc.SpriteFrame"
+      }
+    ]
   }
 ]

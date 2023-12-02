@@ -1,0 +1,184 @@
+[
+    {
+        "skin_id" : 1,
+        "resName" : "bear",
+        "price" : 999,
+        "type":2
+    },
+    {
+        "skin_id" : 2,
+        "resName" : "buffalo",
+        "price" : 999,
+        "type":2
+    },
+    {
+        "skin_id" : 3,
+        "resName" : "chick",
+        "price" : 999,
+        "type":2
+    },
+    {
+        "skin_id" : 4,
+        "resName" : "chicken",
+        "price" : 999,
+        "type":2
+    },
+    {
+        "skin_id" : 5,
+        "resName" : "cow",
+        "price" : 999,
+        "type":1
+    },
+    {
+        "skin_id" : 6,
+        "resName" : "crocodile",
+        "price" : 999,
+        "type":1
+    },
+    {
+        "skin_id" : 7,
+        "resName" : "dog",
+        "price" : 999,
+        "type":1
+    },
+    {
+        "skin_id" : 8,
+        "resName" : "duck",
+        "price" : 999,
+        "type":1
+    },
+    {
+        "skin_id" : 9,
+        "resName" : "elephant",
+        "price" : 1999,
+        "type":1
+    },
+    {
+        "skin_id" : 10,
+        "resName" : "frog",
+        "price" : 1999,
+        "type":1
+    },
+    {
+        "skin_id" : 11,
+        "resName" : "giraffe",
+        "price" : 1999,
+        "type":1
+    },
+    {
+        "skin_id" : 12,
+        "resName" : "goat",
+        "price" : 1999,
+        "type":1
+    },
+    {
+        "skin_id" : 13,
+        "resName" : "gorilla",
+        "price" : 2999,
+        "type":1
+    },
+    {
+        "skin_id" : 14,
+        "resName" : "hippo",
+        "price" : 2999,
+        "type":1,
+        "sound" : "game_grid_hippo"
+    },
+    {
+        "skin_id" : 15,
+        "resName" : "horse",
+        "price" : 2999,
+        "type":1
+    },
+    {
+        "skin_id" : 16,
+        "resName" : "monkey",
+        "price" : 2999,
+        "type":1
+    },
+    {
+        "skin_id" : 17,
+        "resName" : "moose",
+        "price" : 2999,
+        "type":1
+    },
+    {
+        "skin_id" : 18,
+        "resName" : "narwhal",
+        "price" : 2999,
+        "type":1
+    },
+    {
+        "skin_id" : 19,
+        "resName" : "owl",
+        "price" : 2999,
+        "type":1,
+        "sound":"game_grid_owl"
+    },
+    {
+        "skin_id" : 20,
+        "resName" : "panda",
+        "price" : 2999,
+        "type":1
+    },
+    {
+        "skin_id" : 21,
+        "resName" : "parrot",
+        "price" : 5999,
+        "type":1
+    },
+    {
+        "skin_id" : 22,
+        "resName" : "penguin",
+        "price" : 5999,
+        "type":1
+    },
+    {
+        "skin_id" : 23,
+        "resName" : "pig",
+        "price" : 5999,
+        "type":1
+    },
+    {
+        "skin_id" : 24,
+        "resName" : "rabbit",
+        "price" : 5999,
+        "type":1
+    },
+    {
+        "skin_id" : 25,
+        "resName" : "rhino",
+        "price" : 5999,
+        "type":1
+    },
+    {
+        "skin_id" : 26,
+        "resName" : "sloth",
+        "price" : 5999,
+        "type":1
+    },
+    {
+        "skin_id" : 27,
+        "resName" : "snake",
+        "price" : 5999,
+        "type":1
+    },
+    {
+        "skin_id" : 28,
+        "resName" : "walrus",
+        "price" : 5999,
+        "type":1
+    },
+    {
+        "skin_id" : 29,
+        "resName" : "whale",
+        "price" : 5999,
+        "type":1
+    },
+    {
+        "skin_id" : 30,
+        "resName" : "zebra",
+        "price" : 5999,
+        "type":1
+    }
+]

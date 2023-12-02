@@ -1,0 +1,17 @@
+{
+  "ver": "1.1.0",
+  "importer": "directory",
+  "imported": true,
+  "uuid": "032d44dd-115d-44ce-9bd2-0dedd433885f",
+  "files": [],
+  "subMetas": {},
+  "userData": {
+    "compressionType": {
+      "wechatgame": "zip"
+    },
+    "isRemoteBundle": {
+      "wechatgame": true
+    },
+    "bundleName": "gameBall"
+  }
+}

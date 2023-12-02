@@ -163,9 +163,9 @@ class GTween {
 		this.runAction();
 	}
 
-	private timeIndex:number = -1;
+	private timeIndex:any;
 	private runAction():void {
-		if(this.timeIndex == -1) {
+		if(!this.timeIndex) {
             let self = this;
 			this.timeIndex = setInterval(function(){
 				let curTime:number = game.totalTime;
@@ -224,7 +224,7 @@ class GTween {
         if(errorTips == ""){
             if(k == "x" || k == "y" || k == "z"){
                 if(!this._targetPos){
-                    this._targetPos = this._target.getPosition();
+                    this._targetPos = this._target.getPosition(this._targetPos);
                 }
             }
             else if(k == "scaleX" || k == "scaleY" || k == "scaleZ"){
@@ -329,9 +329,9 @@ class GTween {
 
 	public reset():void {
 		if(!this._isStart) return;
-		if(this.timeIndex != -1) {
+		if(this.timeIndex != null) {
             clearInterval(this.timeIndex);
-			this.timeIndex = -1;
+			this.timeIndex = null;
 		}
 		this._stepIdx = 0;
 		this._loop = false;

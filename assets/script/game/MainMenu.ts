@@ -1,49 +1,66 @@
-import { _decorator, assetManager, Button, Component, ImageAsset, Node, Sprite, Texture2D, Toggle } from 'cc';
+import { _decorator, Button, Label, math, Node, Sprite, Toggle } from 'cc';
 import { EventManager } from '../manager/EventManager';
 import { EventEnum } from '../enum/EventEnum';
-import { GameType } from '../enum/GameType';
+import { GameDefine, GameType } from '../enum/GameType';
 import { GameState } from '../enum/GameState';
 import Mgr from '../manager/Mgr';
-import WXSDK from '../SDK/WXSDK';
-import { CloudApi } from '../enum/CloudDefine';
-const { ccclass, property } = _decorator;
+import { BaseUISubView } from './base/BaseUISubView';
+import { CacheManager } from '../manager/CacheManager';
+import { SDK } from '../SDK/SDK';
 
-@ccclass('MainMenu')
-export class MainMenu extends Component {
+export class MainMenu extends BaseUISubView {
     private _gameState:GameState;
     private _imgAvatar:Sprite;
-    private _btnLogin:Node;
-    update(deltaTime: number) {
-        
+    private _tabItems:MenuTabItem[];
+    private _tabData:{title:string}[];
+    private _subViews:Node[];
+    private _curIndex:number = -1;
+    public constructor(node:Node){
+        super(node);
     }
 
-    public start(){
+    protected initUI(){
         let self = this;
+        let tabBar = this.getChildByName("tabBar");
+        this._tabItems = [];
+        this._tabData = [{title:"商店"},{title:"主页"},{title:"排行榜"}];
+        for(let i = 0; i < this._tabData.length; i++){
+            let tabNode:Node = tabBar.getChildByName("item" + i);
+            tabNode.on(Button.EventType.CLICK,function(){
+                self.SetTabIdx(i);
+            });
+            let tabItem = new MenuTabItem(tabNode);
+            tabItem.setData(this._tabData[i]);
+            this._tabItems.push(tabItem);
+        }
+        let container = this.getChildByName("Container");
+        this._subViews = [];
+        this._subViews.push(container.getChildByName("GameShopView"));
 
-        this._imgAvatar = this.node.getChildByPath("UserInfo/imgAvatar").getComponent(Sprite);
+        this._imgAvatar = this.getChildByPath("UserInfo/imgAvatar").getComponent(Sprite);
 
-        let muteToggle:Toggle = this.node.getChildByName("muteToggle").getComponent(Toggle);
+        let muteToggle:Toggle = this.getChildByName("muteToggle").getComponent(Toggle);
         let soundNormal:Node = muteToggle.node.getChildByName("normal");
         muteToggle.node.on(Toggle.EventType.TOGGLE,function(){
             soundNormal.active = !muteToggle.isChecked;
             Mgr.soundMgr.setMute(muteToggle.isChecked);
         });
 
-        let btnShulte = this.node.getChildByName("btnShulte");
+        let btnShulte = this.getChildByName("btnShulte");
         btnShulte.on(Button.EventType.CLICK,function(){
             self.OnStartGame(GameType.Shulte);
         });
-        let btnGridGame = this.node.getChildByName("btnGrid");
+        let btnGridGame = this.getChildByName("btnGrid");
         btnGridGame.on(Button.EventType.CLICK,function(){
             self.OnStartGame(GameType.Grid);
             Mgr.soundMgr.play("game_start");
         });
 
-        let btnNullify = this.node.getChildByName("btnNullify");
+        let btnNullify = this.getChildByName("btnNullify");
         let clickCount = 0;
         let targetNum = -1;
         btnNullify.on(Button.EventType.CLICK,function(){
-            // self.OnStartGame(GameType.Nullify);
+            // self.OnStartGame(GameType.GameBall);
             let showTips:string = "别着急，已经在做了~";
             clickCount++;
             if(targetNum == -1){
@@ -58,7 +75,7 @@ export class MainMenu extends Component {
                 showTips = "休息一会儿吧~已经在加快速度了";
             }
             else if(clickCount >= targetNum + 11){
-                self.OnStartGame(GameType.Nullify);
+                self.OnStartGame(GameType.GameBall);
             }
             else if(clickCount >= targetNum + 10){
                 showTips = "这么期待？给你看一眼？";
@@ -66,24 +83,23 @@ export class MainMenu extends Component {
             else if(clickCount >= targetNum){
                 showTips = "别着急，已经在做了~";
             }
-            WXSDK.showToast(showTips);
+            SDK.showToast(showTips);
         });
-        let openDatacontext = this.node.getChildByName("openDataContext");
-        let btnRank = this.node.getChildByName("btnRank");
+        let openDatacontext = this.getChildByName("openDataContext");
+        let btnRank = this.getChildByName("btnRank");
         btnRank.on(Button.EventType.CLICK,function(){
             openDatacontext.active = true;
-            WXSDK.showRank("rank_" + GameType.Shulte);
+            SDK.showRank("rank_" + GameType.Shulte);
         });
 
-        let btnWorldRank = this.node.getChildByName("btnWorldRank");
+        let btnWorldRank = this.getChildByName("btnWorldRank");
         btnWorldRank.on(Button.EventType.CLICK,function(){
-            if(WXSDK.UserInfo){
-                // WXSDK.showToast("正在开发接入中...");
-                // WXSDK.GetAllUserGameData(GameType.Grid);
+            if(SDK.isLogin()){
+                // SDK.showToast("正在开发接入中...");
                 EventManager.dispatch(EventEnum.OnShowWorldRank);
             }
             else{
-                WXSDK.showToast("请先登录授权");
+                SDK.showToast("请先登录授权");
             }
         });
         
@@ -93,40 +109,71 @@ export class MainMenu extends Component {
         });
         let btnShulteRank = openDatacontext.getChildByName("btnShulteRank");
         btnShulteRank.on(Button.EventType.CLICK,function(){
-            WXSDK.showRank("rank_" + GameType.Shulte);
+            SDK.showRank("rank_" + GameType.Shulte);
         });
 
         let btnGridRank = openDatacontext.getChildByName("btnGridRank");
         btnGridRank.on(Button.EventType.CLICK,function(){
-            WXSDK.showRank("rank_" + GameType.Grid);
+            SDK.showRank("rank_" + GameType.Grid);
         });
 
-        let btnTest = this.node.getChildByName("btnTest");
+        let btnTest = this.getChildByName("btnTest");
         btnTest.on(Button.EventType.CLICK,function(){
             Mgr.sceneMgr.LoadScene("sceneTest");
         });
 
-        this.AddEvent();
         this.SetGameState(GameState.Home);
         this.OnUserInfoUpdate();
+        this.SetTabIdx(1);
     }
 
-    private AddEvent(){
+    protected initEvent(){
         EventManager.addListener(EventEnum.OnGameExit,this.OnGameExit,this);
         EventManager.addListener(EventEnum.OnUserInfoUpdate,this.OnUserInfoUpdate,this);
+        EventManager.addListener(EventEnum.OnRankViewClose,this.OnRankViewClose,this);
+    }
+
+    private OnRankViewClose(){
+        this.SetTabIdx(1);
+    }
+
+    private SetTabIdx(index:number){
+        if(this._curIndex == index){
+            return;
+        }
+        // if(index != 0 && index != 2 && index != 4){
+        //     SDK.showToast("功能暂未开放");
+        //     return;
+        // }
+        if(index == 2){
+            if(!SDK.isLogin()){
+                SDK.showToast("请先登录授权");
+                return;
+            }
+            else{
+                EventManager.dispatch(EventEnum.OnShowWorldRank);
+            }
+        }
+
+        if(this._curIndex >= 0){
+            this._tabItems[this._curIndex].selected = false;
+            let view = this._subViews[this._curIndex];
+            if(view){
+                view.active = false;
+            }
+        }
+        this._curIndex = index;
+        this._tabItems[this._curIndex].selected = true;
+        let view = this._subViews[index];
+        if(view){
+            view.active = true;
+        }
     }
 
     private OnUserInfoUpdate(){
-        if(WXSDK.UserInfo){
-            let self = this;
-            Mgr.loader.SetSpriteFrame(this._imgAvatar,WXSDK.UserInfo.avatarUrl);
-            // assetManager.loadRemote<ImageAsset>(WXSDK.UserInfo.avatarUrl + "?aaa=aa.jpg", function (err, imageAsset) {
-            //     console.log("avatar loadComplete")
-            //     let texture = new Texture2D();
-            //     texture.image = imageAsset;
-            //     self._imgAvatar.node.active = true;
-            //     self._imgAvatar.spriteFrame.texture = texture;
-            // })
+        let user = CacheManager.player.userInfo;
+        if(user){
+            Mgr.loader.SetSpriteFrame(this._imgAvatar,user.avatarUrl);
         }
         else{
             this._imgAvatar.node.active = false;
@@ -138,25 +185,78 @@ export class MainMenu extends Component {
             return;
         }
         this.SetGameState(GameState.Playing);
-        EventManager.dispatch(EventEnum.OnGameStart,type);
+
+        let resData = GameDefine.getGameRes(type);
+        if(resData){
+            if(resData.isAllReady){
+                EventManager.dispatch(EventEnum.OnGameStart,type);
+            }
+            else {
+                resData.loadRes(()=>{
+                    EventManager.dispatch(EventEnum.OnGameStart,type);
+                });
+            }
+        }
+        else {
+            EventManager.dispatch(EventEnum.OnGameStart,type);
+        }
     }
 
     private OnGameExit(type:GameType){
         this.SetGameState(GameState.Home);
         if(type == GameType.Shulte){
-            WXSDK.HideBannerAd();
+            SDK.HideBannerAd();
         }
     }
 
     private SetGameState(state:GameState){
         if(state == GameState.Home){
-            this.node.active = true;
+            this.active = true;
         }
         else if(state == GameState.Playing){
-            this.node.active = false;
+            this.active = false;
         }
     }
 }
 
+class MenuTabItem {
+    private _itemNode:Node;
+    private _normal:Node;
+    private _selected:Node;
+    private _txtTitle:Label;
+    private _txtColor:math.Color;
 
+    private _isSelected:boolean;
+    public constructor(itemNode:Node){
+        this._itemNode = itemNode;
+        this.initUI(itemNode);
+    }
+
+    public initUI(node:Node){
+        this._txtColor = new math.Color();
+
+        this._normal = node.getChildByName("normal");
+        this._selected = node.getChildByName("selected");
+        this._txtTitle = node.getChildByName("txtTitle").getComponent(Label);
+    }
+
+    public setData(data){
+        this._txtTitle.string = data.title;
+    }
+
+    public set selected(val:boolean){
+        if(this._isSelected == val){
+            return;
+        }
+        this._isSelected = val;
+        this._selected.active = val;
+        this._normal.active = !val;
+        if(val){
+            this._txtColor.set(232,106,23);
+        }else{
+            this._txtColor.set(255,255,255);
+        }
+        this._txtTitle.color = this._txtColor;
+    }
+}
 

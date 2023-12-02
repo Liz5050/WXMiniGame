@@ -1,29 +1,26 @@
 import { _decorator, Animation, Button, Component, instantiate, Label, math, Node, Prefab, resources, Toggle, UITransform} from 'cc';
-import { GameShulteBeginView } from './GameShulteBeginView';
 import Mgr from '../../../manager/Mgr';
 import { ShulteGridItem } from './ShulteGridItem';
 import { GameType } from '../../../enum/GameType';
-import WXSDK from '../../../SDK/WXSDK';
-const { ccclass, property } = _decorator;
+import { BaseUISubView } from '../../base/BaseUISubView';
+import { EventManager } from '../../../manager/EventManager';
+import { EventEnum } from '../../../enum/EventEnum';
+import { CacheManager } from '../../../manager/CacheManager';
+import { SDK } from '../../../SDK/SDK';
 
-@ccclass('GameShulteStartView')
-export class GameShulteStartView extends Component {
+export class GameShulteStartView extends BaseUISubView {
     
     private static ITEM_POOL:Node[] = [];
-    private _beginNode:Node;
-    private _gameStartNode:Node;
     private _gameContainer:Node;
     private _gameContainerSize:math.Size;
     private _itemNodes:Node[] = [];
 
-    private _beginView:GameShulteBeginView;
     // private _ap:AudioPlayer;
     private _resultNode:Node;
     private _txtTime:Label;
     private _txtResultTime:Label;
     private _errorAnim:Animation;
     private _rightAnim:Animation;
-    private _toggle:Toggle;
     
     private _indexList:number[] = [];
     private _curType:number;
@@ -32,45 +29,55 @@ export class GameShulteStartView extends Component {
     private _deltaTime:number = 0;
     private _isOver:boolean = true;
     private _curClickIdx:number = 0;
-    public start(){
-        this._beginView = this.getComponent(GameShulteBeginView);
-        
-        this._beginNode = this.node.getChildByName("begin");
-        this._gameStartNode = this.node.getChildByName("gameStart");
-        this._gameContainer = this._gameStartNode.getChildByPath("group/gridGroup");
+    private _interval:NodeJS.Timeout;
+    protected initUI(){
+        this._gameContainer = this.getChildByPath("group/gridGroup");
         this._gameContainerSize = this._gameContainer.getComponent(UITransform).contentSize;
         // this._ap = Main.FindChild(this.Node,"Sound",AudioPlayer);
-        this._resultNode = this._gameStartNode.getChildByName("result");
-        this._txtTime = this._gameStartNode.getChildByName("txtTime").getComponent(Label);
+        this._resultNode = this.getChildByName("result");
+        this._txtTime = this.getChildByName("txtTime").getComponent(Label);
         this._txtResultTime = this._resultNode.getChildByName("txtResultTime").getComponent(Label);
 
-        this._errorAnim = this._gameStartNode.getChildByName("error").getComponent(Animation);
-        this._rightAnim = this._gameStartNode.getChildByName("right").getComponent(Animation);
-        this._toggle = this._beginNode.getChildByName("Toggle").getComponent(Toggle);
+        this._errorAnim = this.getChildByName("error").getComponent(Animation);
+        this._rightAnim = this.getChildByName("right").getComponent(Animation);
 
         let self = this;
-        let btnExit:Node = this._gameStartNode.getChildByName("btnBack");
+        let btnExit:Node = this.getChildByName("btnBack");
         btnExit.on(Button.EventType.CLICK,function(){
             //退出游戏
-            self.gameExit();
+            self.gameExit();            
         });
         let btnAgain:Node = this._resultNode.getChildByName("btnAgain");
         btnAgain.on(Button.EventType.CLICK,function(){
             //再来一次
             self.playAgain();
         });
+    }
 
+    public onShowAfter(type:number): void {
+        this.addTimer((dt:number)=>{
+            if (this._isOver) return;
+            this._deltaTime += dt;//Time.deltaTime;
+            if(this._deltaTime >= 100){
+                this._deltaTime /= 1000;
+                this._time += this._deltaTime;
+                let showTime = Math.floor(this._time * 1000) / 1000;
+                this._txtTime.string = showTime + "S";
+                this._deltaTime = 0;
+            }
+        },1);
+        this.startGame(type);
     }
-    public update(dt:number) {
-        if (this._isOver) return;
-        this._deltaTime += dt;//Time.deltaTime;
-        if (this._deltaTime >= 0.1){
-            this._time += this._deltaTime;
-            let showTime = Math.floor(this._time * 1000) / 1000;
-            this._txtTime.string = showTime + "S";
-            this._deltaTime = 0;
-        }
-    }
+    // public update(dt:number) {
+    //     if (this._isOver) return;
+    //     this._deltaTime += dt;//Time.deltaTime;
+    //     if (this._deltaTime >= 0.1){
+    //         this._time += this._deltaTime;
+    //         let showTime = Math.floor(this._time * 1000) / 1000;
+    //         this._txtTime.string = showTime + "S";
+    //         this._deltaTime = 0;
+    //     }
+    // }
 
     private playAgain(){
         this._resultNode.active = false;
@@ -79,6 +86,10 @@ export class GameShulteStartView extends Component {
     }
 
     private gameExit(){
+        if(this._interval){
+            clearInterval(this._interval);
+            this._interval = null;
+        }
         this._curClickIdx = 0;
         this._isOver = true;
         this._indexList = [];
@@ -87,10 +98,8 @@ export class GameShulteStartView extends Component {
         this._deltaTime = 0;
         this._time = 0;
         this._resultNode.active = false;
-        this._gameStartNode.active = false;
-        this._beginNode.active = true;
-        this._beginView.gameExit();
-        WXSDK.HideBannerAd();
+        SDK.HideBannerAd();
+        EventManager.dispatch(EventEnum.OnGameShulteExit);
     }
 
     private gameOver(){
@@ -116,8 +125,8 @@ export class GameShulteStartView extends Component {
             "order":1
         }
         let KVData = { key: "rank_" + GameType.Shulte, value: value };
-        WXSDK.postMessage({type:"UploadScore",KVData:KVData});
-        WXSDK.UploadUserGameData({game_type:GameType.Shulte,score:time,sub_type:this._curType,record_time:recordTime,add_play_time:time});
+        SDK.postMessage({type:"UploadScore",KVData:KVData});
+        CacheManager.player.uploadUserGameData({game_type:GameType.Shulte,score:time,sub_type:this._curType,record_time:recordTime,add_play_time:time});
     }
 
     private _clickRight:boolean;
@@ -139,7 +148,7 @@ export class GameShulteStartView extends Component {
         else{
             //right
             this._curClickIdx ++;
-            if(this._toggle.isChecked){
+            if(CacheManager.gameGrid.clickHide){
                 //选中后消失
                 this._itemNodes[clickIdx].active = false;
             }
@@ -215,7 +224,7 @@ export class GameShulteStartView extends Component {
     private getItemGrid():Node{
         let node:Node = GameShulteStartView.ITEM_POOL.pop();
         if(!node){
-            let prefabAsset:Prefab = resources.get("prefab/ShulteGridItem");
+            let prefabAsset:Prefab = Mgr.loader.getBundleRes("ui","gameShulte/ShulteGridItem") as Prefab;
             if(prefabAsset){
                 node = instantiate(prefabAsset);
             }
@@ -235,20 +244,11 @@ export class GameShulteStartView extends Component {
         this._itemNodes = [];
     }
 
-    public startGame(type:number){
-        WXSDK.ShowBannerAd();
+    private startGame(type:number){
+        SDK.ShowBannerAd();
         this._curType = type;
         this._num = type * type;
-
-        let url:string = 'prefab/ShulteGridItem';
-        if(resources.get(url)){
-            this.updateGrid();
-        }else{
-            let self = this;
-            resources.load(url,function(){
-                self.updateGrid();
-            });
-        }
+        this.updateGrid();
     }
 }
 

@@ -1,4 +1,7 @@
+import { game } from 'cc';
 import { _decorator, Component, AudioSource, resources, AudioClip } from 'cc';
+import Mgr from '../manager/Mgr';
+import { AssetManager } from 'cc';
 const { ccclass, property } = _decorator;
 
 @ccclass('AudioPlayer')
@@ -8,17 +11,17 @@ export class AudioPlayer extends Component {
     private _audioLastIdx:number;
     private _bgmPlayer:AudioSource;
     private _isMute:boolean;
-
+    private _maxAudio:number = 5;
+    private _playTime:{[url:string]:number} = {}
+    private _curBGM:string;
     public start() {
         this._audioPlayers = [];
         this._audioIdx = 0;
         this._audioLastIdx = -1;
-        let audio:AudioSource = this.node.getChildByName("Sound1").getComponent(AudioSource);
-        this._audioPlayers.push(audio);
-        audio = this.node.getChildByName("Sound2").getComponent(AudioSource);
-        this._audioPlayers.push(audio);
-        audio = this.node.getChildByName("Sound3").getComponent(AudioSource);
-        this._audioPlayers.push(audio);
+        for(let i = 1; i <= this._maxAudio; i++){
+            let audio:AudioSource = this.node.getChildByName("Sound" + i).getComponent(AudioSource);
+            this._audioPlayers.push(audio);
+        }
 
         this._bgmPlayer = this.node.getChildByName("BGM").getComponent(AudioSource);
         // this._audioPlayer = this.getComponent(engine.AudioSource);
@@ -29,6 +32,22 @@ export class AudioPlayer extends Component {
     }
 
     public play(audioName:string,stopLast:boolean = true) {
+        let url:string = audioName;
+        let playTime = this._playTime[url];
+        let curTime = game.totalTime;
+        if(!playTime){
+            playTime = 0;
+        }
+        let audioClip = Mgr.loader.getBundleRes("audio",audioName) as AudioClip;
+        if(audioClip){
+            let audioTime = audioClip.getDuration() * 1000;
+            let playInterval = curTime - playTime;
+            if(playInterval < audioTime * 0.1){
+                //相同音频播放间隔时间太短，这次不播放
+                return;
+            }
+        }
+        
         if (stopLast) {
             if(this._audioLastIdx >= 0){
                 this._audioPlayers[this._audioLastIdx].stop();
@@ -37,40 +56,41 @@ export class AudioPlayer extends Component {
         }
         this._audioIdx = this._audioLastIdx + 1;
         this._audioLastIdx = this._audioIdx;
-        if(this._audioIdx >= 3){
+        if(this._audioIdx >= this._maxAudio){
             this._audioIdx = 0;
             this._audioLastIdx = 0;
         }
         let source:AudioSource = this._audioPlayers[this._audioIdx];
-        let url:string = "audio/" + audioName;
         this.playByUrl(url,source);
+        this._playTime[url] = curTime;
     }
 
     public playBGM(audioName:string){
-        let url:string = "audio/bgm/" + audioName;
-        this.playByUrl(url,this._bgmPlayer);
+        let url:string = "bgm/" + audioName;
+        this._curBGM = url;
+        this.playByUrl(url,this._bgmPlayer,true);
     }
     
     public stopBGM(){
+        this._curBGM = "";//防止加载未完成时调用停止失效
         this._bgmPlayer.stop();
         this._bgmPlayer.clip = null;
     }
 
-    public playByUrl(url:string,source:AudioSource){
+    private playByUrl(url:string,source:AudioSource,isBGM:boolean = false){
         if(!source){
             let idx:number = this._audioLastIdx >= 0 ? this._audioLastIdx : 0;
             source = this._audioPlayers[idx];
         }
-        let audioClip = resources.get(url) as AudioClip;
-        if(audioClip){
-            source.clip = audioClip;
+        Mgr.loader.LoadAudio(url,(audio)=>{
+            if(isBGM){
+                if(!this._curBGM || this._curBGM != url){
+                    return;
+                }
+            }
+            source.clip = audio as AudioClip;
             source.play();
-        }else{
-            resources.load(url,function(error:Error,audio){
-                source.clip = audio as AudioClip;
-                source.play();
-            });
-        }
+        });
     }
 
     public setMute(isMute:boolean){

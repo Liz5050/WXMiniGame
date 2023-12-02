@@ -1,40 +1,25 @@
-import { _decorator, Component, Node, resources } from 'cc';
-import Mgr from './manager/Mgr';
-import WXSDK from './SDK/WXSDK';
-import { EventManager } from './manager/EventManager';
-import { EventEnum } from './enum/EventEnum';
-const { ccclass, property } = _decorator;
+import { UIModuleEnum } from './enum/UIDefine';
+import { MainMenu } from './game/MainMenu';
+import { BaseUIView } from './game/base/BaseUIView';
+import { LayerManager } from './manager/LayerManager';
+export class Main extends BaseUIView {
+	private _mainMenu:MainMenu;
+	public constructor(){
+		super(UIModuleEnum.main,"Main");
+	}
 
-@ccclass('Main')
-export class Main extends Component {
-    private _worldRank:Node;
-    onLoad(): void {
-        console.log("Main onLoad");
-    }
-    start() {
-        Mgr.Init();
-        WXSDK.showShareMenu();
-        WXSDK.login();
-
-        this._worldRank = this.node.getChildByPath("PopupWindow/GameWorldRankView");
-        EventManager.addListener(EventEnum.OnShowWorldRank,this.OnShowWorldRankView,this);
+	protected get parent(){
+        return LayerManager.mainLayer;
     }
 
-    private OnShowWorldRankView(){
-        let itemUrl = "prefab/GameWorldRankItem";
-        let self = this;
-        if(!resources.get(itemUrl)){
-            resources.load(itemUrl,function(){
-                self._worldRank.active = true;
-            });
-        }
-        else {
-            self._worldRank.active = true;
-        }
-    }
+	protected initUI(){
+		this._mainMenu = new MainMenu(this.getChildByName("MainMenu"));
+		this._mainMenu.init();
+	}
 
-    update(deltaTime: number) {
-    }
+	public onShowAfter(){
+		this._mainMenu.active = true;
+	}
 }
 
 

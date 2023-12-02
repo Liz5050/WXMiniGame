@@ -13,7 +13,6 @@ export class PropRefreshAnimition extends Component {
 
     public OnAnimationComplete(){
         this.node.active = false;
-        console.log("OnAnimationComplete")
     }
 }
 

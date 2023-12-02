@@ -6,10 +6,16 @@
   "files": [],
   "subMetas": {},
   "userData": {
-    "compressionType": {},
+    "compressionType": {
+      "wechatgame": "zip",
+      "bytedance-mini-game": "zip"
+    },
     "isRemoteBundle": {
       "web-desktop": true,
-      "wechatgame": true
-    }
+      "wechatgame": true,
+      "bytedance-mini-game": true
+    },
+    "isBundle": true,
+    "bundleName": "atlas"
   }
 }
