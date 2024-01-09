@@ -1,4 +1,4 @@
-import { math, EventTouch, instantiate, NodeEventType, Button, _decorator, Node,Prefab,UITransform } from 'cc';
+import { math, EventTouch, instantiate, NodeEventType, Button, _decorator, Node,Prefab,UITransform, director } from 'cc';
 import TweenManager from '../../../common/TweenManager';
 import { BallItem } from './BallItem';
 import MathUtils from '../../../utils/MathUtils';
@@ -77,6 +77,22 @@ export class GameBallView extends BaseUIView {
         this._btnExit.on(Button.EventType.CLICK,function(){
             self.hide();
         });
+
+        let btnSpeed1 = this.getChildByName("btnSpeed1");
+        btnSpeed1.on(Button.EventType.CLICK,()=>{
+            //慢
+            CacheManager.game.setGameSpeed(0.5);
+        })
+        let btnSpeed2 = this.getChildByName("btnSpeed2");
+        btnSpeed2.on(Button.EventType.CLICK,()=>{
+            //快
+            CacheManager.game.setGameSpeed(2);
+        })
+        let btnSpeed3 = this.getChildByName("btnSpeed3");
+        btnSpeed3.on(Button.EventType.CLICK,()=>{
+            //正常
+            CacheManager.game.setGameSpeed(1);
+        })
     }
 
     protected initEvent(): void {
@@ -126,7 +142,7 @@ export class GameBallView extends BaseUIView {
             let endX = this._endPos.x + deltaX;
             let endY = this._endPos.y + deltaY;
             this._endPos.x = endX;
-            this._endPos.y = endY;
+            this._endPos.y = endY; 
 
             let showEndY = endY;
             if(showEndY <= this._startPos.y + 100){

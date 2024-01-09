@@ -1,11 +1,13 @@
-import { Button,Prefab, instantiate, AssetManager } from "cc";
+import { Button,Prefab, instantiate, AssetManager, Game } from "cc";
 import { BaseView } from "./BaseView";
 import { UIModuleEnum } from "../../enum/UIDefine";
 import { LayerManager } from "../../manager/LayerManager";
 import Mgr from "../../manager/Mgr";
-import { BaseUISubView } from "./BaseUISubView";
 import { Node } from "cc";
 import { Animation } from "cc";
+import { GameLoadingView } from "../../common/loading/GameLoadingView";
+import { EventManager } from "../../manager/EventManager";
+import { EventEnum } from "../../enum/EventEnum";
 
 export class BaseUIView extends BaseView {
     private _onShowParam:any;
@@ -44,8 +46,13 @@ export class BaseUIView extends BaseView {
             }
             else{
                 this._isLoading = true;
+                console.log("开始加载UI:" + this._viewName)
+                if(this._viewName != "GameLoadingView"){
+                    EventManager.dispatch(EventEnum.OnUILoading);
+                }
                 Mgr.loader.LoadUIPrefab(this._moduleId,this._viewName,(prefab:Prefab)=>{
                     this._isLoading = false;
+                    EventManager.dispatch(EventEnum.OnUILoadComplete);
                     if(this._cancelLoad){
                         this._cancelLoad = false;
                         return;

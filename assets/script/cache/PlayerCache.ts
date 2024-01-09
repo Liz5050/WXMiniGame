@@ -1,4 +1,5 @@
 import { SDK } from "../SDK/SDK";
+import { AlertView } from "../common/alert/AlertView";
 import { CloudApi } from "../enum/CloudDefine";
 import { EventEnum } from "../enum/EventEnum";
 import { GameType } from "../enum/GameType";
@@ -91,9 +92,14 @@ export class PlayerCache {
             user_info:userInfo
         }
 		SDK.CloudPOST(CloudApi.user_game_data,postData,(resData)=>{
-            if(data.game_type == GameType.Grid && resData.code == 0){
-                //上传成功
-                this.addScoreMoney(data.score);
+            //上传成功
+            if(resData.code == 0){
+                if(data.game_type == GameType.Grid){
+                    this.addScoreMoney(data.score);
+                }
+            }
+            else {
+                AlertView.show("系统检测到数据异常，如有疑问请联系我们VX:lizhi5050")
             }
         });
     }

@@ -2,14 +2,12 @@ import { _decorator, Button, Label, math, Node, Sprite, Toggle } from 'cc';
 import { EventManager } from '../manager/EventManager';
 import { EventEnum } from '../enum/EventEnum';
 import { GameDefine, GameType } from '../enum/GameType';
-import { GameState } from '../enum/GameState';
 import Mgr from '../manager/Mgr';
 import { BaseUISubView } from './base/BaseUISubView';
 import { CacheManager } from '../manager/CacheManager';
 import { SDK } from '../SDK/SDK';
 
 export class MainMenu extends BaseUISubView {
-    private _gameState:GameState;
     private _imgAvatar:Sprite;
     private _tabItems:MenuTabItem[];
     private _tabData:{title:string}[];
@@ -56,11 +54,16 @@ export class MainMenu extends BaseUISubView {
             Mgr.soundMgr.play("game_start");
         });
 
+        let btnHit = this.getChildByName("btnHit");
+        btnHit.on(Button.EventType.CLICK,()=>{
+            this.OnStartGame(GameType.GameHit);
+        });
+
         let btnNullify = this.getChildByName("btnNullify");
         let clickCount = 0;
         let targetNum = -1;
         btnNullify.on(Button.EventType.CLICK,function(){
-            // self.OnStartGame(GameType.GameBall);
+            self.OnStartGame(GameType.GameBall);
             let showTips:string = "别着急，已经在做了~";
             clickCount++;
             if(targetNum == -1){
@@ -122,13 +125,11 @@ export class MainMenu extends BaseUISubView {
             Mgr.sceneMgr.LoadScene("sceneTest");
         });
 
-        this.SetGameState(GameState.Home);
         this.OnUserInfoUpdate();
         this.SetTabIdx(1);
     }
 
     protected initEvent(){
-        EventManager.addListener(EventEnum.OnGameExit,this.OnGameExit,this);
         EventManager.addListener(EventEnum.OnUserInfoUpdate,this.OnUserInfoUpdate,this);
         EventManager.addListener(EventEnum.OnRankViewClose,this.OnRankViewClose,this);
     }
@@ -181,11 +182,6 @@ export class MainMenu extends BaseUISubView {
     }
 
     private OnStartGame(type:GameType){
-        if(this._gameState == GameState.Playing){
-            return;
-        }
-        this.SetGameState(GameState.Playing);
-
         let resData = GameDefine.getGameRes(type);
         if(resData){
             if(resData.isAllReady){
@@ -199,22 +195,6 @@ export class MainMenu extends BaseUISubView {
         }
         else {
             EventManager.dispatch(EventEnum.OnGameStart,type);
-        }
-    }
-
-    private OnGameExit(type:GameType){
-        this.SetGameState(GameState.Home);
-        if(type == GameType.Shulte){
-            SDK.HideBannerAd();
-        }
-    }
-
-    private SetGameState(state:GameState){
-        if(state == GameState.Home){
-            this.active = true;
-        }
-        else if(state == GameState.Playing){
-            this.active = false;
         }
     }
 }

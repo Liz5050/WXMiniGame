@@ -5,4 +5,5 @@ export enum UIModuleEnum {
     gameGrid,
     gameShulte,
     rank,//排行榜
+    gameHit,
 }

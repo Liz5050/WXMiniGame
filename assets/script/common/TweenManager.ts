@@ -1,4 +1,4 @@
-import { UITransform, _decorator, error, game, math } from "cc";
+import {UITransform, _decorator, error, game, math } from "cc";
 
 /**
  * 对象池管理缓动
@@ -19,8 +19,10 @@ class GTween {
 	private _stepProps:any;
 	private _isStart:boolean = false;
 	private _stepTime:number;
+    private _curTime:number = 0;
 	private _curStep:any;
 	private _lastStep:any;
+    private _canUpdate:boolean = false;
 
 	private _loop:boolean = false;
     private _loopCount:number = 0;
@@ -157,44 +159,42 @@ class GTween {
 			this.getStep();
 			return;
         }
-		this._stepTime = game.totalTime + this._curStep.duration;
+        this._curTime = 0;
+		this._stepTime = this._curStep.duration;
 		this._stepProps = {};
         this._targetProps = {};
-		this.runAction();
+		this._canUpdate = true;
 	}
 
-	private timeIndex:any;
-	private runAction():void {
-		if(!this.timeIndex) {
-            let self = this;
-			this.timeIndex = setInterval(function(){
-				let curTime:number = game.totalTime;
-				if(curTime >= self._stepTime){
-					self.getStep();
-					return;
-				}
-				if(self._curStep.type == "to") {
-					let props:any = self._curStep.props;
-					let ratio:number = (self._curStep.duration - (self._stepTime - curTime)) / self._curStep.duration;
-					ratio = Math.min(ratio,1);
-					if(self._curStep.ease) {
-						ratio = self._curStep.ease(ratio,0,1,1);
-					}
-					for(let keyName in props) {
-						if(self._stepProps[keyName] == undefined) {
-							self._stepProps[keyName] = self.getTargetAttr(keyName);
-						}
-						let diff:number = props[keyName] - self._stepProps[keyName];
-                        let value = self._stepProps[keyName] + (diff * ratio);
-                        self._targetProps[keyName] = value;
-                        self.setTargetAttr(keyName,value);
-					}
-				}
-				if(self._onChange && self._onChangeObj) {
-					self._onChange.apply(self._onChangeObj,self._targetProps);
-				}
-			},1);
-		}
+	public runAction(dt:number):void {
+        if(!this._canUpdate) return;
+        this._curTime += dt * 1000;
+        if(this._curTime >= this._stepTime){
+            this._canUpdate = false;
+            this.getStep();
+            return;
+        }
+        
+        if(this._curStep.type == "to") {
+            let props:any = this._curStep.props;
+            let ratio:number = (this._curStep.duration - (this._stepTime - this._curTime)) / this._curStep.duration;
+            ratio = Math.min(ratio,1);
+            if(this._curStep.ease) {
+                ratio = this._curStep.ease(ratio,0,1,1);
+            }
+            for(let keyName in props) {
+                if(this._stepProps[keyName] == undefined) {
+                    this._stepProps[keyName] = this.getTargetAttr(keyName);
+                }
+                let diff:number = props[keyName] - this._stepProps[keyName];
+                let value = this._stepProps[keyName] + (diff * ratio);
+                this._targetProps[keyName] = value;
+                this.setTargetAttr(keyName,value);
+            }
+        }
+        if(this._onChange && this._onChangeObj) {
+            this._onChange.apply(this._onChangeObj,this._targetProps);
+        }
 	}
 
     private checkTargetAttr(k:string){
@@ -291,7 +291,7 @@ class GTween {
         }
         else if(k == "rotationX" || k == "rotationY" || k == "rotationZ"){
             this._targetRotation[TweenManager.GetTweenAttrName(k)] = v;
-            this._target.setRotation(this._targetRotation);
+            this._target.setRotationFromEuler(this._targetRotation);
         }
         else if(k == "width" || k == "height"){
             this._targetTransform[k] = v;
@@ -329,10 +329,8 @@ class GTween {
 
 	public reset():void {
 		if(!this._isStart) return;
-		if(this.timeIndex != null) {
-            clearInterval(this.timeIndex);
-			this.timeIndex = null;
-		}
+		this._canUpdate = false;
+        this._curTime = 0;
 		this._stepIdx = 0;
 		this._loop = false;
         this._loopTotalCount = -1;
@@ -416,11 +414,6 @@ export default class TweenManager {
         tw.setTarget(target,tweenId);
         tw.setProps(props);
         TweenManager.TweenId = tweenId;
-        // if(!target.gtween_count) {
-        //     target.gtween_count = 0;
-        // }
-        // target.gtween_count++;
-        // TweenManager.TweenList.push(tw);
         TweenManager.TweenList[tweenId] = tw;
         TweenManager.TweenTargets[tweenId] = target;
         TweenManager.TweenCount ++;
@@ -459,28 +452,20 @@ export default class TweenManager {
             return;
         }
         tw.reset();
-        TweenManager.TweenList[tweenId] = null;
-        TweenManager.TweenTargets[tweenId] = null;
+        delete TweenManager.TweenList[tweenId];
+        delete TweenManager.TweenTargets[tweenId];
         TweenManager.TweenCount --;
         tw.resetTime = game.totalTime;
         TweenManager.TweenPool.push(tw);
     }
 
-	// 	public.RemoveTween = function(tweenId)
-    //     if not tweenId or tweenId == 0 then
-    //         return 
-    //     end
-    //     local tw = private.TweenList[tweenId]
-    //     if not tw then
-    //         return
-    //     end
-    //     tw:Reset()
-    //     private.TweenList[tweenId] = nil
-    //     private.TweenTargets[tweenId] = nil
-    //     private.tweenCount = private.tweenCount - 1
-    //     tw.resetTime = Time.time
-    //     table.insert(private.TweenPool,tw)
-    // end
+    public static Update(deltaTime){
+        if(TweenManager.TweenCount > 0){
+            for(let twId in TweenManager.TweenList){
+                TweenManager.TweenList[twId].runAction(deltaTime);
+            }
+        }
+    }
 
     public static GetTweenAttrName(attrName:string){
         return TweenManager.TweenAttrMap[attrName];

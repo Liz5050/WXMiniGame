@@ -1,4 +1,4 @@
-import { _decorator, Animation, Button, EventTouch, instantiate, Label, math, Node, NodeEventType, Prefab, Sprite} from 'cc';
+import { _decorator, Animation, Button, director, EventTouch, instantiate, Label, math, Node, NodeEventType, Prefab, Sprite} from 'cc';
 import { EventManager } from '../../../manager/EventManager';
 import { EventEnum } from '../../../enum/EventEnum';
 import TweenManager from '../../../common/TweenManager';
@@ -339,12 +339,7 @@ export class GameGridStartView extends BaseUIView {
             }
             this._score += score;
             this._txtScore.string = "得分：" + this._score;
-            let removeSound:string = "crrect_answer3";
-            let skinCfg = CacheManager.gameGrid.GetCurSkinCfg();
-            if(skinCfg && skinCfg.sound){
-                removeSound = skinCfg.sound;
-            }
-            Mgr.soundMgr.play(removeSound);//存在可消除的行or列
+            Mgr.soundMgr.play("crrect_answer3");//存在可消除的行or列
             this.showScoreAddEffect(score);
         }
         else {

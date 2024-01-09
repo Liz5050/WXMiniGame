@@ -80,12 +80,13 @@ export class GameGridCache {
                 SDK.showToast("道具数量不足!");
             }
             else {
-                let tips:string = rewardId == BannerRewardId.GameGridResetNum ? "重置道具" : "炸弹道具";
-                AlertView.show("是否观看广告获得1个" + tips,(type:AlertType)=>{
-                    if(type == AlertType.YES){
-                        SDK.ShowRewardBanner(rewardId);
-                    }
-                })
+                SDK.ShowRewardBanner(rewardId);
+                // let tips:string = rewardId == BannerRewardId.GameGridResetNum ? "重置道具" : "炸弹道具";
+                // AlertView.show("是否观看广告获得1个" + tips,(type:AlertType)=>{
+                //     if(type == AlertType.YES){
+                //         SDK.ShowRewardBanner(rewardId);
+                //     }
+                // })
             }
         }
     }

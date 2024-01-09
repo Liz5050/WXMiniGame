@@ -1,9 +1,10 @@
 import { game } from 'cc';
 import { _decorator, Node } from 'cc';
-export class BaseView {
+export class BaseView extends Object {
     protected _rootNode:Node;
     protected _timer:any[] = [];
     public constructor(){
+        super();
     }   
 
     protected getChildByName(name:string){

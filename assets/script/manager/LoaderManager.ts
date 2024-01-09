@@ -101,9 +101,9 @@ export class LoaderManager{
                     break;
                 case LoadType.Resources :
                     resources.load(vo.url,
-                    (finished,totalNum)=>{
+                    (finished)=>{
                         if(vo.onProgress){
-                            vo.onProgress(finished,totalNum);
+                            vo.onProgress(finished);
                         }
                     },
                     (error,data)=>{
@@ -201,7 +201,6 @@ export class LoaderManager{
     }
 
     public LoadBundle(url:string,option:{onComplete?:Function,onProgress?:Function},caller?:any){
-        console.log("LoadBundle url:" + url)
         if(option.onComplete){
             this.addCallback({name:url, compFunc:option.onComplete, thisObj:caller});
         }
@@ -277,7 +276,6 @@ export class LoaderManager{
 
     public LoadUIPrefab(moduleId:UIModuleEnum,viewName:string,callBack:Function){
         let url:string = UIModuleEnum[moduleId] + "/" + viewName;
-        console.log("LoadUIPrefab url : " + url);
         this.LoadBundleRes("ui",url,callBack);
     }
 

@@ -135,39 +135,34 @@ class GameShopItem {
         this._btnBuy = node.getChildByName("btnBuy");
         this._btnBuyTxt = this._btnBuy.getChildByName("Label").getComponent(Label);
         this._btnBuy.on(Button.EventType.CLICK,()=>{
-            this.onAdBuy();
-            // this.onMoneyBuy();
+            let skinId = this._data.skin_id;
+            if(CacheManager.shop.haveBoughtSkin(skinId)){
+                if(CacheManager.shop.isUsed(skinId)){
+                    //使用中,卸下
+                    CacheManager.shop.sendUse(0);
+                }else{
+                    //使用
+                    CacheManager.shop.sendUse(skinId);
+                }
+
+            }else{
+                //购买
+                if(!CacheManager.player.checkMoneyEnough(this._data.price)){
+                    SDK.showToast("积分不足");
+                }
+                else{
+                    CacheManager.shop.sendBuy(this._data.skin_id);
+                }
+            }
+
         });
         this._btnAdBuy = node.getChildByName("btnAdBuy");
         this._btnAdBuy.on(Button.EventType.CLICK,this.onAdBuy,this);
     }
 
-    private onMoneyBuy(){
-        let skinId = this._data.skin_id;
-        if(CacheManager.shop.haveBoughtSkin(skinId)){
-            if(CacheManager.shop.isUsed(skinId)){
-                //使用中,卸下
-                CacheManager.shop.sendUse(0);
-            }else{
-                //使用
-                CacheManager.shop.sendUse(skinId);
-            }
-
-        }else{
-            //购买
-            if(!CacheManager.player.checkMoneyEnough(this._data.price)){
-                SDK.showToast("积分不足");
-            }
-            else{
-                CacheManager.shop.sendBuy(this._data.skin_id);
-            }
-        }
-    }
-
     private onAdBuy(){
-        EventManager.dispatch(EventEnum.OnBannerAdComplete,2,this._data);
-        // SDK.ShowRewardBanner(BannerRewardId.GameGridSkin,this._data);
-        
+        // EventManager.dispatch(EventEnum.OnBannerAdComplete,2,this._data);
+        SDK.ShowRewardBanner(BannerRewardId.GameGridSkin,this._data);
     }
 
     public show(parent:Node){

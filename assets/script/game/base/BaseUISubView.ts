@@ -37,6 +37,10 @@ export class BaseUISubView extends BaseView {
         this._isShow = bool;
     }
 
+    public setOnlyActive(val:boolean){
+        this._rootNode.active = val;
+    }
+
     public show(param:any = null){
         if(!this._isShow){
             this._rootNode.active = true;

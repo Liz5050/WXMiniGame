@@ -7,6 +7,10 @@ export class LayerManager{
     public static gameLayer:Node;
     //弹窗层
     public static popupLayer:Node;
+    //提示层
+    public static tipsLayer:Node;
+    //最上层
+    public static topLayer:Node;
     //layerManager根节点
     public static root:Node;
     public static init(){
@@ -14,5 +18,7 @@ export class LayerManager{
         this.mainLayer = this.root.getChildByName("MainLayer");
         this.gameLayer = this.root.getChildByName("GameLayer");
         this.popupLayer = this.root.getChildByName("PopupLayer");
+        this.tipsLayer = this.root.getChildByName("TipsLayer");
+        this.topLayer = this.root.getChildByName("TopLayer");
     }
 }

@@ -3,6 +3,7 @@ import { EventEnum } from "../enum/EventEnum";
 import { CacheManager } from "../manager/CacheManager";
 import { BannerRewardId, SDK } from "./SDK";
 import { CloudApi } from "../enum/CloudDefine";
+import { GameLoadingView } from "../common/loading/GameLoadingView";
 
 //开发者工具版本号1.06.2307260stable
 
@@ -176,7 +177,7 @@ export default class WXSDK {
         this.BannerRewardData.rewardId = rewardId;
         this.BannerRewardData.data = data;
         this.BannerVideoState = true;
-
+        GameLoadingView.showLoading();
         let videoAd = this.RewardedVideoAd;
         if(!videoAd){
             this.videoAdInit();
@@ -184,59 +185,65 @@ export default class WXSDK {
         }
         videoAd.show().catch(() => {
             // 失败重试
-            videoAd.load().then(() => videoAd.show()).catch(err => {
+            videoAd.load().then(() =>{
+                GameLoadingView.hideLoading();
+                videoAd.show();
+            }).catch(err => {
+                GameLoadingView.hideLoading();
                 console.log('激励视频 广告显示失败');
                 this.BannerVideoState = false;
                 this.showToast("暂无广告");
             })
-        })
+        }).then(()=>{
+            GameLoadingView.hideLoading();
+        });
     }
 
     public showBannerAd(){
         if(!SDK.CanShowBanner){
             return;
         }
-        
-        if(!this.BannerVideoAd){
-            let version = this.SystemInfo.SDKVersion;
-            if(version){
-                let arr = version.split(".")
-                let list = [1000,100,10];
-                let versionNum = 0;
-                for(let i = 0; i < arr.length; i++){
-                    versionNum += Number(arr[i]) * list[i];
-                }
-                if(versionNum < 2040){
-                    console.error("SDKVersion 不能低于2.0.4",versionNum);
-                    return;
-                }
-            }
-            let width = Math.max(this.SystemInfo.screenWidth - 50,300);
-            let left = (this.SystemInfo.screenWidth - width) / 2;
-            let bannerAd = wx.createBannerAd({
-                adUnitId: 'adunit-a49e81e575b7ba93',
-                style: {
-                    top:this.SystemInfo.screenHeight - 125,
-                    left:left,
-                    width: width,
-                    height: 100,
-                    adIntervals:31,
-                }
-            });
-            this.BannerVideoAd = bannerAd;
-            bannerAd.onError(err => {
-                console.log("banner 广告加载失败" + err);
-                this.BannerVideoAd = null;
-            })
-        }
         if(this.BannerVideoAd){
-            this.BannerVideoAd.show();
+            this.BannerVideoAd.destroy();
+            this.BannerVideoAd = null;
         }
+        let version = this.SystemInfo.SDKVersion;
+        if(version){
+            let arr = version.split(".")
+            let list = [1000,100,10];
+            let versionNum = 0;
+            for(let i = 0; i < arr.length; i++){
+                versionNum += Number(arr[i]) * list[i];
+            }
+            if(versionNum < 2040){
+                console.error("SDKVersion 不能低于2.0.4",versionNum);
+                return;
+            }
+        }
+        let width = Math.max(this.SystemInfo.screenWidth - 50,300);
+        let left = (this.SystemInfo.screenWidth - width) / 2;
+        let bannerAd = wx.createBannerAd({
+            adUnitId: 'adunit-a49e81e575b7ba93',
+            style: {
+                top:this.SystemInfo.screenHeight - 125,
+                left:left,
+                width: width,
+                height: 100,
+            },
+            adIntervals:30
+        });
+        this.BannerVideoAd = bannerAd;
+        bannerAd.onError(err => {
+            console.log("banner 广告加载失败" + err);
+            this.BannerVideoAd = null;
+        });
+        this.BannerVideoAd.show();
     }
 
     public hideBannerAd(){
         if(this.BannerVideoAd){
-            this.BannerVideoAd.hide();
+            this.BannerVideoAd.destroy();
+            this.BannerVideoAd = null;
         }
     }
 

@@ -5,6 +5,7 @@ import { EventEnum } from "../enum/EventEnum";
 import { CloudApi } from "../enum/CloudDefine";
 import TTSDK from "./TTSDK";
 import { CacheManager } from "../manager/CacheManager";
+import DefaultSDK from "./DefaultSDK";
 
 export enum BannerRewardId{
     GameGridResetNum = 1,
@@ -15,7 +16,7 @@ export enum BannerRewardId{
 export class SDK {
     private static _openid:string;
     private static _platOpenid:string;//带平台标识的openid
-    private static _curSDK:WXSDK | TTSDK;
+    private static _curSDK:WXSDK | TTSDK | DefaultSDK;
     private static _CanShowBanner:boolean = true;
     public static Init(){
         console.log("SDK Init platform：" + sys.platform);
@@ -26,6 +27,9 @@ export class SDK {
         else if(sys.platform == sys.Platform.BYTEDANCE_MINI_GAME){
             //字节跳动(抖音)
             SDK._curSDK = new TTSDK();
+        }
+        else {
+            SDK._curSDK = new DefaultSDK();
         }
         if(SDK._curSDK){
             SDK._curSDK.init();

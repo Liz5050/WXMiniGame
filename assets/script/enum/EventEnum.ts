@@ -2,6 +2,9 @@ export enum EventEnum {
     OnGameStart = 1,
     OnGameExit,
 
+    OnUILoading,
+    OnUILoadComplete,
+
     //舒尔特
     OnGameShulteStart,
     OnGameShulteExit,

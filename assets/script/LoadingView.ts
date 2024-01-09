@@ -17,9 +17,12 @@ export class LoadingView extends Component {
         console.log("LoadingView start");
         Mgr.loader.LoadBundle("ui",{
             onProgress:function(e){
-                self._progressNum += (e.progress * 0.5);
-                self._txtProgress.string = "资源加载中..." + Math.floor(self._progressNum) + "%";
-                console.log("LoadingView LoadBundle" + e.progress + " num:" + self._progressNum);
+                let progress = self._progressNum;
+                if(e.progress != null && e.progress < 100){
+                    progress = self._progressNum + e.progress * 0.5
+                    self._txtProgress.string = "资源加载中..." + Math.floor(progress) + "%";
+                }
+                console.log("LoadingView LoadBundle：" + e.progress + " num:" + progress);
             },
             onComplete:function(err,bundle){
                 if(err){
@@ -45,7 +48,7 @@ export class LoadingView extends Component {
                 this.checkAllReady();
             },
             onProgress:(finished:number,totalNum:number)=>{
-                this._progressNum += finished * 0.5;
+                this._progressNum += finished * 0.5 * 100;
                 this._txtProgress.string = "资源加载中..." + Math.floor(self._progressNum) + "%";
                 console.log("LoadingView LoadRes:" + finished + " total:" + totalNum + " num:" + self._progressNum);
             }

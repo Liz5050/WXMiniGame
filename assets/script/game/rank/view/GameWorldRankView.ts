@@ -19,7 +19,9 @@ export class GameWorldRankView extends BaseUIView {
     private _combox:Node;
     private _comboxTitle:Label;
     private _subtypesScroll:Node;
-    private _txtSwitch:Label;
+    // private _txtSwitch:Label;
+    private _txtTips:Label;
+    private _imgArrow:Node;
     private _subtypeItemList:Node[];
 
     private _curIndex:number = -1;
@@ -72,10 +74,10 @@ export class GameWorldRankView extends BaseUIView {
         btnSwitch.on(Button.EventType.CLICK,function(){
             let isShow = !self._subtypesScroll.active;
             self._subtypesScroll.active = isShow;
-            self._txtSwitch.string = isShow ? "∨" : "∧";
+            let scaleY = isShow ? -1 : 1;
+            self._imgArrow.setScale(1,scaleY);
         });
-        this._txtSwitch = btnSwitch.getChildByName("txtSwitch").getComponent(Label);
-        this._txtSwitch.string = "∧";
+        this._imgArrow = btnSwitch.getChildByName("imgArrow");
 
         this._subtypeItemList = [];
         let subtypes = GameDefine.ShulteSubTypes;
@@ -89,6 +91,7 @@ export class GameWorldRankView extends BaseUIView {
         }
         this._scrollRank = this.getChildByName("scrollRank").getComponent(ScrollView);
         this._rankContent = this.getChildByPath("scrollRank/view/content");
+        this._txtTips = this.getChildByName("txtTips").getComponent(Label);
     }
     public onShowAfter(){
         this.setIndex(0);
@@ -187,7 +190,7 @@ export class GameWorldRankView extends BaseUIView {
         let btnNode = evt.node;
         let index = this._subtypeItemList.indexOf(btnNode);
         this._subtypesScroll.active = false;
-        this._txtSwitch.string = "∧";
+        this._imgArrow.setScale(1,1);
         this.setSubIndex(index);
     }
 
@@ -235,7 +238,7 @@ export class GameWorldRankView extends BaseUIView {
 
     private clearSubIdx(){
         this._subtypesScroll.active = false;
-        this._txtSwitch.string = "∧";
+        this._imgArrow.setScale(1,1);
         this._subIdx = -1;
     }
 
@@ -362,16 +365,10 @@ class RankBtnItem{
         this._isSelected = value;
         this._selectedBg.active = value;
         if(value){
-            this._txtColor.r = 0;
-            this._txtColor.g = 0;
-            this._txtColor.b = 0;
-        }
-        else {
-            this._txtColor.r = 121;
-            this._txtColor.g = 121;
-            this._txtColor.b = 121;
+            this._txtColor.set(232,106,23);
+        }else{
+            this._txtColor.set(255,255,255);
         }
         this._txtName.color = this._txtColor;
-
     }
 }
