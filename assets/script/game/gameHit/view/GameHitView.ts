@@ -42,7 +42,7 @@ export class GameHitView extends BaseUIView{
         let touchArea = this._container.getChildByName("touchArea");
         touchArea.on(NodeEventType.TOUCH_START,(evt:EventTouch)=>{
             let touchPos = evt.getUIStartLocation(); 
-            this.touchStart(touchPos);
+            this.touchStart(touchPos)
         })
     
         touchArea.on(NodeEventType.TOUCH_CANCEL,()=>{
