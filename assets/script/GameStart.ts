@@ -13,6 +13,8 @@ import { GameLoadingView } from './common/loading/GameLoadingView';
 import TweenManager from './common/TweenManager';
 const { ccclass, property } = _decorator;
 
+//test
+
 @ccclass('GameStart')
 export class GameStart extends Component {
     private _main:Main;
