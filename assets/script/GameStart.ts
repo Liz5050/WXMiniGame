@@ -69,7 +69,6 @@ export class GameStart extends Component {
 
         this._main.show();
         console.log("资源加载完成，显示主界面");
-        // this._main.active = true;
     }
 }
 
