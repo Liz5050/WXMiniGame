@@ -29,7 +29,6 @@ export class Main extends BaseUIView {
 	}
 
 	public onShowAfter(){
-		// this.SetGameState(GameState.Home);
 	}
 
 	private OnStartGame(type:GameType){
