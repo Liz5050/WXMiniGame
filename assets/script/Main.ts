@@ -29,7 +29,6 @@ export class Main extends BaseUIView {
 	}
 
 	public onShowAfter(){
-		// this.SetGameState(GameState.Home);
 	}
 
 	private OnStartGame(type:GameType){
@@ -48,11 +47,9 @@ export class Main extends BaseUIView {
 
     private SetGameState(state:GameState){
         if(state == GameState.Home){
-            // this._mainMenu.active = true;
 			this._rootNode.active = true;
         }
         else if(state == GameState.Playing){
-            // this._mainMenu.active = false;
 			this._rootNode.active = false;
         }
         this._gameState = state;
