@@ -6,4 +6,5 @@ export enum UIModuleEnum {
     gameShulte,
     rank,//排行榜
     gameHit,
+    sideBarReward,
 }

@@ -37,4 +37,7 @@ export enum EventEnum {
     OnEnemyDeath,
     OnEnemyRoundComplete,
     OnGameBallNextRound,
+
+    OnShowSideBarView,
+    OnSideBarRewardUpdate,
 }

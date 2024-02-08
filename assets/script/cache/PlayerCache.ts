@@ -3,6 +3,7 @@ import { AlertView } from "../common/alert/AlertView";
 import { CloudApi } from "../enum/CloudDefine";
 import { EventEnum } from "../enum/EventEnum";
 import { GameType } from "../enum/GameType";
+import { CacheManager } from "../manager/CacheManager";
 import { EventManager } from "../manager/EventManager";
 
 export class PlayerCache {
@@ -33,6 +34,18 @@ export class PlayerCache {
             money = this.playerInfo.score;
         }
         return money >= needMoney;
+    }
+
+    public sideRewardCanGet(){
+        let canGet = CacheManager.storage.getBoolean("SideBarReward");
+        return canGet;
+    }
+
+    //领取侧边栏奖励
+    public getSideReward(){
+        CacheManager.storage.setBoolean("skinId_3",true);
+        SDK.showToast("领取成功");
+        EventManager.dispatch(EventEnum.OnSideBarRewardUpdate);
     }
 
     //仅在服务器返回成功后，客户端自己更新积分

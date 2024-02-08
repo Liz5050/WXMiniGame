@@ -1,24 +1,27 @@
-import {GameLoadingView} from "../common/loading/GameLoadingView";
-import {EventEnum} from "../enum/EventEnum";
-import {CacheManager} from "../manager/CacheManager";
-import {EventManager} from "../manager/EventManager";
+import { GameLoadingView } from "../common/loading/GameLoadingView";
+import { EventEnum } from "../enum/EventEnum";
+import { CacheManager } from "../manager/CacheManager";
+import { EventManager } from "../manager/EventManager";
+import DefaultSDK from "./DefaultSDK";
 import { BannerRewardId, SDK } from "./SDK";
 
 //字节跳动
-export default class TTSDK {
+export default class TTSDK extends DefaultSDK {
 
-    private _scendId:string = "";
+    private _scendId: string = "";
+    private _sideBarEnabled: boolean = false;//宿主程序是否支持侧边栏
     private RewardedVideoAd;//激励广告
-    private BannerVideoState:boolean = false;//激励广告组件是否显示中
-    private BannerRewardData:any = {};
+    private BannerVideoState: boolean = false;//激励广告组件是否显示中
+    private BannerRewardData: any = {};
     private BannerVideoAd;//banner广告
-    private SystemInfo:any = {};
+    private SystemInfo: any = {};
 
-    public constructor(){
+    public constructor() {
+        super();
     }
 
-    public init(){
-        tt.onShow((res)=>{
+    public init() {
+        tt.onShow((res) => {
             this._scendId = res.scene;
             console.log("启动参数：", res.query);
             console.log("来源信息：", res.refererInfo);
@@ -30,53 +33,51 @@ export default class TTSDK {
             scene: "sidebar",
             success: (res) => {
                 //成功回调逻辑
-                if(res.isExist && this._scendId == "021036"){
-                    tt.navigateToScene({
-                        scene: "sidebar",
-                        success: (res) => {
-                            // 跳转成功回调逻辑
-                            console.log("navigate to scene success");
-                        },
-                        fail: (res) => {
-                            // 跳转失败回调逻辑
-                            console.log("navigate to scene fail: ", res);
-                        },
-                    });
+                if (res.isExist) {
+                    this._sideBarEnabled = res.isExist;
                 }
                 console.log("check scene success: ", res.isExist);
             },
             fail: (res) => {
-                console.log("check scene fail:", res);
-                //失败回调逻辑
+                console.log("check scene fail:" + res.errNo, res.errMsg);
+
             }
         });
-        // {
-        //     "scene": "021036",
-        //     "query": {},
-        //     "showFrom": 10,
-        //     "launch_from": "homepage",
-        //     "location": "sidebar_card",
-        //     "refererInfo": { "appId": "xxxxxx", "extraData": {} }
-        //   }
     }
 
-    public login(){
+    public login() {
         try {
             const res = tt.getSystemInfoSync();
             let str = ""
-            for(let key in res){
+            for (let key in res) {
                 str += key + ":" + res[key] + "\n";
                 this.SystemInfo[key] = res[key];
             }
+            console.log(this.SystemInfo);
         } catch (e) {
             console.error(e);
         }
     }
 
-    public share(){
+    public navigateToScene() {
+        tt.navigateToScene({
+            scene: "sidebar",
+            success: (res) => {
+                // 跳转成功回调逻辑
+                CacheManager.storage.setBoolean("SideBarReward",true);
+                console.log("navigate to scene success");
+            },
+            fail: (res) => {
+                // 跳转失败回调逻辑
+                console.log("navigate to scene fail: ", res);
+            }
+        });
     }
 
-    public showToast(showTips = "",duration = 2000,icon:string = "none"){
+    public share() {
+    }
+
+    public showToast(showTips = "", duration = 2000, icon: string = "none") {
         tt.showToast({
             title: showTips,
             icon: icon,
@@ -84,31 +85,31 @@ export default class TTSDK {
         });
     }
 
-    public showRewardBanner(rewardId:BannerRewardId,data?:any){
-        if(this.BannerVideoState){
+    public showRewardBanner(rewardId: BannerRewardId, data?: any) {
+        if (this.BannerVideoState) {
             return;
         }
         this.BannerRewardData.rewardId = rewardId;
         this.BannerRewardData.data = data;
         this.BannerVideoState = true;
-        // GameLoadingView.showLoading();
+        GameLoadingView.showLoading();
         let videoAd = this.RewardedVideoAd;
-        if(!videoAd){
+        if (!videoAd) {
             this.videoAdInit();
             return;
         }
-        videoAd.show().then(()=>{
-            // GameLoadingView.hideLoading();
+        videoAd.show().then(() => {
+            GameLoadingView.hideLoading();
         });
     }
 
-    private videoAdInit(){
-        if(!this.RewardedVideoAd){
+    private videoAdInit() {
+        if (!this.RewardedVideoAd) {
             this.RewardedVideoAd = tt.createRewardedVideoAd({
                 adUnitId: '19h07bhh0ee6bercrp',
                 multiton: false,
                 success(res) {
-                    console.log("videoSuccess",res)
+                    console.log("videoSuccess", res)
                     // GameLoadingView.hideLoading();
                     // if(this.BannerVideoState){
                     //     this.BannerVideoState = false;//重播一次
@@ -116,18 +117,18 @@ export default class TTSDK {
                     // }
                 },
                 fail(res) {
-                    console.log("videoFail",res);
+                    console.log("videoFail", res);
                     // GameLoadingView.hideLoading();
                 }
             });
-            
+
             let videoAd = this.RewardedVideoAd;
-            videoAd.onClose((res)=>{
+            videoAd.onClose((res) => {
                 this.BannerVideoState = false;
                 if (res && (res.isEnded || res.count >= 1)) {
-                  // 正常播放结束，可以下发游戏奖励
-                  CacheManager.gameGrid.AddPropNum(this.BannerRewardData.rewardId);
-                  EventManager.dispatch(EventEnum.OnBannerAdComplete,this.BannerRewardData.rewardId,this.BannerRewardData.data);
+                    // 正常播放结束，可以下发游戏奖励
+                    CacheManager.gameGrid.AddPropNum(this.BannerRewardData.rewardId);
+                    EventManager.dispatch(EventEnum.OnBannerAdComplete, this.BannerRewardData.rewardId, this.BannerRewardData.data);
                 }
                 else {
                     // 播放中途退出，不下发游戏奖励
@@ -135,22 +136,22 @@ export default class TTSDK {
                 }
             });
 
-            videoAd.offClose((res)=>{
-                console.log("videoAd.offClose",res);
+            videoAd.offClose((res) => {
+                console.log("videoAd.offClose", res);
                 // GameLoadingView.hideLoading();
             });
-            videoAd.show().then(()=>{
+            videoAd.show().then(() => {
                 console.log("video show");
-                // GameLoadingView.hideLoading();
+                GameLoadingView.hideLoading();
             });
         }
     }
 
-    public showBannerAd(){
-        if(!SDK.CanShowBanner){
+    public showBannerAd() {
+        if (!SDK.CanShowBanner) {
             return;
         }
-        if(this.BannerVideoAd){
+        if (this.BannerVideoAd) {
             this.BannerVideoAd.destroy();
             this.BannerVideoAd = null;
         }
@@ -167,17 +168,17 @@ export default class TTSDK {
         //         return;
         //     }
         // }
-        let width = Math.max(this.SystemInfo.screenWidth - 50,300);
+        let width = Math.max(this.SystemInfo.screenWidth - 50, 300);
         let left = (this.SystemInfo.screenWidth - width) / 2;
         let bannerAd = tt.createBannerAd({
             adUnitId: '8gdmmsn4ii13k31ro2',
             style: {
-                top:this.SystemInfo.screenHeight - 125,
-                left:left,
+                top: this.SystemInfo.screenHeight - 125,
+                left: left,
                 width: width,
                 height: 100,
             },
-            adIntervals:30
+            adIntervals: 30
         });
         this.BannerVideoAd = bannerAd;
         bannerAd.onError(err => {
@@ -187,14 +188,18 @@ export default class TTSDK {
         this.BannerVideoAd.show();
     }
 
-    public hideBannerAd(){
-        if(this.BannerVideoAd){
+    public hideBannerAd() {
+        if (this.BannerVideoAd) {
             this.BannerVideoAd.destroy();
             this.BannerVideoAd = null;
         }
     }
 
-    public cloudPOST(url:string,reqData?:any,callBack?:Function){
+    public canShowSideBarReward(): boolean {
+        return this._sideBarEnabled && this._scendId == "021036";
+    }
+
+    public cloudPOST(url: string, reqData?: any, callBack?: Function) {
         // wx.cloud.callContainer({
         //     config: {
         //       "env": "prod-2gue9n1kd74122cb"
@@ -215,7 +220,7 @@ export default class TTSDK {
         // })
     }
 
-    public cloudGET(url:string,reqData?:Array<any>,callBack?:Function){
+    public cloudGET(url: string, reqData?: Array<any>, callBack?: Function) {
         // let reqUrl = url;
         // if(reqData && reqData.length > 0){
         //     for(let i = 0; i < reqData.length; i++){
@@ -241,7 +246,7 @@ export default class TTSDK {
         // })
     }
 
-    public postMessage(obj: object){
-        
+    public postMessage(obj: object) {
+
     }
 }

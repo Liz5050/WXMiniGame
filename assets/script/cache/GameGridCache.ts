@@ -111,8 +111,14 @@ export class GameGridCache {
 
     public GetCurSkinCfg():any{
         if(!this._curSkinCfg){
+            let skinId = 0;
             if(CacheManager.player.playerInfo){
-                let skinId = CacheManager.player.playerInfo.skin_id;
+                skinId = CacheManager.player.playerInfo.skin_id;
+            }
+            else{
+                skinId = CacheManager.storage.getNumber("skinUsed");
+            }
+            if(skinId > 0){
                 let cfg = CacheManager.shop.getShopConfigById(skinId);
                 if(cfg){
                     return cfg;

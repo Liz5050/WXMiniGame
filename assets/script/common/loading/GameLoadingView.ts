@@ -25,6 +25,9 @@ export class GameLoadingView extends BaseUIView {
             this._loadingTw = TweenManager.addTween(this._imgLoadingNode,{loop:true});
             this._loadingTw.to({rotationZ:-359},1000);
         }
+        this.addTimer(()=>{
+            this.hide();
+        },5000);
     }
 
     public hide():void{

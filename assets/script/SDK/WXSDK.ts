@@ -4,10 +4,11 @@ import { CacheManager } from "../manager/CacheManager";
 import { BannerRewardId, SDK } from "./SDK";
 import { CloudApi } from "../enum/CloudDefine";
 import { GameLoadingView } from "../common/loading/GameLoadingView";
+import DefaultSDK from "./DefaultSDK";
 
 //开发者工具版本号1.06.2307260stable
 
-export default class WXSDK {
+export default class WXSDK extends DefaultSDK{
     private RewardedVideoAd;//激励广告
     private BannerVideoState:boolean = false;//激励广告组件是否显示中
     private BannerRewardData:any = {};
@@ -15,6 +16,7 @@ export default class WXSDK {
     private SystemInfo:any = {};
 
     public constructor(){
+        super();
     }
 
     public init(){

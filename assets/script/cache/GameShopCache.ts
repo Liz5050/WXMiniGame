@@ -72,7 +72,8 @@ export class GameShopCache {
     public isUsed(skin_id:number):boolean{
         let playerInfo = CacheManager.player.playerInfo;
         if(!playerInfo){
-            return false;
+            let useId = CacheManager.storage.getNumber("skinUsed");
+            return useId == skin_id;
         }
         return playerInfo.skin_id == skin_id;
     }
@@ -80,7 +81,8 @@ export class GameShopCache {
     public haveBoughtSkin(skin_id:number):boolean{
         let playerInfo = CacheManager.player.playerInfo;
         if(!playerInfo){
-            return false;
+            let hadBought = CacheManager.storage.getBoolean("skinId_" + skin_id);
+            return hadBought;
         }
         let skinList = playerInfo.skin_list;
         return skinList && skinList[skin_id] && skinList[skin_id] > 0;
@@ -111,6 +113,12 @@ export class GameShopCache {
     }
 
     public sendUse(skinId:number){
+        if(!CacheManager.player.playerInfo){
+            CacheManager.storage.setNumber("skinUsed",skinId);
+            CacheManager.gameGrid.UpdateSkin(null);
+            EventManager.dispatch(EventEnum.OnGridSkinUpdate);
+            return;
+        }
         SDK.CloudPOST(CloudApi.use_grid_skin,{skin_id:skinId},function(data){
             let resData = data.data;
             if(resData.skin_id != undefined){

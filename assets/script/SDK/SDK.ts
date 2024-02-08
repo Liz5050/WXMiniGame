@@ -16,7 +16,7 @@ export enum BannerRewardId{
 export class SDK {
     private static _openid:string;
     private static _platOpenid:string;//带平台标识的openid
-    private static _curSDK:WXSDK | TTSDK | DefaultSDK;
+    private static _curSDK:DefaultSDK;
     private static _CanShowBanner:boolean = true;
     public static Init(){
         console.log("SDK Init platform：" + sys.platform);
@@ -145,5 +145,9 @@ export class SDK {
             return;
         }
         SDK._curSDK.postMessage(obj);
+    }
+
+    public static get curSdk():DefaultSDK{
+        return SDK._curSDK;
     }
 }

@@ -38,13 +38,17 @@ export class BaseView extends Object {
     public hide(){
     }
 
-    protected onHide(){
+    protected clearTimer(){
         if(this._timer && this._timer.length > 0){
             for(let f of this._timer){
                 clearInterval(f);
             }
             this._timer.length = 0;
         }
+    }
+
+    protected onHide(){
+        this.clearTimer();
     }
 }
 

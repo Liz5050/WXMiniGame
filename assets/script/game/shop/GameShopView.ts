@@ -185,13 +185,12 @@ class GameShopItem {
             if(CacheManager.shop.isUsed(skinId)){
                 this._txtPrice.string = "使用中"
                 this._btnBuyTxt.string = "还原";
-                this._btnBuy.active = true;
             }
             else{
                 this._txtPrice.string = "已拥有";
                 this._btnBuyTxt.string = "使用";
-                this._btnBuy.active = true;
             }
+            this._btnBuy.active = true;
             this._btnAdBuy.active = false;
         }
         else {
