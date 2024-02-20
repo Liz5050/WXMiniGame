@@ -37,6 +37,13 @@ export class SDK {
         SDK.login();
     }
 
+    
+
+    public static isBytedance(){
+        return sys.platform == sys.Platform.BYTEDANCE_MINI_GAME;
+    }
+
+
     //是否登录了，只要能获取到openid就算登录
     public static isLogin():boolean{
         if(SDK._openid && SDK._openid != undefined && SDK._openid != ""){
@@ -96,7 +103,7 @@ export class SDK {
     }
 
     public static showToast(showTips = "",duration = 2000,icon:string = "none"){
-        if(!SDK.isLogin()){
+        if(!SDK.isMobile()){
             console.log(showTips);
             return;
         }
@@ -120,7 +127,7 @@ export class SDK {
         }
     }
     public static get CanShowBanner(){
-        return SDK._CanShowBanner;
+        return SDK._CanShowBanner && !SDK.isBytedance();
     }
 
     //显示banner广告

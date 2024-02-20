@@ -7,10 +7,12 @@
   "subMetas": {},
   "userData": {
     "compressionType": {
-      "wechatgame": "zip"
+      "wechatgame": "zip",
+      "bytedance-mini-game": "zip"
     },
     "isRemoteBundle": {
-      "wechatgame": true
+      "wechatgame": true,
+      "bytedance-mini-game": true
     },
     "isBundle": true,
     "bundleName": "effect"

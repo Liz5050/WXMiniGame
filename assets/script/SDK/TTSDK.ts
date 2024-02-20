@@ -151,47 +151,46 @@ export default class TTSDK extends DefaultSDK {
         if (!SDK.CanShowBanner) {
             return;
         }
-        if (this.BannerVideoAd) {
-            this.BannerVideoAd.destroy();
-            this.BannerVideoAd = null;
+        if (!this.BannerVideoAd) {
+            // let version = this.SystemInfo.SDKVersion;
+            // if(version){
+            //     let arr = version.split(".")
+            //     let list = [1000,100,10];
+            //     let versionNum = 0;
+            //     for(let i = 0; i < arr.length; i++){
+            //         versionNum += Number(arr[i]) * list[i];
+            //     }
+            //     if(versionNum < 2040){
+            //         console.error("SDKVersion 不能低于2.0.4",versionNum);
+            //         return;
+            //     }
+            // }
+            let width = Math.max(this.SystemInfo.screenWidth - 50, 300);
+            let left = (this.SystemInfo.screenWidth - width) / 2;
+            let bannerAd = tt.createBannerAd({
+                adUnitId: '8gdmmsn4ii13k31ro2',
+                style: {
+                    top: 0,//this.SystemInfo.screenHeight - 125,
+                    left: 0,//left,
+                    width: width
+                },
+                adIntervals: 30
+            });
+            this.BannerVideoAd = bannerAd;
         }
-        // let version = this.SystemInfo.SDKVersion;
-        // if(version){
-        //     let arr = version.split(".")
-        //     let list = [1000,100,10];
-        //     let versionNum = 0;
-        //     for(let i = 0; i < arr.length; i++){
-        //         versionNum += Number(arr[i]) * list[i];
-        //     }
-        //     if(versionNum < 2040){
-        //         console.error("SDKVersion 不能低于2.0.4",versionNum);
-        //         return;
-        //     }
-        // }
-        let width = Math.max(this.SystemInfo.screenWidth - 50, 300);
-        let left = (this.SystemInfo.screenWidth - width) / 2;
-        let bannerAd = tt.createBannerAd({
-            adUnitId: '8gdmmsn4ii13k31ro2',
-            style: {
-                top: this.SystemInfo.screenHeight - 125,
-                left: left,
-                width: width,
-                height: 100,
-            },
-            adIntervals: 30
-        });
-        this.BannerVideoAd = bannerAd;
-        bannerAd.onError(err => {
+        this.BannerVideoAd.onError(err => {
             console.log("banner 广告加载失败" + err);
             this.BannerVideoAd = null;
         });
-        this.BannerVideoAd.show();
+        this.BannerVideoAd.show((res)=>{
+            console.log("bannerAd show");
+        });
     }
 
     public hideBannerAd() {
         if (this.BannerVideoAd) {
-            this.BannerVideoAd.destroy();
-            this.BannerVideoAd = null;
+            this.BannerVideoAd.hide();
+            //this.BannerVideoAd = null;
         }
     }
 

@@ -28,6 +28,7 @@ export class GameShulteBeginView extends BaseUISubView {
             let isShow = self._toggleBannerAd.isChecked;
             SDK.CanShowBanner = isShow;
         });
+		this._toggleBannerAd.node.active = !SDK.isBytedance();
 
 		let toggle = this.getChildByName("Toggle").getComponent(Toggle);
 		toggle.node.on(Toggle.EventType.TOGGLE,()=>{

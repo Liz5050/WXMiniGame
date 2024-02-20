@@ -22,7 +22,7 @@ export class MainMenu extends BaseUISubView {
         let self = this;
         let tabBar = this.getChildByName("tabBar");
         this._tabItems = [];
-        this._tabData = [{title:"商店"},{title:"主页"},{title:"排行榜"}];
+        this._tabData = [{title:"商店"},{title:"主页"}];
         for(let i = 0; i < this._tabData.length; i++){
             let tabNode:Node = tabBar.getChildByName("item" + i);
             tabNode.on(Button.EventType.CLICK,function(){
