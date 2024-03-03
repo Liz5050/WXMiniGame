@@ -22,7 +22,7 @@ export class MainMenu extends BaseUISubView {
         let self = this;
         let tabBar = this.getChildByName("tabBar");
         this._tabItems = [];
-        this._tabData = [{title:"商店"},{title:"主页"}];
+        this._tabData = [{title:"商店"},{title:"主页"},];
         for(let i = 0; i < this._tabData.length; i++){
             let tabNode:Node = tabBar.getChildByName("item" + i);
             tabNode.on(Button.EventType.CLICK,function(){
@@ -65,7 +65,7 @@ export class MainMenu extends BaseUISubView {
         let clickCount = 0;
         let targetNum = -1;
         btnNullify.on(Button.EventType.CLICK,function(){
-            self.OnStartGame(GameType.GameBall);
+            // self.OnStartGame(GameType.GameBall);
             let showTips:string = "别着急，已经在做了~";
             clickCount++;
             if(targetNum == -1){
@@ -127,7 +127,7 @@ export class MainMenu extends BaseUISubView {
             Mgr.sceneMgr.LoadScene("sceneTest");
         });
 
-        this._btnSideBar = this.getChildByName("btnSideBar")
+        this._btnSideBar = this.getChildByName("btnSideBar");
         this._btnSideBar.on(Button.EventType.CLICK,()=>{
             EventManager.dispatch(EventEnum.OnShowSideBarView);
         });
@@ -145,7 +145,7 @@ export class MainMenu extends BaseUISubView {
 
     private OnSideBarRewardUpdate(){
         let hadGet = CacheManager.storage.getBoolean("skinId_3");
-        this._btnSideBar.active = !hadGet;
+        this._btnSideBar.active = SDK.isBytedance() && !hadGet;
     }
 
     private OnRankViewClose(){

@@ -33,7 +33,12 @@ export class GameShulteBeginView extends BaseUISubView {
 		let toggle = this.getChildByName("Toggle").getComponent(Toggle);
 		toggle.node.on(Toggle.EventType.TOGGLE,()=>{
 			CacheManager.gameGrid.clickHide = toggle.isChecked;
-		})
+		});
+
+		let showEffectToggle = this.getChildByName("showEffectToggle").getComponent(Toggle);
+		showEffectToggle.node.on(Toggle.EventType.TOGGLE,()=>{
+			CacheManager.gameGrid.showClickEffect = showEffectToggle.isChecked;
+		});
       
 		this._itemContainer = this.getChildByPath("group/gridGroup");
 		for (let i = 0; i < this._typeList.length; i++) {

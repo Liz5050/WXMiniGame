@@ -32,6 +32,7 @@ export class GameGridCache {
     public clickHide:boolean = true;//点击选中后是否消失
     private _hadGetVideoReward:{[rewardId:number]:boolean};//是否获取过广告奖励（每局游戏仅可获得1次广告奖励）
     private _propNum:{[rewardId:number]:number};
+    public showClickEffect:boolean = true;//点击特效
     public constructor(){
 
     }
