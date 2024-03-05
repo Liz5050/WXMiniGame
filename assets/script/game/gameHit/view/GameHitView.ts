@@ -1,4 +1,4 @@
-import { Button, EventTouch, Node, NodeEventType, RigidBody2D, UITransform, math } from "cc";
+import { Button, EventTouch, Graphics, Node, NodeEventType, PhysicsSystem2D, RigidBody2D, UITransform, Vec3, director, math, physics } from "cc";
 import { UIModuleEnum } from "../../../enum/UIDefine";
 import { BaseUIView } from "../../base/BaseUIView";
 import { EventManager } from "../../../manager/EventManager";
@@ -12,6 +12,7 @@ export class GameHitView extends BaseUIView{
     private _beginShoot:boolean = false;
     private _shooting:boolean = false;
     private _container:Node;
+    private _graphics:Graphics;
     private _player:Node;
     private _imgArrow:Node;
     private _imgArrowTf:UITransform;
@@ -34,6 +35,7 @@ export class GameHitView extends BaseUIView{
         this._evtTouchPos = new math.Vec3();
 
         this._container = this.getChildByName("container");
+        this._graphics = this._container.getComponent(Graphics);
         this._player = this._container.getChildByName("Player");
         this._imgArrow = this._player.getChildByName("imgArrow");
         this._imgArrowTf = this._imgArrow.getComponent(UITransform);
@@ -68,14 +70,24 @@ export class GameHitView extends BaseUIView{
 
     private touchStart(pos){
         if(this._beginShoot || this._shooting) return;
-        CacheManager.game.setGameSpeed(0.3);
+        CacheManager.game.setGameSpeed(0.1);
+        this._graphics.clear();
+        this._graphics.fillRect(pos.x - 540,pos.y - 1080,50,50);
+        this._graphics.fill();
         this._beginShoot = true;
-        this._player.getPosition(this._startPos);
-        this._evtTouchPos.x = pos.x + this._startPos.x;
-        this._evtTouchPos.y = pos.y + this._startPos.y;
+        this._rigidbody.getLocalCenter(this._startPos);
+        this._graphics.fillRect(this._startPos.x,this._startPos.y,10,10);
+        this._graphics.fill();
+        //pos是以屏幕左下角为原点，所以减去屏幕宽高的一半，为当前container下的实际触摸点
+        this._endPos.x = pos.x - 540;
+        this._endPos.y = pos.y - 1080;
         
         this._imgArrow.active = true;
-        this._container.inverseTransformPoint(this._endPos,this._evtTouchPos);
+        this._graphics.moveTo(this._startPos.x,this._startPos.y);
+        this._graphics.lineTo(this._endPos.x,this._endPos.y);
+        // this._graphics.close();
+        this._graphics.stroke();
+        this._graphics.fill();
         this.updateDis();
 
         // this._imgArrow.setPosition(this._startPos.x,this._startPos.y);
@@ -124,7 +136,7 @@ export class GameHitView extends BaseUIView{
         this._forceVec.x = this._endPos.x;
         this._forceVec.y = this._endPos.y;
         this._forceVec.normalize();
-        this._forceVec.multiplyScalar(100 * this._forceScaler);
+        this._forceVec.multiplyScalar(10 * this._forceScaler);
         this._rigidbody.applyLinearImpulseToCenter(this._forceVec,true);
         console.log("force:" + this._forceScaler)
 
