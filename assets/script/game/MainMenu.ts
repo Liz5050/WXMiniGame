@@ -13,6 +13,7 @@ export class MainMenu extends BaseUISubView {
     private _tabData:{title:string}[];
     private _subViews:Node[];
     private _curIndex:number = -1;
+    private _btnSideBar:Node;
     public constructor(node:Node){
         super(node);
     }
@@ -21,7 +22,7 @@ export class MainMenu extends BaseUISubView {
         let self = this;
         let tabBar = this.getChildByName("tabBar");
         this._tabItems = [];
-        this._tabData = [{title:"商店"},{title:"主页"},{title:"排行榜"}];
+        this._tabData = [{title:"商店"},{title:"主页"},];
         for(let i = 0; i < this._tabData.length; i++){
             let tabNode:Node = tabBar.getChildByName("item" + i);
             tabNode.on(Button.EventType.CLICK,function(){
@@ -44,26 +45,32 @@ export class MainMenu extends BaseUISubView {
             Mgr.soundMgr.setMute(muteToggle.isChecked);
         });
 
-        let btnShulte = this.getChildByName("btnShulte");
+        let layout = this.getChildByName("Layout");
+        let btnShulte = layout.getChildByName("btnShulte");
         btnShulte.on(Button.EventType.CLICK,function(){
             self.OnStartGame(GameType.Shulte);
         });
-        let btnGridGame = this.getChildByName("btnGrid");
+        let btnGridGame = layout.getChildByName("btnGrid");
         btnGridGame.on(Button.EventType.CLICK,function(){
             self.OnStartGame(GameType.Grid);
             Mgr.soundMgr.play("game_start");
         });
 
-        let btnHit = this.getChildByName("btnHit");
+        let btnGrid3D = layout.getChildByName("btnGrid3D");
+        btnGrid3D.on(Button.EventType.CLICK,()=>{
+            this.OnStartGame(GameType.Grid3D);
+        });
+
+        let btnHit = layout.getChildByName("btnHit");
         btnHit.on(Button.EventType.CLICK,()=>{
             this.OnStartGame(GameType.GameHit);
         });
 
-        let btnNullify = this.getChildByName("btnNullify");
+        let btnNullify = layout.getChildByName("btnNullify");
         let clickCount = 0;
         let targetNum = -1;
         btnNullify.on(Button.EventType.CLICK,function(){
-            self.OnStartGame(GameType.GameBall);
+            // self.OnStartGame(GameType.GameBall);
             let showTips:string = "别着急，已经在做了~";
             clickCount++;
             if(targetNum == -1){
@@ -125,13 +132,25 @@ export class MainMenu extends BaseUISubView {
             Mgr.sceneMgr.LoadScene("sceneTest");
         });
 
+        this._btnSideBar = this.getChildByName("btnSideBar");
+        this._btnSideBar.on(Button.EventType.CLICK,()=>{
+            EventManager.dispatch(EventEnum.OnShowSideBarView);
+        });
+
         this.OnUserInfoUpdate();
+        this.OnSideBarRewardUpdate();
         this.SetTabIdx(1);
     }
 
     protected initEvent(){
         EventManager.addListener(EventEnum.OnUserInfoUpdate,this.OnUserInfoUpdate,this);
         EventManager.addListener(EventEnum.OnRankViewClose,this.OnRankViewClose,this);
+        EventManager.addListener(EventEnum.OnSideBarRewardUpdate,this.OnSideBarRewardUpdate,this);
+    }
+
+    private OnSideBarRewardUpdate(){
+        let hadGet = CacheManager.storage.getBoolean("skinId_3");
+        this._btnSideBar.active = SDK.isBytedance() && !hadGet;
     }
 
     private OnRankViewClose(){

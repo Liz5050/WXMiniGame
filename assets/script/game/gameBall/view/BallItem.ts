@@ -1,11 +1,11 @@
-import { _decorator, Component, math, RigidBody2D, PhysicsGroup, IPhysics2DContact, Node, Collider2D, Contact2DType} from 'cc';
+import { _decorator, Component, math, RigidBody2D, PhysicsGroup, IPhysics2DContact, Node, Collider2D, Contact2DType, tween, Tween} from 'cc';
 import Mgr from '../../../manager/Mgr';
 import MathUtils from '../../../utils/MathUtils';
 import { EventManager } from '../../../manager/EventManager';
 import { EventEnum } from '../../../enum/EventEnum';
 import { Sprite } from 'cc';
 import { MotionStreak } from 'cc';
-import TweenManager from '../../../common/TweenManager';
+import { CacheManager } from '../../../manager/CacheManager';
 const { ccclass, property } = _decorator;
 
 @ccclass('BallItem')
@@ -20,7 +20,7 @@ export class BallItem extends Component {
     private _forceVec:math.Vec2;
     private _curPos:math.Vec3;
     private _isReset:boolean = false;
-    private _shootInterval:number = 80;//发射间隔300ms
+    private _shootInterval:number = 0.08;//发射间隔300ms
     protected onLoad(): void {
         this._bgCirc = this.node.getChildByName("bgCirc");
         this._bodyImg = this._bgCirc.getChildByName("body").getComponent(Sprite);
@@ -61,9 +61,10 @@ export class BallItem extends Component {
         this._collider.enabled = true;
 
         let waitTime = this._shootInterval * showIndex;
-        TweenManager.addTween(this.node).wait(waitTime).call(()=>{
+        console.log(waitTime);
+        tween(this.node).delay(waitTime).call(()=>{
             this.startShoot(force);
-        });
+        }).start();
         return waitTime;
     }
 
@@ -122,6 +123,7 @@ export class BallItem extends Component {
     }
 
     public gotoPoint(x:number,y:number){
+        Tween.stopAllByTarget(this.node);
         this._rigidbody.sleep();
         this._collider.enabled = false;
         this._curPos = this.node.getPosition(this._curPos);

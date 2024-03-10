@@ -28,52 +28,18 @@ export default class DefaultSDK {
     }
 
     public cloudPOST(url:string,reqData?:any,callBack?:Function){
-        // wx.cloud.callContainer({
-        //     config: {
-        //       "env": "prod-2gue9n1kd74122cb"
-        //     },
-        //     path: url,
-        //     header: {
-        //       "X-WX-SERVICE": "express-589u"
-        //     },
-        //     data:reqData,
-        //     method: "POST",
-        //     timeout:15000,
-        //     complete:function(res){
-        //         console.log("POST callContainer url:" + url,res);
-        //         if(callBack){
-        //             callBack(res.data);
-        //         }
-        //     }
-        // })
     }
 
     public cloudGET(url:string,reqData?:Array<any>,callBack?:Function){
-        // let reqUrl = url;
-        // if(reqData && reqData.length > 0){
-        //     for(let i = 0; i < reqData.length; i++){
-        //         reqUrl += "/" + reqData[i];
-        //     }
-        // }
-        // wx.cloud.callContainer({
-        //     config: {
-        //       "env": "prod-2gue9n1kd74122cb"
-        //     },
-        //     path: reqUrl,
-        //     header: {
-        //       "X-WX-SERVICE": "express-589u"
-        //     },
-        //     method: "GET",
-        //     timeout:15000,
-        //     complete:function(res){
-        //         console.log("GET callContainer url:" + reqUrl,res);
-        //         if(callBack){
-        //             callBack(res.data);
-        //         }
-        //     }
-        // })
+    }
+
+    public navigateToScene(){
     }
 
     public postMessage(obj: object){
+    }
+
+    //抖音平台必接侧边栏
+    public canShowSideBarReward(){
     }
 }

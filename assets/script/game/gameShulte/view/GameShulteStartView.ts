@@ -135,7 +135,7 @@ export class GameShulteStartView extends BaseUISubView {
             return;
         }
         if(this._curClickIdx != clickIdx){
-            this._errorAnim.play("ClickError");//Play("ClickError", -1, 0);
+            if(CacheManager.gameGrid.showClickEffect) this._errorAnim.play("ClickError");//Play("ClickError", -1, 0);
             // this._curClickIdx = 0;//点错一次是否重置点击
             let stopLast:boolean = true;
             if(this._clickRight){
@@ -162,7 +162,7 @@ export class GameShulteStartView extends BaseUISubView {
                     //上次点击如果是错误的，音效不要中断播放
                     stopLast = false;
                 }
-                this._rightAnim.play();
+                if(CacheManager.gameGrid.showClickEffect) this._rightAnim.play();
                 Mgr.soundMgr.play("button1", stopLast);
             }
             this._clickRight = true;

@@ -1,5 +1,4 @@
 import { math, EventTouch, instantiate, NodeEventType, Button, _decorator, Node,Prefab,UITransform, director } from 'cc';
-import TweenManager from '../../../common/TweenManager';
 import { BallItem } from './BallItem';
 import MathUtils from '../../../utils/MathUtils';
 import { EventManager } from '../../../manager/EventManager';
@@ -225,7 +224,6 @@ export class GameBallView extends BaseUIView {
         if(!this._shooting) return;
         for(let i = 0; i < this._balls.length; i++){
             let ballNode = this._balls[i];
-            TweenManager.removeTweens(ballNode);
             let item = ballNode.getComponent(BallItem);
             item.gotoPoint(0,-200);
         }

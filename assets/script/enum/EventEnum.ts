@@ -16,6 +16,9 @@ export enum EventEnum {
     OnGameGridSaveDataUpdate,
     OnGameGridPropUseUpdate,
     OnGameGridPropUseCheck,
+    OnGameSceneGridCreate,
+    OnGameSceneGridMove,
+    OnGameSceneGridDrop,
 
     OnUserInfoUpdate,
     OnBannerAdComplete,
@@ -37,4 +40,7 @@ export enum EventEnum {
     OnEnemyDeath,
     OnEnemyRoundComplete,
     OnGameBallNextRound,
+
+    OnShowSideBarView,
+    OnSideBarRewardUpdate,
 }

@@ -3,7 +3,9 @@ export enum UIModuleEnum {
     main,//主界面
     gameBall,
     gameGrid,
+    gameGrid3D,
     gameShulte,
     rank,//排行榜
     gameHit,
+    sideBarReward,
 }

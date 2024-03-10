@@ -16,7 +16,7 @@ export enum BannerRewardId{
 export class SDK {
     private static _openid:string;
     private static _platOpenid:string;//带平台标识的openid
-    private static _curSDK:WXSDK | TTSDK | DefaultSDK;
+    private static _curSDK:DefaultSDK;
     private static _CanShowBanner:boolean = true;
     public static Init(){
         console.log("SDK Init platform：" + sys.platform);
@@ -36,6 +36,13 @@ export class SDK {
         }
         SDK.login();
     }
+
+    
+
+    public static isBytedance(){
+        return sys.platform == sys.Platform.BYTEDANCE_MINI_GAME;
+    }
+
 
     //是否登录了，只要能获取到openid就算登录
     public static isLogin():boolean{
@@ -96,7 +103,7 @@ export class SDK {
     }
 
     public static showToast(showTips = "",duration = 2000,icon:string = "none"){
-        if(!SDK.isLogin()){
+        if(!SDK.isMobile()){
             console.log(showTips);
             return;
         }
@@ -120,7 +127,7 @@ export class SDK {
         }
     }
     public static get CanShowBanner(){
-        return SDK._CanShowBanner;
+        return SDK._CanShowBanner && !SDK.isBytedance();
     }
 
     //显示banner广告
@@ -145,5 +152,9 @@ export class SDK {
             return;
         }
         SDK._curSDK.postMessage(obj);
+    }
+
+    public static get curSdk():DefaultSDK{
+        return SDK._curSDK;
     }
 }

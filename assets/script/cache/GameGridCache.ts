@@ -32,6 +32,70 @@ export class GameGridCache {
     public clickHide:boolean = true;//点击选中后是否消失
     private _hadGetVideoReward:{[rewardId:number]:boolean};//是否获取过广告奖励（每局游戏仅可获得1次广告奖励）
     private _propNum:{[rewardId:number]:number};
+    public showClickEffect:boolean = true;//点击特效
+
+    // private _sceneGridList
+    private _gridTypeList:{[resId:number]:number[][]} = {
+        [1]:[
+            [1]
+        ],
+        [2]:[
+            [1,1]
+        ],
+        [3]:[
+            [1,1,1]
+        ],
+        [4]:[
+            [1,1,1,1]
+        ],
+        [5]:[
+            [1,1,1,1,1]
+        ],
+        [6]:[
+            [1,0],
+            [1,1]
+        ],
+        [7]:[
+            [1,1],
+            [1,1]
+        ],
+        [8]:[
+            [1,0,0],
+            [1,0,0],
+            [1,1,1]
+        ],
+        [9]:[
+            [1,1,1],
+            [1,1,1],
+            [1,1,1]
+        ],
+        [10]:[
+            [0,1,0],
+            [1,1,1]
+        ],
+        [11]:[
+            [1],
+            [1]
+        ],
+        [12]:[
+            [1],
+            [1],
+            [1]
+        ],
+        [13]:[
+            [1],
+            [1],
+            [1],
+            [1]
+        ],
+        [14]:[
+            [1],
+            [1],
+            [1],
+            [1],
+            [1]
+        ]
+    };
     public constructor(){
 
     }
@@ -111,8 +175,14 @@ export class GameGridCache {
 
     public GetCurSkinCfg():any{
         if(!this._curSkinCfg){
+            let skinId = 0;
             if(CacheManager.player.playerInfo){
-                let skinId = CacheManager.player.playerInfo.skin_id;
+                skinId = CacheManager.player.playerInfo.skin_id;
+            }
+            else{
+                skinId = CacheManager.storage.getNumber("skinUsed");
+            }
+            if(skinId > 0){
                 let cfg = CacheManager.shop.getShopConfigById(skinId);
                 if(cfg){
                     return cfg;
@@ -190,5 +260,10 @@ export class GameGridCache {
             }
             EventManager.dispatch(EventEnum.OnGameGridSaveDataUpdate,this._saveData);
         });
+    }
+
+    public getGridDataList(resType:number){
+        let resArr = this._gridTypeList[resType];
+        return resArr;
     }
 }
