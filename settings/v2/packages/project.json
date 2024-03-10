@@ -45,6 +45,10 @@
     {
       "name": "HitPlayer",
       "value": 1
+    },
+    {
+      "name": "Scene3d",
+      "value": 2
     }
   ]
 }

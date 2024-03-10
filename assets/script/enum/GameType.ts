@@ -7,6 +7,7 @@ export enum GameType {
 	Memory = 1003,
 	GameBall = 1004,
 	GameHit = 1005,
+	Grid3D = 1006,
 }
 
 export enum GameSubType {

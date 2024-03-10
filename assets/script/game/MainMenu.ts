@@ -56,6 +56,11 @@ export class MainMenu extends BaseUISubView {
             Mgr.soundMgr.play("game_start");
         });
 
+        let btnGrid3D = layout.getChildByName("btnGrid3D");
+        btnGrid3D.on(Button.EventType.CLICK,()=>{
+            this.OnStartGame(GameType.Grid3D);
+        });
+
         let btnHit = layout.getChildByName("btnHit");
         btnHit.on(Button.EventType.CLICK,()=>{
             this.OnStartGame(GameType.GameHit);
