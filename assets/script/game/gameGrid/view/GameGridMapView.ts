@@ -1,4 +1,4 @@
-import { BoxCollider, Component, Graphics, Line, Node, PhysicsSystem, Prefab, Vec3, _decorator, game, geometry, instantiate } from "cc";
+import { BoxCollider, Component, Graphics, Line, Node, PhysicsSystem, Prefab, Vec3, _decorator, game, geometry, instantiate, screen } from "cc";
 import { CacheManager } from "../../../manager/CacheManager";
 import Mgr from "../../../manager/Mgr";
 import { Root3D } from "../../../Root3D";
@@ -17,19 +17,15 @@ export class GameGridMapView extends Component{
     private _gridPrefab:Prefab;
     private _ray: geometry.Ray;
     private _groupPos:Vec3;
-    private _moveStartX:number = 0;
-    private _moveStartZ:number = 0;
+    
     protected onLoad(): void {
         this._ray = new geometry.Ray();
         this._groupPos = new Vec3();
         EventManager.addListener(EventEnum.OnGameSceneGridMove,this.onGridMove,this);
-        EventManager.addListener(EventEnum.OnGameSceneGridDrop,this.onGridDrop,this);
     }
 
     public createPreviewGrid(resType:number,startX:number,startY:number){
-        // this.mapGridContainer.inverseTransformPoint
         let camera = Root3D.mainCamera;
-        let line = camera.getComponent(Line);
         camera.screenPointToRay(startX, startY, this._ray);
         if (PhysicsSystem.instance.raycast(this._ray)) {
             const raycastResults = PhysicsSystem.instance.raycastResults;
@@ -37,15 +33,11 @@ export class GameGridMapView extends Component{
                 const item = raycastResults[i];
                 if (item.collider == this.posTrigger) {
                     this.mapGridContainer.inverseTransformPoint(this._groupPos,item.hitPoint);
+                    this._groupPos.z -= 2;
                     this.tempGroup.position = this._groupPos;
-                    this._moveStartX = this._groupPos.x;
-                    this._moveStartZ = this._groupPos.z;
-                    console.log('raycast hit the target node !',this._groupPos);
                     break;
                 }
             }
-        } else {
-            console.log('raycast does not hit the target node !');
         }
 
         let dataList = CacheManager.gameGrid.getGridDataList(resType);
@@ -56,8 +48,8 @@ export class GameGridMapView extends Component{
             //偶数：起始点偏移0.5，奇数：起始点为原点(目的是让初始位置，相对点击位置保持相对居中)
             // let offsetX:number = colNum % 2 == 0 ? -0.5 : 0;
             // let offsetZ:number = rowNum % 2 == 0 ? -0.5 : 0;
-            let startX = (colNum - 1) / 2;
-            let startZ = (rowNum - 1) / 2;
+            let startX = -(colNum - 1) / 2;
+            let startZ = -(rowNum - 1) / 2;
             for(let col = 0; col < colNum; col++){
                 let isShow = dataList[row][col] == 1;
                 let posX = col * 1 + startX;
@@ -87,26 +79,40 @@ export class GameGridMapView extends Component{
         return gridNode;
     }
 
-    private onGridMove(deltaX:number,deltaY:number){
-        let deltaZ = deltaY + Math.tan(MathUtils.getRadian(30)) * 20;
-        let posX = this._moveStartX + deltaX / 100;
-        let posZ = this._moveStartZ - deltaZ / 100;
-        
-        console.log("onGridMove {posX:" + posX + ", posZ:" + posZ + "}");
-        this._moveStartX = posX;
-        this._moveStartZ = posZ;
-        this.tempGroup.setPosition(posX,this._groupPos.y,posZ);
+    private onGridMove(touchX:number,touchY:number){
+        let camera = Root3D.mainCamera;
+        camera.screenPointToRay(touchX, touchY, this._ray);
+        if (PhysicsSystem.instance.raycast(this._ray)) {
+            const raycastResults = PhysicsSystem.instance.raycastResults;
+            for (let i = 0; i < raycastResults.length; i++) {
+                const item = raycastResults[i];
+                if (item.collider == this.posTrigger) {
+                    this.mapGridContainer.inverseTransformPoint(this._groupPos,item.hitPoint);
+                    // this._groupPos.x -= 2;
+                    this._groupPos.z -= 2;
+                    this.tempGroup.position = this._groupPos;
+                    break;
+                }
+            }
+        }
     }
 
-    private onGridDrop(){
+    private _dropPos:Vec3 = new Vec3();
+    public onGridDrop(isRight:boolean){
         let tempNodeList = this.tempGroup.children;
-        console.log("onGridDrop",tempNodeList)
         let len = tempNodeList.length;
         if(tempNodeList.length > 0){
             for(let i = len - 1; i >= 0; i-- ){
                 let node = tempNodeList[i];
-                node.parent = null;
-                GameGridMapView.GridPool.push(node);
+                if(isRight){
+                    this.mapGridContainer.inverseTransformPoint(this._dropPos,node.worldPosition);
+                    this.mapGridContainer.addChild(node);
+                    node.position = this._dropPos;
+                }
+                else{
+                    node.removeFromParent();
+                    GameGridMapView.GridPool.push(node);
+                }
             }
         }
     }

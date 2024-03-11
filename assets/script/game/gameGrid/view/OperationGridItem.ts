@@ -52,7 +52,7 @@ export class OperationGridItem {
         });
 
         this._btnGrid.on(NodeEventType.TOUCH_MOVE,function(event:EventTouch){
-            let pos = event.getUIDelta();
+            let pos = event.getLocation();
             self.touchMove(pos.x,pos.y);
         });
         
@@ -63,20 +63,15 @@ export class OperationGridItem {
     private touchStart(startX:number,startY:number){
         if(this._resType == -1) return;
         if(this._canMove) return;
-        this._moveStartX = startX;
-        this._moveStartY = startY + 250;
         this._canMove = true;
-        
-        EventManager.dispatch(EventEnum.OnGameSceneGridCreate,this._resType,this._moveStartX - 50,this._previewY + 550);
-        // TweenManager.removeTweens(this._preview);
-        // TweenManager.addTween(this._preview).to({scaleX:2, scaleY:2,x:this._moveStartX,y:this._moveStartY},100);
-        // Mgr.soundMgr.play("crrect_answer1",false);
+        EventManager.dispatch(EventEnum.OnGameSceneGridCreate,this._resType,startX,startY);
+        Mgr.soundMgr.play("crrect_answer1",false);
     }
 
-    private touchMove(deltaX:number,deltaY:number){
+    private touchMove(touchX:number,touchY:number){
         if(this._resType == -1) return;
         if(this._canMove){
-            EventManager.dispatch(EventEnum.OnGameSceneGridMove,deltaX,deltaY);
+            EventManager.dispatch(EventEnum.OnGameSceneGridMove,touchX,touchY);
         }
     }
 
@@ -84,29 +79,20 @@ export class OperationGridItem {
         if(this._resType == -1) return;
         if(this._canMove){
             this._canMove = false;
-            EventManager.dispatch(EventEnum.OnGameSceneGridDrop);
+            EventManager.dispatch(EventEnum.OnGameSceneGridDrop,this._gridIndex);
         }
     }
 
     public ShowRight(){
-        // this._touchMask.active = true;
-        // // Mgr.soundMgr.play("crrect_answer2",false);
+        this._touchMask.active = true;
+        this._preview.active = false;
+        Mgr.soundMgr.play("crrect_answer2",false);
         // let self = this;
-        // for(let i = 0; i < itemList.length; i++){
-        //     let item:MapGridItem = itemList[i];
-        //     let localPos:math.Vec3 = new math.Vec3();
-        //     this._randomGrid.inverseTransformPoint(localPos,item.getItemWorldPos());
-
-        //     let grid:Node = this._gridList[i];
-        //     TweenManager.addTween(grid).to({x:localPos.x,y:localPos.y},100).call(function(){
-        //         grid.active = false;
-        //     });
-        // }
     }
 
     public ShowError(){
         // Mgr.soundMgr.play("error999");
-        // Mgr.soundMgr.play("mobile_phone_O",false);
+        Mgr.soundMgr.play("mobile_phone_O",false);
         // TweenManager.removeTweens(this._preview);
         // TweenManager.addTween(this._preview).to({x:this._previewX, y:this._previewY,scaleX:1,scaleY:1},100);
     }
@@ -132,6 +118,7 @@ export class OperationGridItem {
     public updatePreviewGrid(gridInfo = null){
         if(gridInfo && !gridInfo.enable){
             this._touchMask.active = true;
+            this._preview.active = true;
             if(this._gridList){
                 for(let i = 0; i < this._gridList.length; i++){
                     this._gridList[i].active = false;
@@ -140,6 +127,7 @@ export class OperationGridItem {
             return;
         }
 
+        this._preview.active = true;
         this._touchMask.active = false;
         this._preview.setPosition(this._previewX,this._previewY);
         this._preview.setScale(1,1);

@@ -21,6 +21,7 @@ export class GameGrid3DView extends BaseUIView{
     private _gameGridMap:Node;
     private _mapView:GameGridMapView;
 
+    private _rightCount:number = 0;
     private _score:number = 0;
     private _removeCount:number = 0;//连消计数
     private _playTime:number = 0;
@@ -69,6 +70,7 @@ export class GameGrid3DView extends BaseUIView{
 
     private addEvent(){
         EventManager.addListener(EventEnum.OnGameSceneGridCreate,this.onCreateGrid,this);
+        EventManager.addListener(EventEnum.OnGameSceneGridDrop,this.onGridDrop,this);
     }
 
     public onShowAfter(param?: any): void {
@@ -80,6 +82,21 @@ export class GameGrid3DView extends BaseUIView{
 
     private onCreateGrid(resType:number,startX:number,startY:number){
         this._mapView.createPreviewGrid(resType,startX,startY);
+    }
+
+    private onGridDrop(index:number){
+        let isRight = Math.random() > 0.5;
+        this._mapView.onGridDrop(isRight);
+        if(isRight){
+            this._btns[index].ShowRight();
+            this._rightCount ++;
+        }
+        else{
+            this._btns[index].ShowError();
+        }
+        if(this._rightCount >= 3){
+            this.OnReqNextPreview();
+        }
     }
 
     public OnGameStart(){
@@ -98,7 +115,7 @@ export class GameGrid3DView extends BaseUIView{
     }
 
     private OnReqNextPreview(){
-        // this._rightCount = 0;
+        this._rightCount = 0;
         for(let i = 0; i < this._btns.length; i++){
             this._btns[i].updatePreviewGrid();
         }
