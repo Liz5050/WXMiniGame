@@ -1,0 +1,125 @@
+{
+  "ver": "2.3.4",
+  "importer": "fbx",
+  "imported": true,
+  "uuid": "8f343680-8905-4176-ad19-142d901c6d38",
+  "files": [],
+  "subMetas": {
+    "a62fe": {
+      "importer": "gltf-mesh",
+      "uuid": "8f343680-8905-4176-ad19-142d901c6d38@a62fe",
+      "displayName": "",
+      "id": "a62fe",
+      "name": "Scene.mesh",
+      "userData": {
+        "gltfIndex": 0
+      },
+      "ver": "1.1.0",
+      "imported": true,
+      "files": [
+        ".bin",
+        ".json"
+      ],
+      "subMetas": {}
+    },
+    "fd73d": {
+      "importer": "gltf-embeded-image",
+      "uuid": "8f343680-8905-4176-ad19-142d901c6d38@fd73d",
+      "displayName": "",
+      "id": "fd73d",
+      "name": "DiffuseColor_Texture.image",
+      "userData": {
+        "gltfIndex": 0
+      },
+      "ver": "1.0.3",
+      "imported": true,
+      "files": [
+        ".json",
+        ".png"
+      ],
+      "subMetas": {}
+    },
+    "4f17a": {
+      "importer": "texture",
+      "uuid": "8f343680-8905-4176-ad19-142d901c6d38@4f17a",
+      "displayName": "",
+      "id": "4f17a",
+      "name": "DiffuseColor_Texture.texture",
+      "userData": {
+        "wrapModeS": "repeat",
+        "wrapModeT": "repeat",
+        "minfilter": "linear",
+        "magfilter": "linear",
+        "mipfilter": "none",
+        "anisotropy": 0,
+        "isUuid": true,
+        "imageUuidOrDatabaseUri": "8f343680-8905-4176-ad19-142d901c6d38@fd73d"
+      },
+      "ver": "1.0.22",
+      "imported": true,
+      "files": [
+        ".json"
+      ],
+      "subMetas": {}
+    },
+    "9991c": {
+      "importer": "gltf-material",
+      "uuid": "8f343680-8905-4176-ad19-142d901c6d38@9991c",
+      "displayName": "",
+      "id": "9991c",
+      "name": "colormap.material",
+      "userData": {
+        "gltfIndex": 0
+      },
+      "ver": "1.0.14",
+      "imported": true,
+      "files": [
+        ".json"
+      ],
+      "subMetas": {}
+    },
+    "3d0f4": {
+      "importer": "gltf-scene",
+      "uuid": "8f343680-8905-4176-ad19-142d901c6d38@3d0f4",
+      "displayName": "",
+      "id": "3d0f4",
+      "name": "stairs.prefab",
+      "userData": {
+        "gltfIndex": 0
+      },
+      "ver": "1.0.12",
+      "imported": true,
+      "files": [
+        ".json"
+      ],
+      "subMetas": {}
+    }
+  },
+  "userData": {
+    "imageMetas": [
+      {
+        "name": "DiffuseColor_Texture",
+        "uri": "8f343680-8905-4176-ad19-142d901c6d38@fd73d"
+      }
+    ],
+    "fbx": {
+      "smartMaterialEnabled": true
+    },
+    "redirect": "8f343680-8905-4176-ad19-142d901c6d38@3d0f4",
+    "assetFinder": {
+      "meshes": [
+        "8f343680-8905-4176-ad19-142d901c6d38@a62fe"
+      ],
+      "skeletons": [],
+      "textures": [
+        "8f343680-8905-4176-ad19-142d901c6d38@4f17a"
+      ],
+      "materials": [
+        "8f343680-8905-4176-ad19-142d901c6d38@9991c"
+      ],
+      "scenes": [
+        "8f343680-8905-4176-ad19-142d901c6d38@3d0f4"
+      ]
+    }
+  }
+}

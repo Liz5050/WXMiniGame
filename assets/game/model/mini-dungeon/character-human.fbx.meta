@@ -1,0 +1,1108 @@
+{
+  "ver": "2.3.4",
+  "importer": "fbx",
+  "imported": true,
+  "uuid": "97266eed-8e2c-453b-9535-64dfc167953e",
+  "files": [
+    "__original-animation-0.cconb",
+    "__original-animation-1.cconb",
+    "__original-animation-10.cconb",
+    "__original-animation-11.cconb",
+    "__original-animation-12.cconb",
+    "__original-animation-13.cconb",
+    "__original-animation-14.cconb",
+    "__original-animation-15.cconb",
+    "__original-animation-16.cconb",
+    "__original-animation-17.cconb",
+    "__original-animation-18.cconb",
+    "__original-animation-19.cconb",
+    "__original-animation-2.cconb",
+    "__original-animation-20.cconb",
+    "__original-animation-21.cconb",
+    "__original-animation-22.cconb",
+    "__original-animation-23.cconb",
+    "__original-animation-24.cconb",
+    "__original-animation-3.cconb",
+    "__original-animation-4.cconb",
+    "__original-animation-5.cconb",
+    "__original-animation-6.cconb",
+    "__original-animation-7.cconb",
+    "__original-animation-8.cconb",
+    "__original-animation-9.cconb"
+  ],
+  "subMetas": {
+    "30732": {
+      "importer": "gltf-skeleton",
+      "uuid": "97266eed-8e2c-453b-9535-64dfc167953e@30732",
+      "displayName": "",
+      "id": "30732",
+      "name": "UnnamedSkeleton-0.skeleton",
+      "userData": {
+        "gltfIndex": 0,
+        "jointsLength": 7
+      },
+      "ver": "1.0.1",
+      "imported": true,
+      "files": [
+        ".json"
+      ],
+      "subMetas": {}
+    },
+    "34227": {
+      "importer": "gltf-animation",
+      "uuid": "97266eed-8e2c-453b-9535-64dfc167953e@34227",
+      "displayName": "",
+      "id": "34227",
+      "name": "emote-no.animation",
+      "userData": {
+        "gltfIndex": 12,
+        "wrapMode": 2,
+        "sample": 30,
+        "span": {
+          "from": 0,
+          "to": 0.6833333373069763
+        },
+        "events": []
+      },
+      "ver": "1.0.16",
+      "imported": true,
+      "files": [
+        ".cconb"
+      ],
+      "subMetas": {}
+    },
+    "99d6c": {
+      "importer": "gltf-mesh",
+      "uuid": "97266eed-8e2c-453b-9535-64dfc167953e@99d6c",
+      "displayName": "",
+      "id": "99d6c",
+      "name": "Scene-0.mesh",
+      "userData": {
+        "gltfIndex": 0
+      },
+      "ver": "1.1.0",
+      "imported": true,
+      "files": [
+        ".bin",
+        ".json"
+      ],
+      "subMetas": {}
+    },
+    "6ec10": {
+      "importer": "gltf-mesh",
+      "uuid": "97266eed-8e2c-453b-9535-64dfc167953e@6ec10",
+      "displayName": "",
+      "id": "6ec10",
+      "name": "Scene-1.mesh",
+      "userData": {
+        "gltfIndex": 1
+      },
+      "ver": "1.1.0",
+      "imported": true,
+      "files": [
+        ".bin",
+        ".json"
+      ],
+      "subMetas": {}
+    },
+    "18b80": {
+      "importer": "gltf-animation",
+      "uuid": "97266eed-8e2c-453b-9535-64dfc167953e@18b80",
+      "displayName": "",
+      "id": "18b80",
+      "name": "static.animation",
+      "userData": {
+        "gltfIndex": 0,
+        "wrapMode": 2,
+        "sample": 30,
+        "span": {
+          "from": 0,
+          "to": 0.10000000149011612
+        },
+        "events": []
+      },
+      "ver": "1.0.16",
+      "imported": true,
+      "files": [
+        ".cconb"
+      ],
+      "subMetas": {}
+    },
+    "1f586": {
+      "importer": "gltf-animation",
+      "uuid": "97266eed-8e2c-453b-9535-64dfc167953e@1f586",
+      "displayName": "",
+      "id": "1f586",
+      "name": "idle.animation",
+      "userData": {
+        "gltfIndex": 1,
+        "wrapMode": 2,
+        "sample": 30,
+        "span": {
+          "from": 0,
+          "to": 1.350000023841858
+        },
+        "events": []
+      },
+      "ver": "1.0.16",
+      "imported": true,
+      "files": [
+        ".cconb"
+      ],
+      "subMetas": {}
+    },
+    "7f3dc": {
+      "importer": "gltf-animation",
+      "uuid": "97266eed-8e2c-453b-9535-64dfc167953e@7f3dc",
+      "displayName": "",
+      "id": "7f3dc",
+      "name": "walk.animation",
+      "userData": {
+        "gltfIndex": 2,
+        "wrapMode": 2,
+        "sample": 30,
+        "span": {
+          "from": 0,
+          "to": 0.6833333373069763
+        },
+        "events": []
+      },
+      "ver": "1.0.16",
+      "imported": true,
+      "files": [
+        ".cconb"
+      ],
+      "subMetas": {}
+    },
+    "74d9e": {
+      "importer": "gltf-animation",
+      "uuid": "97266eed-8e2c-453b-9535-64dfc167953e@74d9e",
+      "displayName": "",
+      "id": "74d9e",
+      "name": "sprint.animation",
+      "userData": {
+        "gltfIndex": 3,
+        "wrapMode": 2,
+        "sample": 30,
+        "span": {
+          "from": 0,
+          "to": 0.5
+        },
+        "events": []
+      },
+      "ver": "1.0.16",
+      "imported": true,
+      "files": [
+        ".cconb"
+      ],
+      "subMetas": {}
+    },
+    "f87ee": {
+      "importer": "gltf-animation",
+      "uuid": "97266eed-8e2c-453b-9535-64dfc167953e@f87ee",
+      "displayName": "",
+      "id": "f87ee",
+      "name": "jump.animation",
+      "userData": {
+        "gltfIndex": 4,
+        "wrapMode": 2,
+        "sample": 30,
+        "span": {
+          "from": 0,
+          "to": 0.5
+        },
+        "events": []
+      },
+      "ver": "1.0.16",
+      "imported": true,
+      "files": [
+        ".cconb"
+      ],
+      "subMetas": {}
+    },
+    "6f220": {
+      "importer": "gltf-animation",
+      "uuid": "97266eed-8e2c-453b-9535-64dfc167953e@6f220",
+      "displayName": "",
+      "id": "6f220",
+      "name": "fall.animation",
+      "userData": {
+        "gltfIndex": 5,
+        "wrapMode": 2,
+        "sample": 30,
+        "span": {
+          "from": 0,
+          "to": 0.3499999940395355
+        },
+        "events": []
+      },
+      "ver": "1.0.16",
+      "imported": true,
+      "files": [
+        ".cconb"
+      ],
+      "subMetas": {}
+    },
+    "5465d": {
+      "importer": "gltf-animation",
+      "uuid": "97266eed-8e2c-453b-9535-64dfc167953e@5465d",
+      "displayName": "",
+      "id": "5465d",
+      "name": "crouch.animation",
+      "userData": {
+        "gltfIndex": 6,
+        "wrapMode": 2,
+        "sample": 30,
+        "span": {
+          "from": 0,
+          "to": 0.1666666716337204
+        },
+        "events": []
+      },
+      "ver": "1.0.16",
+      "imported": true,
+      "files": [
+        ".cconb"
+      ],
+      "subMetas": {}
+    },
+    "1e57b": {
+      "importer": "gltf-animation",
+      "uuid": "97266eed-8e2c-453b-9535-64dfc167953e@1e57b",
+      "displayName": "",
+      "id": "1e57b",
+      "name": "sit.animation",
+      "userData": {
+        "gltfIndex": 7,
+        "wrapMode": 2,
+        "sample": 30,
+        "span": {
+          "from": 0,
+          "to": 0.1666666716337204
+        },
+        "events": []
+      },
+      "ver": "1.0.16",
+      "imported": true,
+      "files": [
+        ".cconb"
+      ],
+      "subMetas": {}
+    },
+    "3f296": {
+      "importer": "gltf-animation",
+      "uuid": "97266eed-8e2c-453b-9535-64dfc167953e@3f296",
+      "displayName": "",
+      "id": "3f296",
+      "name": "drive.animation",
+      "userData": {
+        "gltfIndex": 8,
+        "wrapMode": 2,
+        "sample": 30,
+        "span": {
+          "from": 0,
+          "to": 0.1666666716337204
+        },
+        "events": []
+      },
+      "ver": "1.0.16",
+      "imported": true,
+      "files": [
+        ".cconb"
+      ],
+      "subMetas": {}
+    },
+    "b4251": {
+      "importer": "gltf-animation",
+      "uuid": "97266eed-8e2c-453b-9535-64dfc167953e@b4251",
+      "displayName": "",
+      "id": "b4251",
+      "name": "die.animation",
+      "userData": {
+        "gltfIndex": 9,
+        "wrapMode": 2,
+        "sample": 30,
+        "span": {
+          "from": 0,
+          "to": 0.3499999940395355
+        },
+        "events": []
+      },
+      "ver": "1.0.16",
+      "imported": true,
+      "files": [
+        ".cconb"
+      ],
+      "subMetas": {}
+    },
+    "e7a2a": {
+      "importer": "gltf-animation",
+      "uuid": "97266eed-8e2c-453b-9535-64dfc167953e@e7a2a",
+      "displayName": "",
+      "id": "e7a2a",
+      "name": "pick-up.animation",
+      "userData": {
+        "gltfIndex": 10,
+        "wrapMode": 2,
+        "sample": 30,
+        "span": {
+          "from": 0,
+          "to": 0.3499999940395355
+        },
+        "events": []
+      },
+      "ver": "1.0.16",
+      "imported": true,
+      "files": [
+        ".cconb"
+      ],
+      "subMetas": {}
+    },
+    "7134b": {
+      "importer": "gltf-animation",
+      "uuid": "97266eed-8e2c-453b-9535-64dfc167953e@7134b",
+      "displayName": "",
+      "id": "7134b",
+      "name": "emote-yes.animation",
+      "userData": {
+        "gltfIndex": 11,
+        "wrapMode": 2,
+        "sample": 30,
+        "span": {
+          "from": 0,
+          "to": 0.6833333373069763
+        },
+        "events": []
+      },
+      "ver": "1.0.16",
+      "imported": true,
+      "files": [
+        ".cconb"
+      ],
+      "subMetas": {}
+    },
+    "cdfd5": {
+      "importer": "gltf-animation",
+      "uuid": "97266eed-8e2c-453b-9535-64dfc167953e@cdfd5",
+      "displayName": "",
+      "id": "cdfd5",
+      "name": "holding-right.animation",
+      "userData": {
+        "gltfIndex": 13,
+        "wrapMode": 2,
+        "sample": 30,
+        "span": {
+          "from": 0,
+          "to": 0.1666666716337204
+        },
+        "events": []
+      },
+      "ver": "1.0.16",
+      "imported": true,
+      "files": [
+        ".cconb"
+      ],
+      "subMetas": {}
+    },
+    "49eb4": {
+      "importer": "gltf-animation",
+      "uuid": "97266eed-8e2c-453b-9535-64dfc167953e@49eb4",
+      "displayName": "",
+      "id": "49eb4",
+      "name": "holding-left.animation",
+      "userData": {
+        "gltfIndex": 14,
+        "wrapMode": 2,
+        "sample": 30,
+        "span": {
+          "from": 0,
+          "to": 0.1666666716337204
+        },
+        "events": []
+      },
+      "ver": "1.0.16",
+      "imported": true,
+      "files": [
+        ".cconb"
+      ],
+      "subMetas": {}
+    },
+    "11f90": {
+      "importer": "gltf-animation",
+      "uuid": "97266eed-8e2c-453b-9535-64dfc167953e@11f90",
+      "displayName": "",
+      "id": "11f90",
+      "name": "holding-both.animation",
+      "userData": {
+        "gltfIndex": 15,
+        "wrapMode": 2,
+        "sample": 30,
+        "span": {
+          "from": 0,
+          "to": 0.1666666716337204
+        },
+        "events": []
+      },
+      "ver": "1.0.16",
+      "imported": true,
+      "files": [
+        ".cconb"
+      ],
+      "subMetas": {}
+    },
+    "69dd1": {
+      "importer": "gltf-animation",
+      "uuid": "97266eed-8e2c-453b-9535-64dfc167953e@69dd1",
+      "displayName": "",
+      "id": "69dd1",
+      "name": "holding-right-shoot.animation",
+      "userData": {
+        "gltfIndex": 16,
+        "wrapMode": 2,
+        "sample": 30,
+        "span": {
+          "from": 0,
+          "to": 0.20000000298023224
+        },
+        "events": []
+      },
+      "ver": "1.0.16",
+      "imported": true,
+      "files": [
+        ".cconb"
+      ],
+      "subMetas": {}
+    },
+    "e0f93": {
+      "importer": "gltf-animation",
+      "uuid": "97266eed-8e2c-453b-9535-64dfc167953e@e0f93",
+      "displayName": "",
+      "id": "e0f93",
+      "name": "holding-left-shoot.animation",
+      "userData": {
+        "gltfIndex": 17,
+        "wrapMode": 2,
+        "sample": 30,
+        "span": {
+          "from": 0,
+          "to": 0.20000000298023224
+        },
+        "events": []
+      },
+      "ver": "1.0.16",
+      "imported": true,
+      "files": [
+        ".cconb"
+      ],
+      "subMetas": {}
+    },
+    "1311e": {
+      "importer": "gltf-animation",
+      "uuid": "97266eed-8e2c-453b-9535-64dfc167953e@1311e",
+      "displayName": "",
+      "id": "1311e",
+      "name": "holding-both-shoot.animation",
+      "userData": {
+        "gltfIndex": 18,
+        "wrapMode": 2,
+        "sample": 30,
+        "span": {
+          "from": 0,
+          "to": 0.20000000298023224
+        },
+        "events": []
+      },
+      "ver": "1.0.16",
+      "imported": true,
+      "files": [
+        ".cconb"
+      ],
+      "subMetas": {}
+    },
+    "3fc8f": {
+      "importer": "gltf-animation",
+      "uuid": "97266eed-8e2c-453b-9535-64dfc167953e@3fc8f",
+      "displayName": "",
+      "id": "3fc8f",
+      "name": "attack-melee-right.animation",
+      "userData": {
+        "gltfIndex": 19,
+        "wrapMode": 2,
+        "sample": 30,
+        "span": {
+          "from": 0,
+          "to": 0.4166666567325592
+        },
+        "events": []
+      },
+      "ver": "1.0.16",
+      "imported": true,
+      "files": [
+        ".cconb"
+      ],
+      "subMetas": {}
+    },
+    "220da": {
+      "importer": "gltf-animation",
+      "uuid": "97266eed-8e2c-453b-9535-64dfc167953e@220da",
+      "displayName": "",
+      "id": "220da",
+      "name": "attack-melee-left.animation",
+      "userData": {
+        "gltfIndex": 20,
+        "wrapMode": 2,
+        "sample": 30,
+        "span": {
+          "from": 0,
+          "to": 0.4166666567325592
+        },
+        "events": []
+      },
+      "ver": "1.0.16",
+      "imported": true,
+      "files": [
+        ".cconb"
+      ],
+      "subMetas": {}
+    },
+    "bf6da": {
+      "importer": "gltf-animation",
+      "uuid": "97266eed-8e2c-453b-9535-64dfc167953e@bf6da",
+      "displayName": "",
+      "id": "bf6da",
+      "name": "attack-kick-right.animation",
+      "userData": {
+        "gltfIndex": 21,
+        "wrapMode": 2,
+        "sample": 30,
+        "span": {
+          "from": 0,
+          "to": 0.550000011920929
+        },
+        "events": []
+      },
+      "ver": "1.0.16",
+      "imported": true,
+      "files": [
+        ".cconb"
+      ],
+      "subMetas": {}
+    },
+    "faac7": {
+      "importer": "gltf-animation",
+      "uuid": "97266eed-8e2c-453b-9535-64dfc167953e@faac7",
+      "displayName": "",
+      "id": "faac7",
+      "name": "attack-kick-left.animation",
+      "userData": {
+        "gltfIndex": 22,
+        "wrapMode": 2,
+        "sample": 30,
+        "span": {
+          "from": 0,
+          "to": 0.550000011920929
+        },
+        "events": []
+      },
+      "ver": "1.0.16",
+      "imported": true,
+      "files": [
+        ".cconb"
+      ],
+      "subMetas": {}
+    },
+    "acc54": {
+      "importer": "gltf-animation",
+      "uuid": "97266eed-8e2c-453b-9535-64dfc167953e@acc54",
+      "displayName": "",
+      "id": "acc54",
+      "name": "interact-right.animation",
+      "userData": {
+        "gltfIndex": 23,
+        "wrapMode": 2,
+        "sample": 30,
+        "span": {
+          "from": 0,
+          "to": 0.6833333373069763
+        },
+        "events": []
+      },
+      "ver": "1.0.16",
+      "imported": true,
+      "files": [
+        ".cconb"
+      ],
+      "subMetas": {}
+    },
+    "5d178": {
+      "importer": "gltf-animation",
+      "uuid": "97266eed-8e2c-453b-9535-64dfc167953e@5d178",
+      "displayName": "",
+      "id": "5d178",
+      "name": "interact-left.animation",
+      "userData": {
+        "gltfIndex": 24,
+        "wrapMode": 2,
+        "sample": 30,
+        "span": {
+          "from": 0,
+          "to": 0.6833333373069763
+        },
+        "events": []
+      },
+      "ver": "1.0.16",
+      "imported": true,
+      "files": [
+        ".cconb"
+      ],
+      "subMetas": {}
+    },
+    "f1394": {
+      "importer": "gltf-skeleton",
+      "uuid": "97266eed-8e2c-453b-9535-64dfc167953e@f1394",
+      "displayName": "",
+      "id": "f1394",
+      "name": "UnnamedSkeleton-1.skeleton",
+      "userData": {
+        "gltfIndex": 1,
+        "jointsLength": 7
+      },
+      "ver": "1.0.1",
+      "imported": true,
+      "files": [
+        ".json"
+      ],
+      "subMetas": {}
+    },
+    "fd73d": {
+      "importer": "gltf-embeded-image",
+      "uuid": "97266eed-8e2c-453b-9535-64dfc167953e@fd73d",
+      "displayName": "",
+      "id": "fd73d",
+      "name": "DiffuseColor_Texture.image",
+      "userData": {
+        "gltfIndex": 0
+      },
+      "ver": "1.0.3",
+      "imported": true,
+      "files": [
+        ".json",
+        ".png"
+      ],
+      "subMetas": {}
+    },
+    "4f17a": {
+      "importer": "texture",
+      "uuid": "97266eed-8e2c-453b-9535-64dfc167953e@4f17a",
+      "displayName": "",
+      "id": "4f17a",
+      "name": "DiffuseColor_Texture.texture",
+      "userData": {
+        "wrapModeS": "repeat",
+        "wrapModeT": "repeat",
+        "minfilter": "linear",
+        "magfilter": "linear",
+        "mipfilter": "none",
+        "anisotropy": 0,
+        "isUuid": true,
+        "imageUuidOrDatabaseUri": "97266eed-8e2c-453b-9535-64dfc167953e@fd73d"
+      },
+      "ver": "1.0.22",
+      "imported": true,
+      "files": [
+        ".json"
+      ],
+      "subMetas": {}
+    },
+    "9991c": {
+      "importer": "gltf-material",
+      "uuid": "97266eed-8e2c-453b-9535-64dfc167953e@9991c",
+      "displayName": "",
+      "id": "9991c",
+      "name": "colormap.material",
+      "userData": {
+        "gltfIndex": 0
+      },
+      "ver": "1.0.14",
+      "imported": true,
+      "files": [
+        ".json"
+      ],
+      "subMetas": {}
+    },
+    "1f2b7": {
+      "importer": "gltf-scene",
+      "uuid": "97266eed-8e2c-453b-9535-64dfc167953e@1f2b7",
+      "displayName": "",
+      "id": "1f2b7",
+      "name": "character-human.prefab",
+      "userData": {
+        "gltfIndex": 0
+      },
+      "ver": "1.0.12",
+      "imported": true,
+      "files": [
+        ".json"
+      ],
+      "subMetas": {}
+    }
+  },
+  "userData": {
+    "imageMetas": [
+      {
+        "name": "DiffuseColor_Texture",
+        "uri": "97266eed-8e2c-453b-9535-64dfc167953e@fd73d"
+      }
+    ],
+    "fbx": {
+      "smartMaterialEnabled": true
+    },
+    "animationImportSettings": [
+      {
+        "name": "static",
+        "duration": 0.10000000149011612,
+        "fps": 30,
+        "splits": [
+          {
+            "name": "static",
+            "from": 0,
+            "to": 0.10000000149011612,
+            "wrapMode": 2
+          }
+        ]
+      },
+      {
+        "name": "idle",
+        "duration": 1.350000023841858,
+        "fps": 30,
+        "splits": [
+          {
+            "name": "idle",
+            "from": 0,
+            "to": 1.350000023841858,
+            "wrapMode": 2
+          }
+        ]
+      },
+      {
+        "name": "walk",
+        "duration": 0.6833333373069763,
+        "fps": 30,
+        "splits": [
+          {
+            "name": "walk",
+            "from": 0,
+            "to": 0.6833333373069763,
+            "wrapMode": 2
+          }
+        ]
+      },
+      {
+        "name": "sprint",
+        "duration": 0.5,
+        "fps": 30,
+        "splits": [
+          {
+            "name": "sprint",
+            "from": 0,
+            "to": 0.5,
+            "wrapMode": 2
+          }
+        ]
+      },
+      {
+        "name": "jump",
+        "duration": 0.5,
+        "fps": 30,
+        "splits": [
+          {
+            "name": "jump",
+            "from": 0,
+            "to": 0.5,
+            "wrapMode": 2
+          }
+        ]
+      },
+      {
+        "name": "fall",
+        "duration": 0.3499999940395355,
+        "fps": 30,
+        "splits": [
+          {
+            "name": "fall",
+            "from": 0,
+            "to": 0.3499999940395355,
+            "wrapMode": 2
+          }
+        ]
+      },
+      {
+        "name": "crouch",
+        "duration": 0.1666666716337204,
+        "fps": 30,
+        "splits": [
+          {
+            "name": "crouch",
+            "from": 0,
+            "to": 0.1666666716337204,
+            "wrapMode": 2
+          }
+        ]
+      },
+      {
+        "name": "sit",
+        "duration": 0.1666666716337204,
+        "fps": 30,
+        "splits": [
+          {
+            "name": "sit",
+            "from": 0,
+            "to": 0.1666666716337204,
+            "wrapMode": 2
+          }
+        ]
+      },
+      {
+        "name": "drive",
+        "duration": 0.1666666716337204,
+        "fps": 30,
+        "splits": [
+          {
+            "name": "drive",
+            "from": 0,
+            "to": 0.1666666716337204,
+            "wrapMode": 2
+          }
+        ]
+      },
+      {
+        "name": "die",
+        "duration": 0.3499999940395355,
+        "fps": 30,
+        "splits": [
+          {
+            "name": "die",
+            "from": 0,
+            "to": 0.3499999940395355,
+            "wrapMode": 2
+          }
+        ]
+      },
+      {
+        "name": "pick-up",
+        "duration": 0.3499999940395355,
+        "fps": 30,
+        "splits": [
+          {
+            "name": "pick-up",
+            "from": 0,
+            "to": 0.3499999940395355,
+            "wrapMode": 2
+          }
+        ]
+      },
+      {
+        "name": "emote-yes",
+        "duration": 0.6833333373069763,
+        "fps": 30,
+        "splits": [
+          {
+            "name": "emote-yes",
+            "from": 0,
+            "to": 0.6833333373069763,
+            "wrapMode": 2
+          }
+        ]
+      },
+      {
+        "name": "emote-no",
+        "duration": 0.6833333373069763,
+        "fps": 30,
+        "splits": [
+          {
+            "name": "emote-no",
+            "from": 0,
+            "to": 0.6833333373069763,
+            "wrapMode": 2
+          }
+        ]
+      },
+      {
+        "name": "holding-right",
+        "duration": 0.1666666716337204,
+        "fps": 30,
+        "splits": [
+          {
+            "name": "holding-right",
+            "from": 0,
+            "to": 0.1666666716337204,
+            "wrapMode": 2
+          }
+        ]
+      },
+      {
+        "name": "holding-left",
+        "duration": 0.1666666716337204,
+        "fps": 30,
+        "splits": [
+          {
+            "name": "holding-left",
+            "from": 0,
+            "to": 0.1666666716337204,
+            "wrapMode": 2
+          }
+        ]
+      },
+      {
+        "name": "holding-both",
+        "duration": 0.1666666716337204,
+        "fps": 30,
+        "splits": [
+          {
+            "name": "holding-both",
+            "from": 0,
+            "to": 0.1666666716337204,
+            "wrapMode": 2
+          }
+        ]
+      },
+      {
+        "name": "holding-right-shoot",
+        "duration": 0.20000000298023224,
+        "fps": 30,
+        "splits": [
+          {
+            "name": "holding-right-shoot",
+            "from": 0,
+            "to": 0.20000000298023224,
+            "wrapMode": 2
+          }
+        ]
+      },
+      {
+        "name": "holding-left-shoot",
+        "duration": 0.20000000298023224,
+        "fps": 30,
+        "splits": [
+          {
+            "name": "holding-left-shoot",
+            "from": 0,
+            "to": 0.20000000298023224,
+            "wrapMode": 2
+          }
+        ]
+      },
+      {
+        "name": "holding-both-shoot",
+        "duration": 0.20000000298023224,
+        "fps": 30,
+        "splits": [
+          {
+            "name": "holding-both-shoot",
+            "from": 0,
+            "to": 0.20000000298023224,
+            "wrapMode": 2
+          }
+        ]
+      },
+      {
+        "name": "attack-melee-right",
+        "duration": 0.4166666567325592,
+        "fps": 30,
+        "splits": [
+          {
+            "name": "attack-melee-right",
+            "from": 0,
+            "to": 0.4166666567325592,
+            "wrapMode": 2
+          }
+        ]
+      },
+      {
+        "name": "attack-melee-left",
+        "duration": 0.4166666567325592,
+        "fps": 30,
+        "splits": [
+          {
+            "name": "attack-melee-left",
+            "from": 0,
+            "to": 0.4166666567325592,
+            "wrapMode": 2
+          }
+        ]
+      },
+      {
+        "name": "attack-kick-right",
+        "duration": 0.550000011920929,
+        "fps": 30,
+        "splits": [
+          {
+            "name": "attack-kick-right",
+            "from": 0,
+            "to": 0.550000011920929,
+            "wrapMode": 2
+          }
+        ]
+      },
+      {
+        "name": "attack-kick-left",
+        "duration": 0.550000011920929,
+        "fps": 30,
+        "splits": [
+          {
+            "name": "attack-kick-left",
+            "from": 0,
+            "to": 0.550000011920929,
+            "wrapMode": 2
+          }
+        ]
+      },
+      {
+        "name": "interact-right",
+        "duration": 0.6833333373069763,
+        "fps": 30,
+        "splits": [
+          {
+            "name": "interact-right",
+            "from": 0,
+            "to": 0.6833333373069763,
+            "wrapMode": 2
+          }
+        ]
+      },
+      {
+        "name": "interact-left",
+        "duration": 0.6833333373069763,
+        "fps": 30,
+        "splits": [
+          {
+            "name": "interact-left",
+            "from": 0,
+            "to": 0.6833333373069763,
+            "wrapMode": 2
+          }
+        ]
+      }
+    ],
+    "redirect": "97266eed-8e2c-453b-9535-64dfc167953e@1f2b7",
+    "assetFinder": {
+      "meshes": [
+        "97266eed-8e2c-453b-9535-64dfc167953e@99d6c",
+        "97266eed-8e2c-453b-9535-64dfc167953e@6ec10"
+      ],
+      "skeletons": [
+        "97266eed-8e2c-453b-9535-64dfc167953e@30732",
+        "97266eed-8e2c-453b-9535-64dfc167953e@f1394"
+      ],
+      "textures": [
+        "97266eed-8e2c-453b-9535-64dfc167953e@4f17a"
+      ],
+      "materials": [
+        "97266eed-8e2c-453b-9535-64dfc167953e@9991c"
+      ],
+      "scenes": [
+        "97266eed-8e2c-453b-9535-64dfc167953e@1f2b7"
+      ]
+    }
+  }
+}
