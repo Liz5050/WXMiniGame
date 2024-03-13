@@ -96,4 +96,11 @@ export default class MathUtils {
         var disQ: number = disX * disX + disY * disY;
         return Math.sqrt(disQ);
     }
+
+    //局部坐标转换为网格索引
+    public static ConvertXYToIndex(posX:number,posY:number):number[]{
+        let col = Math.round((posX + 450) / 100);
+        let row = Math.round(Math.abs(posY - 450) / 100);
+        return [col,row];
+    }
 }
