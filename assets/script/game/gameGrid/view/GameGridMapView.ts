@@ -40,23 +40,22 @@ export class GameGridMapView extends Component{
         }
     }
 
-    private _endCheckLocalPos:Vec3;
-    private OnTouchEndCheck(index:number,gridList:Node[]){
-        if(!this._endCheckLocalPos){
-            this._endCheckLocalPos = new Vec3();
-        }
-        let num = gridList.length;
+    private _endCheckLocalPos:Vec3 = new Vec3();
+    private OnTouchEndCheck():{isRight:boolean,canRemove:boolean,totalNum:number}{
+        let tempNodeList = this.tempGroup.children;
+        let num = tempNodeList.length;
         let emptyNum = 0;
         let itemArr:GameGridMapItem[] = [];
         for(let i = 0; i < num; i ++) {
-            let grid:Node = gridList[i];//GameUI.FindChild(randomGrid,"grid" + i);
+            let grid:Node = tempNodeList[i];//GameUI.FindChild(randomGrid,"grid" + i);
             this.mapGridContainer.inverseTransformPoint(this._endCheckLocalPos,grid.worldPosition);
             // console.log("坐标转换" + i + "----x：" + localPos.x + "----y：" + localPos.y)
-            if(this._endCheckLocalPos.x >= -500 && this._endCheckLocalPos.x <= 500 && this._endCheckLocalPos.y >= -500 && this._endCheckLocalPos.y <= 500){
+            if(this._endCheckLocalPos.x >= -0.5 && this._endCheckLocalPos.x <= 9.5 && this._endCheckLocalPos.z >= -0.5 && this._endCheckLocalPos.z <= 9.5){
                 //在范围内，进一步检测对应网格是否是空位
-                let idx:number[] = MathUtils.ConvertXYToIndex(this._endCheckLocalPos.x,this._endCheckLocalPos.y);
-                // console.log("坐标转换行列值" + i + "----col：" + idx[0] + "----row：" + idx[1]);
-                let item:GameGridMapItem = this._mapItemList[idx[1]][idx[0]];
+                let centerX = Math.round(this._endCheckLocalPos.x);
+                let centerZ = Math.round(this._endCheckLocalPos.z);
+                console.log("坐标转换行列值" + i + "----col：" + centerX + "----row：" + centerZ);
+                let item:GameGridMapItem = this._mapItemList[centerZ][centerX];
                 if(item.isEmpty){
                     emptyNum ++;
                     itemArr.push(item);
@@ -73,7 +72,8 @@ export class GameGridMapView extends Component{
 
         let checkListX:number[] = [];
         let checkListY:number[] = [];
-        if(emptyNum == num){
+        let isRight = emptyNum == num && num > 0;
+        if(isRight){
             for(let i = 0; i < itemArr.length; i ++){
                 itemArr[i].setEmpty(false);
                 let col:number = itemArr[i].col;
@@ -85,15 +85,7 @@ export class GameGridMapView extends Component{
                     checkListY.push(row);
                 }
             }
-            // this._rightCount ++;
-            // this._btns[index].ShowRight(itemArr);
         }
-        else{
-            // this._btns[index].ShowError();
-        }
-        // if(this._rightCount >= 3){
-        //     this.OnReqNextPreview();
-        // }
 
         for(let i:number = checkListX.length - 1; i >= 0; i--){
             let col:number = checkListX[i];
@@ -130,63 +122,26 @@ export class GameGridMapView extends Component{
                 canRemove = true
             }
         }
-        if(canRemove) {
-            this._removeCount ++;
-            let totalNum = lenX + lenY;
-            let score:number = 0;
-            if(totalNum == 1 || totalNum == 2){
-                score = totalNum;
-            }
-            else if(totalNum == 3){
-                score = totalNum + 1;
-            }
-            else if(totalNum > 3){
-                score = totalNum * 2;
-            }
-            if(this._removeCount > 1){
-                //连续消除
-                score += this._removeCount * totalNum;
-            }
-            this._score += score;
-            this._txtScore.string = "得分：" + this._score;
-            Mgr.soundMgr.play("crrect_answer3");//存在可消除的行or列
-            this.showScoreAddEffect(score);
-        }
-        else {
-            this._removeCount = 0;
-        }
+        
+        return {isRight:isRight,canRemove:canRemove,totalNum:lenX + lenY};
     }
 
-    private _moveCheckLocalPos:Vec3;
-    private _lastMoveX:number = -1;
-    private _lastMoveY:number = -1;
-    private OnTouchMoveCheck(pos){
-        if(!this._moveCheckLocalPos){
-            this._moveCheckLocalPos = new Vec3();
-        }
-        this.mapGridContainer.inverseTransformPoint(this._moveCheckLocalPos,pos);
-        let idx:number[] = this.ConvertXYToIndex(this._moveCheckLocalPos.x,this._moveCheckLocalPos.y);
-        let centerX = idx[0];
-        let centerY = idx[1];
-        if(this._lastMoveX != centerX || this._lastMoveY != centerY){
-            if(this._lastMoveX >= 0){
-                this.updatePosPreview(this._lastMoveX,this._lastMoveY,false);    
-            }
-            this._lastMoveX = centerX;
-            this._lastMoveY = centerY;
-            this.updatePosPreview(centerX,centerY,true);
-        }
-    }
-
-    private updatePosPreview(posX,posY,isShow){
-        if(posX >= 0 && posX <= 9 && posY >= 0 && posY <= 9){
-            let startCol = posX - 1;
-            let startRow = posY - 1;
-            for(let i = 0; i < 9; i++){
-                let x = startCol + i % 3;
-                let y = startRow + Math.floor(i / 3);
-                if(this._mapItemList[y] && this._mapItemList[y][x]){
-                    this._mapItemList[y][x].setPreview(isShow);
+    private _lastPreviewList:number[][] = [];
+    private OnTouchMoveCheck(){
+        let tempNodeList = this.tempGroup.children;
+        let len = tempNodeList.length;
+        this.clearPreview();
+        for(let i = 0; i < len; i ++) {
+            let grid:Node = tempNodeList[i];
+            this.mapGridContainer.inverseTransformPoint(this._endCheckLocalPos,grid.worldPosition);
+            if(this._endCheckLocalPos.x >= -0.5 && this._endCheckLocalPos.x <= 9.5 && this._endCheckLocalPos.z >= -0.5 && this._endCheckLocalPos.z <= 9.5){
+                //在范围内，进一步检测对应网格是否是空位
+                let centerX = Math.round(this._endCheckLocalPos.x);
+                let centerZ = Math.round(this._endCheckLocalPos.z);
+                let item:GameGridMapItem = this._mapItemList[centerZ][centerX];
+                if(item.isEmpty){
+                    item.setPreview(true);
+                    this._lastPreviewList.push([centerX,centerZ]);
                 }
             }
         }
@@ -197,6 +152,7 @@ export class GameGridMapView extends Component{
         camera.screenPointToRay(startX, startY, this._ray);
         if (PhysicsSystem.instance.raycast(this._ray)) {
             const raycastResults = PhysicsSystem.instance.raycastResults;
+            if(!raycastResults) return;
             for (let i = 0; i < raycastResults.length; i++) {
                 const item = raycastResults[i];
                 if (item.collider == this.posTrigger) {
@@ -259,29 +215,34 @@ export class GameGridMapView extends Component{
                     // this._groupPos.x -= 2;
                     this._groupPos.z -= 2;
                     this.tempGroup.position = this._groupPos;
+                    this.OnTouchMoveCheck();
                     break;
                 }
             }
         }
     }
 
-    private _dropPos:Vec3 = new Vec3();
-    public onGridDrop(isRight:boolean){
+    public onGridDrop():{isRight:boolean,canRemove:boolean,totalNum:number}{
+        let result = this.OnTouchEndCheck();
         let tempNodeList = this.tempGroup.children;
         let len = tempNodeList.length;
-        if(tempNodeList.length > 0){
+        if(len > 0){
             for(let i = len - 1; i >= 0; i-- ){
                 let node = tempNodeList[i];
-                if(isRight){
-                    this.mapGridContainer.inverseTransformPoint(this._dropPos,node.worldPosition);
-                    this.mapGridContainer.addChild(node);
-                    node.position = this._dropPos;
-                }
-                else{
-                    node.removeFromParent();
-                    GameGridMapView.GridPool.push(node);
-                }
+                node.removeFromParent();
+                GameGridMapView.GridPool.push(node);
             }
         }
+        this.clearPreview();
+        return result;
+    }
+
+    private clearPreview(){
+        for(let i = 0 ; i < this._lastPreviewList.length; i++){
+            let centerX = this._lastPreviewList[i][0];
+            let centerZ = this._lastPreviewList[i][1];
+            this._mapItemList[centerZ][centerX].setPreview(false);
+        }
+        this._lastPreviewList = [];
     }
 }

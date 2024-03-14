@@ -7,7 +7,7 @@ export class GameGridMapItem {
     // private _posX:number;
     // private _posY:number;
     private _itemEntity:Node;
-    // private _itemSprite:Sprite;
+    private _bodyNode:Node;
     private _preview:Node;
     private _container:Node;
     // private _posArr:number[];
@@ -30,14 +30,15 @@ export class GameGridMapItem {
     }
 
     private initUI(){
-        let prefabAsset:Prefab = Mgr.loader.getBundleRes("scene","GameGrid3D/BlueGrid") as Prefab;
-        if(prefabAsset){
-            this._itemEntity = instantiate(prefabAsset);
+        Mgr.loader.LoadBundleRes("scene","GameGrid3D/BlueGrid",(prefab)=>{
+            this._itemEntity = instantiate(prefab);
             this._container.addChild(this._itemEntity);
+            this._itemEntity.active = false;
             this._itemEntity.setPosition(this._col,0,this._row);
-            // this._preview = this._itemEntity.getChildByName("preview");
+            this._bodyNode = this._itemEntity.getChildByName("body"); 
+            this._preview = this._itemEntity.getChildByName("preview");
             this.updateItemTexture();
-        }
+        });
     }
 
     public updateItemTexture(){
@@ -68,8 +69,8 @@ export class GameGridMapItem {
             if(this._itemEntity){
                 this.clearTween();
                 this._itemEntity.active = true;
-                // if(!this._itemSprite.node.active)this._itemSprite.node.active = true;
-                // if(this._preview.active) this._preview.active = false;
+                if(!this._bodyNode.active)this._bodyNode.active = true;
+                if(this._preview.active) this._preview.active = false;
             }
             else{
                 this.initUI();
@@ -105,8 +106,8 @@ export class GameGridMapItem {
     public setPreview(isShow:boolean){
         if(this._itemEntity){
             this._itemEntity.active = true;
-            // this._itemSprite.node.active = !this._isEmpty;
-            // this._preview.active = isShow;
+            this._bodyNode.active = !this._isEmpty;
+            this._preview.active = isShow;
         }
     }
 

@@ -85,9 +85,8 @@ export class GameGrid3DView extends BaseUIView{
     }
 
     private onGridDrop(index:number){
-        let isRight = Math.random() > 0.5;
-        this._mapView.onGridDrop(isRight);
-        if(isRight){
+        let result = this._mapView.onGridDrop();
+        if(result.isRight){
             this._btns[index].ShowRight();
             this._rightCount ++;
         }
@@ -96,6 +95,32 @@ export class GameGrid3DView extends BaseUIView{
         }
         if(this._rightCount >= 3){
             this.OnReqNextPreview();
+        }
+
+        if(result.canRemove) {
+            this._removeCount ++;
+            let totalNum = result.totalNum;
+            let score:number = 0;
+            if(totalNum == 1 || totalNum == 2){
+                score = totalNum;
+            }
+            else if(totalNum == 3){
+                score = totalNum + 1;
+            }
+            else if(totalNum > 3){
+                score = totalNum * 2;
+            }
+            if(this._removeCount > 1){
+                //连续消除
+                score += this._removeCount * totalNum;
+            }
+            this._score += score;
+            this._txtScore.string = "得分：" + this._score;
+            Mgr.soundMgr.play("crrect_answer3");//存在可消除的行or列
+            // this.showScoreAddEffect(score);
+        }
+        else {
+            this._removeCount = 0;
         }
     }
 
