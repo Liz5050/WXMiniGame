@@ -126,7 +126,7 @@ export class GameGridMapView extends Component{
         return {isRight:isRight,canRemove:canRemove,totalNum:lenX + lenY};
     }
 
-    private _lastPreviewList:number[][] = [];
+    private _lastPreviewPos:{[index:number]:{x:number,z:number}} = {};
     private OnTouchMoveCheck(){
         let tempNodeList = this.tempGroup.children;
         let len = tempNodeList.length;
@@ -138,11 +138,19 @@ export class GameGridMapView extends Component{
                 //在范围内，进一步检测对应网格是否是空位
                 let centerX = Math.round(this._endCheckLocalPos.x);
                 let centerZ = Math.round(this._endCheckLocalPos.z);
-                let item:GameGridMapItem = this._mapItemList[centerZ][centerX];
-                if(item.isEmpty){
-                    item.setPreview(true);
-                    this._lastPreviewList.push([centerX,centerZ]);
+                let lastPos = this._lastPreviewPos[i];
+                if(!lastPos){
+                    lastPos = {x:centerX,z:centerZ};
+                    this._lastPreviewPos[i] = lastPos;
                 }
+                if(lastPos.x != centerX || lastPos.z != centerZ){
+                    //清空上一个预览中的格子
+                    this._mapItemList[lastPos.z][lastPos.x].setPreview(false);
+                }
+                lastPos.x = centerX;
+                lastPos.z = centerZ;
+                let item:GameGridMapItem = this._mapItemList[centerZ][centerX];
+                item.setPreview(true);
             }
         }
     }
@@ -238,11 +246,11 @@ export class GameGridMapView extends Component{
     }
 
     private clearPreview(){
-        for(let i = 0 ; i < this._lastPreviewList.length; i++){
-            let centerX = this._lastPreviewList[i][0];
-            let centerZ = this._lastPreviewList[i][1];
-            this._mapItemList[centerZ][centerX].setPreview(false);
+        
+        for(let index in this._lastPreviewPos){
+            let pos = this._lastPreviewPos[index];
+            this._mapItemList[pos.z][pos.x].setPreview(false);
         }
-        this._lastPreviewList = [];
+        this._lastPreviewPos = {};
     }
 }

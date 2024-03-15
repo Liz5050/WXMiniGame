@@ -1,4 +1,4 @@
-import { Node, Prefab, instantiate, math } from "cc";
+import { Node, Prefab, instantiate, math, MeshRenderer, Material, Mesh } from "cc";
 import Mgr from "../../../../manager/Mgr";
 
 export class GameGridMapItem {
@@ -15,6 +15,8 @@ export class GameGridMapItem {
     private _isEmpty:boolean = true;
     private _playTween:boolean;
     private _skinRes:string;
+    private _bodyMat:Material;
+    private _isPreview:boolean = false;
     public consturctor(){
 
     }
@@ -33,10 +35,12 @@ export class GameGridMapItem {
         Mgr.loader.LoadBundleRes("scene","GameGrid3D/BlueGrid",(prefab)=>{
             this._itemEntity = instantiate(prefab);
             this._container.addChild(this._itemEntity);
-            this._itemEntity.active = false;
             this._itemEntity.setPosition(this._col,0,this._row);
             this._bodyNode = this._itemEntity.getChildByName("body"); 
+            this._bodyNode.active = false;
+            this._bodyMat = this._bodyNode.getComponent(MeshRenderer).material;
             this._preview = this._itemEntity.getChildByName("preview");
+            this._preview.active = false;
             this.updateItemTexture();
         });
     }
@@ -68,7 +72,6 @@ export class GameGridMapItem {
             //非空
             if(this._itemEntity){
                 this.clearTween();
-                this._itemEntity.active = true;
                 if(!this._bodyNode.active)this._bodyNode.active = true;
                 if(this._preview.active) this._preview.active = false;
             }
@@ -79,7 +82,8 @@ export class GameGridMapItem {
         else{
             //空
             if(this._itemEntity){
-                this._itemEntity.active = false;
+                if(this._bodyNode.active)this._bodyNode.active = false;
+                if(this._preview.active) this._preview.active = false;
                 // if(this._preview.active) this._preview.active = false;
                 // if(playTween){
                 //     if(!this._playTween){
@@ -104,10 +108,21 @@ export class GameGridMapItem {
     }
 
     public setPreview(isShow:boolean){
+        if(this._isPreview === isShow) return;
+        this._isPreview = isShow;
         if(this._itemEntity){
-            this._itemEntity.active = true;
-            this._bodyNode.active = !this._isEmpty;
             this._preview.active = isShow;
+            if(isShow){
+                if(this._isEmpty) {
+                    this._bodyNode.active = false;
+                }
+                else{
+                    this._bodyNode.active = true;
+                }
+            }
+            else{
+                this._bodyNode.active = !this._isEmpty;
+            }
         }
     }
 
