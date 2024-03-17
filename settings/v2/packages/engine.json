@@ -33,7 +33,7 @@
         "_value": true
       },
       "particle": {
-        "_value": false
+        "_value": true
       },
       "physics": {
         "_value": true,
@@ -129,6 +129,7 @@
       "audio",
       "base",
       "gfx-webgl",
+      "particle",
       "particle-2d",
       "physics-2d-box2d",
       "physics-ammo",

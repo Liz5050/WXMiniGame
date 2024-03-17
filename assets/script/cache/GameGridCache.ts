@@ -1,3 +1,4 @@
+import { Vec3, math } from "cc";
 import { BannerRewardId, SDK } from "../SDK/SDK";
 import { AlertType, AlertView } from "../common/alert/AlertView";
 import { CloudApi } from "../enum/CloudDefine";
@@ -5,6 +6,10 @@ import { EventEnum } from "../enum/EventEnum";
 import { GameType } from "../enum/GameType";
 import { CacheManager } from "../manager/CacheManager";
 import { EventManager } from "../manager/EventManager";
+import MathUtils from "../utils/MathUtils";
+import { EnemyVo } from "../game/gameGrid/vo/EnemyVo";
+import { EntityType, EntityVo } from "../game/gameGrid/vo/EntityVo";
+import { GridEntityVo } from "../game/gameGrid/vo/GridEntityVo";
 
 class GameGridRankData {
     public type:number;
@@ -94,8 +99,17 @@ export class GameGridCache {
             [1],
             [1],
             [1]
+        ],
+        [15]:[
+            [1,0],
+            [1,1],
+            [1,0],
         ]
     };
+
+    private _entitys:{[id:number]:EntityVo} = {};
+    private _mapGridVo:{[key:string]:EntityVo} = {};
+    private _entityCount:{[type:number]:number} = {};
     public constructor(){
 
     }
@@ -265,5 +279,82 @@ export class GameGridCache {
     public getGridDataList(resType:number){
         let resArr = this._gridTypeList[resType];
         return resArr;
+    }
+
+    public addMapItemEntity(posList:Vec3[]){
+        for(let pos of posList){
+            let vo = this.addEntity(EntityType.Grid,false);
+            vo.pos.x = pos.x;
+            vo.pos.y = pos.y;
+            vo.pos.z = pos.z;
+            // let key = col + "_" + row;
+            // this._mapGridVo[key] = vo;
+        }
+    }
+
+    public delEntity(id:number){
+
+    }
+
+    public addEntity(type:EntityType,dispatchEvent:boolean = true){
+        if(type == EntityType.Enemy){
+            let count = this._entityCount[type];
+            if(!count) {
+                count = 0;
+            }
+            else if(count >= 6){
+                return;
+            }
+            count ++;
+            this._entityCount[type] = count;
+        }
+        let vo = GameGridCache.GenEntityVo(type);
+        this._entitys[vo.id] = vo;
+        if(dispatchEvent) EventManager.dispatch(EventEnum.OnEntityInit,vo);
+        return vo;
+    }
+
+    //找到一个离自己最近的目标
+    public findTarget(pos:Vec3,type:EntityType):EntityVo{
+        let minDistance = 9999;
+        let target:EntityVo;
+        for(let id in this._entitys){
+            let vo = this._entitys[id];
+            if(vo.type == type && !vo.isDead()) {
+                let dis = math.Vec3.distance(pos,vo.pos);
+                if(dis < minDistance){
+                    minDistance = dis;
+                    target = vo;
+                }
+            }
+        }
+        return target;
+    }
+
+    public static EntityIds:{[type:number]:number} = {};
+    public static GenEntityVo(type:EntityType){
+        let id = GameGridCache.EntityIds[type];
+        if(!id) id = 1;
+        else id ++;
+        GameGridCache.EntityIds[type] = id;
+        let data:any = {id:id}
+        data.speed = MathUtils.getRandom(1,3) / 10;
+        let maxHp = MathUtils.getRandomInt(100,500);
+        data.hp = maxHp;
+        data.maxHp = maxHp;
+        data.attack = MathUtils.getRandomInt(20,100);
+        data.type = type;
+
+        let vo:EntityVo;
+        switch(type){
+            case EntityType.Grid:
+                vo = new GridEntityVo();
+                break
+            case EntityType.Enemy:
+                vo = new EnemyVo();
+                break;
+        }
+        vo.initVo(data);
+        return vo;
     }
 }

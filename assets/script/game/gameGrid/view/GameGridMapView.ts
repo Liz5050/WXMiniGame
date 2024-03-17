@@ -1,11 +1,12 @@
-import { BoxCollider, Component, Graphics, Line, Node, PhysicsSystem, Prefab, Vec3, _decorator, game, geometry, instantiate, screen } from "cc";
+import { BoxCollider, Component, Node, PhysicsSystem, Prefab, Vec3, _decorator, game, geometry, instantiate } from "cc";
 import { CacheManager } from "../../../manager/CacheManager";
 import Mgr from "../../../manager/Mgr";
 import { Root3D } from "../../../Root3D";
 import { EventManager } from "../../../manager/EventManager";
 import { EventEnum } from "../../../enum/EventEnum";
+import { GameGridMapItem } from "../scene/entity/GameGridMapItem";
 import MathUtils from "../../../utils/MathUtils";
-import { GameGridMapItem } from "./item/GameGridMapItem";
+import { EntityType } from "../vo/EntityVo";
 const { ccclass, property } = _decorator;
 
 @ccclass('GameGridMapView')
@@ -13,31 +14,56 @@ export class GameGridMapView extends Component{
     private static GridPool:Node[] = [];
     @property(Node) mapGrid:Node = null;
     @property(Node) mapGridContainer:Node = null;
+    @property(Node) enemyContainer:Node = null;
     @property(Node) tempGroup:Node = null;
     @property(BoxCollider) posTrigger:BoxCollider = null;
-    private _gridPrefab:Prefab;
+    @property(Prefab) gridPrefab:Prefab;
     private _ray: geometry.Ray;
     private _groupPos:Vec3;
     private _mapItemList:GameGridMapItem[][];
+    private _deltaTime:number = 0;
+    private _enemyCreateCD:number = -1;
     protected onLoad(): void {
         this._ray = new geometry.Ray();
         this._groupPos = new Vec3();
-        EventManager.addListener(EventEnum.OnGameSceneGridMove,this.onGridMove,this);
+        this.addEvent();
         this.initMapGrid();
+    }
+
+    private addEvent(){
+        EventManager.addListener(EventEnum.OnGameSceneGridMove,this.onGridMove,this);
+    }
+
+    protected update(dt: number): void {
+        this._deltaTime += dt;
+        if(this._deltaTime >= 1){
+            this._deltaTime = 0;
+            if(this._enemyCreateCD > 0){
+                this._enemyCreateCD--;
+            }
+            else{
+                CacheManager.gameGrid.addEntity(EntityType.Enemy);
+                this._enemyCreateCD = MathUtils.getRandomInt(1,4);
+            }
+        }
     }
 
     private initMapGrid(){
         this._mapItemList = [];
-        for(let row = 0; row < 10; row++){
-            for(let col = 0; col < 10; col++){
-                if(!this._mapItemList[row]){
-                    this._mapItemList[row] = [];
+        Mgr.loader.LoadBundleRes("scene","GameGrid3D/BlueGrid",(prefab)=>{
+            for(let row = 0; row < 10; row++){
+                for(let col = 0; col < 10; col++){
+                    if(!this._mapItemList[row]){
+                        this._mapItemList[row] = [];
+                    }
+                    let mapItemNode = instantiate(prefab);
+                    this.mapGridContainer.addChild(mapItemNode);
+                    let item:GameGridMapItem = mapItemNode.getComponent(GameGridMapItem);
+                    this._mapItemList[row][col] = item;
+                    item.setPos(col,row);
                 }
-                let item:GameGridMapItem = new GameGridMapItem();
-                this._mapItemList[row][col] = item;
-                item.init(col,row,this.mapGridContainer);
             }
-        }
+        });
     }
 
     private _endCheckLocalPos:Vec3 = new Vec3();
@@ -75,7 +101,6 @@ export class GameGridMapView extends Component{
         let isRight = emptyNum == num && num > 0;
         if(isRight){
             for(let i = 0; i < itemArr.length; i ++){
-                itemArr[i].setEmpty(false);
                 let col:number = itemArr[i].col;
                 let row:number = itemArr[i].row;
                 if(checkListX.indexOf(col) == -1){
@@ -84,6 +109,10 @@ export class GameGridMapView extends Component{
                 if(checkListY.indexOf(row) == -1){
                     checkListY.push(row);
                 }
+                let vo = CacheManager.gameGrid.addEntity(EntityType.Grid);
+                this.enemyContainer.inverseTransformPoint(vo.pos,itemArr[i].node.worldPosition);
+                itemArr[i].setData(vo);
+                itemArr[i].setEmpty(false);
             }
         }
 
@@ -156,6 +185,9 @@ export class GameGridMapView extends Component{
     }
 
     public createPreviewGrid(resType:number,startX:number,startY:number){
+        let dataList = CacheManager.gameGrid.getGridDataList(resType);
+        if(!dataList) return;
+
         let camera = Root3D.mainCamera;
         camera.screenPointToRay(startX, startY, this._ray);
         if (PhysicsSystem.instance.raycast(this._ray)) {
@@ -171,8 +203,7 @@ export class GameGridMapView extends Component{
                 }
             }
         }
-
-        let dataList = CacheManager.gameGrid.getGridDataList(resType);
+        
         let rowNum = dataList.length;
         for(let row = 0; row < rowNum; row++){
             let rowList = dataList[row];
@@ -195,17 +226,9 @@ export class GameGridMapView extends Component{
     }
 
     private getGridNode():Node{
-        if(!this._gridPrefab){
-            let prefab = Mgr.loader.getBundleRes("scene","GameGrid3D/RedGrid") as Prefab;
-            if(!prefab){
-                console.warn("RedGrid资源未加载");
-                return null;
-            }
-            this._gridPrefab = prefab;
-        }
         let gridNode = GameGridMapView.GridPool.pop();
         if(!gridNode){
-            gridNode = instantiate(this._gridPrefab);
+            gridNode = instantiate(this.gridPrefab);
         }
         this.tempGroup.addChild(gridNode);
         return gridNode;
