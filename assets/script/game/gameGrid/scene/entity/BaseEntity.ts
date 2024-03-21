@@ -1,19 +1,26 @@
-import { Component, _decorator } from "cc";
-import { EntityState, EntityVo } from "../../vo/EntityVo";
+import { Component, Node, _decorator } from "cc";
+import { EntityState, EntityType, EntityVo } from "../../vo/EntityVo";
+import { HUDComponent } from "../components/HUDComponent";
 const { ccclass, property } = _decorator;
 
 @ccclass
 export class BaseEntity extends Component {
+    @property(Node) HUD:Node = null;
     protected _vo: EntityVo;
     protected _playState: EntityState;
     protected _deltaTime: number = 0;
     protected _updateInterval: number = 0.5;
+    protected _hudComponent:HUDComponent
     protected onLoad(): void {
         this.init();
     }
 
     public hurt() {
         this.playHurt();
+    }
+
+    public updateHp(){
+        this._hudComponent && this._hudComponent.updateHp();
     }
 
     protected update(dt: number): void {
@@ -32,6 +39,11 @@ export class BaseEntity extends Component {
     public setData(vo: EntityVo) {
         this._vo = vo;
         this._vo.setEntity(this);
+        if(this._vo.type == EntityType.Enemy){
+            this._hudComponent = this.addComponent(HUDComponent);
+            this._hudComponent.setData(vo);
+        }
+
         this.onEntityVoUpdate();
     }
     //VO层同步状态

@@ -302,7 +302,7 @@ export class GameGridCache {
             if(!count) {
                 count = 0;
             }
-            else if(count >= 6){
+            else if(count >= 2){
                 return;
             }
             count ++;

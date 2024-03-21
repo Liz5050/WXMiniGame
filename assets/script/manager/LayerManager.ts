@@ -1,6 +1,7 @@
 import { utils,Node } from "cc";
 
 export class LayerManager{
+    public static HUDLayer:Node;
     //主界面层
     public static mainLayer:Node;
     //游戏层
@@ -15,6 +16,7 @@ export class LayerManager{
     public static root:Node;
     public static init(){
         this.root = utils.find("Canvas/LayerManager");
+        this.HUDLayer = this.root.getChildByName("HUDLayer");
         this.mainLayer = this.root.getChildByName("MainLayer");
         this.gameLayer = this.root.getChildByName("GameLayer");
         this.popupLayer = this.root.getChildByName("PopupLayer");

@@ -1,4 +1,4 @@
-import { AnimationState, BoxCollider, Node, Prefab, SkeletalAnimation, Vec3, _decorator, instantiate, math } from "cc";
+import { AnimationState, BoxCollider, Node, ParticleSystem, Prefab, SkeletalAnimation, Vec3, _decorator, instantiate, math } from "cc";
 import { EntityState, EntityType, EntityVo } from "../../vo/EntityVo";
 import { CacheManager } from "../../../../manager/CacheManager";
 import { BaseEntity } from "./BaseEntity";
@@ -10,6 +10,7 @@ export class GameGridEnemy extends BaseEntity {
     @property(Prefab) model:Prefab = null;
     @property(Node) bodyContainer:Node = null;
     @property(BoxCollider) collider:BoxCollider = null;
+    @property(ParticleSystem) hit: ParticleSystem;
     private _bodyModel:Node;
     private _anim:SkeletalAnimation;
     private _animStateIdle:AnimationState;
@@ -92,11 +93,15 @@ export class GameGridEnemy extends BaseEntity {
         this._anim.play("walk");
     }
 
+    protected playHurt(): void {
+        this.hit.play();    
+    }
+
     protected moving(): void {
         if(!this._canMove) return;
         this._updatePos.x = this.node.position.x;
         this._updatePos.z = this.node.position.z; 
-        this._updatePos.lerp(this._vo.battleVo.pos,0.02);
+        this._updatePos.lerp(this._vo.battleVo.pos,0.005);
         // this.node.translate(this._dir);
         this.node.setPosition(this._updatePos);
         this._vo.updatePos(this._updatePos);

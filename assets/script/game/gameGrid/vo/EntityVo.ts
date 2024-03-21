@@ -60,27 +60,16 @@ export class EntityVo {
         // console.log("设置状态:" + EntityState[state]);
         switch (state) {
             case EntityState.idle:
-                if (this.battleVo && this.battleVo.isDead()) {
-                    this.battleVo = null;
-                    this._attack = MathUtils.getRandomInt(20, 100);
-                }
+                this.onIdle();
                 break;
             case EntityState.walk:
+                this.onWalk();
                 break;
             case EntityState.attackPre:
-                this._attackTime = game.totalTime;
-                // console.log("攻击前摇");
-                Mgr.timer.doDelay(this._atkPretime, () => {
-                    this.setState(EntityState.attack);
-                }, this);
+                this.onAttackPre();
                 break;
             case EntityState.attack:
-                // console.log("实施攻击中");
-                this.attackBattleVo();
-                Mgr.timer.doDelay(this._atkTime, () => {
-                    this.setState(EntityState.attackAfter);
-                    // console.log("攻击结束：" + (game.totalTime - time));
-                }, this);
+                this.onAttack();
                 break;
             case EntityState.attackAfter:
                 // console.log("攻击后摇");
@@ -89,9 +78,10 @@ export class EntityVo {
                 }, this);
                 break;
             case EntityState.stiffness:
+                this.onStiffness();
                 break;
             case EntityState.die:
-                console.log(this.type + "死亡");
+                this.onDie();
                 break;
         }
         this._state = state;
@@ -116,11 +106,6 @@ export class EntityVo {
                 break;
         }
         return true;
-    }
-
-    private attackBattleVo() {
-        if (!this.battleVo) return;
-        this.battleVo.hp -= this._attack;
     }
 
     public canAttack(): boolean {
@@ -165,8 +150,8 @@ export class EntityVo {
             this._entity.hurt();
         }
         this._hp = val;
+        if(this._entity) this._entity.updateHp();
         if (this._hp <= 0) this.death();
-        console.log("血量更新:" + val);
     }
     public get maxHp(): number {
         return this._maxHp;
@@ -180,6 +165,44 @@ export class EntityVo {
     public get pos(): Vec3 {
         return this._pos;
     }
+
+    private onIdle() {
+        this.playIdle();
+    };
+    private onWalk() {
+        this.playWalk();
+    };
+    private onAttackPre() {
+        this._attackTime = game.totalTime;
+        Mgr.timer.doDelay(this._atkPretime, () => {
+            this.setState(EntityState.attack);
+        }, this);
+        this.playAttackPre();
+    }
+    private onAttack() {
+        // console.log("实施攻击中");
+        Mgr.timer.doDelay(this._atkTime, () => {
+            this.setState(EntityState.attackAfter);
+            // console.log("攻击结束：" + (game.totalTime - time));
+        }, this);
+        this.playAttack();
+    };
+    private onStiffness() {
+        this.playStiffness();
+    };
+    private onDie() {
+        this.playDie();
+    };
+    protected onStateChanged(state: EntityState) { }
+    protected playIdle() { }
+    protected playWalk() { }
+    protected moving() { }
+    protected playAttackPre() { }
+    protected playAttack() { }
+    protected playStiffness() { }
+    protected playDie() { }
+    protected playHurt() { }
+    protected stopMove() { }
 
     public updatePos(pos: Vec3) {
         this._pos.x = pos.x;

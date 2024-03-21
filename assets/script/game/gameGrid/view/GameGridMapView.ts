@@ -197,7 +197,7 @@ export class GameGridMapView extends Component{
                 const item = raycastResults[i];
                 if (item.collider == this.posTrigger) {
                     this.mapGridContainer.inverseTransformPoint(this._groupPos,item.hitPoint);
-                    this._groupPos.z -= 2;
+                    this._groupPos.z -= 1;
                     this.tempGroup.position = this._groupPos;
                     break;
                 }

@@ -1,13 +1,13 @@
-import { Component, Node, ParticleSystem, _decorator, math } from "cc";
-import { EntityState, EntityVo } from "../../vo/EntityVo";
+import { Component, Node, ParticleSystem, Vec3, _decorator, math, tween } from "cc";
+import { EntityState, EntityType, EntityVo } from "../../vo/EntityVo";
 import { BaseEntity } from "./BaseEntity";
+import { CacheManager } from "../../../../manager/CacheManager";
 const { ccclass, property } = _decorator;
 
 @ccclass
 export class GameGridMapItem extends BaseEntity {
     @property(Node) bodyNode: Node;
     @property(Node) preview: Node;
-    @property(ParticleSystem) hit: ParticleSystem;
     private _col: number;
     private _row: number;
     private _isEmpty: boolean = true;
@@ -27,6 +27,12 @@ export class GameGridMapItem extends BaseEntity {
             this.playDie();
             this._playState = this._vo.state;
         }
+        if(this._vo.state == EntityState.idle){
+            if(!this._vo.battleVo){
+                let battleVo = CacheManager.gameGrid.findTarget(this._vo.pos,EntityType.Enemy);
+                this._vo.battleVo = battleVo;
+            }
+        }
     }
 
     private initMapItem() {
@@ -44,7 +50,7 @@ export class GameGridMapItem extends BaseEntity {
     }
 
     protected playHurt(): void {
-        this.hit.play();    
+        tween(this.bodyNode).to(0.1,{scale:new Vec3(0.2,1.2,0.5)}).to(0.1,{scale:new Vec3(1,1,1)}).start();
     }
 
     public updateItemTexture() {
@@ -82,7 +88,7 @@ export class GameGridMapItem extends BaseEntity {
             this.setState(EntityState.die);
             if (this.bodyNode.active) this.bodyNode.active = false;
             if (this.preview.active) this.preview.active = false;
-            // if(this._preview.active) this._preview.active = false;
+            
             // if(playTween){
             //     if(!this._playTween){
             //         this._playTween = true;
