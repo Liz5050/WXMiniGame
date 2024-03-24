@@ -37,7 +37,7 @@
       },
       "physics": {
         "_value": true,
-        "_option": "physics-ammo"
+        "_option": "physics-builtin"
       },
       "physics-ammo": {
         "_value": false
@@ -65,10 +65,10 @@
         "_value": false
       },
       "primitive": {
-        "_value": true
+        "_value": false
       },
       "profiler": {
-        "_value": true
+        "_value": false
       },
       "occlusion-query": {
         "_value": false
@@ -104,7 +104,7 @@
         "_value": false
       },
       "light-probe": {
-        "_value": false
+        "_value": true
       },
       "tiled-map": {
         "_value": false
@@ -129,12 +129,11 @@
       "audio",
       "base",
       "gfx-webgl",
+      "light-probe",
       "particle",
       "particle-2d",
       "physics-2d-box2d",
-      "physics-ammo",
-      "primitive",
-      "profiler",
+      "physics-builtin",
       "skeletal-animation",
       "tween",
       "ui"

@@ -154,7 +154,6 @@ export class GameGrid3DView extends BaseUIView{
             this._gameGridMap.destroy();
             this._gameGridMap = null;
 
-            this._mapView.destroy();
             this._mapView = null;
         }
         CacheManager.gameGrid.clearAll();

@@ -1,4 +1,4 @@
-import { Component, Prefab, Vec2, _decorator, instantiate } from "cc";
+import { Component, Prefab, Vec2, _decorator, instantiate, isValid } from "cc";
 import { EventManager } from "../../../manager/EventManager";
 import { EventEnum } from "../../../enum/EventEnum";
 import { EntityType, EntityVo } from "../vo/EntityVo";
@@ -14,7 +14,7 @@ export class GameGridEnemyContainer extends Component{
     protected onLoad(): void {
         EventManager.addListener(EventEnum.OnEntityInit,this.onCreateEntity,this);
         Simulator.Instance.setTimeStep(0.25);
-        Simulator.Instance.setAgentDefaults(5, 3, 5, 5, 0.5, 0.08, new Vec2(0, 0));
+        Simulator.Instance.setAgentDefaults(5, 3, 5, 5, 0.5, 0.02, new Vec2(0, 0));
 
         // add in awake
         Simulator.Instance.processObstacles();
@@ -37,9 +37,6 @@ export class GameGridEnemyContainer extends Component{
     }
 
     protected onDestroy(): void {
-        for(let id in this._enemys){
-            this._enemys[id].node.destroy();
-        }
         this._enemys = {};
         EventManager.removeListener(EventEnum.OnEntityInit,this.onCreateEntity,this);
     }

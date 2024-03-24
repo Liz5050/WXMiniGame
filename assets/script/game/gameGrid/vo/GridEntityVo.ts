@@ -18,7 +18,7 @@ export class GridEntityVo extends EntityVo{
         let maxHp = MathUtils.getRandomInt(200,500);
         this._hp = maxHp;
         this._maxHp = maxHp;
-        this._attack = 100;
+        this._attack = 50;
     }
 
     protected playNone(): void {

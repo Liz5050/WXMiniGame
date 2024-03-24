@@ -218,7 +218,7 @@
       "__expectedType__": "cc.Mesh"
     },
     "_shadowCastingMode": 0,
-    "_shadowReceivingMode": 1,
+    "_shadowReceivingMode": 0,
     "_shadowBias": 0,
     "_shadowNormalBias": 0,
     "_reflectionProbeId": -1,
@@ -245,9 +245,9 @@
     "_recieveShadow": false,
     "_lightmapSize": 64,
     "_useLightProbe": false,
-    "_bakeToLightProbe": true,
+    "_bakeToLightProbe": false,
     "_reflectionProbeType": 0,
-    "_bakeToReflectionProbe": true,
+    "_bakeToReflectionProbe": false,
     "_probeCubemap": null
   },
   {

@@ -6,8 +6,13 @@
   "files": [],
   "subMetas": {},
   "userData": {
-    "compressionType": {},
-    "isRemoteBundle": {},
+    "compressionType": {
+      "wechatgame": "zip"
+    },
+    "isRemoteBundle": {
+      "web-desktop": true,
+      "wechatgame": true
+    },
     "isBundle": true
   }
 }

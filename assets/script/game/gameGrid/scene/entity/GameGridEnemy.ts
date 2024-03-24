@@ -30,8 +30,8 @@ export class GameGridEnemy extends BaseEntity {
         this._battlePos = new Vec3();
         this._anim = this._bodyModel.getComponent(SkeletalAnimation);
         this._animStateIdle = this._anim.getState("idle");
-        this._anim.play("idle");
         this._updateInterval = 0;
+        this._anim.play("idle");
         this._agentPos = new Vec2();
     }
 
@@ -156,12 +156,11 @@ export class GameGridEnemy extends BaseEntity {
 
     protected onDestroy(): void {
         if(this._anim){
-            this._anim.destroy();
+            this._anim.stop();
             this._anim = null;
         }
 
         if(this._bodyModel){
-            this._bodyModel.destroy();
             this._bodyModel = null;
         }
         super.onDestroy();
