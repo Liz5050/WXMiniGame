@@ -228,7 +228,7 @@ export class TimerManager extends Component{
     public removeAll(methodObj:any):void {
         for (var i:number = 0; i < this._count; i++) {
             var handler:TimerHandler = this._handlers[i];
-            if (handler.methodObj == methodObj) {
+            if (handler.methodObj === methodObj) {
                 this._handlers.splice(i, 1);
                 ObjectPool.push(handler);
                 this._count--;

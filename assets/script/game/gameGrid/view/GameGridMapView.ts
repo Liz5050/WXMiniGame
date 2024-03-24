@@ -22,7 +22,7 @@ export class GameGridMapView extends Component{
     private _groupPos:Vec3;
     private _mapItemList:GameGridMapItem[][];
     private _deltaTime:number = 0;
-    private _enemyCreateCD:number = -1;
+    private _enemyCreateCD:number = 3;
     protected onLoad(): void {
         this._ray = new geometry.Ray();
         this._groupPos = new Vec3();
@@ -110,7 +110,7 @@ export class GameGridMapView extends Component{
                     checkListY.push(row);
                 }
                 let vo = CacheManager.gameGrid.addEntity(EntityType.Grid);
-                this.enemyContainer.inverseTransformPoint(vo.pos,itemArr[i].node.worldPosition);
+                // this.enemyContainer.inverseTransformPoint(vo.pos,itemArr[i].node.worldPosition);
                 itemArr[i].setData(vo);
                 itemArr[i].setEmpty(false);
             }

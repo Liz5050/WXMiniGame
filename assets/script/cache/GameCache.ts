@@ -16,7 +16,7 @@ export class GameCache{
     }
     public setGameSpeed(speed:number){
         this.setTimeScale(speed);
-        director.setGameSpeed(speed);
+        // director.setGameSpeed(speed);
         this._gameSpeed = speed;
     }
 

@@ -1,16 +1,16 @@
 import { Component, Node, _decorator } from "cc";
 import { EntityState, EntityType, EntityVo } from "../../vo/EntityVo";
 import { HUDComponent } from "../components/HUDComponent";
+import { GameAgent } from "../components/GameAgent";
 const { ccclass, property } = _decorator;
 
 @ccclass
 export class BaseEntity extends Component {
     @property(Node) HUD:Node = null;
     protected _vo: EntityVo;
-    protected _playState: EntityState;
     protected _deltaTime: number = 0;
     protected _updateInterval: number = 0.5;
-    protected _hudComponent:HUDComponent
+    protected _hudComponent:HUDComponent;
     protected onLoad(): void {
         this.init();
     }
@@ -54,7 +54,34 @@ export class BaseEntity extends Component {
     protected onEntityVoUpdate() { }
     protected setState(state: EntityState): boolean {
         if (!this._vo.setState(state)) return false;
+        return true;
+    }
+    private onNone(){
+        this.playNone();
+    }
+    private onIdle() {
+        this.playIdle();
+    };
+    private onWalk() {
+        this.playWalk();
+    };
+    private onAttackPre() {
+        this.playAttackPre();
+    }
+    private onAttack() {
+        this.playAttack();
+    };
+    private onStiffness() {
+        this.playStiffness();
+    };
+    private onDie() {
+        this.playDie();
+    };
+    public onStateChanged(state: EntityState) { 
         switch (state) {
+            case EntityState.none:
+                this.onNone();
+                break;
             case EntityState.idle:
                 this.onIdle();
                 break;
@@ -76,29 +103,8 @@ export class BaseEntity extends Component {
                 this.onDie();
                 break;
         }
-        this._playState = this._vo.state;
-        this.onStateChanged(state);
-        return true;
     }
-    private onIdle() {
-        this.playIdle();
-    };
-    private onWalk() {
-        this.playWalk();
-    };
-    private onAttackPre() {
-        this.playAttackPre();
-    }
-    private onAttack() {
-        this.playAttack();
-    };
-    private onStiffness() {
-        this.playStiffness();
-    };
-    private onDie() {
-        this.playDie();
-    };
-    protected onStateChanged(state: EntityState) { }
+    protected playNone() { }
     protected playIdle() { }
     protected playWalk() { }
     protected moving() { }

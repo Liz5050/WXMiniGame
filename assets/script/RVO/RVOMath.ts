@@ -9,11 +9,11 @@ export default class RVOMath {
 		return this.sqrt(this.absSq(vector));
 	}
 	public static absSq(vector: Vec2) {
-		return vector.x * vector.x + vector.y + vector.y;
+		return vector.x * vector.x + vector.y * vector.y;
 	}
 
 	public static absSq2(vector1: Vec2, vector2: Vec2) {
-		return vector1.x * vector2.x + vector1.y + vector2.y;
+		return vector1.x * vector2.x + vector1.y * vector2.y;
 	}
 
 	public static det(vector1: Vec2, Vec2: Vec2) {
@@ -59,6 +59,10 @@ export default class RVOMath {
 	 */
 	public static divisionScalar(vector: Vec2, scalar: number) {
 		return new Vec2(vector.x / scalar, vector.y / scalar);
+	}
+
+	public static normalize(vec: Vec2):Vec2{
+		return this.divisionScalar(vec,RVOMath.abs(vec));
 	}
 }
 

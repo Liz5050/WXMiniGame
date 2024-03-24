@@ -127,6 +127,12 @@ export default class Simulator {
             return new Vec2(0, 0);
         }
     }
+    public updateAgentPosition(agentNo:number,position:Vec2){
+        let agent = this.agents_[this.agentNo2indexDict_.get(agentNo)];
+        if (agent) {
+            agent.position_ = position;
+        }
+    }
     public getAgentPrefVelocity(agentNo: number) {
         return this.agents_[this.agentNo2indexDict_.get(agentNo)].prefVelocity_;
     }

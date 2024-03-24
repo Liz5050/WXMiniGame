@@ -40,6 +40,7 @@ export class GameGridCache {
     public showClickEffect:boolean = true;//点击特效
 
     // private _sceneGridList
+    private _resTypeList = [1,2,3,4,6,7,10,11,12,13];
     private _gridTypeList:{[resId:number]:number[][]} = {
         [1]:[
             [1]
@@ -281,19 +282,16 @@ export class GameGridCache {
         return resArr;
     }
 
-    public addMapItemEntity(posList:Vec3[]){
-        for(let pos of posList){
-            let vo = this.addEntity(EntityType.Grid,false);
-            vo.pos.x = pos.x;
-            vo.pos.y = pos.y;
-            vo.pos.z = pos.z;
-            // let key = col + "_" + row;
-            // this._mapGridVo[key] = vo;
-        }
+    public getRandomType():number{
+        let idx = MathUtils.getRandomInt(0,this._resTypeList.length - 1);
+        let resType:number = this._resTypeList[idx];
+        return resType;
     }
 
     public delEntity(id:number){
-
+        if(this._entitys[id]){
+            delete this._entitys[id];
+        }
     }
 
     public addEntity(type:EntityType,dispatchEvent:boolean = true){
@@ -302,7 +300,7 @@ export class GameGridCache {
             if(!count) {
                 count = 0;
             }
-            else if(count >= 2){
+            else if(count >= 10){
                 return;
             }
             count ++;
@@ -321,7 +319,7 @@ export class GameGridCache {
         for(let id in this._entitys){
             let vo = this._entitys[id];
             if(vo.type == type && !vo.isDead()) {
-                let dis = math.Vec3.distance(pos,vo.pos);
+                let dis = math.Vec3.distance(pos,vo.worldPos);
                 if(dis < minDistance){
                     minDistance = dis;
                     target = vo;
@@ -337,14 +335,6 @@ export class GameGridCache {
         if(!id) id = 1;
         else id ++;
         GameGridCache.EntityIds[type] = id;
-        let data:any = {id:id}
-        data.speed = MathUtils.getRandom(1,3) / 10;
-        let maxHp = MathUtils.getRandomInt(100,500);
-        data.hp = maxHp;
-        data.maxHp = maxHp;
-        data.attack = MathUtils.getRandomInt(20,100);
-        data.type = type;
-
         let vo:EntityVo;
         switch(type){
             case EntityType.Grid:
@@ -354,7 +344,7 @@ export class GameGridCache {
                 vo = new EnemyVo();
                 break;
         }
-        vo.initVo(data);
+        vo.initVo();
         return vo;
     }
 }

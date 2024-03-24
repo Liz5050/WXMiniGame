@@ -116,7 +116,7 @@ export class GameGrid3DView extends BaseUIView{
             }
             this._score += score;
             this._txtScore.string = "得分：" + this._score;
-            Mgr.soundMgr.play("crrect_answer3");//存在可消除的行or列
+            // Mgr.soundMgr.play("damage03");//存在可消除的行or列
             // this.showScoreAddEffect(score);
         }
         else {

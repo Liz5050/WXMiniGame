@@ -2,6 +2,8 @@ import { Component, Node, ParticleSystem, Vec3, _decorator, math, tween } from "
 import { EntityState, EntityType, EntityVo } from "../../vo/EntityVo";
 import { BaseEntity } from "./BaseEntity";
 import { CacheManager } from "../../../../manager/CacheManager";
+import Mgr from "../../../../manager/Mgr";
+import { Root3D } from "../../../../Root3D";
 const { ccclass, property } = _decorator;
 
 @ccclass
@@ -10,28 +12,22 @@ export class GameGridMapItem extends BaseEntity {
     @property(Node) preview: Node;
     private _col: number;
     private _row: number;
-    private _isEmpty: boolean = true;
     private _playTween: boolean;
     private _skinRes: string;
     private _isPreview: boolean = false;
 
+    private _battlePos:Vec3;
     public setPos(col: number, row: number) {
         this._col = col;
         this._row = row;
         this.node.setPosition(this._col, 0, this._row);
+        this._battlePos = new Vec3();
         this.initMapItem();
     }
     protected updateSub(dt: number): void {
-        if(!this._vo) return;
-        if(this._vo.state == EntityState.die && this._playState != EntityState.die){
-            this.playDie();
-            this._playState = this._vo.state;
-        }
+        if(!this._vo || this._vo.isDead()) return;
         if(this._vo.state == EntityState.idle){
-            if(!this._vo.battleVo){
-                let battleVo = CacheManager.gameGrid.findTarget(this._vo.pos,EntityType.Enemy);
-                this._vo.battleVo = battleVo;
-            }
+            
         }
     }
 
@@ -42,11 +38,39 @@ export class GameGridMapItem extends BaseEntity {
     }
 
     public onEntityVoUpdate(){
+        this._vo.updatePos(this.node.position,this.node.worldPosition);
+    }
+
+    protected playNone(): void {
+        if (this.bodyNode.active) this.bodyNode.active = false;
+    }
+
+    protected playIdle(): void {
+        console.log("playIdle")
+        this.bodyNode.setPosition(0,0,0);
+        this.bodyNode.setScale(1,1,1);
+        if (!this.bodyNode.active) this.bodyNode.active = true;
+        if (this.preview.active) this.preview.active = false;
+    }
+
+    protected playAttackPre(): void {
+        this.node.inverseTransformPoint(this._battlePos,this._vo.battleVo.worldPos);
+        tween(this.bodyNode).to(this._vo.atkPretime / 1000,{position:new Vec3(0,5,this._battlePos.z),scale:new Vec3(2,2,2)}).start();
+        console.log("playAttackPre")
+    }
+
+    protected playAttack(): void {
+        console.log("playAttack")
+        tween(this.bodyNode)
+        .to(this._vo.atkTime / 1000,{position:new Vec3(0,0,this._battlePos.z),scale:new Vec3(0.5,0.5,0.5)})
+        .call(()=>{
+            if (this.bodyNode.active) this.bodyNode.active = false;
+        })
+        .start();
     }
 
     protected playDie(): void {
-        this.setEmpty(true);
-        console.log("gridItem playDie")
+        if (this.bodyNode.active) this.bodyNode.active = false;
     }
 
     protected playHurt(): void {
@@ -71,24 +95,33 @@ export class GameGridMapItem extends BaseEntity {
     }
 
     public get isEmpty(): boolean {
-        return this._isEmpty;
+        return !this._vo || this._vo.state == EntityState.none || this._vo.state == EntityState.die;
     }
 
     public setEmpty(bool: boolean, playTween: boolean = false, col_row: number = -1) {
-        this._isEmpty = bool;
         if (!bool) {
             //非空
             this.setState(EntityState.idle);
-            this.clearTween();
-            if (!this.bodyNode.active) this.bodyNode.active = true;
-            if (this.preview.active) this.preview.active = false;
         }
         else {
             //空
-            this.setState(EntityState.die);
-            if (this.bodyNode.active) this.bodyNode.active = false;
-            if (this.preview.active) this.preview.active = false;
-            
+            if(playTween){
+                if(!this._vo.battleVo || this._vo.battleVo.isDead()){
+                    let battleVo = CacheManager.gameGrid.findTarget(this._vo.worldPos,EntityType.Enemy);
+                    if(battleVo){
+                        this._vo.battleVo = battleVo;
+                    }
+                }
+                if(!this._vo.battleVo || this._vo.battleVo.isDead()){
+                    this.setState(EntityState.none);
+                }
+                else{
+                    this.setState(EntityState.attackPre)
+                }
+            }
+            else{
+                this.setState(EntityState.die);
+            }
             // if(playTween){
             //     if(!this._playTween){
             //         this._playTween = true;

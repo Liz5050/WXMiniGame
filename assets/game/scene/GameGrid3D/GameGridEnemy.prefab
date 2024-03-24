@@ -31,20 +31,14 @@
     "_components": [
       {
         "__id__": 19
-      },
-      {
-        "__id__": 77
-      },
-      {
-        "__id__": 79
       }
     ],
     "_prefab": {
-      "__id__": 81
+      "__id__": 77
     },
     "_lpos": {
       "__type__": "cc.Vec3",
-      "x": 0.193,
+      "x": 0,
       "y": 0,
       "z": 0
     },
@@ -93,9 +87,9 @@
     "_lrot": {
       "__type__": "cc.Quat",
       "x": 0,
-      "y": 0,
+      "y": 1,
       "z": 0,
-      "w": 1
+      "w": 6.123233995736766e-17
     },
     "_lscale": {
       "__type__": "cc.Vec3",
@@ -108,7 +102,7 @@
     "_euler": {
       "__type__": "cc.Vec3",
       "x": 0,
-      "y": 0,
+      "y": 180,
       "z": 0
     },
     "_id": ""
@@ -1106,73 +1100,6 @@
     "_alignSpace": 2
   },
   {
-    "__type__": "cc.RigidBody",
-    "_name": "",
-    "_objFlags": 0,
-    "node": {
-      "__id__": 1
-    },
-    "_enabled": true,
-    "__prefab": {
-      "__id__": 78
-    },
-    "_group": 8,
-    "_type": 1,
-    "_mass": 1,
-    "_allowSleep": true,
-    "_linearDamping": 0.1,
-    "_angularDamping": 0.1,
-    "_useGravity": false,
-    "_linearFactor": {
-      "__type__": "cc.Vec3",
-      "x": 1,
-      "y": 1,
-      "z": 1
-    },
-    "_angularFactor": {
-      "__type__": "cc.Vec3",
-      "x": 1,
-      "y": 1,
-      "z": 1
-    },
-    "_id": ""
-  },
-  {
-    "__type__": "cc.CompPrefabInfo",
-    "fileId": "27VrSodk5L6bRzKB2S1T10"
-  },
-  {
-    "__type__": "cc.BoxCollider",
-    "_name": "",
-    "_objFlags": 0,
-    "node": {
-      "__id__": 1
-    },
-    "_enabled": true,
-    "__prefab": {
-      "__id__": 80
-    },
-    "_material": null,
-    "_isTrigger": false,
-    "_center": {
-      "__type__": "cc.Vec3",
-      "x": 0,
-      "y": 0.4,
-      "z": 0
-    },
-    "_size": {
-      "__type__": "cc.Vec3",
-      "x": 0.6,
-      "y": 0.8,
-      "z": 0.5
-    },
-    "_id": ""
-  },
-  {
-    "__type__": "cc.CompPrefabInfo",
-    "fileId": "08l2h4H4tKL74UYkulkVHm"
-  },
-  {
     "__type__": "cc.PrefabInfo",
     "root": {
       "__id__": 1
@@ -1184,7 +1111,7 @@
     "instance": null,
     "targetOverrides": [
       {
-        "__id__": 82
+        "__id__": 78
       }
     ],
     "nestedPrefabInstanceRoots": [
@@ -1206,7 +1133,7 @@
       "__id__": 6
     },
     "targetInfo": {
-      "__id__": 83
+      "__id__": 79
     }
   },
   {

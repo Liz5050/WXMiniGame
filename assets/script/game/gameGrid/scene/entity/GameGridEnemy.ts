@@ -1,124 +1,156 @@
-import { AnimationState, BoxCollider, Node, ParticleSystem, Prefab, SkeletalAnimation, Vec3, _decorator, instantiate, math } from "cc";
+import { AnimationState, BoxCollider, Node, ParticleSystem, Prefab, SkeletalAnimation, Vec2, Vec3, _decorator, instantiate, math, tween } from "cc";
 import { EntityState, EntityType, EntityVo } from "../../vo/EntityVo";
 import { CacheManager } from "../../../../manager/CacheManager";
 import { BaseEntity } from "./BaseEntity";
+import Simulator from "../../../../RVO/Simulator";
+import RVOMath from "../../../../RVO/RVOMath";
+import Mgr from "../../../../manager/Mgr";
 
-const {ccclass , property} = _decorator;
+const { ccclass, property } = _decorator;
 
 @ccclass
 export class GameGridEnemy extends BaseEntity {
-    @property(Prefab) model:Prefab = null;
-    @property(Node) bodyContainer:Node = null;
-    @property(BoxCollider) collider:BoxCollider = null;
+    @property(Prefab) model: Prefab = null;
+    @property(Node) bodyContainer: Node = null;
+    @property(BoxCollider) collider: BoxCollider = null;
     @property(ParticleSystem) hit: ParticleSystem;
-    private _bodyModel:Node;
-    private _anim:SkeletalAnimation;
-    private _animStateIdle:AnimationState;
-    
-    private _canMove:boolean = false;
-    private _updatePos:Vec3;
+    private _bodyModel: Node;
+    private _anim: SkeletalAnimation;
+    private _animStateIdle: AnimationState;
+
+    public sid: number = -1;
+    private _agentPos:Vec2;
+    private _battlePos:Vec3;
     protected init(): void {
-        if(!this._bodyModel){
+        if (!this._bodyModel) {
             this._bodyModel = instantiate(this.model);
-            this._bodyModel.setScale(2,2,2);
+            this._bodyModel.setScale(2.8, 2.8, 2.8);
             this.bodyContainer.addChild(this._bodyModel);
         }
+        this._battlePos = new Vec3();
         this._anim = this._bodyModel.getComponent(SkeletalAnimation);
         this._animStateIdle = this._anim.getState("idle");
         this._anim.play("idle");
         this._updateInterval = 0;
-        this._updatePos = new Vec3();
+        this._agentPos = new Vec2();
     }
 
     protected updateSub(dt: number): void {
-        if(!this._vo) return;
-        if(!this._vo.battleVo) {
-            let battleVo = CacheManager.gameGrid.findTarget(this._vo.pos,EntityType.Grid);
-            if(battleVo){
-                // if(!this._dir){
-                //     this._dir = new Vec3();
-                // }
-                // math.Vec3.subtract(this._dir,battleVo.pos,this._vo.pos);
-                // this._dir.normalize();
-                // this._dir.y = 0;
-                // this._dir.multiplyScalar(this._vo.speed);
-                // console.log("find target dir:" + this._dir.x + "_" + this._dir.y + "_" + this._dir.z);
+        if (!this._vo || this._vo.isDead()) return;
+        if (this._vo.state == EntityState.idle) {
+            if (!this._vo.battleVo || this._vo.battleVo.isDead()) {
+                let battleVo = CacheManager.gameGrid.findTarget(this._vo.worldPos, EntityType.Grid);
+                if (!battleVo) return;
                 this._vo.battleVo = battleVo;
+                this.node.parent.inverseTransformPoint(this._battlePos,battleVo.worldPos);
+            }
+            if (this._vo.isAttackRange()) {
+                this.setState(EntityState.attackPre);
             }
             else {
-                if(this._vo.state == EntityState.idle){
-                    if(this._playState != EntityState.idle){
-                        this._playState = EntityState.idle;
-                        this.playIdle();
-                    }
-                }
-                else{
-                    this.setState(EntityState.idle);
-                }
-                return;
-            }
-        }
-        if(this._vo.battleVo.isDead()) {
-            this.setState(EntityState.idle);
-            return;
-        }
-        if(this._vo.state == EntityState.idle){
-            if(this.setState(EntityState.attackPre)){
-            }
-            else if(!this._vo.isAttackRange()){
-                console.log("不在攻击范围内x:" + this._vo.battleVo.pos.x + "z:" + this._vo.battleVo.pos.z + "----isDead:" + this._vo.battleVo.isDead());
                 this.setState(EntityState.walk);
             }
-            else if(!this._animStateIdle.isPlaying){
-                this.playIdle();
-            }
-        } else if (this._vo.state == EntityState.walk) {
+        }
+        else if (this._vo.state == EntityState.walk) {
             this.moving();
         }
     }
 
-    protected onStateChanged(state:EntityState): void {
-        this._canMove = state == EntityState.walk;
-    }
-
     protected playIdle(): void {
+        console.log("play enemy idle")
         this._anim.crossFade("idle");
+        Simulator.Instance.setAgentPrefVelocity(this.sid, new Vec2(0, 0));
     }
 
-    protected playAttackPre(){
+    protected playAttackPre() {
         this._anim.crossFade("attack-melee-left");
+        Simulator.Instance.setAgentPrefVelocity(this.sid, new Vec2(0, 0));
     }
 
-    protected playWalk(){
+    protected playDie(): void {
+        this._anim.play("die");
+        Simulator.Instance.setAgentPrefVelocity(this.sid, new Vec2(0, 0));
+    }
+
+    protected playWalk() {
         this._anim.play("walk");
     }
 
-    protected playHurt(): void {
-        this.hit.play();    
+    protected playStiffness(): void {
+        Mgr.soundMgr.play("damage03");
+        this.hit.play();
+        this._anim.crossFade("sit");
+        Simulator.Instance.setAgentPrefVelocity(this.sid, new Vec2(0, 0));
+        this._agentPos.x = this._vo.pos.x;
+        this._agentPos.y = this._vo.pos.z - 1;
+        Simulator.Instance.updateAgentPosition(this.sid,this._agentPos);
+        let curPos = this.node.position;
+        tween(this.node).to(0.2,{position:new Vec3(curPos.x,curPos.y,curPos.z - 1)}).start();
     }
 
     protected moving(): void {
-        if(!this._canMove) return;
-        this._updatePos.x = this.node.position.x;
-        this._updatePos.z = this.node.position.z; 
-        this._updatePos.lerp(this._vo.battleVo.pos,0.005);
-        // this.node.translate(this._dir);
-        this.node.setPosition(this._updatePos);
-        this._vo.updatePos(this._updatePos);
-        if(this._vo.canAttack()) {
-            this.stopMove();
+        if (!this._vo.battleVo || this._vo.battleVo.isDead()) {
+            //移动过程中，目标消失，死亡，或者可攻击时设置idle状态
+            this.setState(EntityState.idle);
+            return;
+        }
+        if (this._vo.isAttackRange()) {
+            this.setState(EntityState.attackPre);
+            return;
+        }
+        this.RVOMoving();
+        this._vo.updatePos(this.node.position,this.node.worldPosition);
+
+        let battleVo = CacheManager.gameGrid.findTarget(this._vo.worldPos, EntityType.Grid);
+        if (!battleVo || battleVo.id == this._vo.battleVo.id) return;
+        this._vo.battleVo = battleVo;
+        this.node.parent.inverseTransformPoint(this._battlePos,battleVo.worldPos);
+    }
+
+    protected onEntityVoUpdate() {
+        this.node.setPosition(this._vo.pos);
+        this._agentPos.x = this._vo.pos.x;
+        this._agentPos.y = this._vo.pos.z;
+        let sid = Simulator.Instance.addAgent(this._agentPos);
+        if (sid >= 0) {
+            this.sid = sid;
         }
     }
 
-    protected stopMove(): void {
-        this.setState(EntityState.idle);    
-    }
+    private RVOMoving() {
+        let sid = this.sid;
+        if (sid >= 0) {
+            let pos: Vec2 = Simulator.Instance.getAgentPosition(sid);
+            let vel: Vec2 = Simulator.Instance.getAgentPrefVelocity(sid);
+            this.node.position = new Vec3(pos.x, this.node.position.y, pos.y);
+            if (Math.abs(vel.x) > 0.01 && Math.abs(vel.y) > 0.01) {
+                this.node.forward = new Vec3(vel.x, 0, vel.y).normalize();
+            }
+        }
 
-    protected stiffness(){
-        this._anim.crossFade("idle");
-    }
+        // if (!Input.GetMouseButton(1))
+        // {
+        //     Simulator.Instance.setAgentPrefVelocity(sid, new Vec2(0, 0));
+        //     return;
+        // }
+        let agentPos: Vec2 = Simulator.Instance.getAgentPosition(sid);
+        let diffX = this._battlePos.x - agentPos.x;
+        let diffY = this._battlePos.z - agentPos.y;
+        let goalVector: Vec2 = new Vec2(diffX, diffY);
+        if (RVOMath.absSq(goalVector) > 1.0) {
+            goalVector = RVOMath.normalize(goalVector);
+        }
 
-    protected onEntityVoUpdate(){
-        this.node.setPosition(this._vo.pos);
+        Simulator.Instance.setAgentPrefVelocity(sid, goalVector);
+
+        /* Perturb a little to avoid deadlocks due to perfect symmetry. */
+        let angle: number = Math.random() * 2 * Math.PI;
+        let dist: number = Math.random() * 0.0001;
+
+        let vel: Vec2 = Simulator.Instance.getAgentPrefVelocity(sid);
+        let newVec2 = new Vec2(Math.cos(angle), Math.sin(angle)).multiplyScalar(dist);
+        newVec2.x += vel.x;
+        newVec2.y += vel.y;
+        Simulator.Instance.setAgentPrefVelocity(sid, newVec2);
     }
 }

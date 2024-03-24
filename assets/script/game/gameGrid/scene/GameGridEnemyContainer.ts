@@ -1,8 +1,9 @@
-import { Component, Prefab, _decorator, instantiate } from "cc";
+import { Component, Prefab, Vec2, _decorator, instantiate } from "cc";
 import { EventManager } from "../../../manager/EventManager";
 import { EventEnum } from "../../../enum/EventEnum";
 import { EntityType, EntityVo } from "../vo/EntityVo";
 import { GameGridEnemy } from "./entity/GameGridEnemy";
+import Simulator from "../../../RVO/Simulator";
 
 const {ccclass,property} = _decorator;
 
@@ -12,6 +13,15 @@ export class GameGridEnemyContainer extends Component{
     private _enemys:{[id:number]:GameGridEnemy} = {};
     protected onLoad(): void {
         EventManager.addListener(EventEnum.OnEntityInit,this.onCreateEntity,this);
+        Simulator.Instance.setTimeStep(0.25);
+        Simulator.Instance.setAgentDefaults(5, 3, 5, 5, 0.5, 0.03, new Vec2(0, 0));
+
+        // add in awake
+        Simulator.Instance.processObstacles();
+    }
+
+    protected update(dt: number): void {
+        Simulator.Instance.doStep();
     }
 
     private onCreateEntity(vo:EntityVo){

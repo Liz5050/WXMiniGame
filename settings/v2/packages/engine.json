@@ -92,7 +92,7 @@
         "_value": false
       },
       "tween": {
-        "_value": false
+        "_value": true
       },
       "websocket": {
         "_value": false
@@ -136,6 +136,7 @@
       "primitive",
       "profiler",
       "skeletal-animation",
+      "tween",
       "ui"
     ],
     "noDeprecatedFeatures": {

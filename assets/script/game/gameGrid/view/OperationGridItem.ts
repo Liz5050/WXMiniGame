@@ -65,7 +65,7 @@ export class OperationGridItem {
         if(this._canMove) return;
         this._canMove = true;
         EventManager.dispatch(EventEnum.OnGameSceneGridCreate,this._resType,startX,startY);
-        Mgr.soundMgr.play("crrect_answer1",false);
+        Mgr.soundMgr.play("mobile_phone_O",false);
     }
 
     private touchMove(touchX:number,touchY:number){
@@ -86,7 +86,7 @@ export class OperationGridItem {
     public ShowRight(){
         this._touchMask.active = true;
         this._preview.active = false;
-        Mgr.soundMgr.play("crrect_answer2",false);
+        Mgr.soundMgr.play("create_enemy",false);
         // let self = this;
     }
 
@@ -136,7 +136,7 @@ export class OperationGridItem {
             url = gridInfo.url;
         }
         else {
-            let resType:number = 1 + Math.round(Math.random() * 14);
+            let resType:number = CacheManager.gameGrid.getRandomType();
             url = "PreviewGrid" + resType;
             this._resType = resType;
         }
@@ -162,25 +162,25 @@ export class OperationGridItem {
             this._preview.addChild(node);
             this._randomGrid = node;
             
-            let scaleX = 1;
-            let scaleY = 1;
-            if(gridInfo){
-                scaleX = gridInfo.scaleX;
-                scaleY = gridInfo.scaleY;
-                node.setScale(gridInfo.scaleX,gridInfo.scaleY);
-            }
-            else {
-                scaleX = Math.random() > 0.5 ? -1 : 1;
-                scaleY = Math.random() > 0.5 ? 1 : -1;
-                node.setScale(scaleX,scaleY);
-            }
+            // let scaleX = 1;
+            // let scaleY = 1;
+            // if(gridInfo){
+            //     scaleX = gridInfo.scaleX;
+            //     scaleY = gridInfo.scaleY;
+            //     node.setScale(gridInfo.scaleX,gridInfo.scaleY);
+            // }
+            // else {
+            //     scaleX = Math.random() > 0.5 ? -1 : 1;
+            //     scaleY = Math.random() > 0.5 ? 1 : -1;
+            //     node.setScale(scaleX,scaleY);
+            // }
 
             let num = node.children.length;
             this._gridList = [];
             let skinCfg = CacheManager.gameGrid.GetCurSkinCfg()
             for(let i = 1; i <= num; i++){
                 let grid:Node = node.getChildByName("grid" + i);
-                grid.setScale(scaleX,scaleY);
+                // grid.setScale(scaleX,scaleY);
                 let sp = grid.getComponent(Sprite);
                 if(skinCfg && skinCfg.resName){
                     Mgr.loader.SetSpriteByAtlas(sp,"animal_square",skinCfg.resName);

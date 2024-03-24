@@ -320,7 +320,7 @@
       "name": "die.animation",
       "userData": {
         "gltfIndex": 9,
-        "wrapMode": 2,
+        "wrapMode": 1,
         "sample": 30,
         "span": {
           "from": 0,
@@ -910,7 +910,7 @@
             "name": "die",
             "from": 0,
             "to": 0.3499999940395355,
-            "wrapMode": 2
+            "wrapMode": 1
           }
         ]
       },
