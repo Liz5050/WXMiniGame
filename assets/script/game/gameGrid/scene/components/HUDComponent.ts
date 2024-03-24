@@ -50,4 +50,12 @@ export class HUDComponent extends Component{
             this._uiNode.active = false;
         }
     }
+
+    protected onDestroy(): void {
+        if(this._uiNode){
+            this._uiNode.removeFromParent()
+            this._uiNode.destroy();
+            this._uiNode = null;
+        }
+    }
 }

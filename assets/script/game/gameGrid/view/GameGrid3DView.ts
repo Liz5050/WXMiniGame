@@ -59,12 +59,7 @@ export class GameGrid3DView extends BaseUIView{
         this._txtScore = this.getChildByName("txtScore").getComponent(Label);
         this._txtScore.string = "得分：0";
 
-        let prefab = Mgr.loader.getBundleRes("scene","GameGrid3D/GameGridMap") as Prefab;
-        if(prefab) {
-            this._gameGridMap = instantiate(prefab);
-            Layer3DManager.gameLayer.addChild(this._gameGridMap);
-            this._mapView = this._gameGridMap.getComponent(GameGridMapView);
-        }
+        
         this.addEvent();
     }
 
@@ -125,6 +120,12 @@ export class GameGrid3DView extends BaseUIView{
     }
 
     public OnGameStart(){
+        let prefab = Mgr.loader.getBundleRes("scene","GameGrid3D/GameGridMap") as Prefab;
+        if(prefab && !this._gameGridMap) {
+            this._gameGridMap = instantiate(prefab);
+            Layer3DManager.gameLayer.addChild(this._gameGridMap);
+            this._mapView = this._gameGridMap.getComponent(GameGridMapView);
+        }
         this.OnStart();
     }
 
@@ -149,7 +150,14 @@ export class GameGrid3DView extends BaseUIView{
     public hide(){
         Mgr.soundMgr.stopBGM();    
         // EventManager.removeListener(EventEnum.OnBannerAdComplete,this.OnBannerAdComplete,this);
-        
+        if(this._gameGridMap){
+            this._gameGridMap.destroy();
+            this._gameGridMap = null;
+
+            this._mapView.destroy();
+            this._mapView = null;
+        }
+        CacheManager.gameGrid.clearAll();
         super.hide();
         EventManager.dispatch(EventEnum.OnGameExit,GameType.Grid3D);
     }

@@ -276,4 +276,8 @@ export class GameGridMapView extends Component{
         }
         this._lastPreviewPos = {};
     }
+
+    protected onDestroy(): void {
+        EventManager.removeListener(EventEnum.OnGameSceneGridMove,this.onGridMove,this);
+    }
 }

@@ -109,7 +109,6 @@ export class GameGridCache {
     };
 
     private _entitys:{[id:number]:EntityVo} = {};
-    private _mapGridVo:{[key:string]:EntityVo} = {};
     private _entityCount:{[type:number]:number} = {};
     public constructor(){
 
@@ -310,6 +309,16 @@ export class GameGridCache {
         this._entitys[vo.id] = vo;
         if(dispatchEvent) EventManager.dispatch(EventEnum.OnEntityInit,vo);
         return vo;
+    }
+
+    public clearAll(){
+        for(let id in this._entitys){
+            let vo = this._entitys[id];
+            vo.clear();
+        }
+        this._entitys = {};
+        this._entityCount = {};
+        GameGridCache.EntityIds = {};
     }
 
     //找到一个离自己最近的目标

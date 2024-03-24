@@ -114,5 +114,14 @@ export class BaseEntity extends Component {
     protected playDie() { }
     protected playHurt() { }
     protected stopMove() { }
-
+    protected onDestroy(): void {
+        if(this._hudComponent) {
+            this._hudComponent.destroy();
+            this._hudComponent = null;
+        }
+        if(this._vo){
+            this._vo.clear();
+            this._vo = null;
+        }
+    }
 }

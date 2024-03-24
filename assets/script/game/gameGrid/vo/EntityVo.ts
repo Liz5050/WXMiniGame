@@ -162,7 +162,7 @@ export class EntityVo extends Object{
 
     private onNone(){
         this.playNone();
-        this.clear();
+        // this.clear();
     }
 
     private onIdle() {
@@ -227,7 +227,7 @@ export class EntityVo extends Object{
 
     public clear(){
         // CacheManager.gameGrid.delEntity(this.id);
-        // Mgr.timer.removeAll(this);
+        Mgr.timer.removeAll(this);
     }
 
     public set battleVo(vo: EntityVo) {

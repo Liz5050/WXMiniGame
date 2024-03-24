@@ -153,4 +153,17 @@ export class GameGridEnemy extends BaseEntity {
         newVec2.y += vel.y;
         Simulator.Instance.setAgentPrefVelocity(sid, newVec2);
     }
+
+    protected onDestroy(): void {
+        if(this._anim){
+            this._anim.destroy();
+            this._anim = null;
+        }
+
+        if(this._bodyModel){
+            this._bodyModel.destroy();
+            this._bodyModel = null;
+        }
+        super.onDestroy();
+    }
 }
