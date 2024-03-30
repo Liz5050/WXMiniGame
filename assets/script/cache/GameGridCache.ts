@@ -8,7 +8,7 @@ import { CacheManager } from "../manager/CacheManager";
 import { EventManager } from "../manager/EventManager";
 import MathUtils from "../utils/MathUtils";
 import { EnemyVo } from "../game/gameGrid/vo/EnemyVo";
-import { EntityType, EntityVo } from "../game/gameGrid/vo/EntityVo";
+import { EntityState, EntityType, EntityVo } from "../game/gameGrid/vo/EntityVo";
 import { GridEntityVo } from "../game/gameGrid/vo/GridEntityVo";
 
 class GameGridRankData {
@@ -39,8 +39,8 @@ export class GameGridCache {
     private _propNum:{[rewardId:number]:number};
     public showClickEffect:boolean = true;//点击特效
 
-    // private _sceneGridList
-    private _resTypeList = [1,2,3,4,6,7,10,11,12,13];
+    private _maxEnemyNum:number = 10;
+    private _resTypeList = [1,2,3,6,7,10,11,12];
     private _gridTypeList:{[resId:number]:number[][]} = {
         [1]:[
             [1]
@@ -108,7 +108,7 @@ export class GameGridCache {
         ]
     };
 
-    private _entitys:{[id:number]:EntityVo} = {};
+    private _entitys:{[entityId:string]:EntityVo} = {};
     private _entityCount:{[type:number]:number} = {};
     public constructor(){
 
@@ -287,10 +287,10 @@ export class GameGridCache {
         return resType;
     }
 
-    public delEntity(id:number){
-        if(this._entitys[id]){
-            let vo = this._entitys[id];
-            delete this._entitys[id];
+    public delEntity(entityId:string){
+        if(this._entitys[entityId]){
+            let vo = this._entitys[entityId];
+            delete this._entitys[entityId];
             let count = this._entityCount[vo.type];
             count --;
             this._entityCount[vo.type] = count;
@@ -303,23 +303,19 @@ export class GameGridCache {
             if(!count) {
                 count = 0;
             }
-            else if(count >= 10){
+            else if(count >= this._maxEnemyNum){
                 return;
             }
             count ++;
             this._entityCount[type] = count;
         }
         let vo = GameGridCache.GenEntityVo(type);
-        this._entitys[vo.id] = vo;
+        this._entitys[vo.entityId] = vo;
         if(dispatchEvent) EventManager.dispatch(EventEnum.OnEntityInit,vo);
         return vo;
     }
 
     public clearAll(){
-        for(let id in this._entitys){
-            let vo = this._entitys[id];
-            vo.clear();
-        }
         this._entitys = {};
         this._entityCount = {};
         GameGridCache.EntityIds = {};
@@ -329,9 +325,9 @@ export class GameGridCache {
     public findTarget(pos:Vec3,type:EntityType):EntityVo{
         let minDistance = 9999;
         let target:EntityVo;
-        for(let id in this._entitys){
-            let vo = this._entitys[id];
-            if(vo.type == type && !vo.isDead()) {
+        for(let entityId in this._entitys){
+            let vo = this._entitys[entityId];
+            if(vo.type == type && !vo.isDead() && vo.state != EntityState.none) {
                 let dis = math.Vec3.distance(pos,vo.worldPos);
                 if(dis < minDistance){
                     minDistance = dis;
@@ -343,6 +339,7 @@ export class GameGridCache {
     }
 
     public static EntityIds:{[type:number]:number} = {};
+    public static EntityId:number = 0;
     public static GenEntityVo(type:EntityType){
         let id = GameGridCache.EntityIds[type];
         if(!id) id = 1;

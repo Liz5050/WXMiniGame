@@ -2,6 +2,7 @@ import { Component, Node, _decorator } from "cc";
 import { EntityState, EntityType, EntityVo } from "../../vo/EntityVo";
 import { HUDComponent } from "../components/HUDComponent";
 import { GameAgent } from "../components/GameAgent";
+import { EntityPool } from "./EntityPool";
 const { ccclass, property } = _decorator;
 
 @ccclass
@@ -11,6 +12,7 @@ export class BaseEntity extends Component {
     protected _deltaTime: number = 0;
     protected _updateInterval: number = 0.5;
     protected _hudComponent:HUDComponent;
+    protected _type:EntityType;
     protected onLoad(): void {
         this.init();
     }
@@ -19,7 +21,7 @@ export class BaseEntity extends Component {
         this.playHurt();
     }
 
-    public updateHp(){
+    protected updateHp(){
         this._hudComponent && this._hudComponent.updateHp();
     }
 
@@ -38,9 +40,12 @@ export class BaseEntity extends Component {
 
     public setData(vo: EntityVo) {
         this._vo = vo;
+        this._type = vo.type;
         this._vo.setEntity(this);
         if(this._vo.type == EntityType.Enemy){
-            this._hudComponent = this.addComponent(HUDComponent);
+            if(!this._hudComponent){
+                this._hudComponent = this.addComponent(HUDComponent);
+            }
             this._hudComponent.setData(vo);
         }
 
@@ -112,16 +117,19 @@ export class BaseEntity extends Component {
     protected playAttack() { }
     protected playStiffness() { }
     protected playDie() { }
-    protected playHurt() { }
+    protected playHurt(isDead:boolean = false) { 
+        this.updateHp();
+    }
     protected stopMove() { }
-    protected onDestroy(): void {
-        if(this._hudComponent) {
-            this._hudComponent.destroy();
-            this._hudComponent = null;
-        }
-        if(this._vo){
-            this._vo.clear();
-            this._vo = null;
-        }
+    protected death(){
+        this.resetEntity();
+    }
+
+    public resetEntity(){
+        if(this._hudComponent){
+            this._hudComponent.enabled = false;
+        } 
+        EntityPool.recycleEntity(this._type,this.node);
+        this._vo = null;
     }
 }

@@ -8,6 +8,8 @@ import { GameGridMapItem } from "../scene/entity/GameGridMapItem";
 import MathUtils from "../../../utils/MathUtils";
 import { EntityType } from "../vo/EntityVo";
 import {EntityPool} from "../scene/entity/EntityPool";
+import { Layer3DManager } from "../../../manager/Layer3DManager";
+import { GameGridEnemyContainer } from "../scene/GameGridEnemyContainer";
 const { ccclass, property } = _decorator;
 
 @ccclass('GameGridMapView')
@@ -15,7 +17,7 @@ export class GameGridMapView extends Component{
     private static GridPool:Node[] = [];
     @property(Node) mapGrid:Node = null;
     @property(Node) mapGridContainer:Node = null;
-    @property(Node) enemyContainer:Node = null;
+    @property(GameGridEnemyContainer) enemyContainer:GameGridEnemyContainer = null;
     @property(Node) tempGroup:Node = null;
     @property(BoxCollider) posTrigger:BoxCollider = null;
     @property(Prefab) gridPrefab:Prefab;
@@ -29,6 +31,21 @@ export class GameGridMapView extends Component{
         this._groupPos = new Vec3();
         this.addEvent();
         this.initMapGrid();
+    }
+
+    public show(){
+        Layer3DManager.gameLayer.addChild(this.node);
+    }
+
+    public hide(){
+        for(let row = 0; row < 10; row++){
+            for(let col = 0; col < 10; col++){
+                let item = this._mapItemList[row][col];
+                item.setEmpty(true);
+            }
+        }
+        this.enemyContainer.hide();
+        this.node.removeFromParent();
     }
 
     private addEvent(){
@@ -111,7 +128,6 @@ export class GameGridMapView extends Component{
                     checkListY.push(row);
                 }
                 let vo = CacheManager.gameGrid.addEntity(EntityType.Grid);
-                // this.enemyContainer.inverseTransformPoint(vo.pos,itemArr[i].node.worldPosition);
                 itemArr[i].setData(vo);
                 itemArr[i].setEmpty(false);
             }
@@ -270,15 +286,10 @@ export class GameGridMapView extends Component{
     }
 
     private clearPreview(){
-        
         for(let index in this._lastPreviewPos){
             let pos = this._lastPreviewPos[index];
             this._mapItemList[pos.z][pos.x].setPreview(false);
         }
         this._lastPreviewPos = {};
-    }
-
-    protected onDestroy(): void {
-        EventManager.removeListener(EventEnum.OnGameSceneGridMove,this.onGridMove,this);
     }
 }

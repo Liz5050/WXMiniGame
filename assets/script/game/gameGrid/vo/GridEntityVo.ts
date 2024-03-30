@@ -1,8 +1,10 @@
+import { math } from "cc";
 import { GameGridCache } from "../../../cache/GameGridCache";
 import MathUtils from "../../../utils/MathUtils";
 import { EntityState, EntityType, EntityVo } from "./EntityVo";
 
 export class GridEntityVo extends EntityVo{
+    public atkDelay:number = 0;
     public constructor(){
         super();
         this._type = EntityType.Grid;
@@ -11,7 +13,8 @@ export class GridEntityVo extends EntityVo{
 
     protected init(): void {
         this._attackDistance = 9999;
-        this._atkPreTime = 300;
+        this.atkDelay = this.id * 50;
+        this._atkPreTime = 300 + this.atkDelay;
         this._atkTime = 100;
         this._state = EntityState.none;
         this._defaultState = EntityState.none;
@@ -21,18 +24,9 @@ export class GridEntityVo extends EntityVo{
         this._attack = 50;
     }
 
-    protected playNone(): void {
-        if (this.battleVo && this.battleVo.isDead()) {
-            this.battleVo = null;
-        }
-    }
-
-    protected playHurt(): void {
-        if(this._entity)this._entity.hurt();
-    }
-
-    protected playAttack(): void {
-        if (!this.battleVo) return;
-        this.battleVo.hp -= this._attack;
+    public updatePos(pos: math.Vec3, worldPosition: math.Vec3): void {
+        super.updatePos(pos,worldPosition);
+        this.atkDelay = pos.x * 50;
+        this._atkPreTime = 300 + this.atkDelay;
     }
 }

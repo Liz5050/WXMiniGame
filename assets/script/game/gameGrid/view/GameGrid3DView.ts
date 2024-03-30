@@ -120,12 +120,15 @@ export class GameGrid3DView extends BaseUIView{
     }
 
     public OnGameStart(){
-        let prefab = Mgr.loader.getBundleRes("scene","GameGrid3D/GameGridMap") as Prefab;
-        if(prefab && !this._gameGridMap) {
-            this._gameGridMap = instantiate(prefab);
-            Layer3DManager.gameLayer.addChild(this._gameGridMap);
-            this._mapView = this._gameGridMap.getComponent(GameGridMapView);
+        if(!this._mapView){
+            let prefab = Mgr.loader.getBundleRes("scene","GameGrid3D/GameGridMap") as Prefab;
+            if(prefab) {
+                this._gameGridMap = instantiate(prefab);
+                this._mapView = this._gameGridMap.getComponent(GameGridMapView);
+            }
         }
+        Mgr.soundMgr.playBGM("bgm1");
+        this._mapView.show();
         this.OnStart();
     }
 
@@ -157,6 +160,9 @@ export class GameGrid3DView extends BaseUIView{
         //     this._mapView = null;
         // }
         CacheManager.gameGrid.clearAll();
+        if(this._mapView){
+            this._mapView.hide();
+        }
         super.hide();
         EventManager.dispatch(EventEnum.OnGameExit,GameType.Grid3D);
     }

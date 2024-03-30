@@ -1,9 +1,9 @@
-import { Component, Node, ParticleSystem, Vec3, _decorator, math, tween } from "cc";
+import { Component, Node, ParticleSystem, Tween, Vec3, _decorator, math, tween } from "cc";
 import { EntityState, EntityType, EntityVo } from "../../vo/EntityVo";
 import { BaseEntity } from "./BaseEntity";
 import { CacheManager } from "../../../../manager/CacheManager";
 import Mgr from "../../../../manager/Mgr";
-import { Root3D } from "../../../../Root3D";
+import MathUtils from "../../../../utils/MathUtils";
 const { ccclass, property } = _decorator;
 
 @ccclass
@@ -18,6 +18,7 @@ export class GameGridMapItem extends BaseEntity {
 
     private _battlePos:Vec3;
     private _atkTime:number = 0;
+    private _isEmpty:boolean = true;
     public setPos(col: number, row: number) {
         this._col = col;
         this._row = row;
@@ -44,33 +45,54 @@ export class GameGridMapItem extends BaseEntity {
 
     protected playNone(): void {
         if (this.bodyNode.active) this.bodyNode.active = false;
+        this._vo = null;
+        this._isEmpty = true;
+    }
+
+    protected playDie(): void {
+        this.playNone();
     }
 
     protected playIdle(): void {
-        console.log("playIdle")
         this.bodyNode.setPosition(0,0,0);
         this.bodyNode.setScale(1,1,1);
+        this.bodyNode.setRotationFromEuler(0,0,0);
         if (!this.bodyNode.active) this.bodyNode.active = true;
         if (this.preview.active) this.preview.active = false;
     }
 
     protected playAttackPre(): void {
         this._atkTime = this._vo.atkTime;
+        this.atkEffect1();
+    }
+
+    private atkEffect1(){
+        let delay = this._vo["atkDelay"];
+        let preTime = this._vo.atkPretime - delay;
         this.node.inverseTransformPoint(this._battlePos,this._vo.battleVo.worldPos);
-        tween(this.bodyNode).to(this._vo.atkPretime / 1000,{position:new Vec3(0,5,this._battlePos.z),scale:new Vec3(2,2,2)}).start();
+        Mgr.soundMgr.play("skill/skill_cm3_2",false);
+        tween(this.bodyNode).delay(delay / 1000).to(preTime / 1000,{position:new Vec3(0,5,0),scale:new Vec3(2,2,2)}).start();
+    }
+
+    private atkEffect2(){
+        let delay = this._vo["atkDelay"];
+        let preTime = this._vo.atkPretime - delay;
+        this.node.inverseTransformPoint(this._battlePos,this._vo.battleVo.worldPos);
+        Mgr.soundMgr.play("skill/skill_cm3_2",false);
+        tween(this.bodyNode).to(0.2,{position:new Vec3(0,5,this._battlePos.z),scale:new Vec3(0.5,1.5,0.05)},{onUpdate:()=>{
+            let angle = MathUtils.getAngle2(this.node.position.x,this.node.position.y,this._battlePos.x,this._battlePos.y);
+            this.bodyNode.forward = this._battlePos;
+            this.bodyNode.setRotationFromEuler(angle,0,0);
+        }}).start();
     }
 
     protected playAttack(): void {
         tween(this.bodyNode)
-        .to(this._atkTime / 1000,{position:new Vec3(0,0,this._battlePos.z),scale:new Vec3(0.5,0.5,0.5)})
+        .to(this._atkTime / 1000,{position:new Vec3(this._battlePos.x,0,this._battlePos.z),scale:new Vec3(0.05,0.05,0.05)}).delay(0.1)
         .call(()=>{
             if (this.bodyNode.active) this.bodyNode.active = false;
         })
         .start();
-    }
-
-    protected playDie(): void {
-        if (this.bodyNode.active) this.bodyNode.active = false;
     }
 
     protected playHurt(): void {
@@ -99,6 +121,8 @@ export class GameGridMapItem extends BaseEntity {
     }
 
     public setEmpty(bool: boolean, playTween: boolean = false, col_row: number = -1) {
+        if(this._isEmpty == bool) return;
+        this._isEmpty = bool;
         if (!bool) {
             //非空
             this.setState(EntityState.idle);
@@ -116,7 +140,7 @@ export class GameGridMapItem extends BaseEntity {
                     this.setState(EntityState.none);
                 }
                 else{
-                    this.setState(EntityState.attackPre)
+                    this.setState(EntityState.attackPre);
                 }
             }
             else{
@@ -163,5 +187,10 @@ export class GameGridMapItem extends BaseEntity {
 
     public get row(): number {
         return this._row;
+    }
+
+    public resetEntity(): void {
+        Tween.stopAllByTarget(this.bodyNode);
+        super.resetEntity();     
     }
 }

@@ -2,6 +2,7 @@ import { Node, Vec3, director, game, math } from "cc";
 import Mgr from "../../../manager/Mgr";
 import { BaseEntity } from "../scene/entity/BaseEntity";
 import { CacheManager } from "../../../manager/CacheManager";
+import MathUtils from "../../../utils/MathUtils";
 
 export enum EntityType {
     Grid = 1,
@@ -30,6 +31,7 @@ export class EntityVo extends Object{
     protected _worldPos: Vec3;
     protected _attackDistance: number = 1;//攻击距离
     protected _stiffnessTime: number = 0;//硬直时间
+    protected _dieTime:number = 0;//死亡消亡时间
     private _attackTime: number = 0;//攻击的时间，用于计算攻击CD
     protected _attackCD: number = 1000;//ms攻击CD时间（攻速）
     protected _atkPreTime: number = 0;//前摇时长 单位ms
@@ -40,6 +42,7 @@ export class EntityVo extends Object{
     protected _defaultState: EntityState;
     protected _battleVo: EntityVo;
     protected _entity: BaseEntity;
+    private _isDel:boolean = false;
     public initVo(data?: any) {
         if (data) {
             for (let key in data) {
@@ -64,14 +67,17 @@ export class EntityVo extends Object{
     protected playAttackAfter() { }
     protected playStiffness() { }
     protected playDie() { }
-    protected playHurt() { }
     protected stopMove() { }
+    private playHurt() { 
+        this._entity && this._entity.hurt();
+    }
 
     public setEntity(entity: BaseEntity) {
         this._entity = entity;
     }
 
     public setState(state: EntityState) {
+        if(this._isDel) return;
         if (this._state == state) return false;
         if (!this.checkState(state)) return false;
         // console.log("设置状态:" + EntityState[state]);
@@ -162,8 +168,8 @@ export class EntityVo extends Object{
     }
 
     private onNone(){
+        this.clear();
         this.playNone();
-        // this.clear();
     }
 
     private onIdle() {
@@ -176,9 +182,12 @@ export class EntityVo extends Object{
 
     private onAttackPre() {
         this._attackTime = game.totalTime;
-        Mgr.timer.doDelay(this._atkPreTime, () => {
+        Mgr.timer2.doOnce(this._atkPreTime,()=>{
             this.setState(EntityState.attack);
-        }, this);
+        });
+        // Mgr.timer.doDelay(this._atkPreTime, () => {
+        //     this.setState(EntityState.attack);
+        // }, this);
         this.playAttackPre();
     }
 
@@ -187,27 +196,39 @@ export class EntityVo extends Object{
         Mgr.timer.doDelay(this._atkTime, () => {
             this.setState(EntityState.attackAfter);
             // console.log("攻击结束：" + (game.totalTime - time));
-            this.playAttack();
-        }, this);
+            if (!this.battleVo) return;
+            this.battleVo.hp -= this._attack;
+            if(this.battleVo.isDead()) {
+                this._attack++;//MathUtils.getRandomInt(20, 100);
+                this.battleVo = null;
+            }
+        },this);
     };
 
     private onAttackAfter() {
         Mgr.timer.doDelay(this._atkAfterTime, () => {
             this.setState(this._defaultState);
-        }, this);
+        },this);
         this.playAttackAfter();
     }
 
     private onStiffness() {
         Mgr.timer.doDelay(this._stiffnessTime, () => {
             this.setState(this._defaultState);
-        }, this);
+        },this);
         this.playStiffness();
     };
 
     private onDie() {
+        if(this._dieTime > 0){
+            Mgr.timer.doDelay(this._dieTime, ()=>{
+                this.death();
+            },this);
+        }
+        else{
+            this.death();
+        }
         this.playDie();
-        this.clear();
     };
 
     public updatePos(pos: Vec3,worldPosition:Vec3) {
@@ -218,8 +239,8 @@ export class EntityVo extends Object{
         this._worldPos.z = worldPosition.z;
     }
 
-    public death() {
-        this.setState(EntityState.die);
+    private death() {
+        this.clear();
     }
 
     public isDead(): boolean {
@@ -227,8 +248,12 @@ export class EntityVo extends Object{
     }
 
     public clear(){
-        CacheManager.gameGrid.delEntity(this.id);
-        Mgr.timer.removeAll(this);
+        this._isDel = true;
+        this._hp = 0;
+        if (this.battleVo && this.battleVo.isDead()) {
+            this.battleVo = null;
+        }
+        CacheManager.gameGrid.delEntity(this.entityId);
     }
 
     public set battleVo(vo: EntityVo) {
@@ -243,19 +268,20 @@ export class EntityVo extends Object{
     }
     public set hp(val: number) {
         if(this._hp <= 0 && val <= 0) return;
-        if (this._hp > 0) {
-            if(val <= 0) this.setState(EntityState.die);
-            else this.setState(EntityState.stiffness);
-        }
-        
         this._hp = val;
-        if (this._entity) this._entity.updateHp();
+        this.playHurt();
+        if(val <= 0) this.setState(EntityState.die);
+        else this.setState(EntityState.stiffness);
     }
     public get state(): number {
         return this._state;
     }
     public get id(): number {
         return this._id;
+    }
+
+    public get entityId():string {
+        return this._type + "_" + this._id;
     }
     public get speed(): number {
         return this._speed;
@@ -280,5 +306,11 @@ export class EntityVo extends Object{
     }
     public get atkTime():number{
         return this._atkTime;
+    }
+    public get stiffnessTime():number{
+        return this._stiffnessTime;
+    }
+    public get dieTime():number{
+        return this._dieTime;
     }
 }

@@ -715,6 +715,8 @@
       "__id__": 0
     },
     "fileId": "a3mGavnf5Ft4/5hv0nzK78",
+    "instance": null,
+    "targetOverrides": null,
     "nestedPrefabInstanceRoots": null
   },
   {
@@ -917,7 +919,7 @@
       "__id__": 19
     },
     "enemyContainer": {
-      "__id__": 29
+      "__id__": 30
     },
     "tempGroup": {
       "__id__": 20

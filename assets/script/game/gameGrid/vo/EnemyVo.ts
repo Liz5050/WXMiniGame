@@ -10,8 +10,9 @@ export class EnemyVo extends EntityVo{
     }
 
     protected init(): void {
-        this._attackDistance = 1;
+        this._attackDistance = 1.5;
         this._stiffnessTime = 500;
+        this._dieTime = this._stiffnessTime;
         this._atkAfterTime = 266;
         this._atkPreTime = 400;
         this._attackCD = 1000;
@@ -23,20 +24,5 @@ export class EnemyVo extends EntityVo{
         this._hp = maxHp;
         this._maxHp = maxHp;
         this._attack = MathUtils.getRandomInt(20,100);
-    }
-    protected playAttack(): void {
-        this.attackBattleVo();
-    }
-
-    protected playIdle(): void {
-        if (this.battleVo && this.battleVo.isDead()) {
-            this.battleVo = null;
-            this._attack = MathUtils.getRandomInt(20, 100);
-        }
-    }
-
-    private attackBattleVo() {
-        if (!this.battleVo) return;
-        this.battleVo.hp -= this._attack;
     }
 }

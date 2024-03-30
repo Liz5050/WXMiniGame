@@ -49,19 +49,19 @@ export class TimerManager2 extends Component {
     /**
      * init
      */
-    public init(): void {
+    protected onLoad(): void {
         TimerManager2.instance = this;
         this._curTime = Math.floor(new Date().getTime() / 1000);
 
         director.on(Director.EVENT_AFTER_DRAW, this.updateScheduleFrameTask, this);
     }
 
-    public updateFrame(dt: number): void {
+    protected update(dt: number): void {
         this._updateTime += dt;
         if (this._updateTime >= 1) {
-            this._curTime += 1;
             this._updateTime = 0;
         }
+        this._curTime += dt;
         var timerHandler: any;
         for (let i = 0; i < this._handlerList.length; i++) {
             var key: any = this._handlerList[i];
@@ -189,7 +189,7 @@ export class TimerManager2 extends Component {
     // --- * @param args   回调参数
     // --- * @param cover  是否覆盖(true:同方法多次计时，后者覆盖前者。false:同方法多次计时，不相互覆盖)
     // --- * @return  cover=true时返回回调函数本身，cover=false时，返回唯一ID，均用来作为clearTimer的参数*/
-    public doOnce(delayTimeInMS: number, method: any, cover: boolean, ...args): number {
+    public doOnce(delayTimeInMS: number, method: any, cover: boolean = false, ...args): number {
         return this.addTimerHandler(false, delayTimeInMS, method, cover, ...args);
     }
 

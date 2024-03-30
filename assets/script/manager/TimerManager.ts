@@ -212,7 +212,7 @@ export class TimerManager extends Component{
     public remove(method:Function, methodObj:any, repeatEnd:boolean = false):void {
         for (var i:number = 0; i < this._count; i++) {
             var handler:TimerHandler = this._handlers[i];
-            if (handler.method == method && handler.methodObj == methodObj && (!repeatEnd || handler.repeatCount<1)) {
+            if (handler.method == method && handler.methodObj === methodObj && (!repeatEnd || handler.repeatCount<1)) {
                 this._handlers.splice(i, 1);
                 ObjectPool.push(handler);
                 this._count--;
@@ -229,6 +229,7 @@ export class TimerManager extends Component{
         for (var i:number = 0; i < this._count; i++) {
             var handler:TimerHandler = this._handlers[i];
             if (handler.methodObj === methodObj) {
+                console.log("清理全部")
                 this._handlers.splice(i, 1);
                 ObjectPool.push(handler);
                 this._count--;
@@ -246,7 +247,7 @@ export class TimerManager extends Component{
     public isExists(method:Function, methodObj:any):boolean {
         for (var i:number = 0; i < this._count; i++) {
             var handler:TimerHandler = this._handlers[i];
-            if (handler.method == method && handler.methodObj == methodObj) {
+            if (handler.method == method && handler.methodObj == methodObj && handler.timerId == methodObj["__timerId__"]) {
                 return true;
             }
         }

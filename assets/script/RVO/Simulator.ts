@@ -77,6 +77,13 @@ export default class Simulator {
         this.onAddAgent();
         return agent.id_;
     }
+    public delAgent(agentNo:number){
+        if(agentNo < 0) return;
+        let agent = this.agents_[this.agentNo2indexDict_[agentNo]];
+        if(agent) {
+            agent.needDelete_ = true;
+        }
+    }
     public addObstacle(vertices: Array<Vec2>) {
         if (vertices.length < 2) return -1;
         let obstacleNo = this.obstacles_.length;
