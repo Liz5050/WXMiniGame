@@ -77,13 +77,14 @@ export class GameGridEnemy extends BaseEntity {
     }
 
     protected playStiffness(): void {
+        Simulator.Instance.setAgentPrefVelocity(this.sid, new Vec2(0, 0));
+        Simulator.Instance.updateAgentPosition(this.sid,this._agentPos);
+
         Mgr.soundMgr.play("damage03");
         this.hit.play();
         this._anim.crossFade("sit");
-        Simulator.Instance.setAgentPrefVelocity(this.sid, new Vec2(0, 0));
         this._agentPos.x = this._vo.pos.x;
         this._agentPos.y = this._vo.pos.z - 1;
-        Simulator.Instance.updateAgentPosition(this.sid,this._agentPos);
         let curPos = this.node.position;
         tween(this.node).to(0.2,{position:new Vec3(curPos.x,curPos.y,curPos.z - 1)}).start();
     }
@@ -152,17 +153,5 @@ export class GameGridEnemy extends BaseEntity {
         newVec2.x += vel.x;
         newVec2.y += vel.y;
         Simulator.Instance.setAgentPrefVelocity(sid, newVec2);
-    }
-
-    protected onDestroy(): void {
-        if(this._anim){
-            this._anim.stop();
-            this._anim = null;
-        }
-
-        if(this._bodyModel){
-            this._bodyModel = null;
-        }
-        super.onDestroy();
     }
 }

@@ -2,6 +2,7 @@ import { LoaderManager } from "./LoaderManager";
 import { SceneManager } from "./SceneManager";
 import SoundManager from "./SoundManager";
 import { TimerManager } from "./TimerManager";
+import {TimerManager2} from "./TimerManager2";
 import { UIMgr } from "./UIMgr";
 
 export default class Mgr {
@@ -10,12 +11,14 @@ export default class Mgr {
     public static ui:UIMgr;
     public static loader:LoaderManager;
     public static timer:TimerManager;
+    public static timer2:TimerManager2;
     private static isInit:boolean = false;
 
     public static Init() {
         if (Mgr.isInit) return;
 
         Mgr.timer = TimerManager.instance;
+        Mgr.timer2 = TimerManager2.instance;
         Mgr.soundMgr = new SoundManager();
         Mgr.sceneMgr = new SceneManager();
         Mgr.ui = new UIMgr();
@@ -24,5 +27,3 @@ export default class Mgr {
         Mgr.isInit = true;
     }
 }
-
-

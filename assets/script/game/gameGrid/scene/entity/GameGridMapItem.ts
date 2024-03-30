@@ -17,6 +17,7 @@ export class GameGridMapItem extends BaseEntity {
     private _isPreview: boolean = false;
 
     private _battlePos:Vec3;
+    private _atkTime:number = 0;
     public setPos(col: number, row: number) {
         this._col = col;
         this._row = row;
@@ -54,15 +55,14 @@ export class GameGridMapItem extends BaseEntity {
     }
 
     protected playAttackPre(): void {
+        this._atkTime = this._vo.atkTime;
         this.node.inverseTransformPoint(this._battlePos,this._vo.battleVo.worldPos);
         tween(this.bodyNode).to(this._vo.atkPretime / 1000,{position:new Vec3(0,5,this._battlePos.z),scale:new Vec3(2,2,2)}).start();
-        console.log("playAttackPre")
     }
 
     protected playAttack(): void {
-        console.log("playAttack")
         tween(this.bodyNode)
-        .to(this._vo.atkTime / 1000,{position:new Vec3(0,0,this._battlePos.z),scale:new Vec3(0.5,0.5,0.5)})
+        .to(this._atkTime / 1000,{position:new Vec3(0,0,this._battlePos.z),scale:new Vec3(0.5,0.5,0.5)})
         .call(()=>{
             if (this.bodyNode.active) this.bodyNode.active = false;
         })

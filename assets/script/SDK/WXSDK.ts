@@ -5,6 +5,7 @@ import { BannerRewardId, SDK } from "./SDK";
 import { CloudApi } from "../enum/CloudDefine";
 import { GameLoadingView } from "../common/loading/GameLoadingView";
 import DefaultSDK from "./DefaultSDK";
+import {sys, view} from "cc";
 
 //开发者工具版本号1.06.2307260stable
 
@@ -22,6 +23,31 @@ export default class WXSDK extends DefaultSDK{
     public init(){
         this.cloudInit();
         this.showShareMenu();
+        const res = wx.getMenuButtonBoundingClientRect()
+        console.log("----胶囊按钮位置信息----",res)
+        let rect = this.getMenuButtonBoundingRect();
+        console.log(rect);
+        let windowInfo = wx.getWindowInfo();
+        console.log(windowInfo);
+    }
+
+    /**
+     * 胶囊按钮布局信息
+     * @param
+     */
+    public getMenuButtonBoundingRect(){
+        let windowInfo = wx.getWindowInfo();
+        let statusHeight = windowInfo.statusBarHeight;
+        let gameSize = view.getVisibleSize();
+        let ratio = gameSize.height / windowInfo.screenHeight;
+        let rect = wx.getMenuButtonBoundingClientRect();
+        rect.width *= ratio;
+        rect.height *= ratio;
+        rect.left *= ratio;
+        rect.top *= ratio;
+        rect.bottom = gameSize.height - rect.bottom * ratio;
+        rect.right = gameSize.width - rect.right * ratio;
+        return {rect,ratio,statusHeight};
     }
 
     private cloudInit(){

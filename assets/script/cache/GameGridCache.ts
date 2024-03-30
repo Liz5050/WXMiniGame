@@ -289,7 +289,11 @@ export class GameGridCache {
 
     public delEntity(id:number){
         if(this._entitys[id]){
+            let vo = this._entitys[id];
             delete this._entitys[id];
+            let count = this._entityCount[vo.type];
+            count --;
+            this._entityCount[vo.type] = count;
         }
     }
 

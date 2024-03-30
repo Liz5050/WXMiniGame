@@ -150,12 +150,12 @@ export class GameGrid3DView extends BaseUIView{
     public hide(){
         Mgr.soundMgr.stopBGM();    
         // EventManager.removeListener(EventEnum.OnBannerAdComplete,this.OnBannerAdComplete,this);
-        if(this._gameGridMap){
-            this._gameGridMap.destroy();
-            this._gameGridMap = null;
+        // if(this._gameGridMap){
+        //     this._gameGridMap.destroy();
+        //     this._gameGridMap = null;
 
-            this._mapView = null;
-        }
+        //     this._mapView = null;
+        // }
         CacheManager.gameGrid.clearAll();
         super.hide();
         EventManager.dispatch(EventEnum.OnGameExit,GameType.Grid3D);

@@ -123,6 +123,7 @@ export class EntityVo extends Object{
     }
 
     private checkState(state: EntityState): boolean {
+        if(this._state == EntityState.die) return false;
         switch (state) {
             case EntityState.idle:
                 break;
@@ -185,8 +186,8 @@ export class EntityVo extends Object{
         // console.log("实施攻击中");
         Mgr.timer.doDelay(this._atkTime, () => {
             this.setState(EntityState.attackAfter);
-            this.playAttack();
             // console.log("攻击结束：" + (game.totalTime - time));
+            this.playAttack();
         }, this);
     };
 
@@ -226,7 +227,7 @@ export class EntityVo extends Object{
     }
 
     public clear(){
-        // CacheManager.gameGrid.delEntity(this.id);
+        CacheManager.gameGrid.delEntity(this.id);
         Mgr.timer.removeAll(this);
     }
 

@@ -7,6 +7,7 @@ import { EventEnum } from "../../../enum/EventEnum";
 import { GameGridMapItem } from "../scene/entity/GameGridMapItem";
 import MathUtils from "../../../utils/MathUtils";
 import { EntityType } from "../vo/EntityVo";
+import {EntityPool} from "../scene/entity/EntityPool";
 const { ccclass, property } = _decorator;
 
 @ccclass('GameGridMapView')
@@ -56,7 +57,7 @@ export class GameGridMapView extends Component{
                     if(!this._mapItemList[row]){
                         this._mapItemList[row] = [];
                     }
-                    let mapItemNode = instantiate(prefab);
+                    let mapItemNode = EntityPool.getEntity(EntityType.Grid,prefab);
                     this.mapGridContainer.addChild(mapItemNode);
                     let item:GameGridMapItem = mapItemNode.getComponent(GameGridMapItem);
                     this._mapItemList[row][col] = item;
