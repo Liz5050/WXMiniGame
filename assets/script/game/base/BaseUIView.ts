@@ -95,7 +95,7 @@ export class BaseUIView extends BaseView {
 
     }
 
-    public hide(){
+    public hide(isDestroy:boolean = false){
         if(this._isLoading){
             //取消加载
             this._cancelLoad = true;
@@ -107,9 +107,12 @@ export class BaseUIView extends BaseView {
         this._rootNode.removeFromParent();
         this._isShow = false;
         this.onHide();
+        if(isDestroy){
+            this.destroy();
+        }
     }
 
-    public destroy(){
+    protected destroy(){
     }
 
     protected addCloseHandler(nodeUrl:string){
