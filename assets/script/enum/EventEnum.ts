@@ -20,6 +20,7 @@ export enum EventEnum {
     OnGameSceneGridMove,
     OnGameSceneGridDrop,
     OnEntityInit,
+    OnGameGridRoundUpdate,
 
     OnUserInfoUpdate,
     OnBannerAdComplete,

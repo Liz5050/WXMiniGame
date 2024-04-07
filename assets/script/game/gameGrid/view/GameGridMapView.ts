@@ -25,7 +25,6 @@ export class GameGridMapView extends Component{
     private _groupPos:Vec3;
     private _mapItemList:GameGridMapItem[][];
     private _deltaTime:number = 0;
-    private _enemyCreateCD:number = 3;
     protected onLoad(): void {
         this._ray = new geometry.Ray();
         this._groupPos = new Vec3();
@@ -50,19 +49,15 @@ export class GameGridMapView extends Component{
 
     private addEvent(){
         EventManager.addListener(EventEnum.OnGameSceneGridMove,this.onGridMove,this);
+        EventManager.addListener(EventEnum.OnGameGridRoundUpdate,this.onRoundUpdate,this);
     }
 
     protected update(dt: number): void {
         this._deltaTime += dt;
         if(this._deltaTime >= 1){
             this._deltaTime = 0;
-            if(this._enemyCreateCD > 0){
-                this._enemyCreateCD--;
-            }
-            else{
-                CacheManager.gameGrid.addEntity(EntityType.Enemy);
-                this._enemyCreateCD = MathUtils.getRandomInt(1,4);
-            }
+            if(!CacheManager.gameGrid.isBattle()) return;
+            CacheManager.gameGrid.addEntity(EntityType.Enemy);
         }
     }
 
@@ -82,6 +77,20 @@ export class GameGridMapView extends Component{
                 }
             }
         });
+    }
+
+    private onRoundUpdate(){
+        if(CacheManager.gameGrid.isBattle()){
+            // for(let row = 0; row < 10; row++){
+            //     for(let col = 0; col < 10; col++){
+            //         let item = this._mapItemList[row][col];
+            //         if(!item.isEmpty){
+            //             let vo = CacheManager.gameGrid.addEntity(EntityType.Grid);
+            //             item.setData(vo);
+            //         }
+            //     }
+            // }
+        }
     }
 
     private _endCheckLocalPos:Vec3 = new Vec3();
@@ -157,14 +166,14 @@ export class GameGridMapView extends Component{
         for(let i:number = 0; i < lenX; i++){
             let col:number = checkListX[i];
             for(let row:number = 0; row < 10; row++){
-                this._mapItemList[row][col].setEmpty(true,true,1);//1、纵向消除
+                this._mapItemList[row][col].setEmpty(true,true);//1、纵向消除
                 canRemove = true
             }
         }
         for(let i:number = 0; i < lenY ; i++){
             let row:number = checkListY[i];
             for(let col:number = 0; col < 10; col++){
-                this._mapItemList[row][col].setEmpty(true,true,2);//2、横向消除
+                this._mapItemList[row][col].setEmpty(true,true);//2、横向消除
                 canRemove = true
             }
         }
@@ -189,10 +198,10 @@ export class GameGridMapView extends Component{
                     lastPos = {x:centerX,z:centerZ};
                     this._lastPreviewPos[i] = lastPos;
                 }
-                if(lastPos.x != centerX || lastPos.z != centerZ){
-                    //清空上一个预览中的格子
-                    this._mapItemList[lastPos.z][lastPos.x].setPreview(false);
-                }
+                // if(lastPos.x != centerX || lastPos.z != centerZ){
+                //     //清空上一个预览中的格子
+                //     this._mapItemList[lastPos.z][lastPos.x].setPreview(false);
+                // }
                 lastPos.x = centerX;
                 lastPos.z = centerZ;
                 let item:GameGridMapItem = this._mapItemList[centerZ][centerX];

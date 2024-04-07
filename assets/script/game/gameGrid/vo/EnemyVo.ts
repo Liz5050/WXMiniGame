@@ -20,9 +20,10 @@ export class EnemyVo extends EntityVo{
         this._pos.x = MathUtils.getRandom(0, 9);
         this._pos.z = MathUtils.getRandom(0, 5);
         this._speed = MathUtils.getRandom(1,3) / 10;
-        let maxHp = MathUtils.getRandomInt(500,1000);
-        this._hp = maxHp;
-        this._maxHp = maxHp;
+        if(this._maxHp <= 0) {
+            this._maxHp = 10;
+        }
+        this._hp = this._maxHp;
         this._attack = MathUtils.getRandomInt(20,100);
     }
 }

@@ -7,11 +7,13 @@ import MathUtils from "../../../utils/MathUtils";
 export enum EntityType {
     Grid = 1,
     Enemy = 2,
+    GridBattle = 3,
 }
 export enum EntityState {
     none = 0,
     idle = 1,
     walk,
+    attackEmpty,//打空气
     attackPre,//前摇
     attack,//攻击
     attackAfter,//后摇
@@ -81,7 +83,7 @@ export class EntityVo extends Object{
         if (this._state == state) return false;
         if (!this.checkState(state)) return false;
         // console.log("设置状态:" + EntityState[state]);
-        if (state == EntityState.attackPre && this._atkPreTime <= 0) {
+        if ((state == EntityState.attackPre || state == EntityState.attackEmpty) && this._atkPreTime <= 0) {
             //无前摇，攻击直接生效
             return this.setState(EntityState.attack);
         }
@@ -103,6 +105,7 @@ export class EntityVo extends Object{
             case EntityState.walk:
                 this.onWalk();
                 break;
+            case EntityState.attackEmpty:
             case EntityState.attackPre:
                 this.onAttackPre();
                 break;
@@ -135,6 +138,8 @@ export class EntityVo extends Object{
                 break;
             case EntityState.walk:
                 break;
+            case EntityState.attackEmpty:
+                break;
             case EntityState.attackPre:
                 return this.canAttack();
             case EntityState.attack:
@@ -149,7 +154,7 @@ export class EntityVo extends Object{
         return true;
     }
 
-    public canAttack(): boolean {
+    private canAttack(): boolean {
         if (!this.battleVo || this.battleVo.isDead()) return false;
         let time = game.totalTime - this._attackTime;
         if (time >= this._attackCD) {
@@ -164,7 +169,7 @@ export class EntityVo extends Object{
     }
 
     public isAttacking() {
-        return this._state == EntityState.attackPre || this._state == EntityState.attack || this._state == EntityState.attackAfter;
+        return this._state == EntityState.attackPre || this._state == EntityState.attack || this._state == EntityState.attackAfter || this._state == EntityState.attackEmpty;
     }
 
     private onNone(){

@@ -27,6 +27,12 @@ class GameGridRankData {
         return this.value + "分";
     }
 }
+
+export enum GameGridRoundType{
+    Ready = 1 ,
+    Battle = 2
+}
+
 export class GameGridCache {
     private _rankDataListDict:{[typeKey:string]:GameGridRankData[]} = {};
     private _rankDataDict:{[openid:string]:GameGridRankData} = {};
@@ -38,9 +44,7 @@ export class GameGridCache {
     private _hadGetVideoReward:{[rewardId:number]:boolean};//是否获取过广告奖励（每局游戏仅可获得1次广告奖励）
     private _propNum:{[rewardId:number]:number};
     public showClickEffect:boolean = true;//点击特效
-
-    private _maxEnemyNum:number = 10;
-    private _resTypeList = [1,2,3,6,7,10,11,12];
+    
     private _gridTypeList:{[resId:number]:number[][]} = {
         [1]:[
             [1]
@@ -108,10 +112,17 @@ export class GameGridCache {
         ]
     };
 
+    private _maxEnemyNum:number = 5;//最多同时存在数量
+    private _enemyCountList:{[round:number]:number} = {};
+    private _resTypeList = [1,2,3,6,7,10,11,12];
+    
     private _entitys:{[entityId:string]:EntityVo} = {};
     private _entityCount:{[type:number]:number} = {};
+    private _roundType:GameGridRoundType;
+    private _round:number = 1;
+    private _nextRound:number = 1;//当前回合的怪物全部击杀，才可进入下一回合
     public constructor(){
-
+        this._roundType = GameGridRoundType.Ready;
     }
 
     //获取游戏道具数量
@@ -131,6 +142,10 @@ export class GameGridCache {
             [BannerRewardId.GameGridResetNum]:1,
             [BannerRewardId.GameGridBoomNum]:1
         };
+        this._round = 1;
+        this._nextRound = 1;
+        this._roundType = GameGridRoundType.Ready;
+        this._enemyCountList[this._round] = 1;
     }
 
     public AddPropNum(rewardId:BannerRewardId){
@@ -276,6 +291,37 @@ export class GameGridCache {
         });
     }
 
+    public switchRound(){
+        let type = this._roundType;
+        if(type == GameGridRoundType.Ready){
+            this._roundType = GameGridRoundType.Battle;
+        }
+        else {
+            this._roundType = GameGridRoundType.Ready;
+        }
+        let round = this._nextRound;
+        this.setRound(round);
+        EventManager.dispatch(EventEnum.OnGameGridRoundUpdate,this._roundType);
+    }
+
+    private setRound(round:number){
+        if(this._round == round) return;
+        this._round = round;
+        this._enemyCountList[this._round] = this._round;
+    }
+
+    public get roundType():GameGridRoundType{
+        return this._roundType;
+    }
+
+    public get round():number {
+        return this._round;
+    }
+
+    public isBattle():boolean{
+        return this._roundType == GameGridRoundType.Battle;
+    }
+
     public getGridDataList(resType:number){
         let resArr = this._gridTypeList[resType];
         return resArr;
@@ -287,6 +333,19 @@ export class GameGridCache {
         return resType;
     }
 
+    //待创建的敌人数量
+    public getLeftEnemy():number {
+        let num = 0;
+        for(let round in this._enemyCountList){
+            num += this._enemyCountList[round];
+        }
+        return num;
+    }
+
+    private isPlayer(type:EntityType){
+        return type == EntityType.Grid;
+    }
+
     public delEntity(entityId:string){
         if(this._entitys[entityId]){
             let vo = this._entitys[entityId];
@@ -294,21 +353,33 @@ export class GameGridCache {
             let count = this._entityCount[vo.type];
             count --;
             this._entityCount[vo.type] = count;
+            if(count <= 0 && this.isBattle()){
+                if(vo.type == EntityType.Enemy){
+                    if(this._nextRound <= this.round && this._enemyCountList[this.round] <= 0){
+                        this._nextRound++;
+                        CacheManager.gameGrid.switchRound();
+                    }
+                }
+                else if(this.isPlayer(vo.type)){
+                    CacheManager.gameGrid.switchRound();
+                }
+            }
         }
     }
 
     public addEntity(type:EntityType,dispatchEvent:boolean = true){
-        if(type == EntityType.Enemy){
-            let count = this._entityCount[type];
-            if(!count) {
-                count = 0;
-            }
-            else if(count >= this._maxEnemyNum){
-                return;
-            }
-            count ++;
-            this._entityCount[type] = count;
+        let count = this._entityCount[type];
+        if(!count) {
+            count = 0;
         }
+        if(type == EntityType.Enemy){
+            if(count >= this._maxEnemyNum) return;
+            if(this._enemyCountList[this.round] <= 0) return;
+            this._enemyCountList[this.round] --;
+        }
+        count ++;
+        this._entityCount[type] = count;
+
         let vo = GameGridCache.GenEntityVo(type);
         this._entitys[vo.entityId] = vo;
         if(dispatchEvent) EventManager.dispatch(EventEnum.OnEntityInit,vo);
@@ -346,15 +417,18 @@ export class GameGridCache {
         else id ++;
         GameGridCache.EntityIds[type] = id;
         let vo:EntityVo;
+        let data;
         switch(type){
             case EntityType.Grid:
                 vo = new GridEntityVo();
                 break
             case EntityType.Enemy:
                 vo = new EnemyVo();
+                let round = CacheManager.gameGrid.round;
+                data = {maxHp:10 * round}
                 break;
         }
-        vo.initVo();
+        vo.initVo(data);
         return vo;
     }
 }

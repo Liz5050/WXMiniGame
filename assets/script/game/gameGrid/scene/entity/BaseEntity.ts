@@ -13,8 +13,19 @@ export class BaseEntity extends Component {
     protected _updateInterval: number = 0.5;
     protected _hudComponent:HUDComponent;
     protected _type:EntityType;
+    protected _isSelected:boolean = false;
     protected onLoad(): void {
         this.init();
+    }
+
+    public setSelected(val:boolean){
+        if(this._isSelected == val) return;
+        this._isSelected = val;
+        this.onSelectChanged();
+    }
+
+    public isEnemy():boolean{
+        return this._type == EntityType.Enemy;
     }
 
     public hurt() {
@@ -93,6 +104,7 @@ export class BaseEntity extends Component {
             case EntityState.walk:
                 this.onWalk();
                 break;
+            case EntityState.attackEmpty:
             case EntityState.attackPre:
                 this.onAttackPre();
                 break;
@@ -109,6 +121,7 @@ export class BaseEntity extends Component {
                 break;
         }
     }
+    protected onSelectChanged() { }
     protected playNone() { }
     protected playIdle() { }
     protected playWalk() { }
@@ -129,6 +142,7 @@ export class BaseEntity extends Component {
         if(this._hudComponent){
             this._hudComponent.enabled = false;
         } 
+        this._isSelected = false;
         EntityPool.recycleEntity(this._type,this.node);
         this._vo = null;
     }

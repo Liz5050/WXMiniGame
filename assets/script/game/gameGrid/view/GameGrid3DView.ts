@@ -1,4 +1,4 @@
-import { Button, Label, Node, Prefab, game, instantiate } from "cc";
+import { Animation, Button, Label, Node, Prefab, game, instantiate } from "cc";
 import { UIModuleEnum } from "../../../enum/UIDefine";
 import { LayerManager } from "../../../manager/LayerManager";
 import { BaseUIView } from "../../base/BaseUIView"
@@ -12,20 +12,26 @@ import { SDK } from "../../../SDK/SDK";
 import { CacheManager } from "../../../manager/CacheManager";
 import { Layer3DManager } from "../../../manager/Layer3DManager";
 import { GameGridMapView } from "./GameGridMapView";
+import { CameraType, Root3D } from "../../../Root3D";
+import { GameGridRoundType } from "../../../cache/GameGridCache";
 
 export class GameGrid3DView extends BaseUIView{
     private _btns:OperationGridItem[];
 
     private _txtScore:Label;
+    private _txtRound:Label;
+    
 
     private _gameGridMap:Node;
     private _mapView:GameGridMapView;
+    private _switchAnim:Animation;
 
     private _rightCount:number = 0;
     private _score:number = 0;
     private _removeCount:number = 0;//连消计数
     private _playTime:number = 0;
     private _gameTime:number = 0;
+    private _battleTime:number = 5;
     public constructor(){
         super(UIModuleEnum.gameGrid3D,"GameGrid3DView");
     }
@@ -35,6 +41,7 @@ export class GameGrid3DView extends BaseUIView{
     }
 
     protected initUI(): void {
+        this._switchAnim = this._rootNode.getComponent(Animation);
         let btnExit:Node = this.getChildByName("btnExit");
         btnExit.on(Button.EventType.CLICK,()=>{
             this.hide();
@@ -58,14 +65,16 @@ export class GameGrid3DView extends BaseUIView{
 
         this._txtScore = this.getChildByName("txtScore").getComponent(Label);
         this._txtScore.string = "得分：0";
+        this._txtRound = this.getChildByName("txtRound").getComponent(Label);
+        this._txtRound.string = "回合：1";
 
-        
         this.addEvent();
     }
 
     private addEvent(){
         EventManager.addListener(EventEnum.OnGameSceneGridCreate,this.onCreateGrid,this);
         EventManager.addListener(EventEnum.OnGameSceneGridDrop,this.onGridDrop,this);
+        EventManager.addListener(EventEnum.OnGameGridRoundUpdate,this.onRoundUpdate,this);
     }
 
     public onShowAfter(param?: any): void {
@@ -80,6 +89,7 @@ export class GameGrid3DView extends BaseUIView{
     }
 
     private onGridDrop(index:number){
+        if(CacheManager.gameGrid.roundType != GameGridRoundType.Ready) return;
         let result = this._mapView.onGridDrop();
         if(result.isRight){
             this._btns[index].ShowRight();
@@ -90,6 +100,7 @@ export class GameGrid3DView extends BaseUIView{
         }
         if(this._rightCount >= 3){
             this.OnReqNextPreview();
+            CacheManager.gameGrid.switchRound();
         }
 
         if(result.canRemove) {
@@ -147,6 +158,19 @@ export class GameGrid3DView extends BaseUIView{
         this._rightCount = 0;
         for(let i = 0; i < this._btns.length; i++){
             this._btns[i].updatePreviewGrid();
+        }
+    }
+
+    private onRoundUpdate(roundType:GameGridRoundType){
+        if(roundType == GameGridRoundType.Ready) {
+            this._switchAnim.play("EnterReadyAnim");
+            Root3D.instance.switchCamera(CameraType.TopView);
+            let round = CacheManager.gameGrid.round;
+            this._txtRound.string = `回合：${round}`;
+        }
+        else{
+            this._switchAnim.play("EnterBattleAnim");
+            Root3D.instance.switchCamera(CameraType.BattleView);
         }
     }
 

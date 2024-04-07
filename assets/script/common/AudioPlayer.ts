@@ -24,6 +24,7 @@ export class AudioPlayer extends Component {
         }
 
         this._bgmPlayer = this.node.getChildByName("BGM").getComponent(AudioSource);
+        // this._bgmPlayer.getSampleRate()
         // this._audioPlayer = this.getComponent(engine.AudioSource);
     }
 
@@ -87,6 +88,17 @@ export class AudioPlayer extends Component {
                 if(!this._curBGM || this._curBGM != url){
                     return;
                 }
+                source.getPCMData(0).then((dataView) => {
+                    if (!dataView)  return;
+                    console.log("getPCMData left" + dataView.length);
+                    // for (let i = 0; i < dataView.length; i++) {
+                    //     console.log('data: ' + dataView.getData(i));
+                    // }
+                }); 
+                source.getPCMData(1).then((dataView) => {
+                    if (!dataView)  return;
+                    console.log("getPCMData right" + dataView.length);
+                }); 
             }
             source.clip = audio as AudioClip;
             source.play();

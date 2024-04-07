@@ -1,4 +1,4 @@
-import { Component, Node, ParticleSystem, Tween, Vec3, _decorator, math, tween } from "cc";
+import { BoxCollider, Component, Node, ParticleSystem, Tween, Vec3, _decorator, math, tween } from "cc";
 import { EntityState, EntityType, EntityVo } from "../../vo/EntityVo";
 import { BaseEntity } from "./BaseEntity";
 import { CacheManager } from "../../../../manager/CacheManager";
@@ -10,6 +10,9 @@ const { ccclass, property } = _decorator;
 export class GameGridMapItem extends BaseEntity {
     @property(Node) bodyNode: Node;
     @property(Node) preview: Node;
+    @property(Node) rigthNode: Node;
+    @property(Node) errorNode: Node;
+    @property(BoxCollider) collider: BoxCollider;
     private _col: number;
     private _row: number;
     private _playTween: boolean;
@@ -47,6 +50,7 @@ export class GameGridMapItem extends BaseEntity {
         if (this.bodyNode.active) this.bodyNode.active = false;
         this._vo = null;
         this._isEmpty = true;
+        this.collider.node.setPosition(0,-1,0);
     }
 
     protected playDie(): void {
@@ -69,7 +73,13 @@ export class GameGridMapItem extends BaseEntity {
     private atkEffect1(){
         let delay = this._vo["atkDelay"];
         let preTime = this._vo.atkPretime - delay;
-        this.node.inverseTransformPoint(this._battlePos,this._vo.battleVo.worldPos);
+        if(this._vo.battleVo){
+            this.node.inverseTransformPoint(this._battlePos,this._vo.battleVo.worldPos);
+        }
+        else{
+            this._battlePos.set(this._vo.pos.x,0,-10);
+            delay = 0;
+        }
         Mgr.soundMgr.play("skill/skill_cm3_2",false);
         tween(this.bodyNode).delay(delay / 1000).to(preTime / 1000,{position:new Vec3(0,5,0),scale:new Vec3(2,2,2)}).start();
     }
@@ -99,6 +109,12 @@ export class GameGridMapItem extends BaseEntity {
         tween(this.bodyNode).to(0.1,{scale:new Vec3(0.2,1.2,0.5)}).to(0.1,{scale:new Vec3(1,1,1)}).start();
     }
 
+    protected onSelectChanged(): void {
+        if(this._isSelected){
+            this.setEmpty(true,true,true);
+        }
+    }
+
     public updateItemTexture() {
         // if(!this._itemSprite) return;
         // let skinCfg = CacheManager.gameGrid.GetCurSkinCfg();
@@ -120,16 +136,18 @@ export class GameGridMapItem extends BaseEntity {
         return !this._vo || this._vo.state == EntityState.none || this._vo.state == EntityState.die;
     }
 
-    public setEmpty(bool: boolean, playTween: boolean = false, col_row: number = -1) {
+    public setEmpty(bool: boolean, attack: boolean = false, attackEmpty: boolean = false) {
         if(this._isEmpty == bool) return;
         this._isEmpty = bool;
         if (!bool) {
             //非空
             this.setState(EntityState.idle);
+            this.collider.node.setPosition(0,0,0);
         }
         else {
             //空
-            if(playTween){
+            this.collider.node.setPosition(0,-1,0);
+            if(attack){
                 if(!this._vo.battleVo || this._vo.battleVo.isDead()){
                     let battleVo = CacheManager.gameGrid.findTarget(this._vo.worldPos,EntityType.Enemy);
                     if(battleVo){
@@ -137,7 +155,12 @@ export class GameGridMapItem extends BaseEntity {
                     }
                 }
                 if(!this._vo.battleVo || this._vo.battleVo.isDead()){
-                    this.setState(EntityState.none);
+                    if(attackEmpty){
+                        this.setState(EntityState.attackEmpty);
+                    }
+                    else {
+                        this.setState(EntityState.none);
+                    }
                 }
                 else{
                     this.setState(EntityState.attackPre);
@@ -171,6 +194,9 @@ export class GameGridMapItem extends BaseEntity {
         if (this._isPreview === isShow) return;
         this._isPreview = isShow;
         this.preview.active = isShow;
+        let isRight = this.isEmpty;
+        this.rigthNode.active = isRight;
+        this.errorNode.active = !isRight;
     }
 
     private clearTween() {
@@ -191,6 +217,7 @@ export class GameGridMapItem extends BaseEntity {
 
     public resetEntity(): void {
         Tween.stopAllByTarget(this.bodyNode);
+        this.collider.node.setPosition(0,-1,0);
         super.resetEntity();     
     }
 }

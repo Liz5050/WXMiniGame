@@ -18,10 +18,10 @@ export class GridEntityVo extends EntityVo{
         this._atkTime = 100;
         this._state = EntityState.none;
         this._defaultState = EntityState.none;
-        let maxHp = MathUtils.getRandomInt(200,500);
+        let maxHp = 1;//MathUtils.getRandomInt(200,500);
         this._hp = maxHp;
         this._maxHp = maxHp;
-        this._attack = 50;
+        this._attack = 10;
     }
 
     public updatePos(pos: math.Vec3, worldPosition: math.Vec3): void {

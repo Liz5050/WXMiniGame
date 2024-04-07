@@ -104,7 +104,7 @@
         "_value": false
       },
       "light-probe": {
-        "_value": true
+        "_value": false
       },
       "tiled-map": {
         "_value": false
@@ -129,7 +129,6 @@
       "audio",
       "base",
       "gfx-webgl",
-      "light-probe",
       "particle",
       "particle-2d",
       "physics-2d-box2d",

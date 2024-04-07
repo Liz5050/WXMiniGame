@@ -30,7 +30,7 @@ export class GameGridEnemyContainer extends Component{
         let enemy = this._enemys[vo.entityId];
         if(!enemy){
             let node = EntityPool.getEntity(vo.type,this.tempEnemy);
-            node.name = vo.entityId;
+            node.name = `Enemy_${vo.entityId}`;
             this.node.addChild(node);
             enemy = node.getComponent(GameGridEnemy);
             this._enemys[vo.entityId] = enemy;
