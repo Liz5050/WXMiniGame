@@ -19,7 +19,7 @@ export class SceneEntitySelection extends Component {
     private _touchTarget: Node = null;
     private _playerSelect: ICursor;
     private _enemySelect: ICursor;
-    private _curSelect:BaseEntity;
+    private _curSelect:{[type:number]:BaseEntity} = {};
     protected onLoad(): void {
         this._playerSelect = new CursorPlayer(this.node.getChildByName("RectPlayer"));
         this._enemySelect = new CursorEnemy(this.node.getChildByName("RectEnemy"));
@@ -31,65 +31,79 @@ export class SceneEntitySelection extends Component {
             this._listenTouch(false);
         }
         EventManager.addListener(EventEnum.OnGameGridRoundUpdate,this.onRoundUpdate,this);
+        EventManager.addListener(EventEnum.OnSetSelectEntity,this.onSetSelectedEntity,this);
     }
 
     private onRoundUpdate(){
         if(!CacheManager.gameGrid.isBattle()) {
             this._playerSelect.hide();
             this._enemySelect.hide();
-            if(this._curSelect){
-                this._curSelect.setSelected(false);
-                this._curSelect = null;
-            }
+            this.clearSelect();
         }
+    }
+
+    private onSetSelectedEntity(entity:BaseEntity,isSelected:boolean){
+
     }
 
     private _listenTouch(isOn: boolean) {
         const target = this._touchTarget;
         const fn = isOn ? target.on : target.off;
-        fn.call(target, Node.EventType.TOUCH_START, this._onTS, this);
-        fn.call(target, Node.EventType.TOUCH_END, this._onTE, this);
-        fn.call(target, Node.EventType.TOUCH_CANCEL, this._onTE, this);
-        fn.call(target, Node.EventType.TOUCH_MOVE, this._onTM, this);
+        fn.call(target, Node.EventType.TOUCH_END, this.onTouchHandler, this);
+        fn.call(target, Node.EventType.TOUCH_CANCEL, this.onTouchHandler, this);
     }
-
-    private _onTS(e: EventTouch) { this._onTouch('ts', e); }
-    private _onTE(e: EventTouch) { this._onTouch('te', e); }
-    private _onTM(e: EventTouch) { this._onTouch('tm', e); }
-
-    private _onTouch(type: string, e: EventTouch) {
+    
+    private onTouchHandler(e: EventTouch) {
         if(!CacheManager.gameGrid.isBattle()) {
             return;
-        }
-        if(this._curSelect){
-            this._curSelect.setSelected(false);
         }
         const rsl = this._e2hit(e);
         if (!rsl) {
             this._playerSelect.hide();
             this._enemySelect.hide();
-            this._curSelect = null;
+            this.clearSelect();
             return;
         }
 
-        switch (type) {
-            case 'ts': break;
-            case 'tm': break;
-            case 'te':
-                const root = rsl.collider.node.parent;
-                let entity = root.getComponent(BaseEntity);
-                if(entity && entity.isEnemy()){
-                    this._enemySelect.showWith(root);
-                }
-                else{
-                    let mapItem = root.getComponent(GameGridMapItem);
-                    let pos = mapItem.isEmpty ? new Vec3(0,-1,0) : Vec3.ZERO;
-                    this._playerSelect.showWith(root,pos);
-                }
-                entity.setSelected(true);
-                this._curSelect = entity;
-                break;
+        const root = rsl.collider.node.parent;
+        let entity:BaseEntity = root.getComponent(BaseEntity);
+        this.setSelected(entity,true);
+    }
+
+    private setSelected(entity:BaseEntity,isSelected:boolean){
+        if(!entity) return;
+        if(!this.checkState(entity,isSelected)) return;
+
+        let entityNode = entity.node;
+        let curEntity = this._curSelect[entity.type];
+        if(curEntity) {
+            curEntity.setSelected(false);
         }
+        if(!isSelected) {
+            entity.isEnemy() ? this._enemySelect.hide() : this._playerSelect.hide();
+            return;
+        }
+        if(entity.isEnemy()){
+            this._enemySelect.showWith(entityNode);
+        }
+        else{
+            let mapItem:GameGridMapItem = entityNode.getComponent(GameGridMapItem);
+            let pos = mapItem.isEmpty ? new Vec3(0,-1,0) : Vec3.ZERO;
+            this._playerSelect.showWith(entityNode,pos);
+        }
+        entity.setSelected(true);
+        this._curSelect[entity.type] = entity;
+    }
+
+    private checkState(entity:BaseEntity,isSelected:boolean){
+        let curEntity = this._curSelect[entity.type];
+        if(isSelected) {
+            if(curEntity === entity) return false;
+        }
+        else{
+            if(!curEntity || curEntity !== entity) return false;
+        }
+        return true;
     }
 
     private _e2hit(e: EventTouch) {
@@ -112,6 +126,12 @@ export class SceneEntitySelection extends Component {
         return result;
     }
     
+    private clearSelect(){
+        for(let type in this._curSelect){
+            this._curSelect[type].setSelected(false);
+        }
+        this._curSelect = {};
+    }
 }
 
 class CursorEnemy implements ICursor {

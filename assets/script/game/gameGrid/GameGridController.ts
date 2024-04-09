@@ -7,6 +7,7 @@ import { GameGrid3DView } from "./view/GameGrid3DView";
 import { Layer3DManager } from "../../manager/Layer3DManager";
 import { Node, instantiate } from "cc";
 import { GameLoadingView } from "../../common/loading/GameLoadingView";
+import { CacheManager } from "../../manager/CacheManager";
 
 export default class GameGridController {
     private _gameStartView:GameGridStartView;
@@ -18,6 +19,11 @@ export default class GameGridController {
 
     private init(){
         EventManager.addListener(EventEnum.OnGameStart,this.onGameStart,this);
+        EventManager.addListener(EventEnum.OnGameGridSceneReady,this.onSceneReady,this);
+    }
+
+    private onSceneReady(){
+        CacheManager.gameGrid.sceneReady = true;
     }
 
     private onGameStart(type:GameType):void {

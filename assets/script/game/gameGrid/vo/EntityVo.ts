@@ -3,6 +3,8 @@ import Mgr from "../../../manager/Mgr";
 import { BaseEntity } from "../scene/entity/BaseEntity";
 import { CacheManager } from "../../../manager/CacheManager";
 import MathUtils from "../../../utils/MathUtils";
+import { EventManager } from "../../../manager/EventManager";
+import { EventEnum } from "../../../enum/EventEnum";
 
 export enum EntityType {
     Grid = 1,
@@ -76,6 +78,14 @@ export class EntityVo extends Object{
 
     public setEntity(entity: BaseEntity) {
         this._entity = entity;
+    }
+
+    public get entity():BaseEntity{
+        return this._entity;
+    }
+
+    public get isSelected(){
+        return this._entity && this._entity.isSelected;
     }
 
     public setState(state: EntityState) {
@@ -258,6 +268,7 @@ export class EntityVo extends Object{
         if (this.battleVo && this.battleVo.isDead()) {
             this.battleVo = null;
         }
+        EventManager.dispatch(EventEnum.OnSetSelectEntity,this._entity,false);
         CacheManager.gameGrid.delEntity(this.entityId);
     }
 

@@ -119,6 +119,7 @@ export class GameGridCache {
     private _entitys:{[entityId:string]:EntityVo} = {};
     private _entityCount:{[type:number]:number} = {};
     private _roundType:GameGridRoundType;
+    private _sceneReady:boolean = false;
     private _round:number = 1;
     private _nextRound:number = 1;//当前回合的怪物全部击杀，才可进入下一回合
     public constructor(){
@@ -146,6 +147,7 @@ export class GameGridCache {
         this._nextRound = 1;
         this._roundType = GameGridRoundType.Ready;
         this._enemyCountList[this._round] = 1;
+        this._sceneReady = true;
     }
 
     public AddPropNum(rewardId:BannerRewardId){
@@ -292,6 +294,7 @@ export class GameGridCache {
     }
 
     public switchRound(){
+        this._sceneReady = false;
         let type = this._roundType;
         if(type == GameGridRoundType.Ready){
             this._roundType = GameGridRoundType.Battle;
@@ -318,8 +321,12 @@ export class GameGridCache {
         return this._round;
     }
 
+    public set sceneReady(val:boolean){
+        this._sceneReady = val;
+    }
+
     public isBattle():boolean{
-        return this._roundType == GameGridRoundType.Battle;
+        return this._roundType == GameGridRoundType.Battle && this._sceneReady;
     }
 
     public getGridDataList(resType:number){
@@ -398,7 +405,9 @@ export class GameGridCache {
         let target:EntityVo;
         for(let entityId in this._entitys){
             let vo = this._entitys[entityId];
-            if(vo.type == type && !vo.isDead() && vo.state != EntityState.none) {
+            if(vo.type != type) continue;
+            if(!vo.isDead() && vo.state != EntityState.none) {
+                if(vo.type == EntityType.Enemy && vo.isSelected) return vo;//优先选中敌方
                 let dis = math.Vec3.distance(pos,vo.worldPos);
                 if(dis < minDistance){
                     minDistance = dis;

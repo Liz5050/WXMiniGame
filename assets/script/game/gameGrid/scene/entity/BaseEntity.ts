@@ -24,8 +24,20 @@ export class BaseEntity extends Component {
         this.onSelectChanged();
     }
 
+    public get isSelected():boolean{
+        return this._isSelected;
+    }
+
     public isEnemy():boolean{
         return this._type == EntityType.Enemy;
+    }
+
+    public get type():EntityType{
+        return this._type;
+    }
+
+    public get vo():EntityVo{
+        return this._vo;
     }
 
     public hurt() {
