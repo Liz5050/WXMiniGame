@@ -4,6 +4,7 @@ import { EventManager } from '../../manager/EventManager';
 import { EventEnum } from '../../enum/EventEnum';
 import { CacheManager } from '../../manager/CacheManager';
 import { BannerRewardId,SDK } from '../../SDK/SDK';
+import { Tip } from '../../common/tip/Tip';
 const { ccclass, property } = _decorator;
 
 @ccclass('GameShopView')
@@ -86,7 +87,7 @@ export class GameShopView extends Component {
             return;
         }
         CacheManager.gameGrid.UpdateSkin(data);
-        SDK.showToast("使用成功");
+        Tip.showRollTip("使用成功");
     }
 
     private getItem():GameShopItem{
@@ -148,7 +149,8 @@ class GameShopItem {
             }else{
                 //购买
                 if(!CacheManager.player.checkMoneyEnough(this._data.price)){
-                    SDK.showToast("积分不足");
+                    // SDK.showToast("积分不足");
+                    Tip.showRollTip("积分不足");
                 }
                 else{
                     CacheManager.shop.sendBuy(this._data.skin_id);

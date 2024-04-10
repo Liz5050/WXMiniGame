@@ -37,10 +37,13 @@
     "_components": [
       {
         "__id__": 38
+      },
+      {
+        "__id__": 40
       }
     ],
     "_prefab": {
-      "__id__": 40
+      "__id__": 42
     },
     "_lpos": {
       "__type__": "cc.Vec3",
@@ -831,11 +834,34 @@
     "collider": {
       "__id__": 3
     },
+    "skill": {
+      "__id__": 40
+    },
     "_id": ""
   },
   {
     "__type__": "cc.CompPrefabInfo",
     "fileId": "25colG+DFFBKWetZW5NJNW"
+  },
+  {
+    "__type__": "67c60WrgXVJGobq4B2CWcl3",
+    "_name": "",
+    "_objFlags": 0,
+    "node": {
+      "__id__": 1
+    },
+    "_enabled": true,
+    "__prefab": {
+      "__id__": 41
+    },
+    "bodyNode": {
+      "__id__": 6
+    },
+    "_id": ""
+  },
+  {
+    "__type__": "cc.CompPrefabInfo",
+    "fileId": "a1431mDIBADrvKbXBcOJRY"
   },
   {
     "__type__": "cc.PrefabInfo",
@@ -849,7 +875,7 @@
     "instance": null,
     "targetOverrides": [
       {
-        "__id__": 41
+        "__id__": 43
       }
     ],
     "nestedPrefabInstanceRoots": [
@@ -864,7 +890,7 @@
       "__id__": 23
     },
     "sourceInfo": {
-      "__id__": 42
+      "__id__": 44
     },
     "propertyPath": [
       "_trailModule",
@@ -874,7 +900,7 @@
       "__id__": 23
     },
     "targetInfo": {
-      "__id__": 43
+      "__id__": 45
     }
   },
   {

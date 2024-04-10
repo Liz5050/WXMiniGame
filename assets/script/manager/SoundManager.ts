@@ -1,5 +1,6 @@
 import { director, utils } from "cc";
 import { AudioPlayer } from "../common/AudioPlayer";
+import { Tip } from "../common/tip/Tip";
 
 export default class SoundManager {
     private _ap:AudioPlayer;
@@ -19,6 +20,12 @@ export default class SoundManager {
     }
     public setMute(isMute:boolean){
         this._ap.setMute(isMute);
+        if(isMute){
+            Tip.showRollTip("音量：关");
+        }
+        else{
+            Tip.showRollTip("音量：开");
+        }
     }
 
     public play(audioName:string,stopLast:boolean = true) {

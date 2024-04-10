@@ -6,6 +6,7 @@ import Mgr from '../manager/Mgr';
 import { BaseUISubView } from './base/BaseUISubView';
 import { CacheManager } from '../manager/CacheManager';
 import { SDK } from '../SDK/SDK';
+import { Tip } from '../common/tip/Tip';
 
 export class MainMenu extends BaseUISubView {
     private _imgAvatar:Sprite;
@@ -94,7 +95,8 @@ export class MainMenu extends BaseUISubView {
             else if(clickCount >= targetNum){
                 showTips = "别着急，已经在做了~";
             }
-            SDK.showToast(showTips);
+            // SDK.showToast(showTips);
+            Tip.showRollTip(showTips);
         });
         let openDatacontext = this.getChildByName("openDataContext");
         let btnRank = this.getChildByName("btnRank");
@@ -110,7 +112,7 @@ export class MainMenu extends BaseUISubView {
                 EventManager.dispatch(EventEnum.OnShowWorldRank);
             }
             else{
-                SDK.showToast("请先登录授权");
+                Tip.showRollTip("请先登录授权");
             }
         });
         
@@ -161,19 +163,6 @@ export class MainMenu extends BaseUISubView {
     private SetTabIdx(index:number){
         if(this._curIndex == index){
             return;
-        }
-        // if(index != 0 && index != 2 && index != 4){
-        //     SDK.showToast("功能暂未开放");
-        //     return;
-        // }
-        if(index == 2){
-            if(!SDK.isLogin()){
-                SDK.showToast("请先登录授权");
-                return;
-            }
-            else{
-                EventManager.dispatch(EventEnum.OnShowWorldRank);
-            }
         }
 
         if(this._curIndex >= 0){

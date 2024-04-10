@@ -4,35 +4,47 @@ import { BaseEntity } from "./BaseEntity";
 import { CacheManager } from "../../../../manager/CacheManager";
 import Mgr from "../../../../manager/Mgr";
 import MathUtils from "../../../../utils/MathUtils";
+import { SkillComponent } from "../components/SkillComponent";
 const { ccclass, property } = _decorator;
 
 @ccclass
 export class GameGridMapItem extends BaseEntity {
-    @property(Node) bodyNode: Node;
-    @property(Node) preview: Node;
-    @property(Node) rigthNode: Node;
-    @property(Node) errorNode: Node;
-    @property(BoxCollider) collider: BoxCollider;
+    @property(Node) bodyNode: Node = null;
+    @property(Node) preview: Node = null;
+    @property(Node) rigthNode: Node = null;
+    @property(Node) errorNode: Node = null;
+    @property(BoxCollider) collider: BoxCollider = null;
+    @property(SkillComponent) skill:SkillComponent = null;
     private _col: number;
     private _row: number;
     private _playTween: boolean;
     private _skinRes: string;
     private _isPreview: boolean = false;
 
-    private _battlePos:Vec3;
-    private _atkTime:number = 0;
     private _isEmpty:boolean = true;
     public setPos(col: number, row: number) {
         this._col = col;
         this._row = row;
         this.node.setPosition(this._col, 0, this._row);
-        this._battlePos = new Vec3();
         this.initMapItem();
     }
     protected updateSub(dt: number): void {
         if(!this._vo || this._vo.isDead()) return;
-        if(this._vo.state == EntityState.idle){
-            
+        if(this._vo.type != EntityType.GridHero) return;
+        if(!CacheManager.gameGrid.isBattle()) {
+            this.setState(EntityState.idle);
+            return;
+        }
+        if (this._vo.state == EntityState.idle) {
+            if (!this._vo.battleVo || this._vo.battleVo.isDead()) {
+                let battleVo = CacheManager.gameGrid.findTarget(this._vo.worldPos, EntityType.Enemy);
+                if (!battleVo) return;
+                this._vo.battleVo = battleVo;
+            }
+            if (this._vo.isAttackRange()) {
+                this.setState(EntityState.attackPre);
+                // this.setState(EntityState.idle);
+            }
         }
     }
 
@@ -44,6 +56,7 @@ export class GameGridMapItem extends BaseEntity {
 
     public onEntityVoUpdate(){
         this._vo.updatePos(this.node.position,this.node.worldPosition);
+        this.skill.setData(this._vo);
     }
 
     protected playNone(): void {
@@ -66,43 +79,11 @@ export class GameGridMapItem extends BaseEntity {
     }
 
     protected playAttackPre(): void {
-        this._atkTime = this._vo.atkTime;
-        this.atkEffect1();
-    }
-
-    private atkEffect1(){
-        let delay = this._vo["atkDelay"];
-        let preTime = this._vo.atkPretime - delay;
-        if(this._vo.battleVo){
-            this.node.inverseTransformPoint(this._battlePos,this._vo.battleVo.worldPos);
-        }
-        else{
-            this._battlePos.set(this._vo.pos.x,0,-10);
-            delay = 0;
-        }
-        Mgr.soundMgr.play("skill/skill_cm3_2",false);
-        tween(this.bodyNode).delay(delay / 1000).to(preTime / 1000,{position:new Vec3(0,5,0),scale:new Vec3(2,2,2)}).start();
-    }
-
-    private atkEffect2(){
-        let delay = this._vo["atkDelay"];
-        let preTime = this._vo.atkPretime - delay;
-        this.node.inverseTransformPoint(this._battlePos,this._vo.battleVo.worldPos);
-        Mgr.soundMgr.play("skill/skill_cm3_2",false);
-        tween(this.bodyNode).to(0.2,{position:new Vec3(0,5,this._battlePos.z),scale:new Vec3(0.5,1.5,0.05)},{onUpdate:()=>{
-            let angle = MathUtils.getAngle2(this.node.position.x,this.node.position.y,this._battlePos.x,this._battlePos.y);
-            this.bodyNode.forward = this._battlePos;
-            this.bodyNode.setRotationFromEuler(angle,0,0);
-        }}).start();
+        this.skill.playSkill(1,"pre");
     }
 
     protected playAttack(): void {
-        tween(this.bodyNode)
-        .to(this._atkTime / 1000,{position:new Vec3(this._battlePos.x,0,this._battlePos.z),scale:new Vec3(0.05,0.05,0.05)}).delay(0.1)
-        .call(()=>{
-            if (this.bodyNode.active) this.bodyNode.active = false;
-        })
-        .start();
+        this.skill.playSkill(1,"atk");
     }
 
     protected playHurt(): void {
@@ -110,7 +91,7 @@ export class GameGridMapItem extends BaseEntity {
     }
 
     protected onSelectChanged(): void {
-        if(this._isSelected){
+        if(this._isSelected && this._vo && this._vo.type == EntityType.Grid){
             this.setEmpty(true,true,true);
         }
     }

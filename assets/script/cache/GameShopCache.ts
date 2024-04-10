@@ -1,4 +1,5 @@
 import { SDK } from "../SDK/SDK";
+import { Tip } from "../common/tip/Tip";
 import { CloudApi } from "../enum/CloudDefine";
 import { EventEnum } from "../enum/EventEnum";
 import { CacheManager } from "../manager/CacheManager";
@@ -123,9 +124,9 @@ export class GameShopCache {
             let resData = data.data;
             if(resData.skin_id != undefined){
                 if(resData.skin_id > 0){
-                    SDK.showToast("使用成功");
+                    Tip.showRollTip("使用成功");
                 }else{
-                    SDK.showToast("已卸下");
+                    Tip.showRollTip("已卸下");
                 }
                 if(CacheManager.player.playerInfo){
                     CacheManager.player.playerInfo.skin_id = resData.skin_id;

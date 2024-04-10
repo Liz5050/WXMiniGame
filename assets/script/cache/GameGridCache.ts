@@ -10,6 +10,8 @@ import MathUtils from "../utils/MathUtils";
 import { EnemyVo } from "../game/gameGrid/vo/EnemyVo";
 import { EntityState, EntityType, EntityVo } from "../game/gameGrid/vo/EntityVo";
 import { GridEntityVo } from "../game/gameGrid/vo/GridEntityVo";
+import { Tip } from "../common/tip/Tip";
+import { GridHeroVo } from "../game/gameGrid/vo/GridHeroVo";
 
 class GameGridRankData {
     public type:number;
@@ -172,7 +174,7 @@ export class GameGridCache {
         }
         else{
             if(this._hadGetVideoReward[rewardId]){
-                SDK.showToast("道具数量不足!");
+                Tip.showRollTip("道具数量不足!");
             }
             else {
                 SDK.ShowRewardBanner(rewardId);
@@ -273,7 +275,7 @@ export class GameGridCache {
         let jsonStr = JSON.stringify(gameData);
         SDK.CloudPOST(CloudApi.game_grid_save,{jsonStr:jsonStr},function(data){
             console.log("保存记录更新",data.data);
-            SDK.showToast("保存成功");
+            Tip.showRollTip("保存成功");
         });
     }
 
@@ -435,6 +437,9 @@ export class GameGridCache {
                 vo = new EnemyVo();
                 let round = CacheManager.gameGrid.round;
                 data = {maxHp:10 * round}
+                break;
+            case EntityType.GridHero:
+                vo = new GridHeroVo();
                 break;
         }
         vo.initVo(data);

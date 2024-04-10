@@ -6,6 +6,7 @@ import { CloudApi } from "../enum/CloudDefine";
 import { GameLoadingView } from "../common/loading/GameLoadingView";
 import DefaultSDK from "./DefaultSDK";
 import {sys, view} from "cc";
+import { Tip } from "../common/tip/Tip";
 
 //开发者工具版本号1.06.2307260stable
 
@@ -105,12 +106,12 @@ export default class WXSDK extends DefaultSDK{
                       // 用户同意授权后回调，通过回调可获取用户头像昵称信息
                       	console.log("已主动授权用户信息",res)
 					  	if(res.userInfo){
-                            self.showToast("登录成功");
+                            Tip.showRollTip("登录成功");
                             CacheManager.player.userInfo = res.userInfo;
 						  	button.destroy();
 					  	}
 					  	else{
-							self.showToast("取消登录");
+                            Tip.showRollTip("取消登录");
 					  	}
                   })
                 }
@@ -143,7 +144,7 @@ export default class WXSDK extends DefaultSDK{
             // console.log("回到前台");
             if(CacheManager.shop.showRewardTips){
                 CacheManager.shop.showRewardTips = false;
-                this.showToast("分享成功，积分+100",3000);
+                Tip.showRollTip("分享成功，积分+100")
             }
         });
     }
@@ -220,7 +221,7 @@ export default class WXSDK extends DefaultSDK{
                 GameLoadingView.hideLoading();
                 console.log('激励视频 广告显示失败');
                 this.BannerVideoState = false;
-                this.showToast("暂无广告");
+                Tip.showRollTip("暂无广告");
             })
         }).then(()=>{
             GameLoadingView.hideLoading();

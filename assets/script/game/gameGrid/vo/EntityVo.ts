@@ -9,7 +9,7 @@ import { EventEnum } from "../../../enum/EventEnum";
 export enum EntityType {
     Grid = 1,
     Enemy = 2,
-    GridBattle = 3,
+    GridHero = 3,
 }
 export enum EntityState {
     none = 0,
@@ -37,7 +37,7 @@ export class EntityVo extends Object{
     protected _stiffnessTime: number = 0;//硬直时间
     protected _dieTime:number = 0;//死亡消亡时间
     private _attackTime: number = 0;//攻击的时间，用于计算攻击CD
-    protected _attackCD: number = 1000;//ms攻击CD时间（攻速）
+    protected _attackCD: number = 2000;//ms攻击CD时间（攻速）
     protected _atkPreTime: number = 0;//前摇时长 单位ms
     protected _atkTime: number = 100;//攻击时长 单位ms
     protected _atkAfterTime: number = 0;//后摇时长 单位ms
@@ -162,6 +162,11 @@ export class EntityVo extends Object{
                 break;
         }
         return true;
+    }
+
+    public levelUp(){
+        this._attack += 10;
+        this._attackDistance+=1;
     }
 
     private canAttack(): boolean {

@@ -166,15 +166,29 @@ export class GameGridMapView extends Component{
         for(let i:number = 0; i < lenX; i++){
             let col:number = checkListX[i];
             for(let row:number = 0; row < 10; row++){
-                this._mapItemList[row][col].setEmpty(true,true);//1、纵向消除
+                let item = this._mapItemList[row][col];
+                item.setEmpty(true,true);//1、纵向消除
                 canRemove = true
             }
         }
         for(let i:number = 0; i < lenY ; i++){
             let row:number = checkListY[i];
+            let createHero = false;
             for(let col:number = 0; col < 10; col++){
-                this._mapItemList[row][col].setEmpty(true,true);//2、横向消除
+                let item = this._mapItemList[row][col];
+                if(item.vo.type == EntityType.GridHero){
+                    item.vo.levelUp();
+                }
+                else{
+                    item.setEmpty(true,true);//2、横向消除
+                    createHero = true;
+                }
                 canRemove = true
+            }
+            if(createHero){
+                let vo = CacheManager.gameGrid.addEntity(EntityType.GridHero);        
+                this._mapItemList[row][0].setData(vo);
+                this._mapItemList[row][0].setEmpty(false);
             }
         }
         

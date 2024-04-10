@@ -6,6 +6,7 @@ import { CloudApi } from "../enum/CloudDefine";
 import TTSDK from "./TTSDK";
 import { CacheManager } from "../manager/CacheManager";
 import DefaultSDK from "./DefaultSDK";
+import { Tip } from "../common/tip/Tip";
 
 export enum BannerRewardId{
     GameGridResetNum = 1,
@@ -121,7 +122,7 @@ export class SDK {
     public static set CanShowBanner(val:boolean){
         SDK._CanShowBanner = val;
         if(val){
-            SDK.showToast("谢谢支持~");
+            Tip.showRollTip("谢谢支持~");
         }
         else {
         }
