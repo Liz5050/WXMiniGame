@@ -12,6 +12,7 @@ import { EntityState, EntityType, EntityVo } from "../game/gameGrid/vo/EntityVo"
 import { GridEntityVo } from "../game/gameGrid/vo/GridEntityVo";
 import { Tip } from "../common/tip/Tip";
 import { GridHeroVo } from "../game/gameGrid/vo/GridHeroVo";
+import { EntityUtil } from "../game/gameGrid/scene/entity/EntityUtil";
 
 class GameGridRankData {
     public type:number;
@@ -407,7 +408,7 @@ export class GameGridCache {
         let target:EntityVo;
         for(let entityId in this._entitys){
             let vo = this._entitys[entityId];
-            if(vo.type != type) continue;
+            if(vo.type != type && EntityUtil.isGrid(type) != EntityUtil.isGrid(vo.type)) continue;
             if(!vo.isDead() && vo.state != EntityState.none) {
                 if(vo.type == EntityType.Enemy && vo.isSelected) return vo;//优先选中敌方
                 let dis = math.Vec3.distance(pos,vo.worldPos);
@@ -456,7 +457,7 @@ export class GameGridCache {
             case EntityType.Enemy:
                 vo = new EnemyVo();
                 let round = CacheManager.gameGrid.round;
-                data = {maxHp:10 * round}
+                data = {maxHp:10 * round + 10}
                 break;
             case EntityType.GridHero:
                 vo = new GridHeroVo();

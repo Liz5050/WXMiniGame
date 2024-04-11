@@ -25,6 +25,6 @@ export class EnemyVo extends EntityVo{
             this._maxHp = 10;
         }
         this._hp = this._maxHp;
-        this._attack = MathUtils.getRandomInt(20,100);
+        this._attack = 20;
     }
 }

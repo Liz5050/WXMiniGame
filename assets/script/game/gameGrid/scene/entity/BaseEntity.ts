@@ -49,7 +49,7 @@ export class BaseEntity extends Component {
         this.playHurt();
     }
 
-    protected updateHp(){
+    public updateHp(){
         this._hudComponent && this._hudComponent.updateHp();
     }
 

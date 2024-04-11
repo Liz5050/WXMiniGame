@@ -177,14 +177,19 @@ export class EntityVo extends Object{
         if(exp >= this.maxExp){
             this._exp = this.maxExp - exp;
             this.levelUp();
+            console.log("addexp:"+this._exp + "---maxExp" + this.maxExp)
+        }
+        else{
+            this._exp = exp;
         }
     }
 
     private levelUp(){
         this.level ++;
         this._attack += 10;
-        this._attackDistance += 1;
-        this.maxExp = this.level * 10;
+        this._maxHp = 100 + this.level * 10;
+        this.maxExp = Math.min(this.level * 10,80);
+        this.hp = this._maxHp;
         this.entity && this.entity.updateLevel();
     }
 
@@ -238,7 +243,6 @@ export class EntityVo extends Object{
             if (!this.battleVo) return;
             this.battleVo.hp -= this._attack;
             if(this.battleVo.isDead()) {
-                this._attack++;//MathUtils.getRandomInt(20, 100);
                 this.battleVo = null;
             }
         },this);
@@ -314,10 +318,16 @@ export class EntityVo extends Object{
     }
     public set hp(val: number) {
         if(this._hp <= 0 && val <= 0) return;
+        let isHurt = val < this._hp;
         this._hp = val;
-        this.playHurt();
-        if(val <= 0) this.setState(EntityState.die);
-        else this.setState(EntityState.stiffness);
+        if(isHurt) {
+            this.playHurt();
+            if(val <= 0) this.setState(EntityState.die);
+            else this.setState(EntityState.stiffness);
+        }
+        else{
+            this.entity && this.entity.updateHp();
+        }
     }
     public get state(): number {
         return this._state;

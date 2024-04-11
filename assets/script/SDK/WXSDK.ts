@@ -322,4 +322,8 @@ export default class WXSDK extends DefaultSDK{
             }
         })
     }
+
+    public vibrateShort(type:string){
+        wx.vibrateShort({type:type});
+    }
 }

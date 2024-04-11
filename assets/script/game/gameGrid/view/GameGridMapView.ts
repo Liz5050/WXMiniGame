@@ -10,6 +10,8 @@ import { EntityType } from "../vo/EntityVo";
 import {EntityPool} from "../scene/entity/EntityPool";
 import { Layer3DManager } from "../../../manager/Layer3DManager";
 import { GameGridEnemyContainer } from "../scene/GameGridEnemyContainer";
+import { WindowUtils } from "../../../utils/WindowUtils";
+import { SDK } from "../../../SDK/SDK";
 const { ccclass, property } = _decorator;
 
 @ccclass('GameGridMapView')
@@ -189,7 +191,6 @@ export class GameGridMapView extends Component{
             for(let row:number = 0; row < 10; row++){
                 let item = this._mapItemList[row][col];
                 if(item.vo.type == EntityType.GridHero){
-                    item.vo.addExp(10);
                     heroPos = item.vo.pos;
                 }
                 else{
@@ -202,8 +203,14 @@ export class GameGridMapView extends Component{
                 }
                 canRemove = true
             }
-            let vo = CacheManager.gameGrid.addEntity(EntityType.GridHero);        
-            heroItem.setData(vo);
+            if(!heroVo) {
+                heroVo = CacheManager.gameGrid.addEntity(EntityType.GridHero);        
+                heroItem.setData(heroVo);
+            }
+            else{
+                heroVo.addExp(10);
+            }
+                
             heroItem.setEmpty(false);
         }
         for(let i:number = 0; i < lenY ; i++){
@@ -221,7 +228,6 @@ export class GameGridMapView extends Component{
             for(let col:number = 0; col < 10; col++){
                 let item = this._mapItemList[row][col];
                 if(item.vo.type == EntityType.GridHero){
-                    item.vo.addExp(10);
                     heroPos = item.vo.pos;
                 }
                 else{
@@ -234,8 +240,13 @@ export class GameGridMapView extends Component{
                 }
                 canRemove = true
             }
-            let vo = CacheManager.gameGrid.addEntity(EntityType.GridHero);        
-            heroItem.setData(vo);
+            if(!heroVo) {
+                heroVo = CacheManager.gameGrid.addEntity(EntityType.GridHero);        
+                heroItem.setData(heroVo);
+            }
+            else{
+                heroVo.addExp(10);
+            }
             heroItem.setEmpty(false);
         }
         
@@ -246,7 +257,9 @@ export class GameGridMapView extends Component{
     private OnTouchMoveCheck(){
         let tempNodeList = this.tempGroup.children;
         let len = tempNodeList.length;
-        this.clearPreview();
+        // this.clearPreview();
+
+        let isShake = false;
         for(let i = 0; i < len; i ++) {
             let grid:Node = tempNodeList[i];
             this.mapGridContainer.inverseTransformPoint(this._endCheckLocalPos,grid.worldPosition);
@@ -259,10 +272,14 @@ export class GameGridMapView extends Component{
                     lastPos = {x:centerX,z:centerZ};
                     this._lastPreviewPos[i] = lastPos;
                 }
-                // if(lastPos.x != centerX || lastPos.z != centerZ){
-                //     //清空上一个预览中的格子
-                //     this._mapItemList[lastPos.z][lastPos.x].setPreview(false);
-                // }
+                if(lastPos.x != centerX || lastPos.z != centerZ){
+                    //清空上一个预览中的格子
+                    this._mapItemList[lastPos.z][lastPos.x].setPreview(false);
+                    if(!isShake){
+                        isShake = true;
+                        SDK.vibrateShort();
+                    }
+                }
                 lastPos.x = centerX;
                 lastPos.z = centerZ;
                 let item:GameGridMapItem = this._mapItemList[centerZ][centerX];

@@ -64,6 +64,7 @@ export class GameGridMapItem extends BaseEntity {
         this._vo = null;
         this._isEmpty = true;
         this.collider.node.setPosition(0,-1,0);
+        this._isSelected = false;
     }
 
     protected playDie(): void {
@@ -226,9 +227,10 @@ export class GameGridMapItem extends BaseEntity {
 
     public resetEntity(): void {
         Tween.stopAllByTarget(this.bodyNode);
-        this.collider.node.setPosition(0,-1,0);
-        this._isSelected = false;
-        this._vo = null;
+        this.playNone();
+        if(this._hudComponent){
+            this._hudComponent.enabled = false;
+        } 
         // super.resetEntity();     
     }
 }

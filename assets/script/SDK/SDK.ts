@@ -155,6 +155,13 @@ export class SDK {
         SDK._curSDK.postMessage(obj);
     }
 
+    /**
+     * heavy、medium、light
+     */
+    public static vibrateShort(type:string = "light"){
+        SDK._curSDK.vibrateShort(type);
+    }
+
     public static get curSdk():DefaultSDK{
         return SDK._curSDK;
     }

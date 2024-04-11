@@ -39,6 +39,9 @@ export default class DefaultSDK {
     public postMessage(obj: object){
     }
 
+    public vibrateShort(type:string){
+    }
+
     //抖音平台必接侧边栏
     public canShowSideBarReward(){
     }
