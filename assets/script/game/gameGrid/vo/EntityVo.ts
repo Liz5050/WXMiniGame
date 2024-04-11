@@ -25,8 +25,12 @@ export enum EntityState {
 
 export class EntityVo extends Object{
     protected _id: number = 0;
+    protected _name:string = "";
     protected _speed: number = 0;
     protected _skills: number[];
+    protected _exp:number = 0;
+    public maxExp:number = 10;
+    public level:number = 1;
     protected _hp: number = 0;
     protected _maxHp: number = 0;
     protected _attack: number = 20;//攻击力
@@ -164,9 +168,24 @@ export class EntityVo extends Object{
         return true;
     }
 
-    public levelUp(){
+    public set exp(val:number){
+        this._exp = val;
+    }
+
+    public addExp(val:number){
+        let exp = this._exp + val;
+        if(exp >= this.maxExp){
+            this._exp = this.maxExp - exp;
+            this.levelUp();
+        }
+    }
+
+    private levelUp(){
+        this.level ++;
         this._attack += 10;
-        this._attackDistance+=1;
+        this._attackDistance += 1;
+        this.maxExp = this.level * 10;
+        this.entity && this.entity.updateLevel();
     }
 
     private canAttack(): boolean {
@@ -302,6 +321,12 @@ export class EntityVo extends Object{
     }
     public get state(): number {
         return this._state;
+    }
+    public get name():string{
+        return this._name;
+    }
+    public getShowName():string{
+        return this.name;
     }
     public get id(): number {
         return this._id;

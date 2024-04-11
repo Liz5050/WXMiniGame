@@ -156,11 +156,11 @@ class CursorEnemy implements ICursor {
         this.node.parent = root;
         this.node.position = Vec3.ZERO;
 
-        this.rect.lineWidth = this.lineWidth * 4;
         this.rect.showLine = false;
-        tween(this.rect)
-            .to(this.dur, { lineWidth: this.lineWidth }, { easing: easing.backOut })
-            .start();
+        // this.rect.lineWidth = this.lineWidth * 4;
+        // tween(this.rect)
+        //     .to(this.dur, { lineWidth: this.lineWidth }, { easing: easing.backOut })
+        //     .start();
 
         this.rect.anchor = 1;
         this._tw?.stop();
@@ -199,10 +199,10 @@ class CursorPlayer implements ICursor {
         this.node.position = pos;
         this.node.scale = Vec3.ONE;
 
-        this.rect.lineWidth = this.lineWidth * 4;
-        tween(this.rect)
-            .to(this.dur, { lineWidth: this.lineWidth }, { easing: easing.backOut })
-            .start();
+        // this.rect.lineWidth = this.lineWidth * 4;
+        // tween(this.rect)
+        //     .to(this.dur, { lineWidth: this.lineWidth }, { easing: easing.backOut })
+        //     .start();
         
         this._tw?.stop();
         this._tw = tween(this.node)

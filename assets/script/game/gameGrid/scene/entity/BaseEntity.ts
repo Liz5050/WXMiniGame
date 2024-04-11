@@ -3,6 +3,7 @@ import { EntityState, EntityType, EntityVo } from "../../vo/EntityVo";
 import { HUDComponent } from "../components/HUDComponent";
 import { GameAgent } from "../components/GameAgent";
 import { EntityPool } from "./EntityPool";
+import {EntityUtil} from "./EntityUtil";
 const { ccclass, property } = _decorator;
 
 @ccclass
@@ -26,6 +27,10 @@ export class BaseEntity extends Component {
 
     public get isSelected():boolean{
         return this._isSelected;
+    }
+
+    public updateLevel(){
+        this._hudComponent && this._hudComponent.updateLevel();
     }
 
     public isEnemy():boolean{
@@ -65,7 +70,7 @@ export class BaseEntity extends Component {
         this._vo = vo;
         this._type = vo.type;
         this._vo.setEntity(this);
-        if(this._vo.type == EntityType.Enemy){
+        if(EntityUtil.isBattleEntity(vo.type)){
             if(!this._hudComponent){
                 this._hudComponent = this.addComponent(HUDComponent);
             }

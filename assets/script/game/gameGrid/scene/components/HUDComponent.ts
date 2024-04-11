@@ -68,8 +68,12 @@ export class HUDComponent extends Component{
         this.enabled = true;
         if(this._isInit){
             this.updateHp();
-            this._txtName.string = `小妖怪${vo.entityId}`;
+            this.updateLevel();
         }
+    }
+
+    public updateLevel(){
+        this._txtName.string = this._vo.getShowName();
     }
 
     public updateHp(){

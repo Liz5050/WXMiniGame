@@ -420,6 +420,26 @@ export class GameGridCache {
         return target;
     }
 
+    //检测某一行是否已有英雄
+    public checkGridHeroVoByRow(row:number):EntityVo{
+        for(let entityId in this._entitys){
+            let vo = this._entitys[entityId];
+            if(vo.type != EntityType.GridHero) continue;
+            if(vo.pos.z == row) return vo;
+        }
+        return null;
+    }
+
+    //检测某一列是否已有英雄
+    public checkGridHeroVoByCol(col:number):EntityVo{
+        for(let entityId in this._entitys){
+            let vo = this._entitys[entityId];
+            if(vo.type != EntityType.GridHero) continue;
+            if(vo.pos.x == col) return vo;
+        }
+        return null;
+    }
+
     public static EntityIds:{[type:number]:number} = {};
     public static EntityId:number = 0;
     public static GenEntityVo(type:EntityType){

@@ -140,7 +140,7 @@ export class GameGridMapItem extends BaseEntity {
         // endPos.z = 0;
         tween(this.bodyNode).delay(delay).to(0.2,{position:new Vec3(endX,0,endZ)},{easing:easing.backIn})
         .to(0.5,{scale:new Vec3(2,2,2)}).to(0.5,{scale:new Vec3(0,0,0)}).call(()=>{
-            this.setEmpty(false);
+            this.setEmpty(true);
         })
         .start();
     }

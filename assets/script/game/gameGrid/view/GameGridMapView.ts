@@ -177,12 +177,19 @@ export class GameGridMapView extends Component{
         for(let i:number = 0; i < lenX; i++){
             let col:number = checkListX[i];
             if(!canRemoveX[col]) continue;
-            let heroItem = this._mapItemList[checkListY[0]][col];
+            let heroVo = CacheManager.gameGrid.checkGridHeroVoByCol(col);
+            let heroItem
+            if(heroVo){
+                heroItem = this._mapItemList[heroVo.pos.z][col];
+            }
+            else{
+                heroItem = this._mapItemList[checkListY[0]][col];
+            }
             let heroPos:Vec3 = heroItem.vo.pos;
             for(let row:number = 0; row < 10; row++){
                 let item = this._mapItemList[row][col];
                 if(item.vo.type == EntityType.GridHero){
-                    item.vo.levelUp();
+                    item.vo.addExp(10);
                     heroPos = item.vo.pos;
                 }
                 else{
@@ -202,12 +209,19 @@ export class GameGridMapView extends Component{
         for(let i:number = 0; i < lenY ; i++){
             let row:number = checkListY[i];
             if(!canRemoveY[row]) continue;
-            let heroItem = this._mapItemList[row][checkListX[0]];
+            let heroVo = CacheManager.gameGrid.checkGridHeroVoByRow(row);
+            let heroItem
+            if(heroVo){
+                heroItem = this._mapItemList[row][heroVo.pos.x];
+            }
+            else{
+                heroItem = this._mapItemList[row][checkListX[0]];
+            }
             let heroPos:Vec3 = heroItem.vo.pos;
             for(let col:number = 0; col < 10; col++){
                 let item = this._mapItemList[row][col];
                 if(item.vo.type == EntityType.GridHero){
-                    item.vo.levelUp();
+                    item.vo.addExp(10);
                     heroPos = item.vo.pos;
                 }
                 else{

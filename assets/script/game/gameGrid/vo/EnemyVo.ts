@@ -7,6 +7,7 @@ export class EnemyVo extends EntityVo{
         super();
         this._type = EntityType.Enemy;
         this._id = GameGridCache.EntityIds[this._type];
+        this._name = `小妖怪${this.entityId}`;
     }
 
     protected init(): void {

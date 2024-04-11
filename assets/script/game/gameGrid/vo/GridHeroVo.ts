@@ -8,6 +8,7 @@ export class GridHeroVo extends EntityVo{
         super();
         this._type = EntityType.GridHero;
         this._id = GameGridCache.EntityIds[this._type];
+        this._name = `Lv.${this.level}`;
     }
 
     protected init(): void {
@@ -28,5 +29,9 @@ export class GridHeroVo extends EntityVo{
         super.updatePos(pos,worldPosition);
         this.atkDelay = pos.x * 50;
         this._atkPreTime = 300 + this.atkDelay;
+    }
+
+    public getShowName():string{
+        return `Lv.${this.level}`;
     }
 }
