@@ -70,6 +70,7 @@ export class GameGridMapView extends Component{
                         this._mapItemList[row] = [];
                     }
                     let mapItemNode = EntityPool.getEntity(EntityType.Grid,prefab);
+                    mapItemNode.name = `Grid_${col}_${row}`;
                     this.mapGridContainer.addChild(mapItemNode);
                     let item:GameGridMapItem = mapItemNode.getComponent(GameGridMapItem);
                     this._mapItemList[row][col] = item;
@@ -99,6 +100,8 @@ export class GameGridMapView extends Component{
         let num = tempNodeList.length;
         let emptyNum = 0;
         let itemArr:GameGridMapItem[] = [];
+        let endX:number = -1;
+        let endZ:number = -1;
         for(let i = 0; i < num; i ++) {
             let grid:Node = tempNodeList[i];//GameUI.FindChild(randomGrid,"grid" + i);
             this.mapGridContainer.inverseTransformPoint(this._endCheckLocalPos,grid.worldPosition);
@@ -112,6 +115,8 @@ export class GameGridMapView extends Component{
                 if(item.isEmpty){
                     emptyNum ++;
                     itemArr.push(item);
+                    if(endX < 0) endX = centerX;
+                    if(endZ < 0) endZ = centerZ;
                 }else{
                     //存在非空网格
                     break;
@@ -142,20 +147,26 @@ export class GameGridMapView extends Component{
             }
         }
 
+        let canRemoveX:{[col:number]:boolean} = {};
         for(let i:number = checkListX.length - 1; i >= 0; i--){
             let col:number = checkListX[i];
+            canRemoveX[col] = true;
             for(let row:number = 0; row < 10; row++){
                 if(this._mapItemList[row][col].isEmpty){
-                    checkListX.splice(i,1);
+                    // checkListX.splice(i,1);
+                    canRemoveX[col] = false;
                     break; 
                 }
             }
         }
+        let canRemoveY:{[row:number]:boolean} = {};
         for(let i:number = checkListY.length - 1; i >= 0 ; i--){
             let row:number = checkListY[i];
+            canRemoveY[row] = true;
             for(let col:number = 0; col < 10; col++){
                 if(this._mapItemList[row][col].isEmpty){
-                    checkListY.splice(i,1);
+                    // checkListY.splice(i,1);
+                    canRemoveY[row] = false;
                     break; 
                 }
             }
@@ -165,31 +176,53 @@ export class GameGridMapView extends Component{
         let lenY:number = checkListY.length;
         for(let i:number = 0; i < lenX; i++){
             let col:number = checkListX[i];
+            if(!canRemoveX[col]) continue;
+            let heroItem = this._mapItemList[checkListY[0]][col];
+            let heroPos:Vec3 = heroItem.vo.pos;
             for(let row:number = 0; row < 10; row++){
                 let item = this._mapItemList[row][col];
-                item.setEmpty(true,true);//1、纵向消除
+                if(item.vo.type == EntityType.GridHero){
+                    item.vo.levelUp();
+                    heroPos = item.vo.pos;
+                }
+                else{
+                    if(heroPos.x == item.vo.pos.x && heroPos.z == item.vo.pos.z){
+                        item.setEmpty(true);
+                    }
+                    else{
+                        item.gotoHero(heroPos,1);//1、纵向消除    
+                    }
+                }
                 canRemove = true
             }
+            let vo = CacheManager.gameGrid.addEntity(EntityType.GridHero);        
+            heroItem.setData(vo);
+            heroItem.setEmpty(false);
         }
         for(let i:number = 0; i < lenY ; i++){
             let row:number = checkListY[i];
-            let createHero = false;
+            if(!canRemoveY[row]) continue;
+            let heroItem = this._mapItemList[row][checkListX[0]];
+            let heroPos:Vec3 = heroItem.vo.pos;
             for(let col:number = 0; col < 10; col++){
                 let item = this._mapItemList[row][col];
                 if(item.vo.type == EntityType.GridHero){
                     item.vo.levelUp();
+                    heroPos = item.vo.pos;
                 }
                 else{
-                    item.setEmpty(true,true);//2、横向消除
-                    createHero = true;
+                    if(heroPos.x == item.vo.pos.x && heroPos.z == item.vo.pos.z){
+                        item.setEmpty(true);
+                    }
+                    else{
+                        item.gotoHero(heroPos,2);//2、横向消除    
+                    }
                 }
                 canRemove = true
             }
-            if(createHero){
-                let vo = CacheManager.gameGrid.addEntity(EntityType.GridHero);        
-                this._mapItemList[row][0].setData(vo);
-                this._mapItemList[row][0].setEmpty(false);
-            }
+            let vo = CacheManager.gameGrid.addEntity(EntityType.GridHero);        
+            heroItem.setData(vo);
+            heroItem.setEmpty(false);
         }
         
         return {isRight:isRight,canRemove:canRemove,totalNum:lenX + lenY};

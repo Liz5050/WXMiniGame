@@ -1,4 +1,4 @@
-import { BoxCollider, Component, Node, ParticleSystem, Tween, Vec3, _decorator, math, tween } from "cc";
+import { BoxCollider, Component, Node, ParticleSystem, Tween, Vec3, _decorator, math, tween, easing } from "cc";
 import { EntityState, EntityType, EntityVo } from "../../vo/EntityVo";
 import { BaseEntity } from "./BaseEntity";
 import { CacheManager } from "../../../../manager/CacheManager";
@@ -71,6 +71,7 @@ export class GameGridMapItem extends BaseEntity {
     }
 
     protected playIdle(): void {
+        Tween.stopAllByTarget(this.bodyNode);
         this.bodyNode.setPosition(0,0,0);
         this.bodyNode.setScale(1,1,1);
         this.bodyNode.setRotationFromEuler(0,0,0);
@@ -79,11 +80,13 @@ export class GameGridMapItem extends BaseEntity {
     }
 
     protected playAttackPre(): void {
-        this.skill.playSkill(1,"pre");
+        this.skill.playPre();
+        // this.skill.playSkill(1,"pre");
     }
 
     protected playAttack(): void {
-        this.skill.playSkill(1,"atk");
+        // this.skill.playSkill(1,"atk");
+        this.skill.playAttack();
     }
 
     protected playHurt(): void {
@@ -115,6 +118,31 @@ export class GameGridMapItem extends BaseEntity {
 
     public get isEmpty(): boolean {
         return !this._vo || this._vo.state == EntityState.none || this._vo.state == EntityState.die;
+    }
+
+    public gotoHero(pos,col_row){
+        let index:number = 0;
+        let endX:number = 0;
+        let endZ:number = 0;
+        if(col_row > 0){
+            if(col_row == 1){
+                index = this._row;
+                endZ = pos.z;
+            }
+            else{
+                index = this._col;
+                endX = pos.x - this._col;
+            }
+        }
+        let delay = 0.1 * index;
+        // let endPos = this.node.inverseTransformPoint(new Vec3(),pos);
+        // endPos.y = 0;
+        // endPos.z = 0;
+        tween(this.bodyNode).delay(delay).to(0.2,{position:new Vec3(endX,0,endZ)},{easing:easing.backIn})
+        .to(0.5,{scale:new Vec3(2,2,2)}).to(0.5,{scale:new Vec3(0,0,0)}).call(()=>{
+            this.setEmpty(false);
+        })
+        .start();
     }
 
     public setEmpty(bool: boolean, attack: boolean = false, attackEmpty: boolean = false) {
@@ -199,6 +227,8 @@ export class GameGridMapItem extends BaseEntity {
     public resetEntity(): void {
         Tween.stopAllByTarget(this.bodyNode);
         this.collider.node.setPosition(0,-1,0);
-        super.resetEntity();     
+        this._isSelected = false;
+        this._vo = null;
+        // super.resetEntity();     
     }
 }

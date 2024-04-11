@@ -37,7 +37,7 @@ export class EntityVo extends Object{
     protected _stiffnessTime: number = 0;//硬直时间
     protected _dieTime:number = 0;//死亡消亡时间
     private _attackTime: number = 0;//攻击的时间，用于计算攻击CD
-    protected _attackCD: number = 2000;//ms攻击CD时间（攻速）
+    protected _attackCD: number = 1000;//ms攻击CD时间（攻速）
     protected _atkPreTime: number = 0;//前摇时长 单位ms
     protected _atkTime: number = 100;//攻击时长 单位ms
     protected _atkAfterTime: number = 0;//后摇时长 单位ms
@@ -259,6 +259,12 @@ export class EntityVo extends Object{
         this._worldPos.z = worldPosition.z;
     }
 
+    public getNextSkillId():number{
+        let skillList = this._skills;
+        if(!skillList || skillList.length == 0) return 1;
+        return skillList[0];
+    }
+
     private death() {
         this.clear();
     }
@@ -300,7 +306,9 @@ export class EntityVo extends Object{
     public get id(): number {
         return this._id;
     }
-
+    public get skills():number[]{
+        return this._skills;
+    }
     public get entityId():string {
         return this._type + "_" + this._id;
     }

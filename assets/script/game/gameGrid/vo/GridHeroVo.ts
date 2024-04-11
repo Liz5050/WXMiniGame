@@ -11,7 +11,9 @@ export class GridHeroVo extends EntityVo{
     }
 
     protected init(): void {
-        this._attackDistance = 5;
+        this._state = EntityState.none;
+        this._attackCD = 1000;
+        this._attackDistance = 100;
         this.atkDelay = this.id * 50;
         this._atkPreTime = 300 + this.atkDelay;
         this._atkTime = 100;
@@ -19,6 +21,7 @@ export class GridHeroVo extends EntityVo{
         this._hp = maxHp;
         this._maxHp = maxHp;
         this._attack = 10;
+        this._skills = [2];
     }
 
     public updatePos(pos: math.Vec3, worldPosition: math.Vec3): void {
