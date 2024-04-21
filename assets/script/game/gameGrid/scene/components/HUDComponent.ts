@@ -1,5 +1,5 @@
 import { Component, Label, Node, ProgressBar, Vec3, _decorator, instantiate } from "cc";
-import { EntityVo } from "../../vo/EntityVo";
+import { EntityVo } from "../vo/EntityVo";
 import Mgr from "../../../../manager/Mgr";
 import { UIModuleEnum } from "../../../../enum/UIDefine";
 import { LayerManager } from "../../../../manager/LayerManager";
@@ -67,13 +67,13 @@ export class HUDComponent extends Component{
         this._vo = vo;
         this.enabled = true;
         if(this._isInit){
-            this.updateHp();
             this.updateLevel();
         }
     }
 
     public updateLevel(){
         this._txtName.string = this._vo.getShowName();
+        this.updateHp();
     }
 
     public updateHp(){

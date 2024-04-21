@@ -1,4 +1,4 @@
-import { Animation, Button, Label, Node, Prefab, game, instantiate } from "cc";
+import { Animation, Button, Label, Node, Prefab, ProgressBar, game, instantiate } from "cc";
 import { UIModuleEnum } from "../../../enum/UIDefine";
 import { LayerManager } from "../../../manager/LayerManager";
 import { BaseUIView } from "../../base/BaseUIView"
@@ -14,13 +14,16 @@ import { Layer3DManager } from "../../../manager/Layer3DManager";
 import { GameGridMapView } from "./GameGridMapView";
 import { CameraType, Root3D } from "../../../Root3D";
 import { GameGridRoundType } from "../../../cache/GameGridCache";
+import MathUtils from "../../../utils/MathUtils";
+import { EntityType } from "../scene/utils/EntityUtil";
 
 export class GameGrid3DView extends BaseUIView{
     private _btns:OperationGridItem[];
 
     private _txtScore:Label;
     private _txtRound:Label;
-    
+    private _txtReadyTime:Label;    
+    private _progressReady:ProgressBar;
 
     private _gameGridMap:Node;
     private _mapView:GameGridMapView;
@@ -32,6 +35,9 @@ export class GameGrid3DView extends BaseUIView{
     private _playTime:number = 0;
     private _gameTime:number = 0;
     private _battleTime:number = 5;
+
+    private _deltaTime:number = 0;
+    private _readyTime:number = 10;
     public constructor(){
         super(UIModuleEnum.gameGrid3D,"GameGrid3DView");
     }
@@ -67,6 +73,10 @@ export class GameGrid3DView extends BaseUIView{
         this._txtScore.string = "得分：0";
         this._txtRound = this.getChildByName("txtRound").getComponent(Label);
         this._txtRound.string = "回合：1";
+        this._progressReady = this.getChildByName("progressReady").getComponent(ProgressBar);
+        this._progressReady.progress = 1;
+        this._txtReadyTime = this.getChildByPath("progressReady/txtReadyTime").getComponent(Label);
+        this._txtReadyTime.string = "";
 
         this.addEvent();
     }
@@ -77,10 +87,40 @@ export class GameGrid3DView extends BaseUIView{
         EventManager.addListener(EventEnum.OnGameGridRoundUpdate,this.onRoundUpdate,this);
     }
 
+    protected update(dt: number): void {
+        if(CacheManager.gameGrid.isBattle()) {
+            this._deltaTime += dt;
+            if(this._deltaTime >= 1){
+                this._deltaTime = 0;
+                let num = MathUtils.getRandomInt(5,15);
+                CacheManager.gameGrid.addEntity(EntityType.Enemy,num);    
+            }
+        }
+        else{
+            this._readyTime -= dt;
+            if(this._readyTime <= 0){
+                CacheManager.gameGrid.switchRound();
+                this._readyTime = 10;
+            }
+            else{
+                let progress = this._readyTime / 10;
+                this._progressReady.progress = progress;
+                this._deltaTime += dt;
+                if(this._deltaTime >= 1){
+                    this._deltaTime = 0;
+                    this._txtReadyTime.string = `${Math.floor(this._readyTime)}S`;
+                }
+            }
+        }
+    }
+
     public onShowAfter(param?: any): void {
         Mgr.loader.LoadBundleRes("scene","GameGrid3D/RedGrid",(prefab)=>{
             console.log("依赖资源加载完成，开始游戏");
             this.OnGameStart();
+            this.addTimer((dt:number)=>{
+                this.update(dt / 1000);
+            },1);
         });
     }
 
@@ -100,7 +140,7 @@ export class GameGrid3DView extends BaseUIView{
         }
         if(this._rightCount >= 3){
             this.OnReqNextPreview();
-            CacheManager.gameGrid.switchRound();
+            // CacheManager.gameGrid.switchRound();
         }
 
         if(result.canRemove) {
@@ -162,13 +202,18 @@ export class GameGrid3DView extends BaseUIView{
     }
 
     private onRoundUpdate(roundType:GameGridRoundType){
+        this._deltaTime = 0;
         if(roundType == GameGridRoundType.Ready) {
+            this._readyTime = 10;
+            this._progressReady.progress = 1;
+            this._progressReady.node.active = true;
             this._switchAnim.play("EnterReadyAnim");
             Root3D.instance.switchCamera(CameraType.TopView);
             let round = CacheManager.gameGrid.round;
             this._txtRound.string = `回合：${round}`;
         }
         else{
+            this._progressReady.node.active = false;
             this._switchAnim.play("EnterBattleAnim");
             Root3D.instance.switchCamera(CameraType.BattleView);
         }

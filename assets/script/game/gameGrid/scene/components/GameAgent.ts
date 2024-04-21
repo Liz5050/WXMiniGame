@@ -1,7 +1,8 @@
 import { Component, Vec2, Vec3, _decorator } from "cc";
 import Simulator from "../../../../RVO/Simulator";
 import RVOMath from "../../../../RVO/RVOMath";
-import { EntityState, EntityVo } from "../../vo/EntityVo";
+import { EntityVo } from "../vo/EntityVo";
+import { EntityState } from "../utils/EntityUtil";
 const {ccclass , property} = _decorator;
 
 @ccclass 

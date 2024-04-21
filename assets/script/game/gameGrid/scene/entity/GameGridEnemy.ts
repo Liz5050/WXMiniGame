@@ -1,11 +1,12 @@
 import { AnimationState, BoxCollider, Node, ParticleSystem, Prefab, SkeletalAnimation, Tween, Vec2, Vec3, _decorator, instantiate, math, tween } from "cc";
-import { EntityState, EntityType, EntityVo } from "../../vo/EntityVo";
+import { EntityVo } from "../vo/EntityVo";
 import { CacheManager } from "../../../../manager/CacheManager";
 import { BaseEntity } from "./BaseEntity";
 import Simulator from "../../../../RVO/Simulator";
 import RVOMath from "../../../../RVO/RVOMath";
 import Mgr from "../../../../manager/Mgr";
 import { EntityPool } from "./EntityPool";
+import { EntityState, EntityType } from "../utils/EntityUtil";
 
 const { ccclass, property } = _decorator;
 

@@ -1,9 +1,9 @@
 import { Component, Node, _decorator } from "cc";
-import { EntityState, EntityType, EntityVo } from "../../vo/EntityVo";
+import { EntityVo } from "../vo/EntityVo";
 import { HUDComponent } from "../components/HUDComponent";
-import { GameAgent } from "../components/GameAgent";
 import { EntityPool } from "./EntityPool";
-import {EntityUtil} from "./EntityUtil";
+import {EntityState, EntityType, EntityUtil} from "../utils/EntityUtil";
+import { BaseComponent } from "../components/BaseComponent";
 const { ccclass, property } = _decorator;
 
 @ccclass
@@ -11,10 +11,11 @@ export class BaseEntity extends Component {
     @property(Node) HUD:Node = null;
     protected _vo: EntityVo;
     protected _deltaTime: number = 0;
-    protected _updateInterval: number = 0.5;
+    protected _updateInterval: number = 0.5; 
     protected _hudComponent:HUDComponent;
     protected _type:EntityType;
     protected _isSelected:boolean = false;
+    protected _components:{[type:number]:BaseComponent} = {};
     protected onLoad(): void {
         this.init();
     }

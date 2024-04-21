@@ -5,13 +5,11 @@ import { Root3D } from "../../../Root3D";
 import { EventManager } from "../../../manager/EventManager";
 import { EventEnum } from "../../../enum/EventEnum";
 import { GameGridMapItem } from "../scene/entity/GameGridMapItem";
-import MathUtils from "../../../utils/MathUtils";
-import { EntityType } from "../vo/EntityVo";
 import {EntityPool} from "../scene/entity/EntityPool";
 import { Layer3DManager } from "../../../manager/Layer3DManager";
 import { GameGridEnemyContainer } from "../scene/GameGridEnemyContainer";
-import { WindowUtils } from "../../../utils/WindowUtils";
 import { SDK } from "../../../SDK/SDK";
+import { EntityType } from "../scene/utils/EntityUtil";
 const { ccclass, property } = _decorator;
 
 @ccclass('GameGridMapView')
@@ -26,7 +24,7 @@ export class GameGridMapView extends Component{
     private _ray: geometry.Ray;
     private _groupPos:Vec3;
     private _mapItemList:GameGridMapItem[][];
-    private _deltaTime:number = 0;
+    
     protected onLoad(): void {
         this._ray = new geometry.Ray();
         this._groupPos = new Vec3();
@@ -52,15 +50,6 @@ export class GameGridMapView extends Component{
     private addEvent(){
         EventManager.addListener(EventEnum.OnGameSceneGridMove,this.onGridMove,this);
         EventManager.addListener(EventEnum.OnGameGridRoundUpdate,this.onRoundUpdate,this);
-    }
-
-    protected update(dt: number): void {
-        this._deltaTime += dt;
-        if(this._deltaTime >= 1){
-            this._deltaTime = 0;
-            if(!CacheManager.gameGrid.isBattle()) return;
-            CacheManager.gameGrid.addEntity(EntityType.Enemy);
-        }
     }
 
     private initMapGrid(){
@@ -143,7 +132,7 @@ export class GameGridMapView extends Component{
                 if(checkListY.indexOf(row) == -1){
                     checkListY.push(row);
                 }
-                let vo = CacheManager.gameGrid.addEntity(EntityType.Grid);
+                let vo = CacheManager.gameGrid.addEntity(EntityType.Grid)[0];
                 itemArr[i].setData(vo);
                 itemArr[i].setEmpty(false);
             }
@@ -204,7 +193,7 @@ export class GameGridMapView extends Component{
                 canRemove = true
             }
             if(!heroVo) {
-                heroVo = CacheManager.gameGrid.addEntity(EntityType.GridHero);        
+                heroVo = CacheManager.gameGrid.addEntity(EntityType.GridHero)[0];        
                 heroItem.setData(heroVo);
             }
             else{
@@ -241,7 +230,7 @@ export class GameGridMapView extends Component{
                 canRemove = true
             }
             if(!heroVo) {
-                heroVo = CacheManager.gameGrid.addEntity(EntityType.GridHero);        
+                heroVo = CacheManager.gameGrid.addEntity(EntityType.GridHero)[0];        
                 heroItem.setData(heroVo);
             }
             else{

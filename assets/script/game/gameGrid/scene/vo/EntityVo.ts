@@ -1,27 +1,11 @@
 import { Node, Vec3, director, game, math } from "cc";
-import Mgr from "../../../manager/Mgr";
-import { BaseEntity } from "../scene/entity/BaseEntity";
-import { CacheManager } from "../../../manager/CacheManager";
-import MathUtils from "../../../utils/MathUtils";
-import { EventManager } from "../../../manager/EventManager";
-import { EventEnum } from "../../../enum/EventEnum";
-
-export enum EntityType {
-    Grid = 1,
-    Enemy = 2,
-    GridHero = 3,
-}
-export enum EntityState {
-    none = 0,
-    idle = 1,
-    walk,
-    attackEmpty,//打空气
-    attackPre,//前摇
-    attack,//攻击
-    attackAfter,//后摇
-    stiffness,//硬直
-    die,
-}
+import Mgr from "../../../../manager/Mgr";
+import { BaseEntity } from "../entity/BaseEntity";
+import { CacheManager } from "../../../../manager/CacheManager";
+import MathUtils from "../../../../utils/MathUtils";
+import { EventManager } from "../../../../manager/EventManager";
+import { EventEnum } from "../../../../enum/EventEnum";
+import { EntityState } from "../utils/EntityUtil";
 
 export class EntityVo extends Object{
     protected _id: number = 0;

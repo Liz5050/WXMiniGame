@@ -1,10 +1,11 @@
 import { BoxCollider, Component, Node, ParticleSystem, Tween, Vec3, _decorator, math, tween, easing } from "cc";
-import { EntityState, EntityType, EntityVo } from "../../vo/EntityVo";
+import { EntityVo } from "../vo/EntityVo";
 import { BaseEntity } from "./BaseEntity";
 import { CacheManager } from "../../../../manager/CacheManager";
 import Mgr from "../../../../manager/Mgr";
 import MathUtils from "../../../../utils/MathUtils";
 import { SkillComponent } from "../components/SkillComponent";
+import { EntityState, EntityType } from "../utils/EntityUtil";
 const { ccclass, property } = _decorator;
 
 @ccclass
@@ -30,22 +31,6 @@ export class GameGridMapItem extends BaseEntity {
     }
     protected updateSub(dt: number): void {
         if(!this._vo || this._vo.isDead()) return;
-        if(this._vo.type != EntityType.GridHero) return;
-        if(!CacheManager.gameGrid.isBattle()) {
-            this.setState(EntityState.idle);
-            return;
-        }
-        if (this._vo.state == EntityState.idle) {
-            if (!this._vo.battleVo || this._vo.battleVo.isDead()) {
-                let battleVo = CacheManager.gameGrid.findTarget(this._vo.worldPos, EntityType.Enemy);
-                if (!battleVo) return;
-                this._vo.battleVo = battleVo;
-            }
-            if (this._vo.isAttackRange()) {
-                this.setState(EntityState.attackPre);
-                // this.setState(EntityState.idle);
-            }
-        }
     }
 
     private initMapItem() {

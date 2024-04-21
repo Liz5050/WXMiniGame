@@ -6,7 +6,6 @@ import { EventManager } from "../../../../manager/EventManager";
 import { EventEnum } from "../../../../enum/EventEnum";
 import { GameGridMapItem } from "../entity/GameGridMapItem";
 import { BaseEntity } from "../entity/BaseEntity";
-import { EntityType } from "../../vo/EntityVo";
 const { ccclass, property } = _decorator;
 
 const _v2 = new Vec2();

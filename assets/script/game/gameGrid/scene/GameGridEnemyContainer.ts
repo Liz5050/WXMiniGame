@@ -1,10 +1,11 @@
 import { Component, Prefab, Vec2, _decorator, instantiate, isValid } from "cc";
 import { EventManager } from "../../../manager/EventManager";
 import { EventEnum } from "../../../enum/EventEnum";
-import { EntityType, EntityVo } from "../vo/EntityVo";
+import { EntityVo } from "./vo/EntityVo";
 import { GameGridEnemy } from "./entity/GameGridEnemy";
 import Simulator from "../../../RVO/Simulator";
 import {EntityPool} from "./entity/EntityPool";
+import { EntityType } from "./utils/EntityUtil";
 
 const {ccclass,property} = _decorator;
 
@@ -13,9 +14,9 @@ export class GameGridEnemyContainer extends Component{
     @property(Prefab) tempEnemy:Prefab = null;
     private _enemys:{[id:number]:GameGridEnemy} = {};
     protected onLoad(): void {
-        EventManager.addListener(EventEnum.OnEntityInit,this.onCreateEntity,this);
+        EventManager.addListener(EventEnum.OnEntityInit,this.onEntityInit,this);
         Simulator.Instance.setTimeStep(0.25);
-        Simulator.Instance.setAgentDefaults(6, 4, 5, 5, 0.5, 0.05, new Vec2(0, 0));
+        Simulator.Instance.setAgentDefaults(10, 5, 5, 5, 0.5, 0.05, new Vec2(0, 0));
 
         // add in awake
         Simulator.Instance.processObstacles();
@@ -25,7 +26,13 @@ export class GameGridEnemyContainer extends Component{
         Simulator.Instance.doStep();
     }
 
-    private onCreateEntity(vo:EntityVo){
+    private onEntityInit(list:EntityVo[]){
+        for(let i = 0; i < list.length; i++){
+            this.onCreateEnemy(list[i]);
+        }
+    }
+
+    private onCreateEnemy(vo:EntityVo){
         if(vo.type != EntityType.Enemy) return;
         let enemy = this._enemys[vo.entityId];
         if(!enemy){

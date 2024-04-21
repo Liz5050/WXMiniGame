@@ -1,7 +1,7 @@
 import { math } from "cc";
-import { GameGridCache } from "../../../cache/GameGridCache";
-import MathUtils from "../../../utils/MathUtils";
-import { EntityState, EntityType, EntityVo } from "./EntityVo";
+import { GameGridCache } from "../../../../cache/GameGridCache";
+import { EntityVo } from "./EntityVo";
+import { EntityState, EntityType } from "../utils/EntityUtil";
 
 export class GridEntityVo extends EntityVo{
     public atkDelay:number = 0;

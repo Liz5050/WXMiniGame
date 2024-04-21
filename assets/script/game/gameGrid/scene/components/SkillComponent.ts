@@ -1,5 +1,5 @@
 import { Component, Node, Vec3, _decorator, tween, instantiate, Tween } from "cc";
-import { EntityVo } from "../../vo/EntityVo";
+import { EntityVo } from "../vo/EntityVo";
 import Mgr from "../../../../manager/Mgr";
 import MathUtils from "../../../../utils/MathUtils";
 const { ccclass, property } = _decorator;

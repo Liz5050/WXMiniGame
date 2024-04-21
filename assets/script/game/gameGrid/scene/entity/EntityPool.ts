@@ -1,6 +1,6 @@
 import {_decorator, Component, instantiate, Node} from "cc";
-import {EntityType} from "../../vo/EntityVo";
 import {BaseEntity} from "./BaseEntity";
+import { EntityType } from "../utils/EntityUtil";
 const {ccclass} = _decorator;
 
 @ccclass

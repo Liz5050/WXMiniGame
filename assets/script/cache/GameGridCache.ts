@@ -7,12 +7,12 @@ import { GameType } from "../enum/GameType";
 import { CacheManager } from "../manager/CacheManager";
 import { EventManager } from "../manager/EventManager";
 import MathUtils from "../utils/MathUtils";
-import { EnemyVo } from "../game/gameGrid/vo/EnemyVo";
-import { EntityState, EntityType, EntityVo } from "../game/gameGrid/vo/EntityVo";
-import { GridEntityVo } from "../game/gameGrid/vo/GridEntityVo";
+import { EnemyVo } from "../game/gameGrid/scene/vo/EnemyVo";
+import { EntityVo } from "../game/gameGrid/scene/vo/EntityVo";
+import { GridEntityVo } from "../game/gameGrid/scene/vo/GridEntityVo";
 import { Tip } from "../common/tip/Tip";
-import { GridHeroVo } from "../game/gameGrid/vo/GridHeroVo";
-import { EntityUtil } from "../game/gameGrid/scene/entity/EntityUtil";
+import { GridHeroVo } from "../game/gameGrid/scene/vo/GridHeroVo";
+import { EntityState, EntityType, EntityUtil } from "../game/gameGrid/scene/utils/EntityUtil";
 
 class GameGridRankData {
     public type:number;
@@ -115,7 +115,7 @@ export class GameGridCache {
         ]
     };
 
-    private _maxEnemyNum:number = 5;//最多同时存在数量
+    private _maxEnemyNum:number = 60;//最多同时存在数量
     private _enemyCountList:{[round:number]:number} = {};
     private _resTypeList = [1,2,3,6,7,10,11,12];
     
@@ -296,6 +296,7 @@ export class GameGridCache {
         });
     }
 
+    //#region switchRound
     public switchRound(){
         this._sceneReady = false;
         let type = this._roundType;
@@ -323,6 +324,7 @@ export class GameGridCache {
     public get round():number {
         return this._round;
     }
+    //#endregion
 
     public set sceneReady(val:boolean){
         this._sceneReady = val;
@@ -356,6 +358,7 @@ export class GameGridCache {
         return type == EntityType.Grid;
     }
 
+    //#region Entity
     public delEntity(entityId:string){
         if(this._entitys[entityId]){
             let vo = this._entitys[entityId];
@@ -365,36 +368,41 @@ export class GameGridCache {
             this._entityCount[vo.type] = count;
             if(count <= 0 && this.isBattle()){
                 if(vo.type == EntityType.Enemy){
-                    if(this._nextRound <= this.round && this._enemyCountList[this.round] <= 0){
+                    if(this._nextRound <= this.round){
                         this._nextRound++;
                         CacheManager.gameGrid.switchRound();
                     }
                 }
                 else if(this.isPlayer(vo.type)){
-                    CacheManager.gameGrid.switchRound();
+                    //CacheManager.gameGrid.switchRound();
                 }
             }
         }
     }
 
-    public addEntity(type:EntityType,dispatchEvent:boolean = true){
+    public addEntity(type:EntityType,addNum:number = 1):EntityVo[]{
         let count = this._entityCount[type];
         if(!count) {
             count = 0;
         }
         if(type == EntityType.Enemy){
             if(count >= this._maxEnemyNum) return;
-            if(this._enemyCountList[this.round] <= 0) return;
-            this._enemyCountList[this.round] --;
+            // if(this._enemyCountList[this.round] <= 0) return;
+            // this._enemyCountList[this.round] --;
         }
-        count ++;
+        count += addNum;
         this._entityCount[type] = count;
 
-        let vo = GameGridCache.GenEntityVo(type);
-        this._entitys[vo.entityId] = vo;
-        if(dispatchEvent) EventManager.dispatch(EventEnum.OnEntityInit,vo);
-        return vo;
+        let list = [];
+        for(let i = 0; i < addNum; i++){
+            let vo = GameGridCache.GenEntityVo(type);
+            this._entitys[vo.entityId] = vo;
+            list.push(vo);
+        }
+        EventManager.dispatch(EventEnum.OnEntityInit,list);
+        return list;
     }
+    //#endregion
 
     public clearAll(){
         this._entitys = {};
@@ -402,6 +410,7 @@ export class GameGridCache {
         GameGridCache.EntityIds = {};
     }
 
+    //#region findTarget
     //找到一个离自己最近的目标
     public findTarget(pos:Vec3,type:EntityType):EntityVo{
         let minDistance = 9999;
@@ -420,6 +429,7 @@ export class GameGridCache {
         }
         return target;
     }
+    //#endregion
 
     //检测某一行是否已有英雄
     public checkGridHeroVoByRow(row:number):EntityVo{
@@ -441,6 +451,7 @@ export class GameGridCache {
         return null;
     }
 
+    //#region static 创建VO
     public static EntityIds:{[type:number]:number} = {};
     public static EntityId:number = 0;
     public static GenEntityVo(type:EntityType){
@@ -457,7 +468,7 @@ export class GameGridCache {
             case EntityType.Enemy:
                 vo = new EnemyVo();
                 let round = CacheManager.gameGrid.round;
-                data = {maxHp:10 * round + 10}
+                data = {maxHp:5 * round + 10}
                 break;
             case EntityType.GridHero:
                 vo = new GridHeroVo();
@@ -466,4 +477,5 @@ export class GameGridCache {
         vo.initVo(data);
         return vo;
     }
+    //#endregion
 }
