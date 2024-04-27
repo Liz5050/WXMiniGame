@@ -136,7 +136,7 @@ export class GameGridMapItem extends BaseEntity {
         this._isEmpty = bool;
         if (!bool) {
             //非空
-            this.setState(EntityState.idle);
+            this._vo.setState(EntityState.idle);
             this.collider.node.setPosition(0,0,0);
         }
         else {
@@ -151,18 +151,18 @@ export class GameGridMapItem extends BaseEntity {
                 }
                 if(!this._vo.battleVo || this._vo.battleVo.isDead()){
                     if(attackEmpty){
-                        this.setState(EntityState.attackEmpty);
+                        this._vo.setState(EntityState.attackEmpty);
                     }
                     else {
-                        this.setState(EntityState.none);
+                        this._vo.setState(EntityState.none);
                     }
                 }
                 else{
-                    this.setState(EntityState.attackPre);
+                    this._vo.setState(EntityState.attackPre);
                 }
             }
             else{
-                this.setState(EntityState.die);
+                this._vo.setState(EntityState.die);
             }
             // if(playTween){
             //     if(!this._playTween){
@@ -213,9 +213,8 @@ export class GameGridMapItem extends BaseEntity {
     public resetEntity(): void {
         Tween.stopAllByTarget(this.bodyNode);
         this.playNone();
-        if(this._hudComponent){
-            this._hudComponent.enabled = false;
-        } 
+        this.stopComponent();
+        //格子一直存在棋盘不回池，不用super
         // super.resetEntity();     
     }
 }

@@ -4,6 +4,7 @@ import { HUDComponent } from "../components/HUDComponent";
 import { EntityPool } from "./EntityPool";
 import {EntityState, EntityType, EntityUtil} from "../utils/EntityUtil";
 import { BaseComponent } from "../components/BaseComponent";
+import { ComponentFactory, ComponentType } from "../components/ComponentType";
 const { ccclass, property } = _decorator;
 
 @ccclass
@@ -12,12 +13,41 @@ export class BaseEntity extends Component {
     protected _vo: EntityVo;
     protected _deltaTime: number = 0;
     protected _updateInterval: number = 0.5; 
-    protected _hudComponent:HUDComponent;
     protected _type:EntityType;
     protected _isSelected:boolean = false;
     protected _components:{[type:number]:BaseComponent} = {};
     protected onLoad(): void {
         this.init();
+    }
+
+    public addCusComponent(type:ComponentType){
+        let com = this._components[type];
+        if(com) {
+            if(com.vo){
+                console.warn("重复添加:" + ComponentType[type]);
+            }
+            else{
+                com.setData(this._vo);
+            }
+            return;
+        }
+        let comCls:any = ComponentFactory.getComponentCls(type);
+        if(!comCls) {
+            console.error("未定义的component:" + ComponentType[type]);
+            return;
+        }
+        com = this.addComponent(comCls) as BaseComponent;
+        com.init();
+        com.setData(this._vo);
+        this._components[type] = com;
+    }
+
+    public removeCusComponent(type:ComponentType){
+        let com = this._components[type];
+        if(com){
+            com.reset(true);
+            delete this._components[type];
+        }
     }
 
     public setSelected(val:boolean){
@@ -31,7 +61,9 @@ export class BaseEntity extends Component {
     }
 
     public updateLevel(){
-        this._hudComponent && this._hudComponent.updateLevel();
+        let com = this._components[ComponentType.HUD];
+        // @ts-ignore
+        com && com.updateLevel();
     }
 
     public isEnemy():boolean{
@@ -51,7 +83,9 @@ export class BaseEntity extends Component {
     }
 
     public updateHp(){
-        this._hudComponent && this._hudComponent.updateHp();
+        let com = this._components[ComponentType.HUD];
+        // @ts-ignore
+        com && com.updateHp();
     }
 
     protected update(dt: number): void {
@@ -71,25 +105,23 @@ export class BaseEntity extends Component {
         this._vo = vo;
         this._type = vo.type;
         this._vo.setEntity(this);
-        if(EntityUtil.isBattleEntity(vo.type)){
-            if(!this._hudComponent){
-                this._hudComponent = this.addComponent(HUDComponent);
-            }
-            this._hudComponent.setData(vo);
-        }
-
+        // if(EntityUtil.isBattleEntity(vo.type)){
+        //     this.addCusComponent(ComponentType.HUD);
+        // }
+        this.initComponent();
         this.onEntityVoUpdate();
     }
-    //VO层同步状态
-    public setStateFromVo(state:EntityState){
-        this.setState(state);
-    }
+    // //VO层同步状态
+    // public setStateFromVo(state:EntityState){
+    //     this.setState(state);
+    // }
     protected init() { }
+    protected initComponent() { }
     protected onEntityVoUpdate() { }
-    protected setState(state: EntityState): boolean {
-        if (!this._vo.setState(state)) return false;
-        return true;
-    }
+    // protected setState(state: EntityState): boolean {
+    //     if (!this._vo.setState(state)) return false;
+    //     return true;
+    // }
     private onNone(){
         this.playNone();
     }
@@ -156,10 +188,14 @@ export class BaseEntity extends Component {
         this.resetEntity();
     }
 
+    protected stopComponent(){
+        for(let t in this._components){
+            this._components[t].reset();
+        }
+    }
+
     public resetEntity(){
-        if(this._hudComponent){
-            this._hudComponent.enabled = false;
-        } 
+        this.stopComponent();
         this._isSelected = false;
         EntityPool.recycleEntity(this._type,this.node);
         this._vo = null;

@@ -168,75 +168,21 @@ export class GameGridMapView extends Component{
         for(let i:number = 0; i < lenX; i++){
             let col:number = checkListX[i];
             if(!canRemoveX[col]) continue;
-            let heroVo = CacheManager.gameGrid.checkGridHeroVoByCol(col);
-            let heroItem
-            if(heroVo){
-                heroItem = this._mapItemList[heroVo.pos.z][col];
-            }
-            else{
-                heroItem = this._mapItemList[checkListY[0]][col];
-            }
-            let heroPos:Vec3 = heroItem.vo.pos;
+            
             for(let row:number = 0; row < 10; row++){
                 let item = this._mapItemList[row][col];
-                if(item.vo.type == EntityType.GridHero){
-                    heroPos = item.vo.pos;
-                }
-                else{
-                    if(heroPos.x == item.vo.pos.x && heroPos.z == item.vo.pos.z){
-                        item.setEmpty(true);
-                    }
-                    else{
-                        item.gotoHero(heroPos,1);//1、纵向消除    
-                    }
-                }
+                item.setEmpty(true);//1、纵向消除    
                 canRemove = true
             }
-            if(!heroVo) {
-                heroVo = CacheManager.gameGrid.addEntity(EntityType.GridHero)[0];        
-                heroItem.setData(heroVo);
-            }
-            else{
-                heroVo.addExp(10);
-            }
-                
-            heroItem.setEmpty(false);
         }
         for(let i:number = 0; i < lenY ; i++){
             let row:number = checkListY[i];
             if(!canRemoveY[row]) continue;
-            let heroVo = CacheManager.gameGrid.checkGridHeroVoByRow(row);
-            let heroItem
-            if(heroVo){
-                heroItem = this._mapItemList[row][heroVo.pos.x];
-            }
-            else{
-                heroItem = this._mapItemList[row][checkListX[0]];
-            }
-            let heroPos:Vec3 = heroItem.vo.pos;
             for(let col:number = 0; col < 10; col++){
                 let item = this._mapItemList[row][col];
-                if(item.vo.type == EntityType.GridHero){
-                    heroPos = item.vo.pos;
-                }
-                else{
-                    if(heroPos.x == item.vo.pos.x && heroPos.z == item.vo.pos.z){
-                        item.setEmpty(true);
-                    }
-                    else{
-                        item.gotoHero(heroPos,2);//2、横向消除    
-                    }
-                }
+                item.setEmpty(true);//2、横向消除    
                 canRemove = true
             }
-            if(!heroVo) {
-                heroVo = CacheManager.gameGrid.addEntity(EntityType.GridHero)[0];        
-                heroItem.setData(heroVo);
-            }
-            else{
-                heroVo.addExp(10);
-            }
-            heroItem.setEmpty(false);
         }
         
         return {isRight:isRight,canRemove:canRemove,totalNum:lenX + lenY};

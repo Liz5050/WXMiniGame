@@ -4,34 +4,32 @@ import Mgr from "../../../../manager/Mgr";
 import { UIModuleEnum } from "../../../../enum/UIDefine";
 import { LayerManager } from "../../../../manager/LayerManager";
 import { Root3D } from "../../../../Root3D";
+import { BaseComponent } from "./BaseComponent";
 const { ccclass, property } = _decorator;
 
 @ccclass
-export class HUDComponent extends Component{
-    private _vo:EntityVo
+export class HUDComponent extends BaseComponent{
     private _HUD:Node;
     private _uiNode:Node;
     private _hpBar:ProgressBar;
     private _txtHp:Label;
     private _txtName:Label;
     private _uiPos:Vec3;
-    private _isInit:boolean = false;
-    protected onLoad(): void {
+    protected onInit(): void {
         this._uiPos = new Vec3();
         this._HUD = this.node.getChildByName("HUD");
-    }
 
-    private init(){
         Mgr.loader.LoadUIPrefab(UIModuleEnum.gameGrid3D,"EntityHUDView",(prefab)=>{
-            if(!this.enabled) return;
-
             this._uiNode = instantiate(prefab);
             this._uiNode.active = false;
             Root3D.mainCamera.convertToUINode(this._HUD.worldPosition,LayerManager.HUDLayer,this._uiPos);
             this._uiNode.setPosition(this._uiPos);
             LayerManager.HUDLayer.addChild(this._uiNode);
             this.initUI();
-            this.updateHp();
+            if(this._vo){
+                this.updateHp();
+                this.updateLevel();
+            }
             this._isInit = true;
         });
     }
@@ -41,33 +39,23 @@ export class HUDComponent extends Component{
         this._txtHp = this._hpBar.node.getChildByName("txtHp").getComponent(Label);
         this._txtName = this._uiNode.getChildByName("txtName").getComponent(Label);
     }
-
-    protected onEnable(): void {
-        if(this._isInit){
+    
+    protected updateVo(): void {
+        if(this._uiNode){
             LayerManager.HUDLayer.addChild(this._uiNode);
             this.updateHp();
-        }
-        else{
-            this.init();
+            this.updateLevel();
         }
     }
 
-    protected update(dt: number): void {
-        if(this._uiNode && this._uiNode.active){
-            this.updatePos();
-        }
+    protected onUpdate(dt: number): void {
+        this.updatePos();
     }
 
     private updatePos(){
-        Root3D.mainCamera.convertToUINode(this._HUD.worldPosition,LayerManager.HUDLayer,this._uiPos);
-        this._uiNode.setPosition(this._uiPos);
-    }
-
-    public setData(vo:EntityVo){
-        this._vo = vo;
-        this.enabled = true;
-        if(this._isInit){
-            this.updateLevel();
+        if(this._uiNode && this._uiNode.active){
+            Root3D.mainCamera.convertToUINode(this._HUD.worldPosition,LayerManager.HUDLayer,this._uiPos);
+            this._uiNode.setPosition(this._uiPos);
         }
     }
 

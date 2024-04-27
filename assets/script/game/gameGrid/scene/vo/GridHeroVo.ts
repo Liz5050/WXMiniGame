@@ -20,7 +20,7 @@ export class GridHeroVo extends EntityVo{
         this.atkDelay = 0;
         this._atkPreTime = 300 + this.atkDelay;
         this._atkTime = 100 / this._atkSpeed;
-        let maxHp = 500;//MathUtils.getRandomInt(200,500);
+        let maxHp = 100;//MathUtils.getRandomInt(200,500);
         this._hp = maxHp;
         this._maxHp = maxHp;
         this._attack = 5;

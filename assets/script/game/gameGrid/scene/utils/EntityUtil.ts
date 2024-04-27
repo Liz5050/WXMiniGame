@@ -24,4 +24,12 @@ export class EntityUtil{
     public static isGrid(type:EntityType){
         return type == EntityType.Grid || type == EntityType.GridHero;
     }
+
+    public static isEnemy(type:EntityType){
+        return type == EntityType.Enemy;
+    }
+
+    public static isHostile(type1:EntityType,type2:EntityType):Boolean{
+        return false;
+    }
 }

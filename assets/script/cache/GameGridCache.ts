@@ -429,6 +429,25 @@ export class GameGridCache {
         }
         return target;
     }
+
+    public findTargetByList(pos:Vec3,types:EntityType[],filterId?:string):EntityVo{
+        let minDistance = 9999;
+        let target:EntityVo;
+        for(let entityId in this._entitys){
+            let vo = this._entitys[entityId];
+            if(filterId && filterId == vo.entityId) continue;//指定过滤的目标
+            if(types.indexOf(vo.type) == -1) continue;
+            if(!vo.isDead() && vo.state != EntityState.none) {
+                if(vo.isSelected) return vo;//已选中优先
+                let dis = math.Vec3.distance(pos,vo.worldPos);
+                if(dis < minDistance){
+                    minDistance = dis;
+                    target = vo;
+                }
+            }
+        }
+        return target;
+    }
     //#endregion
 
     //检测某一行是否已有英雄
