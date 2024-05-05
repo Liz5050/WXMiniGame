@@ -10,6 +10,7 @@ import { Layer3DManager } from "../../../manager/Layer3DManager";
 import { GameGridEnemyContainer } from "../scene/GameGridEnemyContainer";
 import { SDK } from "../../../SDK/SDK";
 import { EntityType } from "../scene/utils/EntityUtil";
+import { GameGridRoundType } from "../../../cache/GameGridCache";
 const { ccclass, property } = _decorator;
 
 @ccclass('GameGridMapView')
@@ -49,6 +50,7 @@ export class GameGridMapView extends Component{
 
     private addEvent(){
         EventManager.addListener(EventEnum.OnGameSceneGridMove,this.onGridMove,this);
+        EventManager.addListener(EventEnum.OnGridMoveCancel,this.onMoveCancel,this);
         EventManager.addListener(EventEnum.OnGameGridRoundUpdate,this.onRoundUpdate,this);
     }
 
@@ -274,6 +276,7 @@ export class GameGridMapView extends Component{
     }
 
     private onGridMove(touchX:number,touchY:number){
+        if(CacheManager.gameGrid.roundType != GameGridRoundType.Ready) return;
         let camera = Root3D.mainCamera;
         camera.screenPointToRay(touchX, touchY, this._ray);
         if (PhysicsSystem.instance.raycast(this._ray)) {
@@ -292,8 +295,17 @@ export class GameGridMapView extends Component{
         }
     }
 
+    private onMoveCancel(){
+        this.clearTemp();
+    }
+
     public onGridDrop():{isRight:boolean,canRemove:boolean,totalNum:number}{
         let result = this.OnTouchEndCheck();
+        this.clearTemp();
+        return result;
+    }
+
+    private clearTemp(){
         let tempNodeList = this.tempGroup.children;
         let len = tempNodeList.length;
         if(len > 0){
@@ -304,7 +316,6 @@ export class GameGridMapView extends Component{
             }
         }
         this.clearPreview();
-        return result;
     }
 
     private clearPreview(){

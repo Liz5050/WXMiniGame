@@ -46,9 +46,9 @@ export class BattleComponent extends BaseComponent{
             }
             else{
                 //移动过程中不停找最近目标（会根据当前实时距离切换目标）
-                let battleVo = CacheManager.gameGrid.findTargetByList(this._vo.worldPos, this._searchTypes,this._vo.battleVo.entityId);
-                if (!battleVo) return;
-                this._vo.battleVo = battleVo;
+                // let battleVo = CacheManager.gameGrid.findTargetByList(this._vo.worldPos, this._searchTypes,this._vo.battleVo.entityId);
+                // if (!battleVo) return;
+                // this._vo.battleVo = battleVo;
             }
         }
     }

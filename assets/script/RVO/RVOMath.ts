@@ -16,8 +16,8 @@ export default class RVOMath {
 		return vector1.x * vector2.x + vector1.y * vector2.y;
 	}
 
-	public static det(vector1: Vec2, Vec2: Vec2) {
-		return vector1.x * Vec2.y - vector1.y * Vec2.x;
+	public static det(v1: Vec2, v2: Vec2) {
+		return v1.x * v2.y - v1.y * v2.x;
 	}
 	public static distSqPointLineSegment(vector1: Vec2, vector2: Vec2, vector3: Vec2) {
 		let r = this.absSq2(vector3.clone().subtract(vector1), vector2.clone().subtract(vector1)) / this.absSq(vector2.subtract(vector1));
@@ -60,6 +60,15 @@ export default class RVOMath {
 	public static divisionScalar(vector: Vec2, scalar: number) {
 		return new Vec2(vector.x / scalar, vector.y / scalar);
 	}
+
+	/**
+	* 加法
+	* @param vector1 
+	* @param Vec2 
+	*/
+    public static addition(vector1: Vec2, vector2: Vec2):Vec2 {
+        return new Vec2(vector1.x + vector2.x, vector1.y + vector2.y);
+    }
 
 	public static normalize(vec: Vec2):Vec2{
 		return this.divisionScalar(vec,RVOMath.abs(vec));

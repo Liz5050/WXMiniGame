@@ -81,6 +81,7 @@ export default class Simulator {
         if(agentNo < 0) return;
         let agent = this.agents_[this.agentNo2indexDict_[agentNo]];
         if(agent) {
+            this.kdTree_.queryNearAgent(agent);
             agent.needDelete_ = true;
         }
     }
@@ -146,6 +147,24 @@ export default class Simulator {
     public setTimeStep(timeStep: number) {
         this.timeStep_ = timeStep;
     }
+    /**
+     * @param neighborDist 该代理在导航中考虑到的与其他代理的最大距离(中心点到中心点)。必须是正的
+     * 这个数字越大，模拟的运行时间就越长。如果数值过低，模拟将不安全。
+     * 
+     * @param maxNeighbors 此代理在导航中考虑的其他代理的最大数量。这个数字越大，模拟的运行时间就越长。如果数值过低，模拟将不安全
+     * 
+     * @param timeHorizon 通过模拟计算得出的该agent的速度相对于其他agent安全的最小时间。必须是正的
+     * 这个数越大，这个智能体对其他智能体的反应就越快，但是这个智能体选择速度的自由度就越小。
+     * 
+     * @param timeHorizonObst 由模拟计算出的代理相对于障碍物安全的速度的最小时间。必须是正的
+     * 这个数字越大，智能体对障碍物的反应就越快，但智能体选择速度的自由度就越小。
+     * 
+     * @param radius agent 半径
+     * 
+     * @param maxSpeed 最大速度
+     * 
+     * @param velocity 初始二维线速度
+     **/
     public setAgentDefaults(neighborDist: number, maxNeighbors: number, timeHorizon: number, timeHorizonObst: number, radius: number, maxSpeed: number, velocity: Vec2) {
         if (this.defaultAgent_ == null) {
             this.defaultAgent_ = new Agent();
@@ -163,6 +182,12 @@ export default class Simulator {
     }
     public setAgentPrefVelocity(agentNo: number, prefVelocity: Vec2) {
         this.agents_[this.agentNo2indexDict_.get(agentNo)].prefVelocity_ = prefVelocity;
+    }
+
+    public queryNearAgent(agentNo:number){
+        if(this.agents_.length == 0) return -1;
+        let agent = this.agents_[this.agentNo2indexDict_[agentNo]];
+        return this.kdTree_.queryNearAgent(agent);
     }
 }
 

@@ -18,6 +18,7 @@ export enum EventEnum {
     OnGameGridPropUseCheck,
     OnGameSceneGridCreate,
     OnGameSceneGridMove,
+    OnGridMoveCancel,
     OnGameSceneGridDrop,
     OnEntityInit,
     OnGameGridRoundUpdate,

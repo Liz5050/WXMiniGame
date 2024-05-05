@@ -20,7 +20,7 @@ export class EnemyVo extends EntityVo{
         this._attackCD = 2500;
         this._atkTime = 133;
         this._pos.x = MathUtils.getRandom(0, 9);
-        this._pos.z = MathUtils.getRandom(0, 5);
+        this._pos.z = -MathUtils.getRandom(5, 15);
         this._speed = MathUtils.getRandom(1,3) / 10;
         if(this._maxHp <= 0) {
             this._maxHp = 15;

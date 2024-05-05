@@ -4,15 +4,14 @@ import { EventManager } from "../../manager/EventManager";
 import { GameGridStartView } from "./view/GameGridStartView";
 import Mgr from "../../manager/Mgr";
 import { GameGrid3DView } from "./view/GameGrid3DView";
-import { Layer3DManager } from "../../manager/Layer3DManager";
-import { Node, instantiate } from "cc";
-import { GameLoadingView } from "../../common/loading/GameLoadingView";
 import { CacheManager } from "../../manager/CacheManager";
+import { GameBuildHeroView } from "./view/GameBuildHeroView";
 
 export default class GameGridController {
     private _gameStartView:GameGridStartView;
 
     private _gameGrid3D:GameGrid3DView;
+    private _buildHeroView:GameBuildHeroView;
     public constructor(){
         this.init();
     }

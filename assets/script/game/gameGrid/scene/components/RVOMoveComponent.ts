@@ -25,6 +25,7 @@ export class RVOMoveComponent extends BaseComponent {
         this._agentPos.x = this._vo.pos.x;
         this._agentPos.y = this._vo.pos.z;
         let sid = Simulator.Instance.addAgent(this._agentPos);
+        console.log("添加代理:",this._agentPos,sid)
         if (sid >= 0) {
             this._sid = sid;
         }
@@ -48,7 +49,7 @@ export class RVOMoveComponent extends BaseComponent {
         if (!this._vo.battleVo || this._vo.battleVo.isDead()) {
             return;
         }
-        this.node.parent.inverseTransformPoint(this._battlePos,this._vo.battleVo.worldPos);
+        // this.node.parent.inverseTransformPoint(this._battlePos,this._vo.battleVo.worldPos);
         this.RVOMoving();
         this._vo.updatePos(this.node.position,this.node.worldPosition);
 
@@ -60,19 +61,20 @@ export class RVOMoveComponent extends BaseComponent {
 
     private RVOMoving() {
         let sid = this._sid;
-        if(sid < 0) return;
-        let pos: Vec2 = Simulator.Instance.getAgentPosition(sid);
-        let vel: Vec2 = Simulator.Instance.getAgentPrefVelocity(sid);
-        this.node.position = new Vec3(pos.x, 0, pos.y);
-        if (Math.abs(vel.x) > 0.01 && Math.abs(vel.y) > 0.01) {
-            this.node.forward = new Vec3(vel.x, 0, vel.y).normalize();
+        if(sid >= 0){
+            let pos: Vec2 = Simulator.Instance.getAgentPosition(sid);
+            let vel: Vec2 = Simulator.Instance.getAgentPrefVelocity(sid);
+            this.node.position = new Vec3(pos.x, 0, pos.y);
+            if (Math.abs(vel.x) > 0.01 && Math.abs(vel.y) > 0.01) {
+                this.node.forward = new Vec3(vel.x, 0, vel.y).normalize();
+            }
         }
         
         let agentPos: Vec2 = Simulator.Instance.getAgentPosition(sid);
-        let diffX = this._battlePos.x - agentPos.x;
-        let diffY = this._battlePos.z - agentPos.y;
+        let diffX = this._vo.battleVo.pos.x - agentPos.x;
+        let diffY = this._vo.battleVo.pos.z - agentPos.y;
         let goalVector: Vec2 = new Vec2(diffX, diffY);
-        if (RVOMath.absSq(goalVector) > 1.0) {
+        if (RVOMath.absSq(goalVector) > 1) {
             goalVector = RVOMath.normalize(goalVector);
         }
 
@@ -83,10 +85,9 @@ export class RVOMoveComponent extends BaseComponent {
         let dist: number = Math.random() * 0.0001;
 
         let newVel: Vec2 = Simulator.Instance.getAgentPrefVelocity(sid);
-        let newVec2 = new Vec2(Math.cos(angle), Math.sin(angle)).multiplyScalar(dist);
-        newVec2.x += newVel.x;
-        newVec2.y += newVel.y;
-        Simulator.Instance.setAgentPrefVelocity(sid, newVec2);
+        let newVec2 = new Vec2(Math.cos(angle), Math.sin(angle));
+        newVec2.multiplyScalar(dist);
+        Simulator.Instance.setAgentPrefVelocity(sid, RVOMath.addition(newVel,newVec2));
     }
 
     protected onReset(): void {

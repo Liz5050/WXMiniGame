@@ -5,6 +5,7 @@ import { EntityPool } from "./EntityPool";
 import {EntityState, EntityType, EntityUtil} from "../utils/EntityUtil";
 import { BaseComponent } from "../components/BaseComponent";
 import { ComponentFactory, ComponentType } from "../components/ComponentType";
+import { EntityAction } from "../vo/EntityAction";
 const { ccclass, property } = _decorator;
 
 @ccclass
@@ -126,23 +127,35 @@ export class BaseEntity extends Component {
         this.playNone();
     }
     private onIdle() {
+        this.playAction(EntityAction.Idle);
         this.playIdle();
     };
     private onWalk() {
+        this.playAction(EntityAction.Walk);
         this.playWalk();
     };
     private onAttackPre() {
+        this.playAction(EntityAction.AttackPre);
         this.playAttackPre();
     }
     private onAttack() {
+        this.playAction(EntityAction.Attack);
         this.playAttack();
     };
     private onStiffness() {
+        this.playAction(EntityAction.Stiffness);
         this.playStiffness();
     };
     private onDie() {
+        this.playAction(EntityAction.Die);
         this.playDie();
     };
+    
+    private playAction(action:EntityAction){
+        let comp = this._components[ComponentType.Actor];
+        //@ts-ignore
+        comp && comp.playAction(action);
+    }
     public onStateChanged(state: EntityState) { 
         switch (state) {
             case EntityState.none:

@@ -4,6 +4,7 @@ import { UIModuleEnum } from "../../../enum/UIDefine";
 import { CacheManager } from "../../../manager/CacheManager";
 import { EventManager } from "../../../manager/EventManager";
 import { EventEnum } from "../../../enum/EventEnum";
+import { GameGridRoundType } from "../../../cache/GameGridCache";
 
 export class OperationGridItem {
     private _touchMask:Node;
@@ -62,6 +63,7 @@ export class OperationGridItem {
 
     private touchStart(startX:number,startY:number){
         if(this._resType == -1) return;
+        if(CacheManager.gameGrid.roundType != GameGridRoundType.Ready) return;
         if(this._canMove) return;
         this._canMove = true;
         EventManager.dispatch(EventEnum.OnGameSceneGridCreate,this._resType,startX,startY);
@@ -71,7 +73,13 @@ export class OperationGridItem {
     private touchMove(touchX:number,touchY:number){
         if(this._resType == -1) return;
         if(this._canMove){
-            EventManager.dispatch(EventEnum.OnGameSceneGridMove,touchX,touchY);
+            if(CacheManager.gameGrid.roundType == GameGridRoundType.Ready) {
+                EventManager.dispatch(EventEnum.OnGameSceneGridMove,touchX,touchY);
+            }
+            else{
+                this._canMove = false;
+                EventManager.dispatch(EventEnum.OnGridMoveCancel);
+            }
         }
     }
 
@@ -79,7 +87,9 @@ export class OperationGridItem {
         if(this._resType == -1) return;
         if(this._canMove){
             this._canMove = false;
-            EventManager.dispatch(EventEnum.OnGameSceneGridDrop,this._gridIndex);
+            if(CacheManager.gameGrid.roundType == GameGridRoundType.Ready) {
+                EventManager.dispatch(EventEnum.OnGameSceneGridDrop,this._gridIndex);
+            }
         }
     }
 

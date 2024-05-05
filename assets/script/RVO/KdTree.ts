@@ -86,6 +86,11 @@ export default class KdTree {
             this.buildAgentTreeRecursive(0, this.agents_.length, 0);
         }
     }
+    public queryNearAgent(agent: Agent) {
+        let obserObj: ObserverObj<number> = new ObserverObj();
+        obserObj.value = Number.MAX_VALUE;
+        this.computeAgentNeighbors(agent, obserObj);
+    }
     private buildAgentTreeRecursive(begin: number, end: number, node: number) {
         this.agentTree_[node].begin_ = begin;
         this.agentTree_[node].end_ = end;

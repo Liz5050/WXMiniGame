@@ -152,26 +152,36 @@ export default class Agent {
             let isLeftLegForeign = false;
             let isRightLegForeign = false;
             if (obstacle1.convex_ && RVOMath.det(leftLegDirection, leftNeighbor.direction_.clone().multiplyScalar(-1)) >= 0) {
+                /* Left leg points into obstacle. */
                 leftLegDirection = leftNeighbor.direction_.clone().multiplyScalar(-1);
                 isLeftLegForeign = true;
             }
             if (obstacle2.convex_ && RVOMath.det(rightLegDirection, obstacle2.direction_.clone().multiplyScalar(-1)) <= 0) {
+                /* Right leg points into obstacle. */
                 rightLegDirection = obstacle2.direction_;
                 isRightLegForeign = true;
             }
+            /* Compute cut-off centers. */
             let leftCutOff = obstacle1.point_.clone().subtract(this.position_).multiplyScalar(invTimeHorizonObst);
             let rightCutOff = obstacle2.point_.clone().subtract(this.position_).multiplyScalar(invTimeHorizonObst);
             let cutOffVector = rightCutOff.clone().subtract(leftCutOff);
+
+            /* Project current velocity on velocity obstacle. */
+
+            /* Check if current velocity is projected on cutoff circles. */
             let t = obstacle1 == obstacle2 ? 0.5 : RVOMath.absSq2(this.velocity_.clone().subtract(leftCutOff), cutOffVector) / RVOMath.absSq(cutOffVector);
             let tLeft = RVOMath.absSq2(this.velocity_.clone().subtract(leftCutOff), leftLegDirection);
             let tRight = RVOMath.absSq2(this.velocity_.clone().subtract(rightCutOff), rightLegDirection);
+
             if ((t < 0 && tLeft < 0) || (obstacle1 == obstacle2 && tLeft < 0 && tRight < 0)) {
+                /* Project on left cut-off circle. */
                 let unitW = this.velocity_.clone().subtract(leftCutOff).normalize();
                 line.direction = new Vec2(unitW.y, -unitW.x);
                 line.point = leftCutOff.clone().add(unitW.clone().multiplyScalar(this.radius_ * invTimeHorizonObst));
                 this.orcaLines_.push(line);
                 continue;
             } else if (t > 1 && tRight < 0) {
+                /* Project on right cut-off circle. */
                 let unitW = this.velocity_.clone().subtract(rightCutOff).normalize();
                 line.direction = new Vec2(unitW.y, -unitW.x);
                 line.point = rightCutOff.clone().add(unitW.clone().multiplyScalar(this.radius_ * invTimeHorizonObst));

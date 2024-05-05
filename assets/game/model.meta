@@ -13,6 +13,7 @@
       "web-desktop": true,
       "wechatgame": true
     },
-    "isBundle": true
+    "isBundle": true,
+    "bundleName": "model"
   }
 }

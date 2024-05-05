@@ -16,7 +16,7 @@ export class GameGridEnemyContainer extends Component{
     protected onLoad(): void {
         EventManager.addListener(EventEnum.OnEntityInit,this.onEntityInit,this);
         Simulator.Instance.setTimeStep(0.25);
-        Simulator.Instance.setAgentDefaults(10, 5, 5, 5, 0.5, 0.05, new Vec2(0, 0));
+        Simulator.Instance.setAgentDefaults(20, 200, 10, 5, 10, 0.1, new Vec2(0, 0));
 
         // add in awake
         Simulator.Instance.processObstacles();
@@ -32,7 +32,7 @@ export class GameGridEnemyContainer extends Component{
         }
     }
 
-    private onCreateEnemy(vo:EntityVo){
+    private onCreateEnemy(vo:EntityVo){ 
         if(vo.type != EntityType.Enemy) return;
         let enemy = this._enemys[vo.entityId];
         if(!enemy){

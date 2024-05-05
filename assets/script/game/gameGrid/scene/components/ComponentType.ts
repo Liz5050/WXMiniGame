@@ -1,3 +1,4 @@
+import { ActorComponent } from "./ActorComponent";
 import { BattleComponent } from "./BattleComponent";
 import { HUDComponent } from "./HUDComponent";
 import { RVOMoveComponent } from "./RVOMoveComponent";
@@ -11,6 +12,7 @@ export enum ComponentType {
     Hp,
     HUD,
     RVOMove,
+    Actor,
 }
 
 export class ComponentFactory {
@@ -22,6 +24,8 @@ export class ComponentFactory {
                 return RVOMoveComponent;
             case ComponentType.Battle:
                 return BattleComponent;
+            case ComponentType.Actor:
+                return ActorComponent;
             default:
                 return null;
         }
