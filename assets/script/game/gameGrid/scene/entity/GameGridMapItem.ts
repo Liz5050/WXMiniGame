@@ -6,6 +6,8 @@ import Mgr from "../../../../manager/Mgr";
 import MathUtils from "../../../../utils/MathUtils";
 import { SkillComponent } from "../components/SkillComponent";
 import { EntityState, EntityType } from "../utils/EntityUtil";
+import { EventManager } from "../../../../manager/EventManager";
+import { EventEnum } from "../../../../enum/EventEnum";
 const { ccclass, property } = _decorator;
 
 @ccclass
@@ -80,8 +82,14 @@ export class GameGridMapItem extends BaseEntity {
     }
 
     protected onSelectChanged(): void {
-        if(this._isSelected && this._vo && this._vo.type == EntityType.Grid){
-            this.setEmpty(true,true,true);
+        if(this._isSelected){
+            EventManager.dispatch(EventEnum.OpenGameBuildView,this);
+            if(this._vo && this._vo.type == EntityType.Grid){
+                this.setEmpty(true,true,true);
+            }
+        }
+        else{
+            EventManager.dispatch(EventEnum.CloseGameBuildView);
         }
     }
 

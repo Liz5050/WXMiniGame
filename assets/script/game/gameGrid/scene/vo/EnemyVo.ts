@@ -28,4 +28,7 @@ export class EnemyVo extends EntityVo{
         this._hp = this._maxHp;
         this._attack = 2;
     }
+    public get modelUrl():string{
+        return "mini-dungeon/character-orc/character-orc";
+    }
 }

@@ -15,7 +15,6 @@ export class BaseUIView extends BaseView {
     protected _viewName:string;
     protected _moduleName:string;
     protected _isShow:boolean = false;
-    protected _isInit:boolean = false;
     protected _isLoading:boolean = false;
     protected _cancelLoad:boolean = false;//加载中关闭界面标识
     protected _subviewDict:any = {};
@@ -58,8 +57,8 @@ export class BaseUIView extends BaseView {
                         return;
                     }
                     if(!this._isInit){
-                        this._rootNode = instantiate(prefab);
-                        this.init();
+                        let viewNode = instantiate(prefab);
+                        this.initView(viewNode);
                     }
     
                     this.parent.addChild(this._rootNode);
@@ -67,21 +66,6 @@ export class BaseUIView extends BaseView {
                 });
             }
         }
-    }
-
-    private init(){
-        this.initUI();
-        this.initEvent();
-        this._isInit = true;
-    }
-
-    protected initUI(){
-    }
-
-    protected initEvent(){
-    }
-
-    protected removeEvent(){
     }
 
     protected onShow(){

@@ -6,6 +6,7 @@ import Mgr from "../../manager/Mgr";
 import { GameGrid3DView } from "./view/GameGrid3DView";
 import { CacheManager } from "../../manager/CacheManager";
 import { GameBuildHeroView } from "./view/GameBuildHeroView";
+import { BaseEntity } from "./scene/entity/BaseEntity";
 
 export default class GameGridController {
     private _gameStartView:GameGridStartView;
@@ -19,6 +20,8 @@ export default class GameGridController {
     private init(){
         EventManager.addListener(EventEnum.OnGameStart,this.onGameStart,this);
         EventManager.addListener(EventEnum.OnGameGridSceneReady,this.onSceneReady,this);
+        EventManager.addListener(EventEnum.OpenGameBuildView,this.openGameBuildView,this);
+        EventManager.addListener(EventEnum.CloseGameBuildView,this.closeGameBuildView,this);
     }
 
     private onSceneReady(){
@@ -40,5 +43,16 @@ export default class GameGridController {
                 this._gameGrid3D.show();
             });
         }
+    }
+
+    private openGameBuildView(entity:BaseEntity){
+        if(!this._buildHeroView){
+            this._buildHeroView = new GameBuildHeroView();
+        }
+        this._buildHeroView.show(entity);
+    }
+
+    private closeGameBuildView(){
+        this._buildHeroView && this._buildHeroView.hide();
     }
 }

@@ -6,6 +6,8 @@ import { EventManager } from "../../../../manager/EventManager";
 import { EventEnum } from "../../../../enum/EventEnum";
 import { GameGridMapItem } from "../entity/GameGridMapItem";
 import { BaseEntity } from "../entity/BaseEntity";
+import { EntityType, EntityUtil } from "../utils/EntityUtil";
+import { GridHero } from "../entity/GridHero";
 const { ccclass, property } = _decorator;
 
 const _v2 = new Vec2();
@@ -42,7 +44,7 @@ export class SceneEntitySelection extends Component {
     }
 
     private onSetSelectedEntity(entity:BaseEntity,isSelected:boolean){
-
+        this.setSelected(entity,isSelected);
     }
 
     private _listenTouch(isOn: boolean) {
@@ -74,7 +76,7 @@ export class SceneEntitySelection extends Component {
         if(!this.checkState(entity,isSelected)) return;
 
         let entityNode = entity.node;
-        let curEntity = this._curSelect[entity.type];
+        let curEntity = this._curSelect[this.getSelectType(entity.type)];
         if(curEntity) {
             curEntity.setSelected(false);
         }
@@ -86,23 +88,37 @@ export class SceneEntitySelection extends Component {
             this._enemySelect.showWith(entityNode);
         }
         else{
-            let mapItem:GameGridMapItem = entityNode.getComponent(GameGridMapItem);
-            let pos = mapItem.isEmpty ? new Vec3(0,-1,0) : Vec3.ZERO;
+            let pos = new Vec3(0,-1,0);
+            if(entity.type == EntityType.Grid) {
+                let mapItem:GameGridMapItem = entityNode.getComponent(GameGridMapItem);
+                if(!mapItem.isEmpty){
+                    pos = Vec3.ZERO;
+                }
+            }
             this._playerSelect.showWith(entityNode,pos);
         }
         entity.setSelected(true);
-        this._curSelect[entity.type] = entity;
+        this._curSelect[this.getSelectType(entity.type)] = entity;
     }
 
     private checkState(entity:BaseEntity,isSelected:boolean){
-        let curEntity = this._curSelect[entity.type];
+        let curEntity = this._curSelect[this.getSelectType(entity.type)];
         if(isSelected) {
+            //已经选中
             if(curEntity === entity) return false;
         }
         else{
+            //已经是未选中
             if(!curEntity || curEntity !== entity) return false;
         }
         return true;
+    }
+
+    private getSelectType(type:EntityType){
+        if(EntityUtil.isGrid(type)){
+            return 999
+        }
+        return type;
     }
 
     private _e2hit(e: EventTouch) {
@@ -145,9 +161,9 @@ class CursorEnemy implements ICursor {
     public lineWidth: number;
     public dur = 0.5;
 
-    private _ppt1: Partial<RoundRect> = { anchor: 0 };
-    private _ppt2: Partial<RoundRect> = { anchor: 1 };
-    private _tw: Tween<RoundRect>;
+    // private _ppt1: Partial<RoundRect> = { anchor: 0 };
+    // private _ppt2: Partial<RoundRect> = { anchor: 1 };
+    // private _tw: Tween<RoundRect>;
 
 
     public showWith(root: Node) {
@@ -162,18 +178,18 @@ class CursorEnemy implements ICursor {
         //     .start();
 
         this.rect.anchor = 1;
-        this._tw?.stop();
-        this._tw = tween(this.rect)
-            .to(this.dur, this._ppt1, { easing: easing.sineInOut })
-            .to(this.dur, this._ppt2, { easing: easing.sineInOut })
-            .union()
-            .repeatForever()
-            .start();
+        // this._tw?.stop();
+        // this._tw = tween(this.rect)
+        //     .to(this.dur, this._ppt1, { easing: easing.sineInOut })
+        //     .to(this.dur, this._ppt2, { easing: easing.sineInOut })
+        //     .union()
+        //     .repeatForever()
+        //     .start();
     }
     public hide() {
         this.node.active = false;
-        this._tw?.stop();
-        this._tw = null;
+        // this._tw?.stop();
+        // this._tw = null;
     }
 }
 interface ICursor { showWith(root: Node,pos?:Vec3); hide(); }
@@ -189,7 +205,7 @@ class CursorPlayer implements ICursor {
     public lineWidth: number;
     public dur = 0.5;
 
-    private _tw: Tween<Node>;
+    // private _tw: Tween<Node>;
 
     public showWith(root: Node,pos?:Vec3) {
         this.node.active = true;
@@ -203,15 +219,15 @@ class CursorPlayer implements ICursor {
         //     .to(this.dur, { lineWidth: this.lineWidth }, { easing: easing.backOut })
         //     .start();
         
-        this._tw?.stop();
-        this._tw = tween(this.node)
-            .repeatForever(
-                tween(this.node).to(0.6, {scale:new Vec3(1.1,1,1.1)}).to(0.6, {scale:Vec3.ONE})
-            ).start();
+        // this._tw?.stop();
+        // this._tw = tween(this.node)
+        //     .repeatForever(
+        //         tween(this.node).to(0.6, {scale:new Vec3(1.1,1,1.1)}).to(0.6, {scale:Vec3.ONE})
+        //     ).start();
     }
     public hide() {
         this.node.active = false;
-        this._tw?.stop();
-        this._tw = null;
+        // this._tw?.stop();
+        // this._tw = null;
     }
 }

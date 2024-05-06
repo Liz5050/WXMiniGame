@@ -1,11 +1,32 @@
-import { game } from 'cc';
+import { game, view } from 'cc';
 import { _decorator, Node } from 'cc';
 export class BaseView extends Object {
     protected _rootNode:Node;
+    protected _isInit:boolean = false;
     protected _timer:any[] = [];
     public constructor(){
         super();
     }   
+
+    public initView(viewNode:Node):void{
+        this._rootNode = viewNode;
+        this.init();
+    }
+
+    private init(){
+        this.initUI();
+        this.initEvent();
+        this._isInit = true;
+    }
+
+    protected initUI(){
+    }
+
+    protected initEvent(){
+    }
+
+    protected removeEvent(){
+    }
 
     protected getChildByName(name:string){
         return this._rootNode.getChildByName(name);

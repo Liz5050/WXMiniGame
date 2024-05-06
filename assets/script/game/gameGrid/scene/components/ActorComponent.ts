@@ -10,10 +10,16 @@ export class ActorComponent extends BaseComponent {
     private _action:EntityAction;
     protected onInit(): void {
         this._bodyContainer = this.node.getChildByName("body");
+        
+        // this._battlePos = new Vec3();
+        // this._agentPos = new Vec2();
+    }
+
+    protected updateVo(): void {
         if (!this._bodyModel) {
-            Mgr.loader.LoadBundleRes("model","mini-dungeon/character-orc/character-orc",(prefab:Prefab)=>{
+            Mgr.loader.LoadBundleRes("model",this.vo.modelUrl,(prefab:Prefab)=>{
                 this._bodyModel = instantiate(prefab);
-                this._bodyModel.setScale(2.8, 2.8, 2.8);
+                // this._bodyModel.setScale(2.8, 2.8, 2.8);
                 this._bodyContainer.addChild(this._bodyModel);
 
                 this._anim = this._bodyModel.getComponent(SkeletalAnimation);
@@ -21,17 +27,10 @@ export class ActorComponent extends BaseComponent {
                     this.play(this._action);
                 }
                 else{
-                    this._anim.play("idle");
-                    this._action = EntityAction.Idle;
+                    this.playAction(EntityAction.Idle);
                 }
             });
         }
-        // this._battlePos = new Vec3();
-        // this._agentPos = new Vec2();
-    }
-
-    protected updateVo(): void {
-
     }
 
     public playAction(action: EntityAction) {

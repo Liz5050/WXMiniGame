@@ -186,9 +186,9 @@
     },
     "_lscale": {
       "__type__": "cc.Vec3",
-      "x": 1,
-      "y": 1,
-      "z": 1
+      "x": 2.8,
+      "y": 2.8,
+      "z": 2.8
     },
     "_mobility": 0,
     "_layer": 2,
@@ -476,9 +476,6 @@
     "model": {
       "__uuid__": "1ae04f6d-122c-467f-ad95-3437568816c4@0cd3e",
       "__expectedType__": "cc.Prefab"
-    },
-    "bodyContainer": {
-      "__id__": 6
     },
     "hit": {
       "__id__": 26

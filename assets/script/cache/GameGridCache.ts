@@ -125,6 +125,7 @@ export class GameGridCache {
     private _sceneReady:boolean = false;
     private _round:number = 1;
     private _nextRound:number = 1;//当前回合的怪物全部击杀，才可进入下一回合
+
     public constructor(){
         this._roundType = GameGridRoundType.Ready;
     }
@@ -380,7 +381,7 @@ export class GameGridCache {
         }
     }
 
-    public addEntity(type:EntityType,addNum:number = 1):EntityVo[]{
+    public addEntity(type:EntityType,addNum:number = 1,param?):EntityVo[]{
         let count = this._entityCount[type];
         if(!count) {
             count = 0;
@@ -395,12 +396,21 @@ export class GameGridCache {
 
         let list = [];
         for(let i = 0; i < addNum; i++){
-            let vo = GameGridCache.GenEntityVo(type);
+            let vo = GameGridCache.GenEntityVo(type,param);
             this._entitys[vo.entityId] = vo;
             list.push(vo);
         }
         EventManager.dispatch(EventEnum.OnEntityInit,list);
         return list;
+    }
+
+    public getSelectedEntity(type:EntityType):EntityVo{
+        for(let entityId in this._entitys){
+            let vo = this._entitys[entityId];
+            if(vo.type != type) continue;
+            if(vo.entity && vo.entity.isSelected) return vo;
+        }
+        return null;
     }
     //#endregion
 
@@ -473,13 +483,13 @@ export class GameGridCache {
     //#region static 创建VO
     public static EntityIds:{[type:number]:number} = {};
     public static EntityId:number = 0;
-    public static GenEntityVo(type:EntityType){
+    public static GenEntityVo(type:EntityType,param){
         let id = GameGridCache.EntityIds[type];
         if(!id) id = 1;
         else id ++;
         GameGridCache.EntityIds[type] = id;
         let vo:EntityVo;
-        let data;
+        let data = param;
         switch(type){
             case EntityType.Grid:
                 vo = new GridEntityVo();

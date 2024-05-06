@@ -41,7 +41,7 @@ export class EntityVo extends Object{
                 this[`_${key}`] = data[key];
             }
         }
-        this._pos = new Vec3();
+        if(!this._pos)this._pos = new Vec3();
         this._worldPos = new Vec3();
         console.log("创建实体 type:" + this.type + "--------x:" + this._pos.x + ",y:" + this._pos.y);
         this._defaultState = EntityState.idle;
@@ -187,7 +187,7 @@ export class EntityVo extends Object{
     }
 
     public isAttackRange(): boolean {
-        let dis = math.Vec3.distance(this._battleVo.worldPos, this.worldPos);
+        let dis = math.Vec3.distance(this._battleVo.pos, this.pos);
         return dis <= this._attackDistance;
     }
 
@@ -360,5 +360,9 @@ export class EntityVo extends Object{
     }
     public get dieTime():number{
         return this._dieTime;
+    }
+
+    public get modelUrl():string{
+        return ""
     }
 }

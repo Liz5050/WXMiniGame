@@ -6,6 +6,7 @@ import {EntityState, EntityType, EntityUtil} from "../utils/EntityUtil";
 import { BaseComponent } from "../components/BaseComponent";
 import { ComponentFactory, ComponentType } from "../components/ComponentType";
 import { EntityAction } from "../vo/EntityAction";
+import { ActorComponent } from "../components/ActorComponent";
 const { ccclass, property } = _decorator;
 
 @ccclass
@@ -153,8 +154,7 @@ export class BaseEntity extends Component {
     
     private playAction(action:EntityAction){
         let comp = this._components[ComponentType.Actor];
-        //@ts-ignore
-        comp && comp.playAction(action);
+        comp && (comp as ActorComponent).playAction(action);
     }
     public onStateChanged(state: EntityState) { 
         switch (state) {

@@ -24,6 +24,10 @@ export enum EventEnum {
     OnGameGridRoundUpdate,
     OnGameGridSceneReady,
     OnSetSelectEntity,
+    OnGameBuildItemCancel,
+    OnGameBuildItemSure,
+    OpenGameBuildView,
+    CloseGameBuildView,
 
     OnUserInfoUpdate,
     OnBannerAdComplete,

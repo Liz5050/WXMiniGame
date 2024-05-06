@@ -37,7 +37,8 @@ export class GameGrid3DView extends BaseUIView{
     private _battleTime:number = 5;
 
     private _deltaTime:number = 0;
-    private _readyTime:number = 10;
+    private _readyTime:number = 3;
+    private _curTime:number = 0;
     public constructor(){
         super(UIModuleEnum.gameGrid3D,"GameGrid3DView");
     }
@@ -97,18 +98,18 @@ export class GameGrid3DView extends BaseUIView{
             }
         }
         else{
-            this._readyTime -= dt;
-            if(this._readyTime <= 0){
+            this._curTime += dt;
+            if(this._readyTime <= this._curTime){
                 CacheManager.gameGrid.switchRound();
-                this._readyTime = 10;
+                this._curTime = 0;
             }
             else{
-                let progress = this._readyTime / 10;
+                let progress = 1 - this._curTime / this._readyTime;
                 this._progressReady.progress = progress;
                 this._deltaTime += dt;
                 if(this._deltaTime >= 1){
                     this._deltaTime = 0;
-                    this._txtReadyTime.string = `${Math.floor(this._readyTime)}S`;
+                    this._txtReadyTime.string = `${Math.floor(this._readyTime - this._curTime)}S`;
                 }
             }
         }
@@ -204,7 +205,7 @@ export class GameGrid3DView extends BaseUIView{
     private onRoundUpdate(roundType:GameGridRoundType){
         this._deltaTime = 0;
         if(roundType == GameGridRoundType.Ready) {
-            this._readyTime = 10;
+            this._curTime = 0;
             this._progressReady.progress = 1;
             this._progressReady.node.active = true;
             this._switchAnim.play("EnterReadyAnim");
