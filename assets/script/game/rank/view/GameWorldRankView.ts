@@ -1,5 +1,5 @@
-import { _decorator, Button, instantiate, Label, math, Node, Prefab, resources, ScrollView, Sprite, Texture2D } from 'cc';
-import { GameDefine, GameType } from '../../../enum/GameType';
+import { _decorator, Button, Game, instantiate, Label, math, Node, Prefab, resources, ScrollView, Sprite, Texture2D } from 'cc';
+import { GameDefine, GameSubType, GameType } from '../../../enum/GameType';
 import Mgr from '../../../manager/Mgr';
 import { EventManager } from '../../../manager/EventManager';
 import { EventEnum } from '../../../enum/EventEnum';
@@ -7,6 +7,9 @@ import { CacheManager } from '../../../manager/CacheManager';
 import { BaseUIView } from '../../base/BaseUIView';
 import { UIModuleEnum } from '../../../enum/UIDefine';
 import { SDK } from '../../../SDK/SDK';
+import { GameGridRankData } from '../../../cache/GameGridCache';
+import { DateUtils } from '../../../utils/DateUtils';
+import { GameWorldRankItem } from './GameRankTypeSubItem';
 
 export class GameWorldRankView extends BaseUIView {
 
@@ -23,6 +26,7 @@ export class GameWorldRankView extends BaseUIView {
     private _txtTips:Label;
     private _imgArrow:Node;
     private _subtypeItemList:Node[];
+    private _subtypeTitle:Label[];
 
     private _curIndex:number = -1;
     private _subIdx:number = -1;
@@ -80,6 +84,7 @@ export class GameWorldRankView extends BaseUIView {
         this._imgArrow = btnSwitch.getChildByName("imgArrow");
 
         this._subtypeItemList = [];
+        this._subtypeTitle = [];
         let subtypes = GameDefine.ShulteSubTypes;
         for(let i = 0; i < subtypes.length; i ++){
             let subItemNode = this._combox.getChildByPath("scrollView/view/content/item" + i);
@@ -88,6 +93,7 @@ export class GameWorldRankView extends BaseUIView {
 
             let txtSubType = subItemNode.getChildByName("txtTitle").getComponent(Label);
             txtSubType.string = subtypes[i] + "X" + subtypes[i];
+            this._subtypeTitle.push(txtSubType);
         }
         this._scrollRank = this.getChildByName("scrollRank").getComponent(ScrollView);
         this._rankContent = this.getChildByPath("scrollRank/view/content");
@@ -140,11 +146,16 @@ export class GameWorldRankView extends BaseUIView {
         if(this._curIndex >= 0){
             let rankType = this._rankType[this._curIndex];
             let curSubType = 0;
+            let subtypeList;
             if(rankType == GameType.Shulte){
-                curSubType = GameDefine.ShulteSubTypes[this._subIdx];
+                subtypeList = GameDefine.ShulteSubTypes;
             }
+            else if(rankType == GameType.Grid) {
+                subtypeList = GameDefine.GridSubTypes;
+            }
+            curSubType = subtypeList[this._subIdx];
             if(rankType == type && subtype == curSubType){
-                this.RefreshRankListView(type,subtype);
+                this.RefreshRankListView(type,curSubType);
             }
             else {
                 console.log("排行榜数据更新延迟，当前页面已经切换，请等待当前页面的排行榜更新",type,subtype);
@@ -177,11 +188,27 @@ export class GameWorldRankView extends BaseUIView {
         this._btnList[this._curIndex].selected = true;
 
         let rankType = this._rankType[index];
+        let subtypes;
         if(rankType == GameType.Shulte){
             this._combox.active = true;
+            subtypes = GameDefine.ShulteSubTypes;
         }
         else if(rankType == GameType.Grid){
+            this._combox.active = true;
+            subtypes = GameDefine.GridSubTypes;
+        }
+        else {
             this._combox.active = false;
+        }
+        for(let i = 0; i < this._subtypeItemList.length; i++){
+            let subtype = subtypes[i];
+            if(subtype && subtype > 0) {
+                this._subtypeItemList[i].active = true;
+                this._subtypeTitle[i].string = GameDefine.getSubtypeName(rankType,subtype);
+            }
+            else {
+                this._subtypeItemList[i].active = false;    
+            }
         }
         this.setSubIndex(0);
     }
@@ -205,10 +232,9 @@ export class GameWorldRankView extends BaseUIView {
         this._subIdx = index;
         let rankType = this._rankType[this._curIndex];
         let subtype = 0;
-        if(rankType == GameType.Shulte){
-            subtype = GameDefine.ShulteSubTypes[this._subIdx];
-            this._comboxTitle.string = subtype + "X" + subtype;
-        }
+        let subtypeList = rankType == GameType.Shulte ? GameDefine.ShulteSubTypes : GameDefine.GridSubTypes;
+        subtype = subtypeList[this._subIdx];
+        this._comboxTitle.string = GameDefine.getSubtypeName(rankType,subtype);
         CacheManager.gameGrid.ReqRankDataList(rankType,subtype);
     }
 
@@ -255,91 +281,6 @@ export class GameWorldRankView extends BaseUIView {
     }
 }
 
-class GameWorldRankItem {
-    private _bg:Sprite;
-    private _imgHead:Sprite;
-    private _txtName:Label;
-    private _txtRank:Label;
-    private _txtValue:Label;
-    private _node:Node;
-    private _headTexture:Texture2D;
-    private _bgColor:math.Color;
-
-    private _rankData:any;
-    public constructor(node:Node){
-        this.initUI(node);
-    }
-
-    private initUI(node:Node){
-        this._node = node;
-        this._bgColor = new math.Color();
-        this._bg = node.getChildByName("bg").getComponent(Sprite);
-        this._imgHead = node.getChildByName("imgHead").getComponent(Sprite);
-        this._txtRank = node.getChildByName("txtRank").getComponent(Label);
-        this._txtValue = node.getChildByName("txtValue").getComponent(Label);
-        this._txtName = node.getChildByName("txtName").getComponent(Label);
-    }
-
-    public Show(parentNode:Node){
-        parentNode.addChild(this._node);
-        this._node.active = true;
-    }
-
-    public SetData(rankData,index:number){
-        this._rankData = rankData;
-        if(index >= 0){
-            if(index % 2 == 0){
-                this._bgColor.r = 199;
-                this._bgColor.g = 230;
-                this._bgColor.b = 235;
-            }else{
-                this._bgColor.r = 197;
-                this._bgColor.g = 221;
-                this._bgColor.b = 224;
-            }
-            this._bg.color = this._bgColor;
-        }
-        if(rankData){
-            this._txtRank.string = rankData.rank.toString();
-            this._txtValue.string = rankData.valueStr;
-            this._txtName.string = rankData.name;
-            if(rankData.avatarUrl != ""){
-                Mgr.loader.SetSpriteFrame(this._imgHead,rankData.avatarUrl);
-            }
-            else {
-                let skinRes = CacheManager.shop.getRandomRes();
-                if(skinRes){
-                    Mgr.loader.SetSpriteByAtlas(this._imgHead,"animal_square",skinRes);
-                }
-            }
-        }
-        else {
-            this._txtRank.string = "-";
-            this._txtValue.string = "未上榜";
-            let user = CacheManager.player.userInfo;
-            if(user){
-                this._txtName.string = user.nickName;
-                Mgr.loader.SetSpriteFrame(this._imgHead,user.avatarUrl);
-            }
-            else {
-                let skinRes = CacheManager.shop.getRandomRes();
-                this._txtName.string = "神秘人";
-                if(skinRes){
-                    Mgr.loader.SetSpriteByAtlas(this._imgHead,"animal_square",skinRes);
-                }
-            }
-        }
-    }
-
-    public Clear(){
-        // if(this._rankData){
-        //     Mgr.loader.DecRefSpriteFrame(this._rankData.avatarUrl)
-        // }
-        this._node.active = false;
-        this._node.removeFromParent();
-        this._rankData = null;
-    }
-}
 
 class RankBtnItem{
     private _btnNode:Node;

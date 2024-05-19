@@ -29,7 +29,6 @@ export class GameShulteStartView extends BaseUISubView {
     private _deltaTime:number = 0;
     private _isOver:boolean = true;
     private _curClickIdx:number = 0;
-    private _interval:NodeJS.Timeout;
     protected initUI(){
         this._gameContainer = this.getChildByPath("group/gridGroup");
         this._gameContainerSize = this._gameContainer.getComponent(UITransform).contentSize;
@@ -86,10 +85,6 @@ export class GameShulteStartView extends BaseUISubView {
     }
 
     private gameExit(){
-        if(this._interval){
-            clearInterval(this._interval);
-            this._interval = null;
-        }
         this._curClickIdx = 0;
         this._isOver = true;
         this._indexList = [];

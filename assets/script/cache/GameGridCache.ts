@@ -3,7 +3,7 @@ import { BannerRewardId, SDK } from "../SDK/SDK";
 import { AlertType, AlertView } from "../common/alert/AlertView";
 import { CloudApi } from "../enum/CloudDefine";
 import { EventEnum } from "../enum/EventEnum";
-import { GameType } from "../enum/GameType";
+import { GameSubType, GameType } from "../enum/GameType";
 import { CacheManager } from "../manager/CacheManager";
 import { EventManager } from "../manager/EventManager";
 import MathUtils from "../utils/MathUtils";
@@ -13,8 +13,9 @@ import { GridEntityVo } from "../game/gameGrid/scene/vo/GridEntityVo";
 import { Tip } from "../common/tip/Tip";
 import { GridHeroVo } from "../game/gameGrid/scene/vo/GridHeroVo";
 import { EntityState, EntityType, EntityUtil } from "../game/gameGrid/scene/utils/EntityUtil";
+import { DateUtils } from "../utils/DateUtils";
 
-class GameGridRankData {
+export class GameGridRankData {
     public type:number;
     public subtype:number;
     public openid:number;
@@ -23,9 +24,13 @@ class GameGridRankData {
     public value:number;
     public avatarUrl:string;
     public recordTime:number;
+    public play_time:number;
     public get valueStr():string{
         if(this.type == GameType.Shulte){
             return this.value + "秒";
+        }
+        if(this.subtype == GameSubType.GamePlayTime) {
+            return DateUtils.formatSeconds(this.play_time,DateUtils.FORMAT_SECONDS_2);
         }
         return this.value + "分";
     }
@@ -191,7 +196,7 @@ export class GameGridCache {
     }
 
     public GetWorldRankDataList(type:GameType,subtype:number = 0):GameGridRankData[]{
-        let typeKey = type + "_" + subtype;
+        let typeKey = type + "_" + subtype;;
         let list = this._rankDataListDict[typeKey];
         return list;
     }
@@ -237,30 +242,33 @@ export class GameGridCache {
             list = [];
             this._rankDataListDict[typeKey] = list;
             SDK.CloudGET(CloudApi.all_user_game_data,[type,subtype],(res) => {
-                console.log("排行榜数据请求成功",res);
                 if(!res){
                     return;
                 }
                 let dataList = res.data;
-                for(let i = 0; i < dataList.length; i++){
-                    let data = dataList[i];
-                    let openidKey = data.openid + type + "_" + subtype;
-                    let rankData = this._rankDataDict[openidKey];
-                    if(!rankData){
-                        rankData = new GameGridRankData();
-                        this._rankDataDict[openidKey] = rankData;
-                        list.push(rankData);
-                    }
-                    rankData.type = type;
-                    rankData.subtype = subtype;
-                    rankData.openid = data.openid;
-                    rankData.name = data.nick_name;
-                    rankData.avatarUrl = data.avatar_url;
-                    rankData.value = data.score;
-                    rankData.recordTime = data.record_time;
-                    rankData.rank = i + 1;
-                    if(data.openid== SDK.openid){
-                        this._myRankData[openidKey] = rankData;
+                console.log("排行榜数据请求成功",res,typeof(dataList));
+                if(dataList && typeof(dataList) == "object") {
+                    for(let i = 0; i < dataList.length; i++){
+                        let data = dataList[i];
+                        let openidKey = data.openid + type + "_" + subtype;
+                        let rankData = this._rankDataDict[openidKey];
+                        if(!rankData){
+                            rankData = new GameGridRankData();
+                            this._rankDataDict[openidKey] = rankData;
+                            list.push(rankData);
+                        }
+                        rankData.type = type;
+                        rankData.subtype = subtype;
+                        rankData.openid = data.openid;
+                        rankData.name = data.nick_name;
+                        rankData.avatarUrl = data.avatar_url;
+                        rankData.value = data.score;
+                        rankData.recordTime = data.record_time;
+                        rankData.play_time = data.play_time;
+                        rankData.rank = i + 1;
+                        if(data.openid== SDK.openid){
+                            this._myRankData[openidKey] = rankData;
+                        }
                     }
                 }
                 EventManager.dispatch(EventEnum.OnGameGridRankUpdate,type,subtype);

@@ -17,6 +17,8 @@ export enum GameSubType {
 	Shulte6X6 = 6,
 	Shulte7X7 = 7,
 	Shulte8X8 = 8,
+	GirdScore = 100,
+	GamePlayTime = 101,
 }
 
 export class GameResData{
@@ -47,7 +49,19 @@ export class GameResData{
 
 export class GameDefine {
 	public static ShulteSubTypes = [GameSubType.Shulte3X3,GameSubType.Shulte4X4,GameSubType.Shulte5X5,GameSubType.Shulte6X6,GameSubType.Shulte7X7,GameSubType.Shulte8X8];
+	public static GridSubTypes = [GameSubType.GirdScore,GameSubType.GamePlayTime];
 	public static GameRes:{[type:number]:GameResData} = {}
+	public static getSubtypeName(type:GameType,subtype:GameSubType){
+		if(subtype == GameSubType.GamePlayTime){
+			return "游戏时长";
+		}
+		switch(type){
+			case GameType.Shulte:
+				return subtype + "X" + subtype;
+			case GameType.Grid:
+				return "积分榜";
+		}
+	}
 
 	public static getGameRes(type:GameType):GameResData{
 		let resData:GameResData = GameDefine.GameRes[type];

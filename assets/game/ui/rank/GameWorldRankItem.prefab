@@ -556,7 +556,7 @@
     },
     "_lpos": {
       "__type__": "cc.Vec3",
-      "x": 347.622,
+      "x": 297.152,
       "y": 0,
       "z": 0
     },
@@ -596,7 +596,7 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 250.266,
+      "width": 85.39,
       "height": 50.4
     },
     "_anchorPoint": {
@@ -638,7 +638,7 @@
     "_fontSize": 32,
     "_fontFamily": "Arial",
     "_lineHeight": 40,
-    "_overflow": 1,
+    "_overflow": 0,
     "_enableWrapText": true,
     "_font": null,
     "_isSystemFontUsed": true,

@@ -13,7 +13,7 @@ export class BaseView extends Object {
         this.init();
     }
 
-    private init(){
+    public init(){
         this.initUI();
         this.initEvent();
         this._isInit = true;
