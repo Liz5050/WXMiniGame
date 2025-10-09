@@ -1,19 +1,17 @@
 import { SkeletalAnimation, Node, instantiate, Prefab, animation } from "cc";
-import { BaseComponent } from "./BaseComponent";
+import { EntityComponent } from "./EntityComponent";
 import { EntityAction } from "../vo/EntityAction";
 import Mgr from "../../../../manager/Mgr";
 
-export class ActorComponent extends BaseComponent {
+export class ActorComponent extends EntityComponent {
     private _bodyContainer: Node = null;
     private _bodyModel: Node;
     private _anim: SkeletalAnimation;
     private _animCtrl:animation.AnimationController;
     private _action:EntityAction;
+
     protected onInit(): void {
-        this._bodyContainer = this.node.getChildByName("body");
-        
-        // this._battlePos = new Vec3();
-        // this._agentPos = new Vec2();
+        this._bodyContainer = this.entity.getChildByName("body");
     }
 
     protected updateVo(): void {

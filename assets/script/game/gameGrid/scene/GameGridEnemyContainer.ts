@@ -4,9 +4,9 @@ import { EventEnum } from "../../../enum/EventEnum";
 import { EntityVo } from "./vo/EntityVo";
 import { GameGridEnemy } from "./entity/GameGridEnemy";
 import Simulator from "../../../RVO/Simulator";
-import {EntityPool} from "./entity/EntityPool";
+import {EntityPool} from "../GameFactory";
 import { EntityType } from "./utils/EntityUtil";
-import { GridHero } from "./entity/GridHero";
+import { GridHero } from "./entity/HeroEntity";
 import Mgr from "../../../manager/Mgr";
 
 const {ccclass,property} = _decorator;

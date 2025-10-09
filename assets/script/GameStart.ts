@@ -11,6 +11,7 @@ import { SDK } from './SDK/SDK';
 import { Main } from './Main';
 import { GameLoadingView } from './common/loading/GameLoadingView';
 import TweenManager from './common/TweenManager';
+import { registerPreloadWaitCls } from './utils/MessageCenter';
 const { ccclass, property } = _decorator;
 
 //test
@@ -66,8 +67,9 @@ export class GameStart extends Component {
 
         Mgr.Init();
         ControllerManager.init();
-        
         SDK.Init();
+        
+        registerPreloadWaitCls();
 
         this._main.show();
         console.log("资源加载完成，显示主界面");

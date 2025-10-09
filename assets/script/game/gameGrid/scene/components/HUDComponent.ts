@@ -4,11 +4,9 @@ import Mgr from "../../../../manager/Mgr";
 import { UIModuleEnum } from "../../../../enum/UIDefine";
 import { LayerManager } from "../../../../manager/LayerManager";
 import { Root3D } from "../../../../Root3D";
-import { BaseComponent } from "./BaseComponent";
-const { ccclass, property } = _decorator;
+import { EntityComponent } from "./EntityComponent";
 
-@ccclass
-export class HUDComponent extends BaseComponent{
+export class HUDComponent extends EntityComponent{
     private _HUD:Node;
     private _uiNode:Node;
     private _hpBar:ProgressBar;
@@ -17,7 +15,7 @@ export class HUDComponent extends BaseComponent{
     private _uiPos:Vec3;
     protected onInit(): void {
         this._uiPos = new Vec3();
-        this._HUD = this.node.getChildByName("HUD");
+        this._HUD =this.entity.getChildByName("HUD");
 
         Mgr.loader.LoadUIPrefab(UIModuleEnum.gameGrid3D,"EntityHUDView",(prefab)=>{
             this._uiNode = instantiate(prefab);
@@ -30,7 +28,6 @@ export class HUDComponent extends BaseComponent{
                 this.updateHp();
                 this.updateLevel();
             }
-            this._isInit = true;
         });
     }
 

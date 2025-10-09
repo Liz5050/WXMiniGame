@@ -1,6 +1,8 @@
 import { _decorator, Component, director, Node, Scene, utils } from 'cc';
 const { ccclass, property } = _decorator;
-
+export const enum SceneName{
+    GridScene = "GridScene",
+}
 export class SceneManager {
     private _mainSceneNode:Node;
     public constructor() {
@@ -18,6 +20,9 @@ export class SceneManager {
                 self._mainSceneNode.active = false;
             }
         });
+    }
+
+    public enter(sceneName:SceneName){
     }
 }
 

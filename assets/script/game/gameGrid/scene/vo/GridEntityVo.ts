@@ -1,10 +1,9 @@
 import { math } from "cc";
 import { GameGridCache } from "../../../../cache/GameGridCache";
-import { EntityVo } from "./EntityVo";
 import { EntityState, EntityType } from "../utils/EntityUtil";
+import EntityVo from "./EntityVo";
 
 export class GridEntityVo extends EntityVo{
-    public atkDelay:number = 0;
     public constructor(){
         super();
         this._type = EntityType.Grid;

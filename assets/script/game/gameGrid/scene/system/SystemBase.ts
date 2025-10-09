@@ -1,9 +1,9 @@
-import { BaseComponent } from "../components/BaseComponent";
+import { EntityComponent } from "../components/EntityComponent";
 
 export class SystemBase {
 
     protected _isStart:boolean = false;
-    protected _components:BaseComponent[] = [];
+    protected _components:EntityComponent[] = [];
     public start(){
         this._isStart = true;
     }

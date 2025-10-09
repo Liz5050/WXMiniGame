@@ -1,55 +1,56 @@
-import { Component, Node, _decorator } from "cc";
-import { EntityVo } from "../vo/EntityVo";
-import { HUDComponent } from "../components/HUDComponent";
-import { EntityPool } from "./EntityPool";
-import {EntityState, EntityType, EntityUtil} from "../utils/EntityUtil";
-import { BaseComponent } from "../components/BaseComponent";
+import { Node, _decorator } from "cc";
+import { GameFactory } from "../../GameFactory";
+import {EntityState, EntityType} from "../utils/EntityUtil";
+import { EntityComponent } from "../components/EntityComponent";
 import { ComponentFactory, ComponentType } from "../components/ComponentType";
 import { EntityAction } from "../vo/EntityAction";
 import { ActorComponent } from "../components/ActorComponent";
-const { ccclass, property } = _decorator;
-
-@ccclass
-export class BaseEntity extends Component {
-    @property(Node) HUD:Node = null;
+import ComponentSystem from "../components/ComponentSystem";
+import EntityVo from "../vo/EntityVo";
+export class BaseEntity extends Node {
     protected _vo: EntityVo;
     protected _deltaTime: number = 0;
     protected _updateInterval: number = 0.5; 
     protected _type:EntityType;
     protected _isSelected:boolean = false;
-    protected _components:{[type:number]:BaseComponent} = {};
-    protected onLoad(): void {
-        this.init();
+    protected _comps:{[type:string]:EntityComponent} = {};
+    public get entityVo():EntityVo{
+        return this._vo;
     }
 
+    public init(vo:EntityVo){
+        this._vo = vo;
+        this._vo.onProp(this.onEntityPropUpdate,this);
+        this.onInit();
+    }
+    protected onInit() { }
+    protected onEntityPropUpdate(evt:{key:OwnKeys<EntityVo>; val: any}){}
+
     public addCusComponent(type:ComponentType){
-        let com = this._components[type];
-        if(com) {
-            if(com.vo){
-                console.warn("重复添加:" + ComponentType[type]);
-            }
-            else{
-                com.setData(this._vo);
-            }
+        if(this._comps[type]) {
+            console.warn("重复添加:" + type);
             return;
         }
-        let comCls:any = ComponentFactory.getComponentCls(type);
-        if(!comCls) {
-            console.error("未定义的component:" + ComponentType[type]);
-            return;
-        }
-        com = this.addComponent(comCls) as BaseComponent;
-        com.init();
-        com.setData(this._vo);
-        this._components[type] = com;
+        const comp:EntityComponent = ComponentFactory.createComponent(type);
+        comp.type = type;
+        comp.entity = this;
+        ComponentSystem.addComponent(comp);
+        this._comps[type] = comp;
+        comp.start();
     }
 
     public removeCusComponent(type:ComponentType){
-        let com = this._components[type];
-        if(com){
-            com.reset(true);
-            delete this._components[type];
+        const comp = this._comps[type];
+        if(!comp){
+            return;
         }
+        ComponentFactory.recycleComponent(comp);
+        comp.stop();
+        delete this._comps[type];
+    }
+    
+    public getCusComponent(type:ComponentType){
+        return this._comps[type];
     }
 
     public setSelected(val:boolean){
@@ -60,12 +61,6 @@ export class BaseEntity extends Component {
 
     public get isSelected():boolean{
         return this._isSelected;
-    }
-
-    public updateLevel(){
-        let com = this._components[ComponentType.HUD];
-        // @ts-ignore
-        com && com.updateLevel();
     }
 
     public isEnemy():boolean{
@@ -80,44 +75,23 @@ export class BaseEntity extends Component {
         return this._vo;
     }
 
-    public hurt() {
-        this.playHurt();
-    }
-
-    public updateHp(){
-        let com = this._components[ComponentType.HUD];
-        // @ts-ignore
-        com && com.updateHp();
-    }
-
     protected update(dt: number): void {
         this._deltaTime += dt;
         if (!this.canUpdate()) return;
         this._deltaTime = 0;
-        this.updateSub(dt);
+        this.onUpdate(dt);
     }
 
-    protected updateSub(dt: number) { }
+    protected onUpdate(dt: number) { }
 
     protected canUpdate(): boolean {
         return this._deltaTime >= this._updateInterval
-    }
-
-    public setData(vo: EntityVo) {
-        this._vo = vo;
-        this._type = vo.type;
-        this._vo.setEntity(this);
-        // if(EntityUtil.isBattleEntity(vo.type)){
-        //     this.addCusComponent(ComponentType.HUD);
-        // }
-        this.initComponent();
-        this.onEntityVoUpdate();
     }
     // //VO层同步状态
     // public setStateFromVo(state:EntityState){
     //     this.setState(state);
     // }
-    protected init() { }
+    
     protected initComponent() { }
     protected onEntityVoUpdate() { }
     // protected setState(state: EntityState): boolean {
@@ -153,7 +127,7 @@ export class BaseEntity extends Component {
     };
     
     private playAction(action:EntityAction){
-        let comp = this._components[ComponentType.Actor];
+        let comp = this._comps[ComponentType.Actor];
         comp && (comp as ActorComponent).playAction(action);
     }
     public onStateChanged(state: EntityState) { 
@@ -193,24 +167,23 @@ export class BaseEntity extends Component {
     protected playAttack() { }
     protected playStiffness() { }
     protected playDie() { }
-    protected playHurt(isDead:boolean = false) { 
-        this.updateHp();
-    }
     protected stopMove() { }
     protected death(){
-        this.resetEntity();
+        // this.resetEntity();
     }
 
-    protected stopComponent(){
-        for(let t in this._components){
-            this._components[t].reset();
+    protected removeAllComponents(){
+        for(let type in this._comps){
+            this.removeCusComponent(type as ComponentType);
         }
     }
 
-    public resetEntity(){
-        this.stopComponent();
+    public recyleEntity(){
+        this.entityVo.offProp(this.onEntityPropUpdate,this);
+        this.removeAllComponents();
+        if(this.parent) this.removeFromParent();
         this._isSelected = false;
-        EntityPool.recycleEntity(this._type,this.node);
+        GameFactory.recycleEntity(this);
         this._vo = null;
     }
 }

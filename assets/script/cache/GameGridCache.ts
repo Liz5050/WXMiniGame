@@ -241,6 +241,13 @@ export class GameGridCache {
         if(!list){
             list = [];
             this._rankDataListDict[typeKey] = list;
+            // SDK.CloudGET(CloudApi.get_rank_data,null,(res)=>{
+            //     if(!res){
+            //         return;
+            //     }
+            //     let dataList = res.data;
+            //     console.log("排行榜数据请求成功",res,typeof(dataList));
+            // });
             SDK.CloudGET(CloudApi.all_user_game_data,[type,subtype],(res) => {
                 if(!res){
                     return;

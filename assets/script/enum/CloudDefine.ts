@@ -15,6 +15,7 @@ export class CloudApi {
     public static share_score_reward:string = "/api/share_score_reward";
     //保存方格消消乐游戏进度
     public static game_grid_save:string = "/api/game_grid_save";
+    public static get_rank_data:string = "/api/get_rank_data";
     
     
 }

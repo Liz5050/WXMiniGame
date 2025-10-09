@@ -5,6 +5,8 @@ import { CacheManager } from "../../../manager/CacheManager";
 import { EventManager } from "../../../manager/EventManager";
 import { EventEnum } from "../../../enum/EventEnum";
 import { GameGridRoundType } from "../../../cache/GameGridCache";
+import { dispatchMsg } from "../../../utils/MessageCenter";
+import { GEvent } from "../../../enum/GEvent";
 
 export class OperationGridItem {
     private _touchMask:Node;
@@ -66,7 +68,7 @@ export class OperationGridItem {
         if(CacheManager.gameGrid.roundType != GameGridRoundType.Ready) return;
         if(this._canMove) return;
         this._canMove = true;
-        EventManager.dispatch(EventEnum.OnGameSceneGridCreate,this._resType,startX,startY);
+        dispatchMsg(GEvent.OnGameSceneGridCreate,{resType:this._resType,startX,startY});
         Mgr.soundMgr.play("mobile_phone_O",false);
     }
 
@@ -74,7 +76,7 @@ export class OperationGridItem {
         if(this._resType == -1) return;
         if(this._canMove){
             if(CacheManager.gameGrid.roundType == GameGridRoundType.Ready) {
-                EventManager.dispatch(EventEnum.OnGameSceneGridMove,touchX,touchY);
+                dispatchMsg(GEvent.OnGridItemTouchMove,{touchX,touchY});
             }
             else{
                 this._canMove = false;

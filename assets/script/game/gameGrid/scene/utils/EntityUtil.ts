@@ -1,8 +1,9 @@
-export enum EntityType {
-    Grid = 1,
-    Enemy = 2,
-    GridHero = 3,
-    PlayerKing = 4,
+export const enum EntityType {
+    Grid = "GridEntity",
+    Enemy = "EnemyEntity",
+    Hero = "HeroEntity",
+    PlayerKing = "PlayerKing",
+    // Player = "EntityPlayer",
 }
 export enum EntityState {
     none = 0,
@@ -18,11 +19,11 @@ export enum EntityState {
 
 export class EntityUtil{
     public static isBattleEntity(type:EntityType){
-        return type == EntityType.Enemy || type == EntityType.GridHero;
+        return type == EntityType.Enemy || type == EntityType.Hero;
     }
 
     public static isGrid(type:EntityType){
-        return type == EntityType.Grid || type == EntityType.GridHero;
+        return type == EntityType.Grid || type == EntityType.Hero;
     }
 
     public static isEnemy(type:EntityType){

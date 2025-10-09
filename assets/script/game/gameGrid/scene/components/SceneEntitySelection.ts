@@ -7,7 +7,7 @@ import { EventEnum } from "../../../../enum/EventEnum";
 import { GameGridMapItem } from "../entity/GameGridMapItem";
 import { BaseEntity } from "../entity/BaseEntity";
 import { EntityType, EntityUtil } from "../utils/EntityUtil";
-import { GridHero } from "../entity/GridHero";
+import { GridHero } from "../entity/HeroEntity";
 const { ccclass, property } = _decorator;
 
 const _v2 = new Vec2();

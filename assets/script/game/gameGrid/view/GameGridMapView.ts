@@ -5,47 +5,61 @@ import { Root3D } from "../../../Root3D";
 import { EventManager } from "../../../manager/EventManager";
 import { EventEnum } from "../../../enum/EventEnum";
 import { GameGridMapItem } from "../scene/entity/GameGridMapItem";
-import {EntityPool} from "../scene/entity/EntityPool";
 import { Layer3DManager } from "../../../manager/Layer3DManager";
-import { GameGridEnemyContainer } from "../scene/GameGridEnemyContainer";
 import { SDK } from "../../../SDK/SDK";
 import { EntityType } from "../scene/utils/EntityUtil";
-import { GameGridRoundType } from "../../../cache/GameGridCache";
+import BaseLayer from "../scene/layer/BaseLayer";
+import GameBackgroundLayer from "../scene/layer/GameBackgroundLayer";
+import GameUILayer from "../scene/layer/GameUILayer";
+import GameEntityLayer from "../scene/layer/GameEntityLayer";
+import { LayerType } from "../scene/layer/LayerType";
 const { ccclass, property } = _decorator;
 
-@ccclass('GameGridMapView')
-export class GameGridMapView extends Component{
+export class GameGridMapView extends Node {
     private static GridPool:Node[] = [];
     @property(Node) mapGrid:Node = null;
     @property(Node) mapGridContainer:Node = null;
-    @property(GameGridEnemyContainer) enemyContainer:GameGridEnemyContainer = null;
     @property(Node) tempGroup:Node = null;
     @property(BoxCollider) posTrigger:BoxCollider = null;
     @property(Prefab) gridPrefab:Prefab;
-    private _ray: geometry.Ray;
-    private _groupPos:Vec3;
-    private _mapItemList:GameGridMapItem[][];
     
-    protected onLoad(): void {
-        this._ray = new geometry.Ray();
-        this._groupPos = new Vec3();
-        this.addEvent();
-        this.initMapGrid();
+    private _layerMap:Map<LayerType,BaseLayer> = new Map();
+    public constructor() {
+        super();
+        this.initLayer();
+    }
+
+    private initLayer(){
+        let bg = new GameBackgroundLayer();
+        bg.show();
+        this.addChild(bg);
+        this._layerMap.set(LayerType.Background,bg);
+
+        let entity = new GameEntityLayer();
+        entity.show();
+        this.addChild(entity);
+        this._layerMap.set(LayerType.Entity,entity);
+
+        let ui = new GameUILayer();
+        ui.show();
+        this.addChild(ui);
+        this._layerMap.set(LayerType.UI,ui);
+    }
+
+    public getLayer(type:LayerType){
+        return this._layerMap.get(type);
     }
 
     public show(){
-        Layer3DManager.gameLayer.addChild(this.node);
+        Layer3DManager.gameLayer.addChild(this);
     }
 
     public hide(){
-        for(let row = 0; row < 10; row++){
-            for(let col = 0; col < 10; col++){
-                let item = this._mapItemList[row][col];
-                item.setEmpty(true);
-            }
-        }
-        this.enemyContainer.hide();
-        this.node.removeFromParent();
+        this._layerMap.forEach((layer)=>{
+            layer.destroy();
+        });
+        this._layerMap.clear();
+        this.removeFromParent();
     }
 
     private addEvent(){
@@ -53,26 +67,7 @@ export class GameGridMapView extends Component{
         EventManager.addListener(EventEnum.OnGridMoveCancel,this.onMoveCancel,this);
         EventManager.addListener(EventEnum.OnGameGridRoundUpdate,this.onRoundUpdate,this);
     }
-
-    private initMapGrid(){
-        this._mapItemList = [];
-        Mgr.loader.LoadBundleRes("scene","GameGrid3D/BlueGrid",(prefab)=>{
-            for(let row = 0; row < 10; row++){
-                for(let col = 0; col < 10; col++){
-                    if(!this._mapItemList[row]){
-                        this._mapItemList[row] = [];
-                    }
-                    let mapItemNode = EntityPool.getEntity(EntityType.Grid,prefab);
-                    mapItemNode.name = `Grid_${col}_${row}`;
-                    this.mapGridContainer.addChild(mapItemNode);
-                    let item:GameGridMapItem = mapItemNode.getComponent(GameGridMapItem);
-                    this._mapItemList[row][col] = item;
-                    item.setPos(col,row);
-                }
-            }
-        });
-    }
-
+    
     private onRoundUpdate(){
         if(CacheManager.gameGrid.isBattle()){
             // for(let row = 0; row < 10; row++){
@@ -85,244 +80,5 @@ export class GameGridMapView extends Component{
             //     }
             // }
         }
-    }
-
-    private _endCheckLocalPos:Vec3 = new Vec3();
-    private OnTouchEndCheck():{isRight:boolean,canRemove:boolean,totalNum:number}{
-        let tempNodeList = this.tempGroup.children;
-        let num = tempNodeList.length;
-        let emptyNum = 0;
-        let itemArr:GameGridMapItem[] = [];
-        let endX:number = -1;
-        let endZ:number = -1;
-        for(let i = 0; i < num; i ++) {
-            let grid:Node = tempNodeList[i];//GameUI.FindChild(randomGrid,"grid" + i);
-            this.mapGridContainer.inverseTransformPoint(this._endCheckLocalPos,grid.worldPosition);
-            // console.log("坐标转换" + i + "----x：" + localPos.x + "----y：" + localPos.y)
-            if(this._endCheckLocalPos.x >= -0.5 && this._endCheckLocalPos.x <= 9.5 && this._endCheckLocalPos.z >= -0.5 && this._endCheckLocalPos.z <= 9.5){
-                //在范围内，进一步检测对应网格是否是空位
-                let centerX = Math.round(this._endCheckLocalPos.x);
-                let centerZ = Math.round(this._endCheckLocalPos.z);
-                console.log("坐标转换行列值" + i + "----col：" + centerX + "----row：" + centerZ);
-                let item:GameGridMapItem = this._mapItemList[centerZ][centerX];
-                if(item.isEmpty){
-                    emptyNum ++;
-                    itemArr.push(item);
-                    if(endX < 0) endX = centerX;
-                    if(endZ < 0) endZ = centerZ;
-                }else{
-                    //存在非空网格
-                    break;
-                }
-            }
-            else{
-                //不在网格地图范围内
-                break;
-            }
-        }
-
-        let checkListX:number[] = [];
-        let checkListY:number[] = [];
-        let isRight = emptyNum == num && num > 0;
-        if(isRight){
-            for(let i = 0; i < itemArr.length; i ++){
-                let col:number = itemArr[i].col;
-                let row:number = itemArr[i].row;
-                if(checkListX.indexOf(col) == -1){
-                    checkListX.push(col);
-                }
-                if(checkListY.indexOf(row) == -1){
-                    checkListY.push(row);
-                }
-                let vo = CacheManager.gameGrid.addEntity(EntityType.Grid)[0];
-                itemArr[i].setData(vo);
-                itemArr[i].setEmpty(false);
-            }
-        }
-
-        let canRemoveX:{[col:number]:boolean} = {};
-        for(let i:number = checkListX.length - 1; i >= 0; i--){
-            let col:number = checkListX[i];
-            canRemoveX[col] = true;
-            for(let row:number = 0; row < 10; row++){
-                if(this._mapItemList[row][col].isEmpty){
-                    // checkListX.splice(i,1);
-                    canRemoveX[col] = false;
-                    break; 
-                }
-            }
-        }
-        let canRemoveY:{[row:number]:boolean} = {};
-        for(let i:number = checkListY.length - 1; i >= 0 ; i--){
-            let row:number = checkListY[i];
-            canRemoveY[row] = true;
-            for(let col:number = 0; col < 10; col++){
-                if(this._mapItemList[row][col].isEmpty){
-                    // checkListY.splice(i,1);
-                    canRemoveY[row] = false;
-                    break; 
-                }
-            }
-        }
-        let canRemove:boolean = false;
-        let lenX:number = checkListX.length;
-        let lenY:number = checkListY.length;
-        for(let i:number = 0; i < lenX; i++){
-            let col:number = checkListX[i];
-            if(!canRemoveX[col]) continue;
-            
-            for(let row:number = 0; row < 10; row++){
-                let item = this._mapItemList[row][col];
-                item.setEmpty(true);//1、纵向消除    
-                canRemove = true
-            }
-        }
-        for(let i:number = 0; i < lenY ; i++){
-            let row:number = checkListY[i];
-            if(!canRemoveY[row]) continue;
-            for(let col:number = 0; col < 10; col++){
-                let item = this._mapItemList[row][col];
-                item.setEmpty(true);//2、横向消除    
-                canRemove = true
-            }
-        }
-        
-        return {isRight:isRight,canRemove:canRemove,totalNum:lenX + lenY};
-    }
-
-    private _lastPreviewPos:{[index:number]:{x:number,z:number}} = {};
-    private OnTouchMoveCheck(){
-        let tempNodeList = this.tempGroup.children;
-        let len = tempNodeList.length;
-        // this.clearPreview();
-
-        let isShake = false;
-        for(let i = 0; i < len; i ++) {
-            let grid:Node = tempNodeList[i];
-            this.mapGridContainer.inverseTransformPoint(this._endCheckLocalPos,grid.worldPosition);
-            if(this._endCheckLocalPos.x >= -0.5 && this._endCheckLocalPos.x <= 9.5 && this._endCheckLocalPos.z >= -0.5 && this._endCheckLocalPos.z <= 9.5){
-                //在范围内，进一步检测对应网格是否是空位
-                let centerX = Math.round(this._endCheckLocalPos.x);
-                let centerZ = Math.round(this._endCheckLocalPos.z);
-                let lastPos = this._lastPreviewPos[i];
-                if(!lastPos){
-                    lastPos = {x:centerX,z:centerZ};
-                    this._lastPreviewPos[i] = lastPos;
-                }
-                if(lastPos.x != centerX || lastPos.z != centerZ){
-                    //清空上一个预览中的格子
-                    this._mapItemList[lastPos.z][lastPos.x].setPreview(false);
-                    if(!isShake){
-                        isShake = true;
-                        SDK.vibrateShort();
-                    }
-                }
-                lastPos.x = centerX;
-                lastPos.z = centerZ;
-                let item:GameGridMapItem = this._mapItemList[centerZ][centerX];
-                item.setPreview(true);
-            }
-        }
-    }
-
-    public createPreviewGrid(resType:number,startX:number,startY:number){
-        let dataList = CacheManager.gameGrid.getGridDataList(resType);
-        if(!dataList) return;
-
-        let camera = Root3D.mainCamera;
-        camera.screenPointToRay(startX, startY, this._ray);
-        if (PhysicsSystem.instance.raycast(this._ray)) {
-            const raycastResults = PhysicsSystem.instance.raycastResults;
-            if(!raycastResults) return;
-            for (let i = 0; i < raycastResults.length; i++) {
-                const item = raycastResults[i];
-                if (item.collider == this.posTrigger) {
-                    this.mapGridContainer.inverseTransformPoint(this._groupPos,item.hitPoint);
-                    this._groupPos.z -= 1;
-                    this.tempGroup.position = this._groupPos;
-                    break;
-                }
-            }
-        }
-        
-        let rowNum = dataList.length;
-        for(let row = 0; row < rowNum; row++){
-            let rowList = dataList[row];
-            let colNum = rowList.length;
-            //偶数：起始点偏移0.5，奇数：起始点为原点(目的是让初始位置，相对点击位置保持相对居中)
-            // let offsetX:number = colNum % 2 == 0 ? -0.5 : 0;
-            // let offsetZ:number = rowNum % 2 == 0 ? -0.5 : 0;
-            let startX = -(colNum - 1) / 2;
-            let startZ = -(rowNum - 1) / 2;
-            for(let col = 0; col < colNum; col++){
-                let isShow = dataList[row][col] == 1;
-                let posX = col * 1 + startX;
-                let posZ = row * 1 + startZ;
-                if(isShow){
-                    let gridNode = this.getGridNode();
-                    gridNode.setPosition(posX,0,posZ);
-                }
-            }
-        }
-    }
-
-    private getGridNode():Node{
-        let gridNode = GameGridMapView.GridPool.pop();
-        if(!gridNode){
-            gridNode = instantiate(this.gridPrefab);
-        }
-        this.tempGroup.addChild(gridNode);
-        return gridNode;
-    }
-
-    private onGridMove(touchX:number,touchY:number){
-        if(CacheManager.gameGrid.roundType != GameGridRoundType.Ready) return;
-        let camera = Root3D.mainCamera;
-        camera.screenPointToRay(touchX, touchY, this._ray);
-        if (PhysicsSystem.instance.raycast(this._ray)) {
-            const raycastResults = PhysicsSystem.instance.raycastResults;
-            for (let i = 0; i < raycastResults.length; i++) {
-                const item = raycastResults[i];
-                if (item.collider == this.posTrigger) {
-                    this.mapGridContainer.inverseTransformPoint(this._groupPos,item.hitPoint);
-                    // this._groupPos.x -= 2;
-                    this._groupPos.z -= 2;
-                    this.tempGroup.position = this._groupPos;
-                    this.OnTouchMoveCheck();
-                    break;
-                }
-            }
-        }
-    }
-
-    private onMoveCancel(){
-        this.clearTemp();
-    }
-
-    public onGridDrop():{isRight:boolean,canRemove:boolean,totalNum:number}{
-        let result = this.OnTouchEndCheck();
-        this.clearTemp();
-        return result;
-    }
-
-    private clearTemp(){
-        let tempNodeList = this.tempGroup.children;
-        let len = tempNodeList.length;
-        if(len > 0){
-            for(let i = len - 1; i >= 0; i-- ){
-                let node = tempNodeList[i];
-                node.removeFromParent();
-                GameGridMapView.GridPool.push(node);
-            }
-        }
-        this.clearPreview();
-    }
-
-    private clearPreview(){
-        for(let index in this._lastPreviewPos){
-            let pos = this._lastPreviewPos[index];
-            this._mapItemList[pos.z][pos.x].setPreview(false);
-        }
-        this._lastPreviewPos = {};
     }
 }

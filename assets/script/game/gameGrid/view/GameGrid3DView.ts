@@ -16,6 +16,9 @@ import { CameraType, Root3D } from "../../../Root3D";
 import { GameGridRoundType } from "../../../cache/GameGridCache";
 import MathUtils from "../../../utils/MathUtils";
 import { EntityType } from "../scene/utils/EntityUtil";
+import { addObserver, msg, removeObserver } from "../../../utils/MessageCenter";
+import { CreateGridData } from "../GameGridConst";
+import { GEvent } from "../../../enum/GEvent";
 
 export class GameGrid3DView extends BaseUIView{
     private _btns:OperationGridItem[];
@@ -41,6 +44,7 @@ export class GameGrid3DView extends BaseUIView{
     private _curTime:number = 0;
     public constructor(){
         super(UIModuleEnum.gameGrid3D,"GameGrid3DView");
+        addObserver(this);
     }
 
     protected get parent(){
@@ -83,7 +87,6 @@ export class GameGrid3DView extends BaseUIView{
     }
 
     private addEvent(){
-        EventManager.addListener(EventEnum.OnGameSceneGridCreate,this.onCreateGrid,this);
         EventManager.addListener(EventEnum.OnGameSceneGridDrop,this.onGridDrop,this);
         EventManager.addListener(EventEnum.OnGameGridRoundUpdate,this.onRoundUpdate,this);
     }
@@ -125,7 +128,9 @@ export class GameGrid3DView extends BaseUIView{
         });
     }
 
-    private onCreateGrid(resType:number,startX:number,startY:number){
+    @msg(GEvent.OnGameSceneGridCreate)
+    private onCreateGrid(data:CreateGridData){
+        const {resType,startX,startY} = data;
         this._mapView.createPreviewGrid(resType,startX,startY);
     }
 
@@ -173,11 +178,12 @@ export class GameGrid3DView extends BaseUIView{
 
     public OnGameStart(){
         if(!this._mapView){
-            let prefab = Mgr.loader.getBundleRes("scene","GameGrid3D/GameGridMap") as Prefab;
-            if(prefab) {
-                this._gameGridMap = instantiate(prefab);
-                this._mapView = this._gameGridMap.getComponent(GameGridMapView);
-            }
+            this._mapView = new GameGridMapView();
+            // let prefab = Mgr.loader.getBundleRes("scene","GameGrid3D/GameGridMap") as Prefab;
+            // if(prefab) {
+            //     this._gameGridMap = instantiate(prefab);
+            //     this._mapView = this._gameGridMap.getComponent(GameGridMapView);
+            // }
         }
         Mgr.soundMgr.playBGM("bgm1");
         this._mapView.show();
@@ -229,6 +235,7 @@ export class GameGrid3DView extends BaseUIView{
 
         //     this._mapView = null;
         // }
+        removeObserver(this);
         CacheManager.gameGrid.clearAll();
         if(this._mapView){
             this._mapView.hide();
