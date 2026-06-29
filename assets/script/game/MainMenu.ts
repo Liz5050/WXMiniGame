@@ -7,6 +7,8 @@ import { BaseUISubView } from './base/BaseUISubView';
 import { CacheManager } from '../manager/CacheManager';
 import { SDK } from '../SDK/SDK';
 import { Tip } from '../common/tip/Tip';
+import { dispatchMsg } from '../utils/MessageCenter';
+import { GEvent } from '../enum/GEvent';
 
 export class MainMenu extends BaseUISubView {
     private _imgAvatar:Sprite;
@@ -194,16 +196,16 @@ export class MainMenu extends BaseUISubView {
         let resData = GameDefine.getGameRes(type);
         if(resData){
             if(resData.isAllReady){
-                EventManager.dispatch(EventEnum.OnGameStart,type);
+                dispatchMsg(GEvent.OnGameResAllReady,type);
             }
             else {
                 resData.loadRes(()=>{
-                    EventManager.dispatch(EventEnum.OnGameStart,type);
+                    dispatchMsg(GEvent.OnGameResAllReady,type);
                 });
             }
         }
         else {
-            EventManager.dispatch(EventEnum.OnGameStart,type);
+            dispatchMsg(GEvent.OnGameResAllReady,type);
         }
     }
 }

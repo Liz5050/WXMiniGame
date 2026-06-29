@@ -1,5 +1,6 @@
 import { utils,Node } from "cc";
 
+/**2D层级管理*/
 export class LayerManager{
     public static HUDLayer:Node;
     //主界面层

@@ -1,6 +1,7 @@
 import { Component, Node, _decorator } from "cc";
 const { ccclass, property } = _decorator;
 
+/**3D层级管理*/
 @ccclass
 export class Layer3DManager extends Component{
     @property(Node)gameLayer:Node = null;

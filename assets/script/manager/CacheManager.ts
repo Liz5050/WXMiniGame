@@ -1,5 +1,6 @@
 import { GameBallCache } from "../cache/GameBallCache";
 import { GameCache } from "../cache/GameCache";
+import { GameGrid3DCache } from "../cache/GameGrid3DCache";
 import { GameGridCache } from "../cache/GameGridCache";
 import { GameShopCache } from "../cache/GameShopCache";
 import { LocalStorageCache } from "../cache/LocalStorageCache";
@@ -8,6 +9,7 @@ import {StorageCache} from "../cache/StorageCache";
 
 export class CacheManager {
     private static _gameGrid:GameGridCache;
+    private static _gameGrid3D:GameGrid3DCache;
     private static _shop:GameShopCache;
     private static _player:PlayerCache;
     private static _gameBall:GameBallCache;
@@ -20,6 +22,7 @@ export class CacheManager {
     public static init(){
         this._game = new GameCache();
         this._gameGrid = new GameGridCache();
+        this._gameGrid3D = new GameGrid3DCache();
         this._shop = new GameShopCache();
         this._player = new PlayerCache();
         this._gameBall = new GameBallCache();
@@ -36,6 +39,10 @@ export class CacheManager {
 
     public static get gameGrid():GameGridCache{
         return this._gameGrid;
+    }
+
+    public static get gameGrid3D():GameGrid3DCache{
+        return this._gameGrid3D;
     }
 
     public static get shop():GameShopCache{

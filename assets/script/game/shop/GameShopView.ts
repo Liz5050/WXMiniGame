@@ -1,11 +1,11 @@
-import { _decorator, Button, Component, instantiate, Label, Node, Prefab, resources, Sprite } from 'cc';
+import { _decorator, Button, Component, instantiate, Label, Node, Sprite } from 'cc';
 import Mgr from '../../manager/Mgr';
 import { EventManager } from '../../manager/EventManager';
 import { EventEnum } from '../../enum/EventEnum';
 import { CacheManager } from '../../manager/CacheManager';
 import { BannerRewardId,SDK } from '../../SDK/SDK';
 import { Tip } from '../../common/tip/Tip';
-const { ccclass, property } = _decorator;
+const { ccclass } = _decorator;
 
 @ccclass('GameShopView')
 export class GameShopView extends Component {

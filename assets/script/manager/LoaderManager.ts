@@ -1,5 +1,4 @@
 import { AssetManager, ImageAsset, Sprite, SpriteAtlas, SpriteFrame, Texture2D, assetManager } from "cc";
-import Mgr from "./Mgr";
 import { resources } from "cc";
 import { UIModuleEnum } from "../enum/UIDefine";
 
@@ -274,9 +273,12 @@ export class LoaderManager{
         this.LoadBundleRes("audio",name,callBack);
     }
 
-    public LoadUIPrefab(moduleId:UIModuleEnum,viewName:string,callBack:Function){
+    public LoadUIPrefab(moduleId:UIModuleEnum,viewName:string,callBack:Function,bundleName?:string){
         let url:string = UIModuleEnum[moduleId] + "/" + viewName;
-        this.LoadBundleRes("ui",url,callBack);
+        if(!bundleName) {
+            bundleName = moduleId == UIModuleEnum.gameGrid3D ? "scene" : "ui";
+        }
+        this.LoadBundleRes(bundleName,url,callBack);
     }
 
     public getBundleRes(bundleName:string,resPath:string){

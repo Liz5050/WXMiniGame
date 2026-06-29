@@ -1,5 +1,6 @@
 export enum EventEnum {
-    OnGameStart = 1,
+    OnGameResAllReady = 1,
+    OnGameStart,
     OnGameExit,
 
     OnUILoading,

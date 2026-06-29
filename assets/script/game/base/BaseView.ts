@@ -1,5 +1,6 @@
 import { game, view } from 'cc';
 import { _decorator, Node } from 'cc';
+import { addObserver } from '../../utils/MessageCenter';
 export class BaseView extends Object {
     protected _rootNode:Node;
     protected _isInit:boolean = false;
@@ -16,6 +17,7 @@ export class BaseView extends Object {
     public init(){
         this.initUI();
         this.initEvent();
+        addObserver(this);
         this._isInit = true;
     }
 

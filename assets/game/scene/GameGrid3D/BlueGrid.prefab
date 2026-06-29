@@ -34,16 +34,9 @@
       }
     ],
     "_active": true,
-    "_components": [
-      {
-        "__id__": 38
-      },
-      {
-        "__id__": 40
-      }
-    ],
+    "_components": [],
     "_prefab": {
-      "__id__": 42
+      "__id__": 38
     },
     "_lpos": {
       "__type__": "cc.Vec3",
@@ -184,7 +177,7 @@
     "_lpos": {
       "__type__": "cc.Vec3",
       "x": 0,
-      "y": 0,
+      "y": -0.5,
       "z": 0
     },
     "_lrot": {
@@ -197,7 +190,7 @@
     "_lscale": {
       "__type__": "cc.Vec3",
       "x": 1,
-      "y": 1,
+      "y": 0.05,
       "z": 1
     },
     "_mobility": 0,
@@ -304,7 +297,7 @@
     "_lpos": {
       "__type__": "cc.Vec3",
       "x": 0,
-      "y": 0.51,
+      "y": -0.5,
       "z": 0
     },
     "_lrot": {
@@ -806,64 +799,6 @@
     "nestedPrefabInstanceRoots": null
   },
   {
-    "__type__": "59850/YJSdA7JjCeWFL8E6a",
-    "_name": "",
-    "_objFlags": 0,
-    "node": {
-      "__id__": 1
-    },
-    "_enabled": true,
-    "__prefab": {
-      "__id__": 39
-    },
-    "HUD": {
-      "__id__": 36
-    },
-    "bodyNode": {
-      "__id__": 6
-    },
-    "preview": {
-      "__id__": 11
-    },
-    "rigthNode": {
-      "__id__": 12
-    },
-    "errorNode": {
-      "__id__": 17
-    },
-    "collider": {
-      "__id__": 3
-    },
-    "skill": {
-      "__id__": 40
-    },
-    "_id": ""
-  },
-  {
-    "__type__": "cc.CompPrefabInfo",
-    "fileId": "25colG+DFFBKWetZW5NJNW"
-  },
-  {
-    "__type__": "67c60WrgXVJGobq4B2CWcl3",
-    "_name": "",
-    "_objFlags": 0,
-    "node": {
-      "__id__": 1
-    },
-    "_enabled": true,
-    "__prefab": {
-      "__id__": 41
-    },
-    "bodyNode": {
-      "__id__": 6
-    },
-    "_id": ""
-  },
-  {
-    "__type__": "cc.CompPrefabInfo",
-    "fileId": "a1431mDIBADrvKbXBcOJRY"
-  },
-  {
     "__type__": "cc.PrefabInfo",
     "root": {
       "__id__": 1
@@ -875,7 +810,7 @@
     "instance": null,
     "targetOverrides": [
       {
-        "__id__": 43
+        "__id__": 39
       }
     ],
     "nestedPrefabInstanceRoots": [
@@ -890,7 +825,7 @@
       "__id__": 23
     },
     "sourceInfo": {
-      "__id__": 44
+      "__id__": 40
     },
     "propertyPath": [
       "_trailModule",
@@ -900,7 +835,7 @@
       "__id__": 23
     },
     "targetInfo": {
-      "__id__": 45
+      "__id__": 41
     }
   },
   {

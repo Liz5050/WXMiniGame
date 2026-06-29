@@ -1,3 +1,5 @@
+import { dispatchMsg } from "../utils/MessageCenter";
+
 /**
  * 事件管理
  */
@@ -88,6 +90,7 @@ export class EventManager {
 				}
 			}
 		}
+		dispatchMsg(name, ...params);
 	}
 
 	public static clear(): void {

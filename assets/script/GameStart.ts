@@ -22,7 +22,7 @@ export class GameStart extends Component {
     private _frameSec:number;//1帧多少秒
     private _deltaTime:number = 0;
     private _scheduler:Scheduler;
-    start() {
+    protected onLoad(): void {
         Mgr.loader = new LoaderManager();
         LayerManager.init();
         
@@ -37,6 +37,9 @@ export class GameStart extends Component {
         // this._scheduler.setTimeScale(1);
         console.log("帧率：" + game.frameRate)
         this._deltaTime = game.totalTime;
+    }
+
+    start() {
     }
 
     private gameUpdate(dt:number){

@@ -8,6 +8,7 @@ import { Animation } from "cc";
 import { GameLoadingView } from "../../common/loading/GameLoadingView";
 import { EventManager } from "../../manager/EventManager";
 import { EventEnum } from "../../enum/EventEnum";
+import { addObserver, removeObserver } from "../../utils/MessageCenter";
 
 export class BaseUIView extends BaseView {
     private _onShowParam:any;
@@ -42,6 +43,7 @@ export class BaseUIView extends BaseView {
             if(this._isInit){
                 this.parent.addChild(this._rootNode);
                 this.onShow();
+                addObserver(this);
             }
             else{
                 this._isLoading = true;
@@ -63,7 +65,7 @@ export class BaseUIView extends BaseView {
     
                     this.parent.addChild(this._rootNode);
                     this.onShow();
-                });
+                },"ui");
             }
         }
     }
@@ -80,6 +82,7 @@ export class BaseUIView extends BaseView {
     }
 
     public hide(isDestroy:boolean = false){
+        removeObserver(this);
         if(this._isLoading){
             //取消加载
             this._cancelLoad = true;

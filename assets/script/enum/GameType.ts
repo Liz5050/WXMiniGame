@@ -21,6 +21,10 @@ export enum GameSubType {
 	GamePlayTime = 101,
 }
 
+export interface ResData {
+	url:string;
+}
+
 export class GameResData{
 	public moduleId:UIModuleEnum;
 	public type:GameType;
@@ -72,7 +76,11 @@ export class GameDefine {
 
 			if(type == GameType.Grid){
 				resData.moduleId = UIModuleEnum.gameGrid;
-				resData.resList = ["GameGridMapItem","ScoreAddItem"];
+				resData.resList = ["ScoreAddItem","GameGridMapItem"];
+			}
+			else if(type == GameType.Grid3D){
+				resData.moduleId = UIModuleEnum.gameGrid3D;
+				resData.resList = ["GameGridMap","RedGrid","BlueGrid"];
 			}
 			else if(type == GameType.GameBall){
 				resData.moduleId = UIModuleEnum.gameBall;

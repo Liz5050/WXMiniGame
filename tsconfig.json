@@ -1,9 +1,14 @@
 {
   /* Base configuration. Do not edit this field. */
-  "extends": "./temp/tsconfig.cocos.json",
+  "extends": "./temp/tsconfig.cocos.json", // 继承 Cocos Creator 自动生成的 TypeScript 基础配置
 
   /* Add your custom configuration here. */
-  "compilerOptions": {
-    "strict": false
+  "compilerOptions": { // TypeScript 编译器自定义配置
+    "strict": false, // 关闭严格类型检查，兼容当前项目中未完善类型声明的代码
+    "lib":["es2015","es2017","dom","es2019.array"], // 指定可用的内置类型库，包括 ES 标准库和 DOM API
+    "experimentalDecorators": true, // 启用实验性装饰器语法，Cocos 组件装饰器需要该能力
+    "skipLibCheck":true, // 跳过声明文件类型检查，加快编译并减少第三方声明报错
+    "forceConsistentCasingInFileNames":true, // 强制文件名大小写引用一致，避免跨平台路径大小写问题
+    "downlevelIteration": true, // 在降级到 ES5 时保持 for-of、展开运算符等迭代行为正确
   }
 }

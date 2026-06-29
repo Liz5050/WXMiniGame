@@ -9,12 +9,6 @@ export class BaseUISubView extends BaseView {
         this._rootNode = node;
     }
 
-    public init(){
-        this.initUI();
-        this.initEvent();
-        this._isInit = true;
-    }
-
     protected initUI(){
     }
 

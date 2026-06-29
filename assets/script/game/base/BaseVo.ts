@@ -70,14 +70,17 @@ export default class BaseVo {
         for (const key of Object.keys(data)) {
             let currentVal = this.reviver(key, data[key]);
             let previousVal = this[key];
-            if (currentVal !== undefined && currentVal !== previousVal) {
+            if (this.checkValueChanged(key, currentVal, previousVal)) {
                 this[key] = currentVal;
-                // cc.log(key, previousVal, currentVal);
                 this.dispatchPropertyEvent(key, previousVal);
             }
         }
 
         this.updateFinish();
+    }
+
+    protected checkValueChanged(key: string, currentVal: any, previousVal: any) {
+        return currentVal !== undefined && currentVal !== previousVal;
     }
 
     updateFinish() { }

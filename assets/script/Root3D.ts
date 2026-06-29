@@ -1,6 +1,6 @@
 import { Camera, Component, Node, Tween, Vec3, _decorator, tween } from "cc";
-import { EventManager } from "./manager/EventManager";
-import { EventEnum } from "./enum/EventEnum";
+import { dispatchMsg } from "./utils/MessageCenter";
+import { GEvent } from "./enum/GEvent";
 const {ccclass , property} = _decorator;
 
 export enum CameraType {
@@ -51,7 +51,7 @@ export class Root3D extends Component{
                 this.mainCamera.orthoHeight = 12;
                 this.mainCamera.projection = Camera.ProjectionType.ORTHO;
             }
-            EventManager.dispatch(EventEnum.OnGameGridSceneReady);
+            dispatchMsg(GEvent.OnGameGrid3DSceneReady);
         }).start();
         tween(this.mainCamera).to(0.5,{fov:fov}).start();
     }

@@ -1,19 +1,17 @@
-import { Vec3, math } from "cc";
 import { BannerRewardId, SDK } from "../SDK/SDK";
-import { AlertType, AlertView } from "../common/alert/AlertView";
 import { CloudApi } from "../enum/CloudDefine";
 import { EventEnum } from "../enum/EventEnum";
 import { GameSubType, GameType } from "../enum/GameType";
 import { CacheManager } from "../manager/CacheManager";
 import { EventManager } from "../manager/EventManager";
 import MathUtils from "../utils/MathUtils";
-import { EnemyVo } from "../game/gameGrid/scene/vo/EnemyVo";
-import { EntityVo } from "../game/gameGrid/scene/vo/EntityVo";
-import { GridEntityVo } from "../game/gameGrid/scene/vo/GridEntityVo";
 import { Tip } from "../common/tip/Tip";
-import { GridHeroVo } from "../game/gameGrid/scene/vo/GridHeroVo";
-import { EntityState, EntityType, EntityUtil } from "../game/gameGrid/scene/utils/EntityUtil";
 import { DateUtils } from "../utils/DateUtils";
+
+export enum GameGridRoundType {
+    Ready = 1,
+    Battle = 2,
+}
 
 export class GameGridRankData {
     public type:number;
@@ -34,11 +32,6 @@ export class GameGridRankData {
         }
         return this.value + "分";
     }
-}
-
-export enum GameGridRoundType{
-    Ready = 1 ,
-    Battle = 2
 }
 
 export class GameGridCache {
@@ -120,19 +113,10 @@ export class GameGridCache {
         ]
     };
 
-    private _maxEnemyNum:number = 60;//最多同时存在数量
-    private _enemyCountList:{[round:number]:number} = {};
     private _resTypeList = [1,2,3,6,7,10,11,12];
-    
-    private _entitys:{[entityId:string]:EntityVo} = {};
-    private _entityCount:{[type:number]:number} = {};
-    private _roundType:GameGridRoundType;
-    private _sceneReady:boolean = false;
-    private _round:number = 1;
-    private _nextRound:number = 1;//当前回合的怪物全部击杀，才可进入下一回合
+    private _roundType:GameGridRoundType = GameGridRoundType.Ready;
 
     public constructor(){
-        this._roundType = GameGridRoundType.Ready;
     }
 
     //获取游戏道具数量
@@ -152,11 +136,6 @@ export class GameGridCache {
             [BannerRewardId.GameGridResetNum]:1,
             [BannerRewardId.GameGridBoomNum]:1
         };
-        this._round = 1;
-        this._nextRound = 1;
-        this._roundType = GameGridRoundType.Ready;
-        this._enemyCountList[this._round] = 1;
-        this._sceneReady = true;
     }
 
     public AddPropNum(rewardId:BannerRewardId){
@@ -312,44 +291,6 @@ export class GameGridCache {
         });
     }
 
-    //#region switchRound
-    public switchRound(){
-        this._sceneReady = false;
-        let type = this._roundType;
-        if(type == GameGridRoundType.Ready){
-            this._roundType = GameGridRoundType.Battle;
-        }
-        else {
-            this._roundType = GameGridRoundType.Ready;
-        }
-        let round = this._nextRound;
-        this.setRound(round);
-        EventManager.dispatch(EventEnum.OnGameGridRoundUpdate,this._roundType);
-    }
-
-    private setRound(round:number){
-        if(this._round == round) return;
-        this._round = round;
-        this._enemyCountList[this._round] = this._round;
-    }
-
-    public get roundType():GameGridRoundType{
-        return this._roundType;
-    }
-
-    public get round():number {
-        return this._round;
-    }
-    //#endregion
-
-    public set sceneReady(val:boolean){
-        this._sceneReady = val;
-    }
-
-    public isBattle():boolean{
-        return this._roundType == GameGridRoundType.Battle && this._sceneReady;
-    }
-
     public getGridDataList(resType:number){
         let resArr = this._gridTypeList[resType];
         return resArr;
@@ -361,165 +302,8 @@ export class GameGridCache {
         return resType;
     }
 
-    //待创建的敌人数量
-    public getLeftEnemy():number {
-        let num = 0;
-        for(let round in this._enemyCountList){
-            num += this._enemyCountList[round];
-        }
-        return num;
+    public get roundType():GameGridRoundType{
+        return this._roundType;
     }
 
-    private isPlayer(type:EntityType){
-        return type == EntityType.Grid;
-    }
-
-    //#region Entity
-    public delEntity(entityId:string){
-        if(this._entitys[entityId]){
-            let vo = this._entitys[entityId];
-            delete this._entitys[entityId];
-            let count = this._entityCount[vo.type];
-            count --;
-            this._entityCount[vo.type] = count;
-            if(count <= 0 && this.isBattle()){
-                if(vo.type == EntityType.Enemy){
-                    if(this._nextRound <= this.round){
-                        this._nextRound++;
-                        CacheManager.gameGrid.switchRound();
-                    }
-                }
-                else if(this.isPlayer(vo.type)){
-                    //CacheManager.gameGrid.switchRound();
-                }
-            }
-        }
-    }
-
-    public addEntity(type:EntityType,addNum:number = 1,param?):EntityVo[]{
-        let count = this._entityCount[type];
-        if(!count) {
-            count = 0;
-        }
-        if(type == EntityType.Enemy){
-            if(count >= this._maxEnemyNum) return;
-            // if(this._enemyCountList[this.round] <= 0) return;
-            // this._enemyCountList[this.round] --;
-        }
-        count += addNum;
-        this._entityCount[type] = count;
-
-        let list = [];
-        for(let i = 0; i < addNum; i++){
-            let vo = GameGridCache.GenEntityVo(type,param);
-            this._entitys[vo.entityId] = vo;
-            list.push(vo);
-        }
-        EventManager.dispatch(EventEnum.OnEntityInit,list);
-        return list;
-    }
-
-    public getSelectedEntity(type:EntityType):EntityVo{
-        for(let entityId in this._entitys){
-            let vo = this._entitys[entityId];
-            if(vo.type != type) continue;
-            if(vo.entity && vo.entity.isSelected) return vo;
-        }
-        return null;
-    }
-    //#endregion
-
-    public clearAll(){
-        this._entitys = {};
-        this._entityCount = {};
-        GameGridCache.EntityIds = {};
-    }
-
-    //#region findTarget
-    //找到一个离自己最近的目标
-    public findTarget(pos:Vec3,type:EntityType):EntityVo{
-        let minDistance = 9999;
-        let target:EntityVo;
-        for(let entityId in this._entitys){
-            let vo = this._entitys[entityId];
-            if(vo.type != type && EntityUtil.isGrid(type) != EntityUtil.isGrid(vo.type)) continue;
-            if(!vo.isDead() && vo.state != EntityState.none) {
-                if(vo.type == EntityType.Enemy && vo.isSelected) return vo;//优先选中敌方
-                let dis = math.Vec3.distance(pos,vo.worldPos);
-                if(dis < minDistance){
-                    minDistance = dis;
-                    target = vo;
-                }
-            }
-        }
-        return target;
-    }
-
-    public findTargetByList(pos:Vec3,types:EntityType[],filterId?:string):EntityVo{
-        let minDistance = 9999;
-        let target:EntityVo;
-        for(let entityId in this._entitys){
-            let vo = this._entitys[entityId];
-            if(filterId && filterId == vo.entityId) continue;//指定过滤的目标
-            if(types.indexOf(vo.type) == -1) continue;
-            if(!vo.isDead() && vo.state != EntityState.none) {
-                if(vo.isSelected) return vo;//已选中优先
-                let dis = math.Vec3.distance(pos,vo.worldPos);
-                if(dis < minDistance){
-                    minDistance = dis;
-                    target = vo;
-                }
-            }
-        }
-        return target;
-    }
-    //#endregion
-
-    //检测某一行是否已有英雄
-    public checkGridHeroVoByRow(row:number):EntityVo{
-        for(let entityId in this._entitys){
-            let vo = this._entitys[entityId];
-            if(vo.type != EntityType.GridHero) continue;
-            if(vo.pos.z == row) return vo;
-        }
-        return null;
-    }
-
-    //检测某一列是否已有英雄
-    public checkGridHeroVoByCol(col:number):EntityVo{
-        for(let entityId in this._entitys){
-            let vo = this._entitys[entityId];
-            if(vo.type != EntityType.GridHero) continue;
-            if(vo.pos.x == col) return vo;
-        }
-        return null;
-    }
-
-    //#region static 创建VO
-    public static EntityIds:{[type:number]:number} = {};
-    public static EntityId:number = 0;
-    public static GenEntityVo(type:EntityType,param){
-        let id = GameGridCache.EntityIds[type];
-        if(!id) id = 1;
-        else id ++;
-        GameGridCache.EntityIds[type] = id;
-        let vo:EntityVo;
-        let data = param;
-        switch(type){
-            case EntityType.Grid:
-                vo = new GridEntityVo();
-                break
-            case EntityType.Enemy:
-                vo = new EnemyVo();
-                let round = CacheManager.gameGrid.round;
-                data = {maxHp:5 * round + 10}
-                break;
-            case EntityType.GridHero:
-                vo = new GridHeroVo();
-                break;
-        }
-        vo.initVo(data);
-        return vo;
-    }
-    //#endregion
 }

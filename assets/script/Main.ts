@@ -1,5 +1,6 @@
 import { SDK } from './SDK/SDK';
 import { EventEnum } from './enum/EventEnum';
+import { GEvent } from './enum/GEvent';
 import { GameState } from './enum/GameState';
 import { GameDefine, GameType } from './enum/GameType';
 import { UIModuleEnum } from './enum/UIDefine';
@@ -7,6 +8,7 @@ import { MainMenu } from './game/MainMenu';
 import { BaseUIView } from './game/base/BaseUIView';
 import { EventManager } from './manager/EventManager';
 import { LayerManager } from './manager/LayerManager';
+import { msg } from './utils/MessageCenter';
 export class Main extends BaseUIView {
 	private _mainMenu:MainMenu;
 	private _gameState:GameState;
@@ -23,14 +25,10 @@ export class Main extends BaseUIView {
 		this._mainMenu.init();
 	}
 
-	protected initEvent(){
-        EventManager.addListener(EventEnum.OnGameExit,this.OnGameExit,this);
-		EventManager.addListener(EventEnum.OnGameStart,this.OnStartGame,this);
-	}
-
 	public onShowAfter(){
 	}
 
+    @msg(GEvent.OnGameStart)
 	private OnStartGame(type:GameType){
         if(this._gameState == GameState.Playing){
             return;
@@ -38,6 +36,7 @@ export class Main extends BaseUIView {
         this.SetGameState(GameState.Playing);
     }
 
+    @msg(GEvent.OnGameExit)
     private OnGameExit(type:GameType){
         this.SetGameState(GameState.Home);
         if(type == GameType.Shulte){
