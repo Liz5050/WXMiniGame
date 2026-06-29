@@ -9,12 +9,18 @@ import { GameBuildHeroView } from "./view/GameBuildHeroView";
 import { BaseEntity } from "./scene/entity/BaseEntity";
 import { LayerType } from "./scene/layer/LayerType";
 import GameGrid3DView from "./view/GameGrid3DView";
+import GameGrid3DPhaseController, { GamePhase } from "./scene/phase/GameGrid3DPhaseController";
+import { GameGrid3DRoundType } from "../../cache/GameGrid3DCache";
+import type { IGameGrid3DBattleResult } from "./event/GameGrid3DEvent";
 
 export default class GameGrid3DController {
     private _view: GameGrid3DView;
     private _buildHeroView: GameBuildHeroView;
+    private _phaseController: GameGrid3DPhaseController;
+    private _hasEnteredInitialPhase: boolean = false;
 
     public constructor() {
+        this._phaseController = new GameGrid3DPhaseController();
         this.init();
     }
 
@@ -26,6 +32,7 @@ export default class GameGrid3DController {
     private onGameResAllReady(type: GameType): void {
         if (type !== GameType.Grid3D) return;
         CacheManager.gameGrid3D.initGameData();
+        this._hasEnteredInitialPhase = false;
         this.onGameStart();
     }
 
@@ -42,6 +49,25 @@ export default class GameGrid3DController {
     @msg(GEvent.OnGameGrid3DSceneReady)
     private onSceneReady(): void {
         CacheManager.gameGrid3D.sceneReady = true;
+        if (this._hasEnteredInitialPhase) return;
+        this._hasEnteredInitialPhase = true;
+        this._phaseController.switchToBuild();
+    }
+
+    @msg(GEvent.OnGameGrid3DStartBattle)
+    private onStartBattle(): void {
+        if (CacheManager.gameGrid3D.roundType !== GameGrid3DRoundType.Ready) return;
+        this._phaseController.switchToBattle();
+    }
+
+    @msg(GEvent.OnGameGrid3DBattleResult)
+    private onBattleResult(result: IGameGrid3DBattleResult): void {
+        if (!result) return;
+        if (result.isVictory) {
+            this._phaseController.switchToBuild();
+            return;
+        }
+        this._phaseController.switchPhase(GamePhase.Settlement);
     }
 
     @msg(GEvent.OpenGameGrid3DBuildView)
@@ -63,5 +89,7 @@ export default class GameGrid3DController {
 
     public dispose(): void {
         removeObserver(this);
+        this._phaseController && this._phaseController.dispose();
+        this._phaseController = null;
     }
 }

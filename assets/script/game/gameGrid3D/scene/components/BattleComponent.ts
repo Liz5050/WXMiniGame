@@ -10,7 +10,7 @@ export class BattleComponent extends EntityComponent{
             this._searchTypes = [EntityType.Enemy];
         }
         else if(EntityUtil.isEnemy(this._vo.type)){
-            this._searchTypes = [EntityType.Grid,EntityType.Hero];
+            this._searchTypes = [EntityType.Grid, EntityType.Hero, EntityType.King];
         }
     }
 

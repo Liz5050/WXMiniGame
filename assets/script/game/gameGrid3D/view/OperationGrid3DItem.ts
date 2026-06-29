@@ -90,6 +90,13 @@ export class OperationGrid3DItem {
         this._gridIndex = index;
     }
 
+    public setActive(isActive: boolean): void {
+        this._node.active = isActive;
+        if (!isActive) {
+            this._canMove = false;
+        }
+    }
+
     public updatePreviewGrid(gridInfo = null): void {
         if (gridInfo && !gridInfo.enable) {
             this._touchMask.active = true;

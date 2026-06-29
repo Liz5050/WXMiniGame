@@ -1,4 +1,4 @@
-import { Button, Node, ScrollView, Vec3, instantiate } from "cc";
+import { Button, Node, ScrollView, instantiate } from "cc";
 import { UIModuleEnum } from "../../../enum/UIDefine";
 import { BaseUIView } from "../../base/BaseUIView";
 import { GameBuildHeroItem } from "./GameBuildHeroItem";
@@ -7,6 +7,7 @@ import { EntityType } from "../scene/utils/EntityUtil";
 import { addObserver, msg, removeObserver } from "../../../utils/MessageCenter";
 import { GEvent } from "../../../enum/GEvent";
 import { GameGridMapItem } from "../scene/entity/GameGridMapItem";
+import { GridEntityVo, GridSummonConfig } from "../scene/vo/GridEntityVo";
 
 export class GameBuildHeroView extends BaseUIView{
 
@@ -44,8 +45,17 @@ export class GameBuildHeroView extends BaseUIView{
     }
 
     @msg(GEvent.OnGameGrid3DBuildItemSure)
-    private onBuildHeroItem(){
-        CacheManager.gameGrid3D.addEntityByNum(EntityType.Hero,1,{pos:new Vec3(this._selectedGrid.col,0,this._selectedGrid.row)});
+    private onBuildHeroItem(index: number): void {
+        if (!this._selectedGrid) return;
+        const grid = this._selectedGrid.vo as GridEntityVo;
+        if (!grid || grid.isCoreGrid) return;
+
+        const config: GridSummonConfig = {
+            summonUnitType: EntityType.Hero,
+            summonBranchId: index,
+        };
+        CacheManager.gameGrid3D.setGridSummonConfig(grid, config);
+        this.hide();
     }
 
     @msg(GEvent.OnGameGrid3DBuildItemCancel)

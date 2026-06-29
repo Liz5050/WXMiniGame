@@ -35,10 +35,20 @@
 
 - 局内初始化与清理：`initGameData()`、`clearAll()`。
 - 地图数据初始化：Controller 收到 `OnGameResAllReady` 后先调用 `initGameData()`，生成 `mapGridList` 等数据，再创建场景视图。
-- 回合占位状态：`roundType`、`round`、`switchRound()`、`isBattle()`、`sceneReady`。
+- 阶段状态：`roundType`、`round`、`switchToBuild()`、`switchToBattle()`、`switchRound()`、`isBattle()`、`sceneReady`。
+- 地块状态：地块等级、升级进度、战斗格配置、召唤单位类型、分支和本轮召唤标记。
+- 核心据点：初始化并保存 `KingVo`，根据中央 2x2 核心格最低等级同步据点等级。
 - Entity 注册与删除：`addEntity()`、`delEntity()`。
 - 目标查询：`findTarget()`、`findTargetByList()`、`getSelectedEntity()`。
 - 方块预览占位数据：`getGridDataList()`、`getRandomType()`。
+
+阶段切换规则：
+
+- 游戏初始进入构建阶段。
+- 构建阶段由 UI 派发 `OnGameGrid3DStartBattle`，玩家主动切换到战斗阶段。
+- 战斗阶段玩家不可主动切回构建；敌人全灭后由 `BattleEndCheckSystem` 触发胜利，再回到构建阶段。
+- 核心据点死亡触发失败流程，不进入正常构建循环。
+- 不使用倒计时自动切换阶段；旧 `switchRound()` 仅作为兼容入口，内部仍转到显式阶段切换方法。
 
 ## Entity-Component-EntityVo 设计
 
@@ -72,6 +82,14 @@ GameGrid3DCache 生成/注册 EntityVo
 - 位置与状态：`pos`、`worldPos`、`state`、`defaultState`、`setState()`、`updatePos()`。
 - 战斗属性：`hp`、`maxHp`、`attack`、`battleVo`、`skills`、`isDead()`。
 - 展示与资源：`getShowName()`、`modelUrl`、`getNextSkillId()`、`visible`、`isSelected`、`forward`、`setPreview()`。
+
+`GridEntityVo` 当前承载地块核心状态：
+
+- `isCoreGrid`：是否属于中央 2x2 核心据点占用格。
+- `isBattleGrid`：是否配置为战斗格。
+- `tileLevel`、`tileProgress`：由行列消除推动的地块等级和进度。
+- `summonUnitType`、`summonUnitStage`、`summonBranchId`：战斗阶段基础召唤配置。
+- `hasSummonedThisBattle`：限制每个战斗格每轮只基础召唤 1 次。
 
 实体组件开发注意事项：
 
@@ -107,12 +125,13 @@ Grid3D 内部事件使用 `MessageCenter/GEvent`，事件定义位于：
 
 只在玩法入口、退出和主界面切换等全局流程继续使用 `EventManager/EventEnum`。
 
-## 当前占位逻辑
+## 当前阶段流程
 
-- Ready 阶段由 `GameMapGridLayer` 允许拖拽预览方块并放置到 3D 棋盘。
-- Battle 阶段按计时生成敌人，并由 `ComponentSystem` 统一更新战斗、移动、攻击和表现组件。
-- 建造英雄目前从选中格子创建 `EntityType.Hero`，完整塔防建造规则未实现。
-- 清行、得分、波次切换等逻辑仍是框架占位，不代表最终玩法设计。
+- Build/Ready 阶段由 `GameMapGridLayer` 允许拖拽预览方块并放置到 3D 棋盘。
+- 放置后若触发行列消除，实际被消除的行列会通过 `GameGrid3DCache.addTileProgressByLines()` 推进地块成长；同时命中行列的交叉格会分别结算进度。
+- `GameBuildHeroView` 不再直接创建 Hero，而是把选中地块配置为战斗格并写入召唤配置。
+- Battle 阶段由 `BattleUnitSpawnSystem` 遍历战斗格，每格每轮基础召唤 1 个单位；阶段控制器按当前回合数投放基础敌人。
+- `BattleEndCheckSystem` 检测核心据点死亡和敌人全灭，胜利回构建，失败进入失败流程。
 
 ## 后续开发要求
 

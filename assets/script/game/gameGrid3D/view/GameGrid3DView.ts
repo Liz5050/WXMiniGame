@@ -7,7 +7,6 @@ import Mgr from "../../../manager/Mgr";
 import { GameType } from "../../../enum/GameType";
 import { OperationGrid3DItem } from "./OperationGrid3DItem";
 import { CacheManager } from "../../../manager/CacheManager";
-import { CameraType, Root3D } from "../../../Root3D";
 import { GameGrid3DRoundType } from "../../../cache/GameGrid3DCache";
 import { dispatchMsg, msg } from "../../../utils/MessageCenter";
 import { GEvent } from "../../../enum/GEvent";
@@ -61,6 +60,13 @@ export default class GameGrid3DView extends BaseUIView{
             },this);
         });
 
+        const btnStartBattle: Node = this.getChildByName("btnStartBattle") || this.getChildByName("BtnStartBattle");
+        if (btnStartBattle) {
+            btnStartBattle.on(Button.EventType.CLICK, () => {
+                dispatchMsg(GEvent.OnGameGrid3DStartBattle);
+            });
+        }
+
         this._btns = [];
         for(let i = 0; i < 3; i++){
             let idx = i + 1;
@@ -111,7 +117,7 @@ export default class GameGrid3DView extends BaseUIView{
     public onShowAfter(param?: any): void {
         Mgr.loader.LoadBundleRes("scene","gameGrid3D/GameGridMap",(prefab)=>{
             console.log("依赖资源加载完成，开始游戏");
-            this.OnGameStart();
+            this.onGameStart();
             this.addTimer((dt:number)=>{
                 this.update(dt / 1000);
             },1);
@@ -130,7 +136,7 @@ export default class GameGrid3DView extends BaseUIView{
             this._btns[index].ShowError();
         }
         if(this._rightCount >= 3){
-            this.OnReqNextPreview();
+            this.onReqNextPreview();
         }
 
         if(canRemove) {
@@ -143,6 +149,16 @@ export default class GameGrid3DView extends BaseUIView{
         else {
             this._removeCount = 0;
         }
+    }
+
+    @msg(GEvent.OnGameGrid3DBuildPhaseEnter)
+    private onBuildPhaseEnter(): void {
+        this.setOperationVisible(true);
+    }
+
+    @msg(GEvent.OnGameGrid3DBattlePhaseEnter)
+    private onBattlePhaseEnter(): void {
+        this.setOperationVisible(false);
     }
 
     /** 模拟更新得分信息 */
@@ -166,7 +182,7 @@ export default class GameGrid3DView extends BaseUIView{
         this._txtScore.string = "得分：" + this._score;
     }
 
-    public OnGameStart(){
+    public onGameStart(): void {
         if(!this._mapView){
             this._mapView = new GameGridMap();
             // let prefab = Mgr.loader.getBundleRes("scene","gameGrid3D/GameGridMap") as Prefab;
@@ -175,23 +191,30 @@ export default class GameGrid3DView extends BaseUIView{
             //     this._mapView = this._gameGridMap.getComponent(GameGridMapView);
             // }
         }
-        this.OnStart();
+        this.onStart();
     }
 
-    private OnStart(){
+    private onStart(): void {
         this._gameTime = game.totalTime;
         this._playTime = 0;
         this._score = 0;
         this._txtScore.string = "得分：0";
         // this.OnRefreshNumUpdate();
         // this._btnSave.active = true;
-        this.OnReqNextPreview();
+        this.onReqNextPreview();
     }
 
-    private OnReqNextPreview(){
+    private onReqNextPreview(): void {
         this._rightCount = 0;
         for(let i = 0; i < this._btns.length; i++){
             this._btns[i].updatePreviewGrid();
+        }
+    }
+
+    private setOperationVisible(isVisible: boolean): void {
+        if (!this._btns) return;
+        for (const btn of this._btns) {
+            btn.setActive(isVisible);
         }
     }
 
@@ -202,15 +225,14 @@ export default class GameGrid3DView extends BaseUIView{
             this._curTime = 0;
             this._progressReady.progress = 1;
             this._progressReady.node.active = true;
+            this._txtReadyTime.string = "准备";
             this._switchAnim.play("EnterReadyAnim");
-            Root3D.instance.switchCamera(CameraType.TopView);
             let round = CacheManager.gameGrid3D.round;
             this._txtRound.string = `回合：${round}`;
         }
         else{
             this._progressReady.node.active = false;
             this._switchAnim.play("EnterBattleAnim");
-            Root3D.instance.switchCamera(CameraType.BattleView);
         }
     }
 

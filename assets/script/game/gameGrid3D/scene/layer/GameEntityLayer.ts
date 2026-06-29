@@ -42,6 +42,8 @@ export default class GameEntityLayer extends BaseLayer {
         if (!entity) return;
         entity.resetEntity();
         delete this._entityMap[entityId];
+        delete this._enemys[entityId];
+        delete this._heros[entityId];
     }
 
     private createEntity(vo: EntityVo): void {
@@ -67,5 +69,7 @@ export default class GameEntityLayer extends BaseLayer {
             this._entityMap[entityId].resetEntity();
         }
         this._entityMap = {};
+        this._enemys = {};
+        this._heros = {};
     }
 }

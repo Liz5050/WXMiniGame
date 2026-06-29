@@ -149,3 +149,5 @@ Bundle: ui
 这部分更接近实体组件架构，和普通 UI Controller 写法不同。实体逻辑与显示部件分离：`EntityVo` 保存可同步状态，`BaseEntity` 负责绑定 Vo、挂载组件并持有显示对象引用，`ComponentSystem` 统一更新组件，表现组件只消费 Vo 快照并更新模型、动画、HUD 或格子预览。地图交互格子由 `GameMapGridLayer` 管理，动态战斗实体由 `GameEntityLayer` 管理。重构时应单独作为战斗运行时子系统维护，禁止继续依赖 2D `gameGrid/scene` 或 `GameGridCache` 的实体职责。
 
 Grid3D 内部事件优先使用 `MessageCenter/GEvent`，并统一使用 `OnGameGrid3D...` 命名；只有玩法入口、退出和主界面切换等全局流程继续使用 `EventManager/EventEnum`。更多约定见 `game-grid-3d.md`。
+
+Grid3D 局内流程由 `GameGrid3DPhaseController` 调度，具体阶段控制器继承统一的 `BasePhaseController` 生命周期。游戏初始进入构建阶段；构建到战斗由 UI 派发 `OnGameGrid3DStartBattle` 主动触发；战斗到构建只由敌人全灭的战斗结果触发；核心据点死亡进入失败流程，不回到正常构建循环。阶段状态同步到 `GameGrid3DCache`，表现层通过 `OnGameGrid3DRoundUpdate` 和阶段事件刷新。

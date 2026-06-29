@@ -3,12 +3,11 @@ import { CacheManager } from "../../../manager/CacheManager";
 import BaseLayer from "./layer/BaseLayer";
 import GameEntityLayer from "./layer/GameEntityLayer";
 import { LayerType } from "./layer/LayerType";
-import { msg, addObserver, removeObserver } from "../../../utils/MessageCenter";
+import { msg, addObserver, removeObserver, dispatchMsg } from "../../../utils/MessageCenter";
 import { GEvent } from "../../../enum/GEvent";
 import Mgr from "../../../manager/Mgr";
 import GameMapGridLayer from "./layer/GameMapGridLayer";
 import { Layer3DManager } from "../../../manager/Layer3DManager";
-import { Root3D, CameraType } from "../../../Root3D";
 
 export class GameGridMap {
     private _mapNode:Node;
@@ -30,7 +29,7 @@ export class GameGridMap {
             this._mapNode = instantiate(prefab);
             Layer3DManager.gameLayer.addChild(this._mapNode);
             this.initLayer();
-            Root3D.instance.switchCamera(CameraType.BattleView);
+            dispatchMsg(GEvent.OnGameGrid3DSceneReady);
         }
     }
 

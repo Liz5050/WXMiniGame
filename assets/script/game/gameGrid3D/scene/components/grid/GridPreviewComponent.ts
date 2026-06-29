@@ -26,6 +26,7 @@ export default class GridPreviewComponent extends EntityDisplayComponent {
     protected onEntityVoPropUpdate(evt: { key: OwnKeys<GridEntityVo>; val: any }): void {
         switch(evt.key){
             case "isEmpty":
+            case "isBattleGrid":
                 this.updateEmpty();
                 break;
             case "isPreview":
@@ -38,7 +39,7 @@ export default class GridPreviewComponent extends EntityDisplayComponent {
     private updateEmpty(){
         if (!this.vo) return;
         const vo = this.vo as GridEntityVo;
-        if(vo.isEmpty) {
+        if(vo.isEmpty && !vo.isBattleGrid) {
             //空
             this._collider.node.setPosition(0,-1,0);
             this._bodyNode.active = false;

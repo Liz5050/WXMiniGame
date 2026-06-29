@@ -3,6 +3,15 @@ import { GameGrid3DRoundType } from "../../../cache/GameGrid3DCache";
 import { BaseEntity } from "../scene/entity/BaseEntity";
 import EntityVo from "../scene/vo/EntityVo";
 import { IGridDropResult } from "../interface/GameInterface";
+import type { GridEntityVo } from "../scene/vo/GridEntityVo";
+
+/** Grid3D 战斗结果事件数据 */
+export interface IGameGrid3DBattleResult {
+    /** 是否胜利 */
+    isVictory: boolean;
+    /** 战斗结束原因 */
+    reason: string;
+}
 
 export const GameGrid3DEvent = <const>{
     OnGameGrid3DSceneReady: "OnGameGrid3DSceneReady",
@@ -26,6 +35,20 @@ export const GameGrid3DEvent = <const>{
     OnGameGrid3DBuildItemCancel: "OnGameGrid3DBuildItemCancel",
     /** 3D 建造界面确定 */
     OnGameGrid3DBuildItemSure: "OnGameGrid3DBuildItemSure",
+    /** 玩家主动开始战斗 */
+    OnGameGrid3DStartBattle: "OnGameGrid3DStartBattle",
+    /** 构建阶段进入 */
+    OnGameGrid3DBuildPhaseEnter: "OnGameGrid3DBuildPhaseEnter",
+    /** 构建阶段退出 */
+    OnGameGrid3DBuildPhaseExit: "OnGameGrid3DBuildPhaseExit",
+    /** 战斗阶段进入 */
+    OnGameGrid3DBattlePhaseEnter: "OnGameGrid3DBattlePhaseEnter",
+    /** 战斗阶段退出 */
+    OnGameGrid3DBattlePhaseExit: "OnGameGrid3DBattlePhaseExit",
+    /** 战斗结果 */
+    OnGameGrid3DBattleResult: "OnGameGrid3DBattleResult",
+    /** 地块数据更新 */
+    OnGameGrid3DGridDataUpdate: "OnGameGrid3DGridDataUpdate",
 };
 
 export type GameGrid3DEventData = UnionRecords<
@@ -44,5 +67,12 @@ export type GameGrid3DEventData = UnionRecords<
         Record<typeof GameGrid3DEvent.CloseGameGrid3DBuildView, void>,
         Record<typeof GameGrid3DEvent.OnGameGrid3DBuildItemCancel, number>,
         Record<typeof GameGrid3DEvent.OnGameGrid3DBuildItemSure, number>,
+        Record<typeof GameGrid3DEvent.OnGameGrid3DStartBattle, void>,
+        Record<typeof GameGrid3DEvent.OnGameGrid3DBuildPhaseEnter, void>,
+        Record<typeof GameGrid3DEvent.OnGameGrid3DBuildPhaseExit, void>,
+        Record<typeof GameGrid3DEvent.OnGameGrid3DBattlePhaseEnter, void>,
+        Record<typeof GameGrid3DEvent.OnGameGrid3DBattlePhaseExit, void>,
+        Record<typeof GameGrid3DEvent.OnGameGrid3DBattleResult, IGameGrid3DBattleResult>,
+        Record<typeof GameGrid3DEvent.OnGameGrid3DGridDataUpdate, GridEntityVo>,
     ]
 >;

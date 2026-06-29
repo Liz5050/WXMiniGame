@@ -20,7 +20,9 @@ class EntityVo extends BaseVo {
     public forward: Vec3 = new Vec3(0, 0, 1);
     private _state: EntityState = EntityState.idle;
     public isSelected: boolean = false;
+    public visible: boolean = true;
     protected onInit() {
+        this.worldPos.set(this.pos);
         // if (!this._stateMachine) {
         //     this._stateMachine = new StateMachine(this);
         //     this._stateMachine.start(this._state);
@@ -39,13 +41,28 @@ class EntityVo extends BaseVo {
         return this._entity;
     }
 
-    // public setState(state: EntityState): boolean {
-    //     if (this._state === state) return false;
-    //     this._state = state;
-    //     this.dispatchPropertyEvent("state");
-    //     this._stateMachine && this._stateMachine.changeStateByType(state);
-    //     return true;
-    // }
+    public get state(): EntityState {
+        return this._state;
+    }
+
+    public setState(state: EntityState): boolean {
+        if (this._state === state) return false;
+        const previousState = this._state;
+        this._state = state;
+        this.dispatchPropertyEvent("state", previousState);
+        return true;
+    }
+
+    public updatePos(pos: Vec3): void {
+        this.pos.set(pos);
+        this.worldPos.set(pos);
+        this.dispatchPropertyEvent("pos");
+    }
+
+    public updateForward(forward: Vec3): void {
+        this.forward.set(forward);
+        this.dispatchPropertyEvent("forward");
+    }
 
     public getShowName(): string {
         return this.name || this.entityId;

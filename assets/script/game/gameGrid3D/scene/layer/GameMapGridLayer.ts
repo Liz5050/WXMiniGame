@@ -237,9 +237,12 @@ export default class GameMapGridLayer extends BaseLayer {
         }
 
         let canRemove = false;
+        const removedCols: number[] = [];
+        const removedRows: number[] = [];
         for (let i = 0; i < checkListX.length; i++) {
             const col = checkListX[i];
             if (!canRemoveX[col]) continue;
+            removedCols.push(col);
             for (let row = 0; row < 10; row++) {
                 const vo = CacheManager.gameGrid3D.getGridVoByPos(col, row);
                 if (vo) {
@@ -251,6 +254,7 @@ export default class GameMapGridLayer extends BaseLayer {
         for (let i = 0; i < checkListY.length; i++) {
             const row = checkListY[i];
             if (!canRemoveY[row]) continue;
+            removedRows.push(row);
             for (let col = 0; col < 10; col++) {
                 const vo = CacheManager.gameGrid3D.getGridVoByPos(col, row);
                 if (vo) {
@@ -260,7 +264,11 @@ export default class GameMapGridLayer extends BaseLayer {
             }
         }
 
-        return { isRight, canRemove, totalNum: checkListX.length + checkListY.length };
+        if (canRemove) {
+            CacheManager.gameGrid3D.addTileProgressByLines(removedCols, removedRows);
+        }
+
+        return { isRight, canRemove, totalNum: removedCols.length + removedRows.length };
     }
 
     /** 触摸移动检查,实时更新对/错格子预览状态 */
