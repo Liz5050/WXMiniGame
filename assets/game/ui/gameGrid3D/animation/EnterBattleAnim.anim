@@ -421,7 +421,7 @@
   },
   {
     "__type__": "cc.animation.HierarchyPath",
-    "path": "btnExit"
+    "path": "btnFight"
   },
   {
     "__type__": "cc.animation.Channel",

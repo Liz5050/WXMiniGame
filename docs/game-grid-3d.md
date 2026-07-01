@@ -79,6 +79,7 @@ GameGrid3DCache 生成/注册 EntityVo
 `EntityVo` 当前已有和设计目标中的通用能力：
 
 - 基础属性：`id`、`type`、`name`、`level`。
+- 占格：`occupyCol`、`occupyRow`（默认 1x1），`containsGrid()` 判断格子是否落在实体占格范围内。
 - 位置与状态：`pos`、`worldPos`、`state`、`defaultState`、`setState()`、`updatePos()`。
 - 战斗属性：`hp`、`maxHp`、`attack`、`battleVo`、`skills`、`isDead()`。
 - 展示与资源：`getShowName()`、`modelUrl`、`getNextSkillId()`、`visible`、`isSelected`、`forward`、`setPreview()`。

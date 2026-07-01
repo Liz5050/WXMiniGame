@@ -47,11 +47,16 @@ export default class GameGrid3DView extends BaseUIView{
 
     protected initUI(): void {
         this._switchAnim = this._rootNode.getComponent(Animation);
-        let btnExit:Node = this.getChildByName("btnExit");
-        btnExit.on(Button.EventType.CLICK,()=>{
-            this.hide();
-        });
+        // let btnExit:Node = this.getChildByName("btnExit");
+        // btnExit.on(Button.EventType.CLICK,()=>{
+        //     this.hide();
+        // });
 
+        let btnFight:Node = this.getChildByName("btnFight");
+        btnFight.on(Button.EventType.CLICK,()=>{
+            dispatchMsg(GEvent.OnGameGrid3DStartBattle);
+        });
+        
         let btnRestart:Node = this.getChildByName("btnRestart");
         btnRestart.on(Button.EventType.CLICK,function(){
             AlertView.show("是否重新开始游戏？",function(type:AlertType){

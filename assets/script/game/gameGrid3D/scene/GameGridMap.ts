@@ -34,12 +34,12 @@ export class GameGridMap {
     }
 
     private initLayer(){
-        const previewRoot = this._mapNode.getChildByPath("GameRoot/MapGridRoot");
+        const gridRoot = this._mapNode.getChildByPath("GameRoot/MapGridRoot");
         let mapGridLayer = new GameMapGridLayer();
-        mapGridLayer.init(previewRoot);
+        mapGridLayer.init(gridRoot);
         this._layerMap.set(LayerType.MapGrid,mapGridLayer);
 
-        const entityRoot = this._mapNode.getChildByName("GameRoot/EntityRoot");
+        const entityRoot = this._mapNode.getChildByPath("GameRoot/EntityRoot");
         let entityLayer = new GameEntityLayer();
         entityLayer.init(entityRoot);
         this._layerMap.set(LayerType.Entity,entityLayer);

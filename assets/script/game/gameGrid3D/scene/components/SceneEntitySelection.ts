@@ -12,6 +12,13 @@ import EntityVo from "../vo/EntityVo";
 import { GridEntityVo } from "../vo/GridEntityVo";
 const { ccclass, property } = _decorator;
 
+/** 选中单位类型（敌我双方仅可选中一个） */
+export enum SelectType {
+    /** 玩家单位 */
+    Player = "player",
+    /** 敌人单位 */
+    Enemy = "enemy",
+}
 const _v2 = new Vec2();
 const _ray = new geometry.Ray();
 @ccclass
@@ -22,7 +29,8 @@ export class SceneEntitySelection extends Component {
     private _touchTarget: Node = null;
     private _playerSelect: ICursor;
     private _enemySelect: ICursor;
-    private _curSelect:{[type:string]:EntityVo} = {};
+    // private _curSelect:{[type:string]:EntityVo} = {};
+    private _curSelectVo:EntityVo = null;
     protected onLoad(): void {
         addObserver(this);
         this._playerSelect = new CursorPlayer(this.node.getChildByName("RectPlayer"));
@@ -72,44 +80,64 @@ export class SceneEntitySelection extends Component {
         const root = rsl.collider.node.parent;
         const binder:EntityNodeBinder = root.getComponent(EntityNodeBinder);
         if(!binder) return;
-        this.setSelected(binder.entity,true);
+        const entity = this.resolveSelectEntity(binder.entity);
+        this.setSelected(entity, true);
+    }
+
+    /** 点击占格范围内任意格子时，解析到实际占格实体 */
+    private resolveSelectEntity(entity: BaseEntity): BaseEntity {
+        if (!entity || !entity.vo) return entity;
+        const vo = entity.vo;
+        if (!EntityUtil.isGrid(vo.type)) return entity;
+        const ownerVo = CacheManager.gameGrid3D.findEntityByOccupyGrid(vo.pos.x, vo.pos.z);
+        if (ownerVo && ownerVo.entity) return ownerVo.entity;
+        return entity;
     }
 
     private setSelected(entity:BaseEntity,isSelected:boolean){
         if(!entity) return;
         const vo = entity.vo;
-        if(!vo) return;
-        if(vo.isSelected == isSelected) return;
+        if(!vo || vo.isSelected == isSelected) return;
+        const entityNode = entity.node;
+        if(!entityNode) return;
 
-        let entityNode = entity.node;
-        let curVo = this._curSelect[this.getSelectType(vo.type)];
-        if(curVo) curVo.update({isSelected:false});
+        // const selectType = this.getSelectType(vo.type);
+        let curVo = this._curSelectVo;
+        if(curVo) {
+            curVo.update({isSelected:false});
+            EntityUtil.isEnemy(curVo.type) ? this._enemySelect.hide() : this._playerSelect.hide();
+        }
         
         if(!isSelected) {
-            entity.isEnemy() ? this._enemySelect.hide() : this._playerSelect.hide();
+            this._curSelectVo = null;
             return;
         }
-        if(entity.isEnemy()){
+        const isEnemy = entity.isEnemy();
+        if(isEnemy){
             this._enemySelect.showWith(entityNode);
         }
         else{
             let pos = new Vec3(0,-1,0);
             if(entity.type == EntityType.Grid) {
                 const isEmpty = (vo as GridEntityVo).isEmpty;
-                if(!isEmpty) pos = Vec3.ZERO;
+                //非空格子地砖会凸起0.1米，所以选中也需要向上偏移0.9米
+                if(!isEmpty) pos.y = -0.9;
             }
-            this._playerSelect.showWith(entityNode,pos);
+            const size = vo.occupyCol > 1 || vo.occupyRow > 1
+                ? { col: vo.occupyCol, row: vo.occupyRow }
+                : null;
+            this._playerSelect.showWith(entityNode, pos, size);
         }
         vo.update({isSelected:true});
-        this._curSelect[this.getSelectType(vo.type)] = vo;
+        this._curSelectVo = vo;
     }
 
-    private getSelectType(type:EntityType){
-        if(EntityUtil.isGrid(type)){
-            return 999
-        }
-        return type;
-    }
+    // private getSelectType(type:EntityType){
+    //     if(EntityUtil.isEnemy(type)){
+    //         return SelectType.Enemy;
+    //     }
+    //     return SelectType.Player;
+    // }
 
     private _e2hit(e: EventTouch) {
         const v2 = e.getLocation(_v2);
@@ -132,10 +160,8 @@ export class SceneEntitySelection extends Component {
     }
     
     private clearSelect(){
-        for(let type in this._curSelect){
-            this._curSelect[type].update({isSelected:false});
-        }
-        this._curSelect = {};
+        if(this._curSelectVo) this._curSelectVo.update({isSelected:false});
+        this._curSelectVo = null;
     }
 
     protected onDestroy(): void {
@@ -189,14 +215,18 @@ class CursorEnemy implements ICursor {
         // this._tw = null;
     }
 }
-interface ICursor { showWith(root: Node,pos?:Vec3); hide(); }
+interface ICursor { showWith(root: Node, pos?: Vec3, size?: { col: number, row: number }); hide(); }
 class CursorPlayer implements ICursor {
     public readonly node: Node;
     public readonly rect: RoundRect;
+    private _defaultWidth: number;
+    private _defaultHeight: number;
     constructor(node:Node) {
         this.node = node;
         this.rect = node.getComponent(RoundRect);
         this.lineWidth = this.rect.lineWidth;
+        this._defaultWidth = this.rect.width;
+        this._defaultHeight = this.rect.height;
         this.node.active = false;
     }
     public lineWidth: number;
@@ -204,12 +234,19 @@ class CursorPlayer implements ICursor {
 
     // private _tw: Tween<Node>;
 
-    public showWith(root: Node,pos?:Vec3) {
+    public showWith(root: Node, pos?: Vec3, size?: { col: number, row: number }) {
         this.node.active = true;
         this.node.parent = root;
         if(!pos) pos = Vec3.ZERO;
         this.node.position = pos;
         this.node.scale = Vec3.ONE;
+        if (size) {
+            this.rect.width = size.col;
+            this.rect.height = size.row;
+        } else {
+            this.rect.width = this._defaultWidth;
+            this.rect.height = this._defaultHeight;
+        }
 
         // this.rect.lineWidth = this.lineWidth * 4;
         // tween(this.rect)
@@ -224,6 +261,8 @@ class CursorPlayer implements ICursor {
     }
     public hide() {
         this.node.active = false;
+        this.rect.width = this._defaultWidth;
+        this.rect.height = this._defaultHeight;
         // this._tw?.stop();
         // this._tw = null;
     }

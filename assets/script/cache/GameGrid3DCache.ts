@@ -286,6 +286,18 @@ export class GameGrid3DCache {
         return null;
     }
 
+    /** 根据格子坐标查找占有多格的实体（如核心据点） */
+    public findEntityByOccupyGrid(col: number, row: number): EntityVo {
+        for (const entityId in this._entitys) {
+            const vo = this._entitys[entityId];
+            if (vo.type === EntityType.Grid) continue;
+            if (vo.occupyCol <= 1 && vo.occupyRow <= 1) continue;
+            if (!vo.entity) continue;
+            if (vo.containsGrid(col, row)) return vo;
+        }
+        return null;
+    }
+
     public clearAll(): void {
         this._entitys = {};
         this._entityCount = {};

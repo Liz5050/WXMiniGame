@@ -11,6 +11,8 @@ export default class KingVo extends BattleEntityVo {
         super();
         this.type = EntityType.King;
         this.name = "核心据点";
+        this.occupyCol = 2;
+        this.occupyRow = 2;
         const maxHp = 500;
         this.hp = maxHp;
         this.maxHp = maxHp;
@@ -25,6 +27,6 @@ export default class KingVo extends BattleEntityVo {
     }
 
     public get modelUrl(): string {
-        return "";
+        return "gameGrid3D/King";
     }
 }

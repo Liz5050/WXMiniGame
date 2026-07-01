@@ -2,12 +2,12 @@
   "ver": "1.1.43",
   "importer": "prefab",
   "imported": true,
-  "uuid": "06b27733-6978-4c94-babf-dc50818b1384",
+  "uuid": "c7efa7ed-a4c7-4720-b7ad-04635ab060cb",
   "files": [
     ".json"
   ],
   "subMetas": {},
   "userData": {
-    "syncNodeName": "GameGridEnemy"
+    "syncNodeName": "King"
   }
 }

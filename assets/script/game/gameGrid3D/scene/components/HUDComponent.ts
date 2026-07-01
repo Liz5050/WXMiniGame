@@ -22,6 +22,7 @@ export class HUDComponent extends EntityComponent{
             LayerManager.HUDLayer.addChild(this._uiNode);
             return;
         }
+        //todo EntityHUDView 加载路径错误
         Mgr.loader.LoadUIPrefab(UIModuleEnum.gameGrid3D,"EntityHUDView",(prefab)=>{
             if(!this._vo) return;
             this._uiNode = instantiate(prefab);

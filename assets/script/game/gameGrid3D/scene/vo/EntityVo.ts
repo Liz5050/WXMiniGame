@@ -21,6 +21,10 @@ class EntityVo extends BaseVo {
     private _state: EntityState = EntityState.idle;
     public isSelected: boolean = false;
     public visible: boolean = true;
+    /** 占格列数（X 轴方向格子数） */
+    public occupyCol: number = 1;
+    /** 占格行数（Z 轴方向格子数） */
+    public occupyRow: number = 1;
     protected onInit() {
         this.worldPos.set(this.pos);
         // if (!this._stateMachine) {
@@ -72,6 +76,10 @@ class EntityVo extends BaseVo {
         return "";
     }
 
+    public get modelBodyUrl(): string {
+        return "";
+    }
+
     public clear(){
         dispatchMsg(GEvent.OnGameGrid3DEntityDelete,this.entityId);
     }
@@ -82,6 +90,24 @@ class EntityVo extends BaseVo {
 
     public isDead(): boolean {
         return false;
+    }
+
+    /** 占格区域起始列（含） */
+    public getOccupyMinCol(): number {
+        return Math.floor(this.pos.x - (this.occupyCol - 1) / 2);
+    }
+
+    /** 占格区域起始行（含） */
+    public getOccupyMinRow(): number {
+        return Math.floor(this.pos.z - (this.occupyRow - 1) / 2);
+    }
+
+    /** 判断格子坐标是否落在该实体占格范围内 */
+    public containsGrid(col: number, row: number): boolean {
+        const minCol = this.getOccupyMinCol();
+        const minRow = this.getOccupyMinRow();
+        return col >= minCol && col < minCol + this.occupyCol
+            && row >= minRow && row < minRow + this.occupyRow;
     }
 }
 export default EntityVo;

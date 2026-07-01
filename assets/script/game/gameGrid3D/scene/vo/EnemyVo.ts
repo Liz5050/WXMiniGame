@@ -29,6 +29,10 @@ export default class EnemyVo extends BattleEntityVo{
     }
    
     public get modelUrl():string{
+        return "gameGrid3D/Enemy";
+    }
+
+    public get modelBodyUrl():string{
         return "mini-dungeon/character-orc/character-orc";
     }
 }

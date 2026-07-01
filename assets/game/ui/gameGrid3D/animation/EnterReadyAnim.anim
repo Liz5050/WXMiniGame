@@ -421,7 +421,7 @@
   },
   {
     "__type__": "cc.animation.HierarchyPath",
-    "path": "btnExit"
+    "path": "btnFight"
   },
   {
     "__type__": "cc.animation.Channel",
@@ -480,7 +480,7 @@
         "__type__": "cc.RealKeyframeValue",
         "interpolationMode": 0,
         "tangentWeightMode": 0,
-        "value": -951.527991,
+        "value": -951.5280151367188,
         "rightTangent": 0,
         "rightTangentWeight": 1,
         "leftTangent": 0,

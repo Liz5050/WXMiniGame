@@ -1,9 +1,12 @@
-import { SkeletalAnimation, animation, Node } from "cc";
+import { SkeletalAnimation, animation, Node, Prefab, instantiate } from "cc";
 import { EntityAction } from "../vo/EntityAction";
 import { EntityState } from "../utils/EntityUtil";
 import { EntityDisplayComponent } from "./EntityDisplayComponent";
+import Mgr from "db://assets/script/manager/Mgr";
 
 export class ActorComponent extends EntityDisplayComponent {
+    private _bodyContainer: Node = null;
+    private _bodyModel: Node;
     private _anim: SkeletalAnimation;
     private _animCtrl:animation.AnimationController;
     private _action:EntityAction;
@@ -14,10 +17,27 @@ export class ActorComponent extends EntityDisplayComponent {
 
     protected onViewLoaded(node: Node): void {
         if (!this.vo) return;
-        this._anim = node.getComponent(SkeletalAnimation);
-        if(this._anim) {
-            this.playAction(this._action || this.getActionByState(this.vo.state));
+        this._bodyContainer = node.getChildByName("body");
+        if(!this._bodyContainer) return;
+        this._animCtrl = this._bodyContainer.getComponent(animation.AnimationController);
+        const bodyModelUrl = this.vo.modelBodyUrl;
+        if(bodyModelUrl) {
+            this.loadBodyModel(bodyModelUrl);
         }
+    }
+
+    private loadBodyModel(modelUrl: string): void {
+        if(!modelUrl) return;
+        const token = this.nextLoadToken();
+        Mgr.loader.LoadBundleRes("scene", modelUrl, (prefab: Prefab) => {
+            if(!this.isValidLoadToken(token)) return;
+            this._bodyModel = instantiate(prefab);
+            this._bodyContainer.addChild(this._bodyModel);
+            this._anim = this._bodyModel.getComponent(SkeletalAnimation);
+            if(this._anim) {
+                this.playAction(this._action || this.getActionByState(this.vo.state));
+            }
+        });
     }
 
     public playAction(action: EntityAction) {
