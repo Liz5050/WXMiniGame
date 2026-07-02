@@ -5,17 +5,29 @@
     const CORE_MIN = 4;
     const CORE_MAX = 5;
     const LINE_EXP_TO_LEVEL = GRID_SIZE;
-    const INITIAL_GOLD = 45;
+    const INITIAL_GOLD = 18;
     const MAX_CORE_HP = 100;
-    const PLACE_COST_PER_CELL = 2;
-    const BATTLE_GRID_COST = 15;
-    const CHANGE_UNIT_COST = 5;
-    const LINE_REWARD = 8;
-    const INTEREST_GOLD_STEP = 10;
+    const SHAPE_REFRESH_COST = 2;
+    const FREE_BATTLE_GRID_CREDITS = 3;
+    const BATTLE_GRID_COST = 10;
+    const CHANGE_UNIT_COST = 3;
+    const BASE_COMMAND_LIMIT = 3;
+    const MAX_COMMAND_LIMIT = 6;
+    const COMMAND_LIMIT_ROUND_STEP = 3;
+    const MAX_CELL_CHARGE = 12;
+    const MAX_CELL_MASTERY = 30;
+    const MAX_BURST_READY = 3;
+    const STAGE_TWO_CHARGE = 2;
+    const STAGE_THREE_CHARGE = 6;
     const CORE_CENTER = { x: 5, y: 5 };
-    const HERO_AGGRO_RANGE = GRID_SIZE / 2;
-    const EARLY_ROUND_ENEMY_COUNTS = [3, 4, 5, 6, 7];
-    const EARLY_ROUND_BONUS_GOLD = [0, 8, 7, 6, 5];
+    const HERO_AGGRO_RANGE = GRID_SIZE * 1.6;
+    const MIN_ENEMY_SPAWN_INTERVAL = 0.12;
+    const MAX_ENEMY_SPAWN_INTERVAL = 0.45;
+    const BUILD_ACTION_COST = 1;
+    const BUILD_ACTION_BASE = 2;
+    const BUILD_ACTION_MAX = 4;
+    const BUILD_ACTION_ROUND_STEP = 4;
+    const EARLY_ROUND_BONUS_GOLD = [2, 3, 3, 2, 2];
     const CORE_GUARD_POINTS = [
         { x: 4.5, y: 3.7 },
         { x: 5.5, y: 3.7 },
@@ -70,12 +82,12 @@
 
     const EnemyDef = {
         color: "#fb7185",
-        hp: 18,
-        hpRound: 5,
-        hpCurve: 2,
-        attack: 3,
-        attackRound: 1,
-        attackCurve: 0.75,
+        hp: 7,
+        hpRound: 1.15,
+        hpCurve: 0.55,
+        attack: 2,
+        attackRound: 0.45,
+        attackCurve: 0.35,
         range: 0.48,
         speed: 0.88,
         cooldown: 0.75
@@ -103,6 +115,7 @@
         startGameButton: document.getElementById("startGameButton"),
         startBattleButton: document.getElementById("startBattleButton"),
         rotateButton: document.getElementById("rotateButton"),
+        refreshShapesButton: document.getElementById("refreshShapesButton"),
         phaseText: document.getElementById("phaseText"),
         roundText: document.getElementById("roundText"),
         goldStat: document.getElementById("goldStat"),
@@ -136,6 +149,10 @@
         coreHp: MAX_CORE_HP,
         maxCoreHp: MAX_CORE_HP,
         cells: [],
+        rowLevels: Array(GRID_SIZE).fill(1),
+        colLevels: Array(GRID_SIZE).fill(1),
+        freeBattleGridCredits: FREE_BATTLE_GRID_CREDITS,
+        buildActions: 0,
         shapes: [],
         selectedShapeIndex: null,
         selectedUnitType: null,
@@ -146,6 +163,12 @@
             enemiesToSpawn: 0,
             spawnedEnemies: 0,
             spawnTimer: 0,
+            spawnInterval: MAX_ENEMY_SPAWN_INTERVAL,
+            enemyHp: 1,
+            enemyAttack: 1,
+            enemySpeed: EnemyDef.speed,
+            estimatedPlayerDps: 0,
+            targetClearTime: 0,
             coreCooldown: 0,
             endDelay: 0
         },
@@ -166,13 +189,17 @@
             row,
             col,
             filled: false,
+            blockColor: null,
             isCore: col >= CORE_MIN && col <= CORE_MAX && row >= CORE_MIN && row <= CORE_MAX,
             isBattleGrid: false,
-            tileLevel: 1,
             rowProgress: 0,
             colProgress: 0,
             summonUnitType: null,
             hasSummonedThisBattle: false,
+            charge: 0,
+            mastery: 0,
+            burstReady: 0,
+            stageFlash: 0,
             flash: 0
         };
     }
@@ -186,6 +213,10 @@
         state.coreHp = MAX_CORE_HP;
         state.maxCoreHp = MAX_CORE_HP;
         state.cells = [];
+        state.rowLevels = Array(GRID_SIZE).fill(1);
+        state.colLevels = Array(GRID_SIZE).fill(1);
+        state.freeBattleGridCredits = FREE_BATTLE_GRID_CREDITS;
+        state.buildActions = getBuildActionLimit();
         state.actors = [];
         state.selectedShapeIndex = null;
         state.selectedUnitType = null;
@@ -203,9 +234,9 @@
             }
         }
 
-        state.shapes = [createRandomShape(), createRandomShape(), createRandomShape()];
+        state.shapes = createShapeSet();
         state.buildCheckpoint = createBuildCheckpoint();
-        pushLog("游戏开始：构建阶段，初始金币 45。");
+        pushLog("游戏开始：构建阶段，初始金币 " + INITIAL_GOLD + "，指挥上限 " + getCommandLimit() + "，构建行动 " + state.buildActions + "。");
         markDirty();
     }
 
@@ -218,6 +249,10 @@
         state.coreHp = MAX_CORE_HP;
         state.maxCoreHp = MAX_CORE_HP;
         state.cells = [];
+        state.rowLevels = Array(GRID_SIZE).fill(1);
+        state.colLevels = Array(GRID_SIZE).fill(1);
+        state.freeBattleGridCredits = FREE_BATTLE_GRID_CREDITS;
+        state.buildActions = 0;
         state.shapes = [];
         state.selectedShapeIndex = null;
         state.selectedUnitType = null;
@@ -239,6 +274,12 @@
             enemiesToSpawn: 0,
             spawnedEnemies: 0,
             spawnTimer: 0,
+            spawnInterval: MAX_ENEMY_SPAWN_INTERVAL,
+            enemyHp: 1,
+            enemyAttack: 1,
+            enemySpeed: EnemyDef.speed,
+            estimatedPlayerDps: 0,
+            targetClearTime: 0,
             coreCooldown: 0,
             endDelay: 0
         };
@@ -253,11 +294,7 @@
         }
     }
 
-    function getInterestForGold(gold) {
-        return Math.floor(Math.max(0, gold) / INTEREST_GOLD_STEP);
-    }
-
-    function triggerGoldGainFx(amount) {
+    function triggerGoldGainFx(amount, label) {
         if (amount <= 0) {
             clearGoldGainFx();
             return;
@@ -267,7 +304,7 @@
         if (dom.goldStat) {
             dom.goldStat.classList.remove("is-gold-bonus");
             void dom.goldStat.offsetWidth;
-            dom.goldStat.dataset.interestGain = "+ " + amount + " 利息";
+            dom.goldStat.dataset.interestGain = "+ " + amount + " " + (label || "金币");
             dom.goldStat.classList.add("is-gold-bonus");
         }
     }
@@ -279,12 +316,16 @@
             coreHp: state.coreHp,
             maxCoreHp: state.maxCoreHp,
             nextActorId: state.nextActorId,
+            rowLevels: state.rowLevels.slice(),
+            colLevels: state.colLevels.slice(),
+            freeBattleGridCredits: state.freeBattleGridCredits,
+            buildActions: state.buildActions,
             shapes: state.shapes.map(function (shape) {
                 return {
                     id: shape.id,
                     name: shape.name,
                     color: shape.color,
-                    cost: shape.cost,
+                    used: !!shape.used,
                     cells: shape.cells.map(function (cell) {
                         return { row: cell.row, col: cell.col };
                     })
@@ -295,13 +336,17 @@
                     row: cell.row,
                     col: cell.col,
                     filled: cell.filled,
+                    blockColor: cell.blockColor,
                     isCore: cell.isCore,
                     isBattleGrid: cell.isBattleGrid,
-                    tileLevel: cell.tileLevel,
                     rowProgress: cell.rowProgress || 0,
                     colProgress: cell.colProgress || 0,
                     summonUnitType: cell.summonUnitType,
                     hasSummonedThisBattle: false,
+                    charge: cell.charge || 0,
+                    mastery: cell.mastery || 0,
+                    burstReady: cell.burstReady || 0,
+                    stageFlash: 0,
                     flash: 0
                 };
             })
@@ -317,12 +362,16 @@
         state.coreHp = snapshot.coreHp;
         state.maxCoreHp = snapshot.maxCoreHp;
         state.nextActorId = snapshot.nextActorId;
+        state.rowLevels = snapshot.rowLevels ? snapshot.rowLevels.slice() : deriveRowLevelsFromCells(snapshot.cells);
+        state.colLevels = snapshot.colLevels ? snapshot.colLevels.slice() : deriveColumnLevelsFromCells(snapshot.cells);
+        state.freeBattleGridCredits = typeof snapshot.freeBattleGridCredits === "number" ? snapshot.freeBattleGridCredits : FREE_BATTLE_GRID_CREDITS;
+        state.buildActions = typeof snapshot.buildActions === "number" ? snapshot.buildActions : getBuildActionLimit();
         state.shapes = snapshot.shapes.map(function (shape) {
             return {
                 id: shape.id,
                 name: shape.name,
                 color: shape.color,
-                cost: shape.cost,
+                used: !!shape.used,
                 cells: shape.cells.map(function (cell) {
                     return { row: cell.row, col: cell.col };
                 })
@@ -333,13 +382,17 @@
                 row: cell.row,
                 col: cell.col,
                 filled: cell.filled,
+                blockColor: cell.blockColor || null,
                 isCore: cell.isCore,
                 isBattleGrid: cell.isBattleGrid,
-                tileLevel: cell.tileLevel,
                 rowProgress: cell.rowProgress || 0,
                 colProgress: cell.colProgress || 0,
                 summonUnitType: cell.summonUnitType,
                 hasSummonedThisBattle: false,
+                charge: Math.min(MAX_CELL_CHARGE, cell.charge || 0),
+                mastery: Math.min(MAX_CELL_MASTERY, cell.mastery || 0),
+                burstReady: Math.min(MAX_BURST_READY, cell.burstReady || 0),
+                stageFlash: 0,
                 flash: 0
             };
         });
@@ -354,6 +407,188 @@
         return true;
     }
 
+    function deriveRowLevelsFromCells(cells) {
+        const levels = Array(GRID_SIZE).fill(1);
+        if (!cells) return levels;
+        cells.forEach(function (cell) {
+            if (typeof cell.tileLevel === "number") {
+                levels[cell.row] = Math.max(levels[cell.row], cell.tileLevel);
+            }
+        });
+        return levels;
+    }
+
+    function deriveColumnLevelsFromCells(cells) {
+        const levels = Array(GRID_SIZE).fill(1);
+        if (!cells) return levels;
+        cells.forEach(function (cell) {
+            if (typeof cell.tileLevel === "number") {
+                levels[cell.col] = Math.max(levels[cell.col], cell.tileLevel);
+            }
+        });
+        return levels;
+    }
+
+    function getCellLevel(cell) {
+        return getRowLevel(cell.row) + getColumnLevel(cell.col) - 1;
+    }
+
+    function getCellStage(cell) {
+        if (!cell || !cell.isBattleGrid) return 1;
+        if ((cell.charge || 0) >= STAGE_THREE_CHARGE) return 3;
+        if ((cell.charge || 0) >= STAGE_TWO_CHARGE) return 2;
+        return 1;
+    }
+
+    function getStageLabel(stage) {
+        if (stage >= 3) return "III";
+        if (stage >= 2) return "II";
+        return "I";
+    }
+
+    function getCommandLimit() {
+        const growth = Math.floor(Math.max(0, state.round - 1) / COMMAND_LIMIT_ROUND_STEP);
+        return Math.min(MAX_COMMAND_LIMIT, BASE_COMMAND_LIMIT + growth);
+    }
+
+    function getBuildActionLimit() {
+        const growth = Math.floor(Math.max(0, state.round - 1) / BUILD_ACTION_ROUND_STEP);
+        return Math.min(BUILD_ACTION_MAX, BUILD_ACTION_BASE + growth);
+    }
+
+    function spendBuildAction(label) {
+        if (state.buildActions < BUILD_ACTION_COST) {
+            notify("构建行动已用完，请开始战斗验证这一轮。", "warn");
+            return false;
+        }
+        state.buildActions -= BUILD_ACTION_COST;
+        if (label) pushLog(label + "，剩余构建行动 " + state.buildActions + "。");
+        return true;
+    }
+
+    function clamp(value, min, max) {
+        return Math.max(min, Math.min(max, value));
+    }
+
+    function getBattleGridCount() {
+        return state.cells.reduce(function (count, cell) {
+            return count + (cell.isBattleGrid && cell.summonUnitType ? 1 : 0);
+        }, 0);
+    }
+
+    function getBattleGridCost(cell) {
+        if (cell && cell.isBattleGrid && cell.summonUnitType) return CHANGE_UNIT_COST;
+        return state.freeBattleGridCredits > 0 ? 0 : BATTLE_GRID_COST;
+    }
+
+    function addCellCharge(cell, amount, reason) {
+        if (!cell || !cell.isBattleGrid || cell.isCore || amount <= 0) return false;
+        const beforeCharge = cell.charge || 0;
+        const beforeMastery = cell.mastery || 0;
+        const beforeStage = getCellStage(cell);
+        const totalCharge = beforeCharge + amount;
+        const nextCharge = Math.min(MAX_CELL_CHARGE, totalCharge);
+        const overflow = Math.max(0, totalCharge - MAX_CELL_CHARGE);
+        const nextMastery = Math.min(MAX_CELL_MASTERY, beforeMastery + overflow);
+        if (nextCharge === beforeCharge && nextMastery === beforeMastery) return false;
+        cell.charge = nextCharge;
+        cell.mastery = nextMastery;
+        cell.flash = 0.55;
+        cell.stageFlash = 0.9;
+
+        const afterStage = getCellStage(cell);
+        const label = UnitDefs[cell.summonUnitType] ? UnitDefs[cell.summonUnitType].short : "T";
+        const chargeGain = nextCharge - beforeCharge;
+        const masteryGain = nextMastery - beforeMastery;
+        if (chargeGain > 0) {
+            addFloatingMessage("+" + chargeGain + " 能量", cell.col + 0.5, cell.row + 0.5, "#8bd4ff");
+        }
+        if (masteryGain > 0) {
+            addFloatingMessage("精通+" + masteryGain, cell.col + 0.5, cell.row + 0.5, "#f6c95f");
+        }
+        if (afterStage > beforeStage) {
+            addFloatingMessage(label + " " + getStageLabel(afterStage), cell.col + 0.5, cell.row + 0.1, "#f6c95f");
+            pushLog("地块 [" + (cell.col + 1) + "," + (cell.row + 1) + "] " + (reason || "充能") + "，升到 " + getStageLabel(afterStage) + " 阶。");
+        } else if (masteryGain > 0) {
+            pushLog("地块 [" + (cell.col + 1) + "," + (cell.row + 1) + "] 充能溢出转为精通 +" + masteryGain + "。");
+        }
+        return true;
+    }
+
+    function addCellBurst(cell, amount) {
+        if (!cell || !cell.isBattleGrid || cell.isCore || amount <= 0) return false;
+        const before = cell.burstReady || 0;
+        const next = Math.min(MAX_BURST_READY, before + amount);
+        if (next === before) return false;
+        cell.burstReady = next;
+        cell.flash = 0.65;
+        addFloatingMessage("开场技+" + (next - before), cell.col + 0.5, cell.row + 0.78, "#f6c95f");
+        return true;
+    }
+
+    function applyPlacementCharge(placedCells) {
+        const affected = new Map();
+        placedCells.forEach(function (cell) {
+            if (!cell) return;
+            addPlacementChargeTarget(affected, cell.row, cell.col, 3);
+            addPlacementChargeTarget(affected, cell.row - 1, cell.col, 1);
+            addPlacementChargeTarget(affected, cell.row + 1, cell.col, 1);
+            addPlacementChargeTarget(affected, cell.row, cell.col - 1, 1);
+            addPlacementChargeTarget(affected, cell.row, cell.col + 1, 1);
+        });
+
+        let chargedCount = 0;
+        affected.forEach(function (amount, key) {
+            const parts = key.split(",");
+            const cell = getCell(Number(parts[0]), Number(parts[1]));
+            if (addCellCharge(cell, amount, "方块放置")) chargedCount += 1;
+        });
+        if (chargedCount > 0) {
+            pushLog("方块放置为 " + chargedCount + " 个战斗格即时充能。");
+        }
+    }
+
+    function addPlacementChargeTarget(targets, row, col, amount) {
+        const cell = getCell(row, col);
+        if (!cell || !cell.isBattleGrid || cell.isCore) return;
+        const key = row + "," + col;
+        targets.set(key, Math.max(targets.get(key) || 0, amount));
+    }
+
+    function applyLineClearCharge(fullRows, fullCols, clearCount) {
+        let chargedCount = 0;
+        let burstCount = 0;
+        fullRows.forEach(function (row) {
+            addBoardWave("row", row, "#68d391");
+            for (let col = 0; col < GRID_SIZE; col += 1) {
+                const cell = getCell(row, col);
+                if (addCellCharge(cell, 4, "行消除")) chargedCount += 1;
+                if (addCellBurst(cell, 1)) burstCount += 1;
+            }
+        });
+        fullCols.forEach(function (col) {
+            addBoardWave("col", col, "#60a5fa");
+            for (let row = 0; row < GRID_SIZE; row += 1) {
+                const cell = getCell(row, col);
+                if (addCellCharge(cell, 4, "列消除")) chargedCount += 1;
+                if (addCellBurst(cell, 1)) burstCount += 1;
+            }
+        });
+        if (chargedCount > 0 || burstCount > 0) {
+            pushLog("消除能量扫过战斗格：充能 " + chargedCount + " 次，开场技 +" + burstCount + "。");
+        } else if (clearCount > 0) {
+            pushLog("消除能量未命中战斗格，可先把关键行列配置成战斗格。");
+        }
+    }
+
+    function getRowLevel(row) {
+        return state.rowLevels[row] || 1;
+    }
+
+    function getColumnLevel(col) {
+        return state.colLevels[col] || 1;
+    }
+
     function createRandomShape() {
         const template = ShapeTemplates[Math.floor(Math.random() * ShapeTemplates.length)];
         const cells = template.cells.map(function (cell) {
@@ -364,8 +599,18 @@
             name: template.name,
             cells,
             color: template.color,
-            cost: cells.length * PLACE_COST_PER_CELL
+            used: false
         };
+    }
+
+    function createShapeSet() {
+        return [createRandomShape(), createRandomShape(), createRandomShape()];
+    }
+
+    function areAllShapesUsed() {
+        return state.shapes.length > 0 && state.shapes.every(function (shape) {
+            return shape.used;
+        });
     }
 
     function getCell(row, col) {
@@ -385,6 +630,14 @@
 
     function selectShape(index) {
         if (state.phase !== "build") return;
+        const shape = state.shapes[index];
+        if (!shape) return;
+        if (shape.used) {
+            notify("该方块已经放置，请刷新候选方块。", "warn");
+            state.selectedShapeIndex = null;
+            markDirty();
+            return;
+        }
         state.selectedShapeIndex = state.selectedShapeIndex === index ? null : index;
         if (state.selectedShapeIndex !== null) {
             state.selectedUnitType = null;
@@ -401,6 +654,11 @@
         const shape = state.shapes[state.selectedShapeIndex];
         if (!shape) {
             notify("请先选择一个候选方块。", "warn");
+            return;
+        }
+        if (shape.used) {
+            notify("该方块已经放置，请刷新候选方块。", "warn");
+            cancelSelectedShape();
             return;
         }
         const rotated = shape.cells.map(function (cell) {
@@ -426,7 +684,7 @@
 
     function canPlaceShape(shape, baseRow, baseCol) {
         if (!shape) return { ok: false, reason: "未选择方块。" };
-        if (state.gold < shape.cost) return { ok: false, reason: "金币不足，无法放置。" };
+        if (shape.used) return { ok: false, reason: "该方块已经放置，请刷新候选方块。" };
 
         for (const part of shape.cells) {
             const cell = getCell(baseRow + part.row, baseCol + part.col);
@@ -438,24 +696,62 @@
 
     function placeSelectedShape(baseRow, baseCol) {
         if (state.phase !== "build") return;
-        const shape = state.shapes[state.selectedShapeIndex];
+        const shapeIndex = state.selectedShapeIndex;
+        const shape = state.shapes[shapeIndex];
         const check = canPlaceShape(shape, baseRow, baseCol);
         if (!check.ok) {
             notify(check.reason, "error");
             cancelSelectedShape();
             return;
         }
+        if (!spendBuildAction("放置 " + shape.name)) {
+            cancelSelectedShape();
+            markDirty();
+            return;
+        }
 
+        const placedCells = [];
         shape.cells.forEach(function (part) {
             const cell = getCell(baseRow + part.row, baseCol + part.col);
             cell.filled = true;
+            cell.blockColor = shape.color;
             cell.flash = 0.3;
+            placedCells.push(cell);
         });
-        state.gold -= shape.cost;
-        pushLog("放置 " + shape.name + "，消耗 " + shape.cost + " 金币。");
-        state.shapes[state.selectedShapeIndex] = createRandomShape();
+        shape.used = true;
+        pushLog("本次放置不消耗金币。");
+        applyPlacementCharge(placedCells);
         state.selectedShapeIndex = null;
         resolveLines();
+        if (areAllShapesUsed()) {
+            notify("3 个方块已放完，可花 " + SHAPE_REFRESH_COST + " 金刷新。", "warn");
+            pushLog("候选方块已用完：刷新下一组需要 " + SHAPE_REFRESH_COST + " 金币。");
+        }
+        markDirty();
+    }
+
+    function refreshShapes() {
+        if (state.phase !== "build") {
+            notify("构建阶段才能刷新方块。", "warn");
+            return;
+        }
+        if (!areAllShapesUsed()) {
+            notify("先放完当前 3 个候选方块，才能刷新。", "warn");
+            return;
+        }
+        if (state.gold < SHAPE_REFRESH_COST) {
+            notify("金币不足，刷新需要 " + SHAPE_REFRESH_COST + " 金币。", "error");
+            return;
+        }
+        if (!spendBuildAction("刷新候选方块")) {
+            markDirty();
+            return;
+        }
+        state.gold -= SHAPE_REFRESH_COST;
+        state.shapes = createShapeSet();
+        state.selectedShapeIndex = null;
+        state.selectedUnitType = null;
+        pushLog("刷新候选方块，消耗 " + SHAPE_REFRESH_COST + " 金币。");
         markDirty();
     }
 
@@ -491,11 +787,15 @@
 
         if (fullRows.length === 0 && fullCols.length === 0) return;
 
+        const clearCount = fullRows.length + fullCols.length;
+        applyLineClearCharge(fullRows, fullCols, clearCount);
+
         for (const row of fullRows) {
             addRowProgress(row);
             for (let col = 0; col < GRID_SIZE; col += 1) {
                 const cell = getCell(row, col);
                 cell.filled = false;
+                cell.blockColor = null;
             }
         }
 
@@ -504,14 +804,11 @@
             for (let row = 0; row < GRID_SIZE; row += 1) {
                 const cell = getCell(row, col);
                 cell.filled = false;
+                cell.blockColor = null;
             }
         }
 
-        const clearCount = fullRows.length + fullCols.length;
-        const comboBonus = clearCount > 1 ? (clearCount - 1) * 6 : 0;
-        const reward = clearCount * LINE_REWARD + comboBonus;
-        state.gold += reward;
-        pushLog("消除 " + clearCount + " 条行列，获得 " + reward + " 金币，推进对应行列经验。");
+        pushLog("消除 " + clearCount + " 条行列：触发战斗格充能、开场技和行列经验，不获得金币。");
     }
 
     function addRowProgress(row) {
@@ -528,10 +825,10 @@
             for (let col = 0; col < GRID_SIZE; col += 1) {
                 const cell = getCell(row, col);
                 cell.rowProgress = 0;
-                cell.tileLevel += 1;
                 cell.flash = 0.65;
             }
-            pushLog("第 " + (row + 1) + " 行累计 " + LINE_EXP_TO_LEVEL + " 经验，整行升到 Lv." + getCell(row, 0).tileLevel + "。");
+            state.rowLevels[row] = getRowLevel(row) + 1;
+            pushLog("第 " + (row + 1) + " 行累计 " + LINE_EXP_TO_LEVEL + " 经验，行等级升到 Lv." + getRowLevel(row) + "。");
         }
     }
 
@@ -549,10 +846,10 @@
             for (let row = 0; row < GRID_SIZE; row += 1) {
                 const cell = getCell(row, col);
                 cell.colProgress = 0;
-                cell.tileLevel += 1;
                 cell.flash = 0.65;
             }
-            pushLog("第 " + (col + 1) + " 列累计 " + LINE_EXP_TO_LEVEL + " 经验，整列升到 Lv." + getCell(0, col).tileLevel + "。");
+            state.colLevels[col] = getColumnLevel(col) + 1;
+            pushLog("第 " + (col + 1) + " 列累计 " + LINE_EXP_TO_LEVEL + " 经验，列等级升到 Lv." + getColumnLevel(col) + "。");
         }
     }
 
@@ -624,7 +921,15 @@
             return;
         }
 
-        const cost = cell.isBattleGrid ? CHANGE_UNIT_COST : BATTLE_GRID_COST;
+        const addsNewUnit = !cell.summonUnitType;
+        if (addsNewUnit && getBattleGridCount() >= getCommandLimit()) {
+            notify("指挥上限已满：" + getBattleGridCount() + "/" + getCommandLimit() + "。先强化现有单位，后续轮次会提高上限。", "warn");
+            cancelSelectedUnit();
+            markDirty();
+            return;
+        }
+
+        const cost = getBattleGridCost(cell);
         if (state.gold < cost) {
             notify("金币不足，配置需要 " + cost + " 金币。", "error");
             cancelSelectedUnit();
@@ -632,11 +937,15 @@
             return;
         }
 
-        state.gold -= cost;
+        if (cost > 0) {
+            state.gold -= cost;
+        } else if (addsNewUnit && state.freeBattleGridCredits > 0) {
+            state.freeBattleGridCredits -= 1;
+        }
         cell.isBattleGrid = true;
         cell.summonUnitType = unitType;
         cell.flash = 0.45;
-        pushLog("地块 [" + (cell.col + 1) + "," + (cell.row + 1) + "] 配置为" + UnitDefs[unitType].label + "。");
+        pushLog("地块 [" + (cell.col + 1) + "," + (cell.row + 1) + "] 配置为" + UnitDefs[unitType].label + "，" + (cost > 0 ? "消耗 " + cost + " 金币" : "使用免费战斗格") + "。");
         state.selectedUnitType = null;
         markDirty();
     }
@@ -653,55 +962,199 @@
         state.selectedCell = null;
         state.actors = [];
         resetBattleStats();
-        state.battleStats.enemiesToSpawn = getEnemyCountForRound(state.round);
         state.battleStats.coreCooldown = 0.25;
 
         state.cells.forEach(function (cell) {
             cell.hasSummonedThisBattle = false;
             if (cell.isBattleGrid && cell.summonUnitType) {
-                spawnHeroFromCell(cell);
+                const actor = spawnHeroFromCell(cell);
                 cell.hasSummonedThisBattle = true;
             }
         });
 
-        pushLog("第 " + state.round + " 轮战斗开始：敌人 " + state.battleStats.enemiesToSpawn + " 个。");
+        setupDynamicWave();
+
+        const openingEnemies = Math.min(6, state.battleStats.enemiesToSpawn);
+        for (let index = 0; index < openingEnemies; index += 1) {
+            spawnEnemy();
+        }
+        state.battleStats.spawnTimer = state.battleStats.spawnInterval;
+
+        state.actors.forEach(function (actor) {
+            if (actor.team === "player" && actor.sourceCell) {
+                triggerOpeningSkill(actor, actor.sourceCell);
+            }
+        });
+
+        pushLog("第 " + state.round + " 轮战斗开始：敌人 " + state.battleStats.enemiesToSpawn + " 个，目标时长 " + state.battleStats.targetClearTime.toFixed(1) + " 秒。");
         markDirty();
     }
 
-    function getEnemyCountForRound(round) {
-        if (round <= EARLY_ROUND_ENEMY_COUNTS.length) {
-            return EARLY_ROUND_ENEMY_COUNTS[round - 1];
-        }
-        const ramp = round - EARLY_ROUND_ENEMY_COUNTS.length;
-        return 7 + ramp + Math.floor(Math.pow(ramp, 1.18));
+    function setupDynamicWave() {
+        const dps = estimateCurrentPlayerDps();
+        const targetClearTime = getTargetClearTime(state.round);
+        const enemyHp = getEnemyHpForRound(state.round);
+        const minCount = 10 + state.round * 4;
+        const maxCount = 32 + state.round * 10;
+        const totalEnemyHp = dps * targetClearTime * 0.72;
+        const enemyCount = clamp(Math.round(totalEnemyHp / enemyHp), minCount, maxCount);
+        const spawnInterval = clamp(targetClearTime * 0.65 / Math.max(1, enemyCount), MIN_ENEMY_SPAWN_INTERVAL, MAX_ENEMY_SPAWN_INTERVAL);
+
+        state.battleStats.estimatedPlayerDps = dps;
+        state.battleStats.targetClearTime = targetClearTime;
+        state.battleStats.enemiesToSpawn = enemyCount;
+        state.battleStats.enemyHp = enemyHp;
+        state.battleStats.enemyAttack = getEnemyAttackForRound(state.round);
+        state.battleStats.enemySpeed = getEnemySpeedForRound(state.round);
+        state.battleStats.spawnInterval = spawnInterval;
     }
 
     function spawnHeroFromCell(cell) {
         const def = UnitDefs[cell.summonUnitType];
-        const level = cell.tileLevel;
-        const hp = def.hp + def.hpLevel * (level - 1);
+        const level = getCellLevel(cell);
+        const stage = getCellStage(cell);
+        const levelBonus = level - 1;
+        const charge = cell.charge || 0;
+        const mastery = cell.mastery || 0;
+        const power = charge + mastery * 1.8;
+        let hp = def.hp + def.hpLevel * levelBonus;
+        let attack = def.attack + def.attackLevel * levelBonus;
+        let range = def.range;
+        let speed = def.speed;
+        let cooldownMax = def.cooldown;
+        let shotsPerAttack = 1;
+        let damageTakenScale = 1;
+        let cleaveRadius = 0;
+        let cleaveDamageScale = 0;
+        let deathBurstRadius = 0;
+        let deathBurstDamage = 0;
+        let healMultiplier = 1;
+        let supportPulseDamage = 0;
+        let radius = 0.18;
+        let barrageCooldownMax = 0;
+        let barrageShots = 0;
+        let barrageDamage = 0;
+
+        if (cell.summonUnitType === "melee") {
+            hp += stage >= 3 ? 120 : stage >= 2 ? 55 : 0;
+            hp += Math.floor(power * 10);
+            attack += stage >= 3 ? 14 : stage >= 2 ? 6 : 0;
+            attack += Math.floor(power * 1.7);
+            range += stage >= 3 ? 0.28 : stage >= 2 ? 0.12 : 0;
+            range += Math.min(0.55, power * 0.012);
+            cooldownMax = stage >= 3 ? 0.48 : stage >= 2 ? 0.58 : cooldownMax;
+            cooldownMax = Math.max(0.24, cooldownMax - power * 0.012);
+            damageTakenScale = stage >= 3 ? 0.32 : stage >= 2 ? 0.52 : 1;
+            damageTakenScale = Math.max(0.18, damageTakenScale - power * 0.008);
+            cleaveRadius = stage >= 3 ? 1.55 : stage >= 2 ? 1.05 : 0;
+            cleaveRadius += Math.min(0.75, power * 0.015);
+            cleaveDamageScale = stage >= 3 ? 1.05 : stage >= 2 ? 0.55 : 0;
+            deathBurstRadius = stage >= 3 ? 1.6 : 0;
+            deathBurstDamage = stage >= 3 ? attack * (4 + Math.floor(mastery / 8)) : 0;
+            radius = stage >= 3 ? 0.25 : stage >= 2 ? 0.22 : radius;
+        } else if (cell.summonUnitType === "ranged") {
+            hp += stage >= 3 ? 34 : stage >= 2 ? 16 : 0;
+            hp += Math.floor(power * 4.5);
+            attack += stage >= 3 ? 12 : stage >= 2 ? 5 : 0;
+            attack += Math.floor(power * 1.35);
+            range += stage >= 3 ? 0.9 : stage >= 2 ? 0.42 : 0;
+            range += Math.min(1.8, power * 0.04);
+            cooldownMax = stage >= 3 ? 0.52 : stage >= 2 ? 0.72 : cooldownMax;
+            cooldownMax = Math.max(0.22, cooldownMax - power * 0.01);
+            shotsPerAttack = stage >= 3 ? 8 : stage >= 2 ? 4 : 1;
+            shotsPerAttack += Math.floor(mastery / 6);
+            barrageCooldownMax = stage >= 3 ? Math.max(1.6, 4.2 - mastery * 0.08) : 0;
+            barrageShots = stage >= 3 ? 16 + Math.floor(power * 0.9) : 0;
+            barrageDamage = stage >= 3 ? Math.max(1, Math.floor(attack * (0.75 + mastery * 0.018))) : 0;
+            radius = stage >= 3 ? 0.23 : stage >= 2 ? 0.2 : radius;
+        } else if (cell.summonUnitType === "repair") {
+            hp += stage >= 3 ? 55 : stage >= 2 ? 24 : 0;
+            hp += Math.floor(power * 6);
+            attack += stage >= 3 ? 8 : stage >= 2 ? 3 : 0;
+            attack += Math.floor(power * 0.85);
+            range += stage >= 3 ? 0.55 : stage >= 2 ? 0.25 : 0;
+            range += Math.min(1.1, power * 0.025);
+            cooldownMax = stage >= 3 ? 0.72 : stage >= 2 ? 0.95 : cooldownMax;
+            cooldownMax = Math.max(0.3, cooldownMax - power * 0.012);
+            damageTakenScale = Math.max(0.55, 1 - power * 0.008);
+            healMultiplier = (stage >= 3 ? 3.6 : stage >= 2 ? 2.1 : 1) + mastery * 0.08;
+            supportPulseDamage = stage >= 3 ? 12 + Math.floor(power * 0.75) : stage >= 2 ? 5 + Math.floor(power * 0.35) : 0;
+            radius = stage >= 3 ? 0.22 : stage >= 2 ? 0.2 : radius;
+        }
+
         const guardPoint = getGuardPointForActor(state.nextActorId);
         const actor = {
             id: state.nextActorId,
             team: "player",
             kind: cell.summonUnitType,
+            stage,
+            charge,
+            mastery,
+            power,
             x: cell.col + 0.5,
             y: cell.row + 0.5,
             hp,
             maxHp: hp,
-            attack: def.attack + def.attackLevel * (level - 1),
-            range: def.range,
-            speed: def.speed,
+            attack,
+            range,
+            speed,
             cooldown: 0.2,
-            cooldownMax: def.cooldown,
+            cooldownMax,
+            shotsPerAttack,
+            damageTakenScale,
+            cleaveRadius,
+            cleaveDamageScale,
+            deathBurstRadius,
+            deathBurstDamage,
+            healMultiplier,
+            supportPulseDamage,
+            barrageCooldown: barrageCooldownMax > 0 ? 0.8 : 0,
+            barrageCooldownMax,
+            barrageShots,
+            barrageDamage,
             sourceCell: cell,
             guardX: guardPoint.x,
             guardY: guardPoint.y,
-            radius: 0.18,
+            radius,
             hitFlash: 0
         };
         state.nextActorId += 1;
         state.actors.push(actor);
+        return actor;
+    }
+
+    function estimateCurrentPlayerDps() {
+        const heroDps = state.actors.reduce(function (total, actor) {
+            if (actor.team !== "player") return total;
+            return total + estimateActorDps(actor);
+        }, 0);
+        return Math.max(8, heroDps + getCoreEstimatedDps(state.round));
+    }
+
+    function estimateActorDps(actor) {
+        const cooldown = Math.max(0.18, actor.cooldownMax || 1);
+        if (actor.kind === "ranged") {
+            const attackDps = (actor.attack / cooldown) * Math.min(actor.shotsPerAttack || 1, 6);
+            const barrageDps = actor.barrageCooldownMax > 0
+                ? ((actor.barrageShots || 0) * (actor.barrageDamage || actor.attack) / actor.barrageCooldownMax) * 0.65
+                : 0;
+            return attackDps + barrageDps;
+        }
+        if (actor.kind === "melee") {
+            return (actor.attack / cooldown) * (1 + (actor.cleaveDamageScale || 0) * 1.8);
+        }
+        if (actor.kind === "repair") {
+            return (actor.attack / cooldown) * 0.6 + (actor.supportPulseDamage || 0) / cooldown;
+        }
+        return actor.attack / cooldown;
+    }
+
+    function getCoreEstimatedDps(round) {
+        return ((4 + round) / 0.58) * 0.45;
+    }
+
+    function getTargetClearTime(round) {
+        return clamp(8 + round * 0.7, 8, 18);
     }
 
     function spawnEnemy() {
@@ -722,7 +1175,7 @@
             y = Math.random() * GRID_SIZE;
         }
 
-        const hp = getEnemyHpForRound(state.round);
+        const hp = state.battleStats.enemyHp || getEnemyHpForRound(state.round);
         state.actors.push({
             id: state.nextActorId,
             team: "enemy",
@@ -731,9 +1184,9 @@
             y,
             hp,
             maxHp: hp,
-            attack: getEnemyAttackForRound(state.round),
+            attack: state.battleStats.enemyAttack || getEnemyAttackForRound(state.round),
             range: EnemyDef.range,
-            speed: getEnemySpeedForRound(state.round),
+            speed: state.battleStats.enemySpeed || getEnemySpeedForRound(state.round),
             cooldown: 0.3,
             cooldownMax: EnemyDef.cooldown,
             sourceCell: null,
@@ -745,15 +1198,11 @@
     }
 
     function getEnemyHpForRound(round) {
-        const earlyRound = Math.min(round, EARLY_ROUND_ENEMY_COUNTS.length);
-        const lateRamp = Math.max(0, round - EARLY_ROUND_ENEMY_COUNTS.length);
-        return EnemyDef.hp + EnemyDef.hpRound * earlyRound + lateRamp * 8 + EnemyDef.hpCurve * lateRamp * lateRamp;
+        return Math.max(4, Math.round(5 + round * 0.9 + Math.pow(round, 1.35) * 0.22));
     }
 
     function getEnemyAttackForRound(round) {
-        const earlyRound = Math.min(round, EARLY_ROUND_ENEMY_COUNTS.length);
-        const lateRamp = Math.max(0, round - EARLY_ROUND_ENEMY_COUNTS.length);
-        return EnemyDef.attack + Math.floor(EnemyDef.attackRound * earlyRound * 0.65) + Math.floor(EnemyDef.attackCurve * lateRamp);
+        return Math.max(1, Math.floor(1 + round / 5));
     }
 
     function getEnemySpeedForRound(round) {
@@ -767,7 +1216,7 @@
         stats.spawnTimer -= dt;
         if (stats.spawnedEnemies < stats.enemiesToSpawn && stats.spawnTimer <= 0) {
             spawnEnemy();
-            stats.spawnTimer = 0.75;
+            stats.spawnTimer = stats.spawnInterval;
         }
 
         stats.coreCooldown -= dt;
@@ -778,6 +1227,7 @@
 
         for (const actor of state.actors) {
             actor.cooldown = Math.max(0, actor.cooldown - dt);
+            actor.barrageCooldown = Math.max(0, (actor.barrageCooldown || 0) - dt);
             actor.hitFlash = Math.max(0, actor.hitFlash - dt);
             if (actor.team === "player") updateHero(actor, dt);
             if (state.phase !== "battle") return;
@@ -803,12 +1253,23 @@
     function updateHero(actor, dt) {
         if (actor.hp <= 0) return;
 
+        if (actor.kind === "ranged" && actor.stage >= 3 && actor.barrageCooldownMax > 0 && actor.barrageCooldown <= 0) {
+            fireRangedBarrage(actor);
+            actor.barrageCooldown = actor.barrageCooldownMax;
+        }
+
         if (actor.kind === "repair" && state.coreHp < state.maxCoreHp && actor.cooldown <= 0) {
             const def = UnitDefs.repair;
-            const heal = def.heal + def.healLevel * (actor.sourceCell.tileLevel - 1);
-            state.coreHp = Math.min(state.maxCoreHp, state.coreHp + heal);
+            const heal = (def.heal + def.healLevel * (getCellLevel(actor.sourceCell) - 1)) * (actor.healMultiplier || 1);
+            healCore(heal);
+            if (actor.stage >= 2) {
+                healNearestAlly(actor, heal * 0.55, actor.stage >= 3 ? 2.2 : 1.35);
+            }
+            if (actor.supportPulseDamage > 0) {
+                damageEnemiesAround(actor.x, actor.y, actor.stage >= 3 ? 2.2 : 1.35, actor.supportPulseDamage);
+                addPulse(actor.x, actor.y, actor.stage >= 3 ? 2.2 : 1.35, "#34d399");
+            }
             actor.cooldown = actor.cooldownMax;
-            addFloatingMessage("+" + heal, CORE_CENTER.x, CORE_CENTER.y, "#68d391");
             return;
         }
 
@@ -823,13 +1284,44 @@
             return;
         }
         if (actor.cooldown <= 0) {
-            damageActor(target, actor.attack);
+            attackWithHero(actor, target);
             actor.cooldown = actor.cooldownMax;
-            if (actor.kind === "ranged") {
-                addProjectile(actor.x, actor.y, target.x, target.y, "#93c5fd", "ranged");
-            }
-            addFloatingMessage("-" + actor.attack, target.x, target.y, "#f8fafc");
         }
+    }
+
+    function attackWithHero(actor, target) {
+        if (actor.kind === "ranged") {
+            const targets = findNearestActors(actor.x, actor.y, "enemy", actor.range + 0.25, actor.shotsPerAttack || 1);
+            targets.forEach(function (enemy, index) {
+                const damageScale = index === 0 ? 1 : actor.stage >= 3 ? 0.85 : 0.7;
+                const damage = Math.max(1, Math.floor(actor.attack * damageScale));
+                damageActor(enemy, damage);
+                addProjectile(actor.x, actor.y, enemy.x, enemy.y, index === 0 ? "#93c5fd" : "#c4b5fd", "ranged");
+                addFloatingMessage("-" + damage, enemy.x, enemy.y, "#f8fafc");
+            });
+            return;
+        }
+
+        damageActor(target, actor.attack);
+        addFloatingMessage("-" + actor.attack, target.x, target.y, "#f8fafc");
+        if (actor.kind === "melee" && actor.cleaveRadius > 0) {
+            damageEnemiesAround(target.x, target.y, actor.cleaveRadius, Math.max(1, Math.floor(actor.attack * actor.cleaveDamageScale)), target);
+            addPulse(target.x, target.y, actor.cleaveRadius, "#60a5fa");
+        }
+    }
+
+    function fireRangedBarrage(actor) {
+        const targets = findNearestActors(actor.x, actor.y, "enemy", 16, actor.barrageShots || 0);
+        if (targets.length === 0) return;
+
+        targets.forEach(function (enemy, index) {
+            const damage = Math.max(1, Math.floor((actor.barrageDamage || actor.attack) * (index % 3 === 0 ? 1 : 0.78)));
+            damageActor(enemy, damage);
+            addProjectile(actor.x, actor.y, enemy.x, enemy.y, index % 3 === 0 ? "#f6c95f" : "#c4b5fd", "ranged");
+            addFloatingMessage("-" + damage, enemy.x, enemy.y, index % 3 === 0 ? "#fef3c7" : "#f8fafc");
+        });
+        addPulse(actor.x, actor.y, 2.1 + Math.min(1.4, (actor.mastery || 0) * 0.05), "#a78bfa");
+        addFloatingMessage("弹幕 x" + targets.length, actor.x, actor.y - 0.25, "#f6c95f");
     }
 
     function updateEnemy(actor, dt) {
@@ -884,17 +1376,32 @@
     }
 
     function damageActor(actor, damage) {
-        actor.hp -= damage;
+        const scale = actor.team === "player" ? (actor.damageTakenScale || 1) : 1;
+        const finalDamage = Math.max(1, Math.ceil(damage * scale));
+        actor.hp -= finalDamage;
         actor.hitFlash = 0.14;
+        return finalDamage;
     }
 
     function cleanupDeadActors() {
         const before = state.actors.length;
+        const explodedIds = new Set();
+
+        state.actors.forEach(function (actor) {
+            if (actor.hp > 0 || actor.team !== "player" || !(actor.deathBurstRadius > 0) || !(actor.deathBurstDamage > 0)) return;
+            if (!explodedIds.has(actor.id)) {
+                damageEnemiesAround(actor.x, actor.y, actor.deathBurstRadius, actor.deathBurstDamage);
+                addPulse(actor.x, actor.y, actor.deathBurstRadius, "#60a5fa");
+                addFloatingMessage("震爆", actor.x, actor.y - 0.2, "#dbeafe");
+                explodedIds.add(actor.id);
+            }
+        });
+
         state.actors = state.actors.filter(function (actor) {
             if (actor.hp > 0) return true;
             if (actor.team === "enemy") {
                 state.battleStats.kills += 1;
-                const reward = 2 + Math.floor(state.round / 3);
+                const reward = 1;
                 state.gold += reward;
                 addFloatingMessage("+" + reward, actor.x, actor.y, "#f6c95f");
             }
@@ -905,29 +1412,99 @@
 
     function endBattle() {
         const earlyBonus = getEarlyRoundBonusGold(state.round);
-        const reward = 10 + state.round * 2 + earlyBonus;
-        const interest = getInterestForGold(state.gold);
-        state.gold += reward + interest;
+        const reward = 6 + state.round + earlyBonus;
+        state.gold += reward;
         state.coreHp = Math.min(state.maxCoreHp, state.coreHp + 8);
         state.round += 1;
         state.phase = "build";
+        state.buildActions = getBuildActionLimit();
         state.actors = [];
         state.cells.forEach(function (cell) {
             cell.hasSummonedThisBattle = false;
         });
         state.buildCheckpoint = createBuildCheckpoint();
-        if (interest > 0) {
-            triggerGoldGainFx(interest);
-        } else {
-            clearGoldGainFx();
-        }
-        pushLog("战斗胜利：奖励 " + reward + " 金币，利息 +" + interest + "，回到构建阶段。");
+        triggerGoldGainFx(reward, "胜利");
+        pushLog("战斗胜利：奖励 " + reward + " 金币，回到构建阶段，构建行动 " + state.buildActions + "。");
         markDirty();
     }
 
     function getEarlyRoundBonusGold(round) {
         if (round < 1 || round > EARLY_ROUND_BONUS_GOLD.length) return 0;
         return EARLY_ROUND_BONUS_GOLD[round - 1];
+    }
+
+    function triggerOpeningSkill(actor, cell) {
+        if (!actor || !cell || !cell.burstReady) return;
+        const burstCount = cell.burstReady;
+        cell.burstReady = 0;
+        cell.flash = 0.8;
+        addPulse(actor.x, actor.y, 1 + actor.stage * 0.35, UnitDefs[actor.kind].color);
+
+        if (actor.kind === "melee") {
+            const target = findNearestActor(actor.x, actor.y, "enemy", 16);
+            const centerX = target ? target.x : CORE_CENTER.x;
+            const centerY = target ? target.y : CORE_CENTER.y;
+            const radius = 1.2 + actor.stage * 0.35 + burstCount * 0.12;
+            const damage = Math.floor(actor.attack * (1.4 + actor.stage * 0.55) * burstCount);
+            damageEnemiesAround(centerX, centerY, radius, damage);
+            addPulse(centerX, centerY, radius, "#60a5fa");
+            addFloatingMessage("盾击 x" + burstCount, actor.x, actor.y - 0.2, "#dbeafe");
+        } else if (actor.kind === "ranged") {
+            const shots = Math.min(14, (actor.shotsPerAttack || 1) + burstCount * 3);
+            const targets = findNearestActors(actor.x, actor.y, "enemy", 16, shots);
+            targets.forEach(function (enemy) {
+                const damage = Math.floor(actor.attack * (1.15 + burstCount * 0.22));
+                damageActor(enemy, damage);
+                addProjectile(actor.x, actor.y, enemy.x, enemy.y, "#c4b5fd", "ranged");
+                addFloatingMessage("-" + damage, enemy.x, enemy.y, "#f8fafc");
+            });
+            addFloatingMessage("齐射 x" + shots, actor.x, actor.y - 0.2, "#c4b5fd");
+        } else if (actor.kind === "repair") {
+            const heal = (UnitDefs.repair.heal + actor.stage * 5) * burstCount * (actor.healMultiplier || 1);
+            healCore(heal);
+            healNearestAlly(actor, heal * 0.6, actor.stage >= 3 ? 2.4 : 1.5);
+            if (actor.supportPulseDamage > 0) {
+                damageEnemiesAround(CORE_CENTER.x, CORE_CENTER.y, 1.5 + actor.stage * 0.42, actor.supportPulseDamage * burstCount * 2);
+            }
+            addPulse(CORE_CENTER.x, CORE_CENTER.y, 1.1 + actor.stage * 0.38, "#34d399");
+            addFloatingMessage("开场修复", actor.x, actor.y - 0.2, "#bbf7d0");
+        }
+        pushLog(UnitDefs[actor.kind].label + " " + getStageLabel(actor.stage) + " 阶触发开场技 x" + burstCount + "。");
+    }
+
+    function healCore(amount) {
+        const heal = Math.max(1, Math.round(amount));
+        state.coreHp = Math.min(state.maxCoreHp, state.coreHp + heal);
+        addFloatingMessage("+" + heal, CORE_CENTER.x, CORE_CENTER.y, "#68d391");
+    }
+
+    function healNearestAlly(actor, amount, range) {
+        const allies = state.actors
+            .filter(function (ally) {
+                return ally.team === "player" && ally.id !== actor.id && ally.hp > 0 && ally.hp < ally.maxHp && distanceToPoint(actor.x, actor.y, ally.x, ally.y) <= range;
+            })
+            .sort(function (a, b) {
+                return distanceToPoint(actor.x, actor.y, a.x, a.y) - distanceToPoint(actor.x, actor.y, b.x, b.y);
+            })
+            .slice(0, actor.stage >= 3 ? 4 : 1);
+        allies.forEach(function (ally) {
+            const heal = Math.max(1, Math.round(amount));
+            ally.hp = Math.min(ally.maxHp, ally.hp + heal);
+            addFloatingMessage("+" + heal, ally.x, ally.y, "#bbf7d0");
+            addProjectile(actor.x, actor.y, ally.x, ally.y, "#34d399", "heal");
+        });
+    }
+
+    function damageEnemiesAround(x, y, radius, damage, excludeActor) {
+        let hitCount = 0;
+        state.actors.forEach(function (enemy) {
+            if (enemy.team !== "enemy" || enemy.hp <= 0 || enemy === excludeActor) return;
+            if (distanceToPoint(x, y, enemy.x, enemy.y) > radius) return;
+            const finalDamage = damageActor(enemy, damage);
+            addFloatingMessage("-" + finalDamage, enemy.x, enemy.y, "#f8fafc");
+            hitCount += 1;
+        });
+        return hitCount;
     }
 
     function findNearestActor(x, y, team, maxDistance) {
@@ -942,6 +1519,18 @@
             }
         }
         return best;
+    }
+
+    function findNearestActors(x, y, team, maxDistance, limit) {
+        const range = typeof maxDistance === "number" ? maxDistance : Infinity;
+        return state.actors
+            .filter(function (actor) {
+                return actor.team === team && actor.hp > 0 && distanceToPoint(x, y, actor.x, actor.y) <= range;
+            })
+            .sort(function (a, b) {
+                return distanceToPoint(x, y, a.x, a.y) - distanceToPoint(x, y, b.x, b.y);
+            })
+            .slice(0, limit || 1);
     }
 
     function countActors(team) {
@@ -990,6 +1579,29 @@
             style: style || "ranged",
             time: 0.16,
             maxTime: 0.16
+        });
+    }
+
+    function addBoardWave(axis, index, color) {
+        render.messages.push({
+            type: "wave",
+            axis,
+            index,
+            color,
+            time: 0.42,
+            maxTime: 0.42
+        });
+    }
+
+    function addPulse(x, y, radius, color) {
+        render.messages.push({
+            type: "pulse",
+            x,
+            y,
+            radius,
+            color,
+            time: 0.38,
+            maxTime: 0.38
         });
     }
 
@@ -1097,17 +1709,21 @@
         dom.phaseText.textContent = phaseLabel();
         dom.roundText.textContent = String(state.round);
         dom.goldText.textContent = String(state.gold);
-        dom.interestText.textContent = "利息 +" + getInterestForGold(state.gold);
+        dom.interestText.textContent = state.phase === "idle"
+            ? "指挥 0/" + BASE_COMMAND_LIMIT
+            : "行动 " + state.buildActions + "/" + getBuildActionLimit() + " · 指挥 " + getBattleGridCount() + "/" + getCommandLimit() + (state.freeBattleGridCredits > 0 ? " · 免费 " + state.freeBattleGridCredits : "");
         dom.coreText.textContent = Math.round(state.coreHp) + " / " + state.maxCoreHp;
         dom.coreMeter.style.width = Math.max(0, (state.coreHp / state.maxCoreHp) * 100) + "%";
 
         const playerCount = countActors("player");
         const enemyCount = countActors("enemy");
-        dom.actorText.textContent = "单位 " + playerCount + " / 敌人 " + enemyCount;
+        dom.actorText.textContent = "单位 " + playerCount + " / 指挥 " + getBattleGridCount() + "/" + getCommandLimit() + " / 敌人 " + enemyCount;
         dom.killText.textContent = String(state.battleStats.kills);
 
         dom.startBattleButton.disabled = state.phase !== "build";
         dom.rotateButton.disabled = state.phase !== "build" || state.selectedShapeIndex === null;
+        dom.refreshShapesButton.textContent = "刷新方块 " + SHAPE_REFRESH_COST + "金";
+        dom.refreshShapesButton.disabled = state.phase !== "build" || !areAllShapesUsed() || state.buildActions < BUILD_ACTION_COST;
 
         if (state.uiDirty) {
             renderShapeList();
@@ -1121,9 +1737,9 @@
         state.shapes.forEach(function (shape, index) {
             const button = document.createElement("button");
             button.type = "button";
-            button.className = "shape-card" + (state.selectedShapeIndex === index ? " is-selected" : "");
-            button.disabled = state.phase !== "build";
-            button.setAttribute("aria-label", "选择方块 " + shape.name + "，消耗 " + shape.cost + " 金币");
+            button.className = "shape-card" + (state.selectedShapeIndex === index && !shape.used ? " is-selected" : "") + (shape.used ? " is-used" : "");
+            button.disabled = state.phase !== "build" || shape.used;
+            button.setAttribute("aria-label", shape.used ? "方块 " + shape.name + " 已放置" : "选择免费方块 " + shape.name);
             button.addEventListener("click", function () {
                 selectShape(index);
             });
@@ -1149,13 +1765,13 @@
             const label = document.createElement("span");
             label.innerHTML = "<span class=\"shape-name\">" + shape.name + "</span><span>占 " + shape.cells.length + " 格</span>";
 
-            const cost = document.createElement("span");
-            cost.className = "shape-cost";
-            cost.textContent = shape.cost + " 金";
+            const status = document.createElement("span");
+            status.className = "shape-status";
+            status.textContent = shape.used ? "已放置" : "免费";
 
             button.appendChild(mini);
             button.appendChild(label);
-            button.appendChild(cost);
+            button.appendChild(status);
             dom.shapeList.appendChild(button);
         });
     }
@@ -1180,24 +1796,26 @@
         if (!cell) {
             if (state.selectedUnitType) {
                 dom.selectedCellText.textContent = "配置模式";
-                dom.cellInfo.textContent = "已选择" + UnitDefs[state.selectedUnitType].label + "，点击非核心格配置战斗单位。新建消耗 15 金币，更换消耗 5 金币。";
+                const newCostText = state.freeBattleGridCredits > 0 ? "剩余 " + state.freeBattleGridCredits + " 个新战斗格免费" : "新建消耗 " + BATTLE_GRID_COST + " 金币";
+                dom.cellInfo.textContent = "已选择" + UnitDefs[state.selectedUnitType].label + "，点击非核心格配置战斗单位。构建行动 " + state.buildActions + "/" + getBuildActionLimit() + "，指挥 " + getBattleGridCount() + "/" + getCommandLimit() + "，" + newCostText + "，更换消耗 " + CHANGE_UNIT_COST + " 金币。";
             } else {
                 dom.selectedCellText.textContent = "未选择地块";
-                dom.cellInfo.textContent = "点击单位按钮后，再点击非核心格配置战斗单位；或直接点击格子查看地块信息。";
+                dom.cellInfo.textContent = "每轮构建行动有限：放置或刷新会消耗 1 点。当前行动 " + state.buildActions + "/" + getBuildActionLimit() + "，指挥 " + getBattleGridCount() + "/" + getCommandLimit() + "。";
             }
             return;
         }
 
         dom.selectedCellText.textContent = "[" + (cell.col + 1) + "," + (cell.row + 1) + "]";
         if (cell.isCore) {
-            dom.cellInfo.textContent = "核心据点格：Lv." + cell.tileLevel + "，行经验 " + getRowProgress(cell.row) + "/" + LINE_EXP_TO_LEVEL + "，列经验 " + getColumnProgress(cell.col) + "/" + LINE_EXP_TO_LEVEL + "。不可配置战斗单位。";
+            dom.cellInfo.textContent = "核心据点格：有效 Lv." + getCellLevel(cell) + "，行 Lv." + getRowLevel(cell.row) + " " + getRowProgress(cell.row) + "/" + LINE_EXP_TO_LEVEL + "，列 Lv." + getColumnLevel(cell.col) + " " + getColumnProgress(cell.col) + "/" + LINE_EXP_TO_LEVEL + "。不可配置战斗单位。";
             return;
         }
 
         const unit = cell.summonUnitType ? UnitDefs[cell.summonUnitType].label : "未配置";
-        const cost = cell.isBattleGrid ? CHANGE_UNIT_COST : BATTLE_GRID_COST;
+        const cost = getBattleGridCost(cell);
+        const costText = cost > 0 ? cost + " 金币" : "免费";
         const mode = state.selectedUnitType ? " 当前选择：" + UnitDefs[state.selectedUnitType].label + "。" : "";
-        dom.cellInfo.textContent = "Lv." + cell.tileLevel + "，行经验 " + getRowProgress(cell.row) + "/" + LINE_EXP_TO_LEVEL + "，列经验 " + getColumnProgress(cell.col) + "/" + LINE_EXP_TO_LEVEL + "，单位：" + unit + "。配置/更换消耗 " + cost + " 金币。" + mode;
+        dom.cellInfo.textContent = "阶段 " + getStageLabel(getCellStage(cell)) + "，充能 " + (cell.charge || 0) + "/" + MAX_CELL_CHARGE + "，精通 " + (cell.mastery || 0) + "/" + MAX_CELL_MASTERY + "，开场技 " + (cell.burstReady || 0) + "/" + MAX_BURST_READY + "，指挥 " + getBattleGridCount() + "/" + getCommandLimit() + "，有效 Lv." + getCellLevel(cell) + "，行 Lv." + getRowLevel(cell.row) + " " + getRowProgress(cell.row) + "/" + LINE_EXP_TO_LEVEL + "，列 Lv." + getColumnLevel(cell.col) + " " + getColumnProgress(cell.col) + "/" + LINE_EXP_TO_LEVEL + "，单位：" + unit + "。配置/更换消耗 " + costText + "。" + mode;
     }
 
     function resizeCanvas() {
@@ -1227,35 +1845,43 @@
 
     function drawBoard(dt) {
         const margin = render.width < 520 ? 14 : 34;
-        const side = Math.min(render.width - margin * 2, render.height - margin * 2);
-        const x = (render.width - side) / 2;
-        const y = (render.height - side) / 2;
+        const showAxes = state.phase === "build";
+        const axisLeft = showAxes ? (render.width < 520 ? 38 : 58) : 0;
+        const axisBottom = showAxes ? (render.width < 520 ? 32 : 46) : 0;
+        const side = Math.min(render.width - margin * 2 - axisLeft, render.height - margin * 2 - axisBottom);
+        const x = (render.width - side + axisLeft) / 2;
+        const y = (render.height - side - axisBottom) / 2;
         const cellSize = side / GRID_SIZE;
         render.board = { x, y, size: side, cell: cellSize };
 
         ctx.save();
         ctx.fillStyle = "#111827";
-        roundRect(ctx, x - 10, y - 10, side + 20, side + 20, 8);
+        roundRect(ctx, x - axisLeft - 10, y - 10, side + axisLeft + 20, side + axisBottom + 20, 8);
         ctx.fill();
 
         for (const cell of state.cells) {
             cell.flash = Math.max(0, cell.flash - dt);
+            cell.stageFlash = Math.max(0, (cell.stageFlash || 0) - dt);
             drawCell(cell, x, y, cellSize);
         }
 
         drawSelectedCell(x, y, cellSize);
         drawPlacementPreview(x, y, cellSize);
         drawCoreOverlay(x, y, cellSize);
+        if (showAxes) {
+            drawBuildAxes(x, y, side, cellSize, axisLeft, axisBottom);
+        }
         ctx.restore();
     }
 
     function drawCell(cell, boardX, boardY, cellSize) {
         const x = boardX + cell.col * cellSize;
         const y = boardY + cell.row * cellSize;
+        const isBuildPhase = state.phase === "build";
         let fill = "#1b2332";
         if (cell.isBattleGrid) fill = "#17324a";
         if (cell.isCore) fill = "#3d321b";
-        if (cell.filled) fill = cell.isCore ? "#5b4724" : "#314057";
+        if (isBuildPhase && cell.filled) fill = blend(cell.blockColor || "#4b6688", cell.isCore ? "#3d321b" : "#1b2332", cell.isCore ? 0.24 : 0.18);
         if (cell.flash > 0) fill = blend(fill, "#ffffff", Math.min(0.45, cell.flash));
 
         ctx.fillStyle = fill;
@@ -1265,12 +1891,13 @@
         ctx.lineWidth = 1;
         ctx.strokeRect(x + 0.5, y + 0.5, cellSize, cellSize);
 
-        if (cell.filled) {
-            ctx.fillStyle = cell.isCore ? "#8c6a2d" : "#4b6688";
+        if (isBuildPhase && cell.filled) {
+            ctx.fillStyle = cell.blockColor || (cell.isCore ? "#8c6a2d" : "#4b6688");
             ctx.fillRect(x + cellSize * 0.18, y + cellSize * 0.18, cellSize * 0.64, cellSize * 0.64);
         }
 
         if (cell.isBattleGrid && cell.summonUnitType) {
+            const stage = getCellStage(cell);
             ctx.strokeStyle = UnitDefs[cell.summonUnitType].color;
             ctx.lineWidth = 3;
             ctx.strokeRect(x + 4, y + 4, cellSize - 8, cellSize - 8);
@@ -1279,9 +1906,56 @@
             ctx.textAlign = "center";
             ctx.textBaseline = "middle";
             ctx.fillText(UnitDefs[cell.summonUnitType].short, x + cellSize / 2, y + cellSize * 0.48);
+            drawBattleGridStatus(cell, x, y, cellSize, stage);
         }
 
-        drawProgress(cell, x, y, cellSize);
+    }
+
+    function drawBattleGridStatus(cell, x, y, cellSize, stage) {
+        ctx.save();
+        const badgeW = Math.max(20, cellSize * 0.36);
+        const badgeH = Math.max(13, cellSize * 0.22);
+        let badgeColor = stage >= 3 ? "#f6c95f" : stage >= 2 ? "#8bd4ff" : "#223047";
+        if (cell.stageFlash > 0) {
+            badgeColor = blend(badgeColor, "#ffffff", Math.min(0.5, cell.stageFlash));
+        }
+        ctx.fillStyle = badgeColor;
+        roundRect(ctx, x + cellSize - badgeW - 5, y + 5, badgeW, badgeH, 4);
+        ctx.fill();
+
+        ctx.fillStyle = stage >= 2 ? "#0c111a" : "#dbeafe";
+        ctx.font = "900 " + Math.max(8, cellSize * 0.14) + "px Segoe UI, Arial";
+        ctx.textAlign = "center";
+        ctx.textBaseline = "middle";
+        ctx.fillText(getStageLabel(stage), x + cellSize - badgeW / 2 - 5, y + 5 + badgeH / 2);
+
+        const barX = x + 7;
+        const barY = y + cellSize - Math.max(11, cellSize * 0.18);
+        const barW = cellSize - 14;
+        const barH = Math.max(4, cellSize * 0.065);
+        ctx.fillStyle = "#0c111a";
+        roundRect(ctx, barX, barY, barW, barH, 3);
+        ctx.fill();
+        ctx.fillStyle = stage >= 3 ? "#f6c95f" : "#8bd4ff";
+        roundRect(ctx, barX, barY, barW * Math.min(1, (cell.charge || 0) / MAX_CELL_CHARGE), barH, 3);
+        ctx.fill();
+
+        if ((cell.mastery || 0) > 0) {
+            ctx.fillStyle = "#f6c95f";
+            ctx.font = "900 " + Math.max(8, cellSize * 0.13) + "px Segoe UI, Arial";
+            ctx.textAlign = "right";
+            ctx.textBaseline = "bottom";
+            ctx.fillText("+" + cell.mastery, x + cellSize - 7, barY - 2);
+        }
+
+        if (cell.burstReady > 0) {
+            ctx.fillStyle = "#f6c95f";
+            ctx.font = "900 " + Math.max(9, cellSize * 0.16) + "px Segoe UI, Arial";
+            ctx.textAlign = "left";
+            ctx.textBaseline = "top";
+            ctx.fillText("B" + cell.burstReady, x + 6, y + 5);
+        }
+        ctx.restore();
     }
 
     function drawSelectedCell(boardX, boardY, cellSize) {
@@ -1299,30 +1973,71 @@
         ctx.restore();
     }
 
-    function drawProgress(cell, x, y, cellSize) {
-        const barWidth = Math.max(10, cellSize - 10);
-        const barHeight = Math.max(3, cellSize * 0.07);
-        ctx.fillStyle = "#0c111a";
-        ctx.fillRect(x + 5, y + cellSize - 8, barWidth, barHeight);
-        if (cell.rowProgress) {
-            ctx.fillStyle = cell.isCore ? "#f6c95f" : "#68d391";
-            ctx.fillRect(x + 5, y + cellSize - 8, barWidth, barHeight);
+    function drawBuildAxes(boardX, boardY, boardSize, cellSize, axisLeft, axisBottom) {
+        ctx.save();
+        const levelFont = "800 " + Math.max(9, Math.min(13, cellSize * 0.2)) + "px Segoe UI, Arial";
+        const progressFont = "700 " + Math.max(8, Math.min(11, cellSize * 0.16)) + "px Segoe UI, Arial";
+        ctx.strokeStyle = "#3a4558";
+        ctx.lineWidth = 1;
+        ctx.beginPath();
+        ctx.moveTo(boardX - 6, boardY);
+        ctx.lineTo(boardX - 6, boardY + boardSize);
+        ctx.moveTo(boardX, boardY + boardSize + 6);
+        ctx.lineTo(boardX + boardSize, boardY + boardSize + 6);
+        ctx.stroke();
+
+        for (let row = 0; row < GRID_SIZE; row += 1) {
+            const y = boardY + row * cellSize;
+            const centerY = y + cellSize / 2;
+            const progress = getRowProgress(row);
+            const x = boardX - axisLeft + 8;
+
+            ctx.fillStyle = "#17202d";
+            roundRect(ctx, x, y + 3, axisLeft - 14, cellSize - 6, 5);
+            ctx.fill();
+
+            ctx.fillStyle = "#dbeafe";
+            ctx.font = levelFont;
+            ctx.textAlign = "left";
+            ctx.textBaseline = "middle";
+            ctx.fillText("Lv." + getRowLevel(row), x + 5, centerY - cellSize * 0.16);
+
+            ctx.fillStyle = "#68d391";
+            ctx.font = progressFont;
+            ctx.fillText(progress + "/" + LINE_EXP_TO_LEVEL, x + 5, centerY + cellSize * 0.18);
+            drawAxisTicks(x + 5, y + cellSize - 8, axisLeft - 24, progress, "#68d391");
         }
 
-        const sideBarWidth = Math.max(3, cellSize * 0.07);
-        const sideBarHeight = Math.max(10, cellSize - 10);
-        ctx.fillStyle = "#0c111a";
-        ctx.fillRect(x + cellSize - 8, y + 5, sideBarWidth, sideBarHeight);
-        if (cell.colProgress) {
-            ctx.fillStyle = cell.isCore ? "#f6c95f" : "#60a5fa";
-            ctx.fillRect(x + cellSize - 8, y + 5, sideBarWidth, sideBarHeight);
-        }
+        for (let col = 0; col < GRID_SIZE; col += 1) {
+            const x = boardX + col * cellSize;
+            const progress = getColumnProgress(col);
+            const y = boardY + boardSize + 7;
 
-        ctx.fillStyle = "#dbeafe";
-        ctx.font = "700 " + Math.max(9, cellSize * 0.15) + "px Segoe UI, Arial";
-        ctx.textAlign = "left";
-        ctx.textBaseline = "top";
-        ctx.fillText("Lv." + cell.tileLevel, x + 5, y + 4);
+            ctx.fillStyle = "#17202d";
+            roundRect(ctx, x + 3, y, cellSize - 6, axisBottom - 12, 5);
+            ctx.fill();
+
+            ctx.fillStyle = "#dbeafe";
+            ctx.font = levelFont;
+            ctx.textAlign = "center";
+            ctx.textBaseline = "top";
+            ctx.fillText("Lv." + getColumnLevel(col), x + cellSize / 2, y + 4);
+
+            ctx.fillStyle = "#60a5fa";
+            ctx.font = progressFont;
+            ctx.fillText(progress + "/" + LINE_EXP_TO_LEVEL, x + cellSize / 2, y + Math.max(17, axisBottom * 0.48));
+            drawAxisTicks(x + 8, y + axisBottom - 11, cellSize - 16, progress, "#60a5fa");
+        }
+        ctx.restore();
+    }
+
+    function drawAxisTicks(x, y, width, progress, color) {
+        const tickGap = 2;
+        const tickWidth = Math.max(1, (Math.max(12, width) - tickGap * (LINE_EXP_TO_LEVEL - 1)) / LINE_EXP_TO_LEVEL);
+        for (let index = 0; index < LINE_EXP_TO_LEVEL; index += 1) {
+            ctx.fillStyle = index < progress ? color : "#0c111a";
+            ctx.fillRect(x + index * (tickWidth + tickGap), y, tickWidth, 3);
+        }
     }
 
     function drawPlacementPreview(boardX, boardY, cellSize) {
@@ -1382,7 +2097,8 @@
         for (const actor of state.actors) {
             const screen = gridToScreen(actor.x, actor.y);
             const color = actor.team === "enemy" ? EnemyDef.color : UnitDefs[actor.kind].color;
-            const radius = Math.max(7, board.cell * 0.18);
+            const radiusScale = actor.team === "player" ? (actor.radius || 0.18) : 0.18;
+            const radius = Math.max(7, board.cell * radiusScale);
 
             ctx.save();
             ctx.fillStyle = actor.hitFlash > 0 ? "#ffffff" : color;
@@ -1397,7 +2113,7 @@
             ctx.font = "800 " + Math.max(10, board.cell * 0.18) + "px Segoe UI, Arial";
             ctx.textAlign = "center";
             ctx.textBaseline = "middle";
-            const label = actor.team === "enemy" ? "E" : UnitDefs[actor.kind].short;
+            const label = actor.team === "enemy" ? "E" : UnitDefs[actor.kind].short + (actor.stage >= 2 ? actor.stage : "");
             ctx.fillText(label, screen.x, screen.y);
 
             const hpWidth = radius * 2.4;
@@ -1438,6 +2154,15 @@
                     ctx.moveTo(from.x, from.y);
                     ctx.lineTo(to.x, to.y);
                     ctx.stroke();
+                } else if (message.style === "heal") {
+                    ctx.strokeStyle = message.color;
+                    ctx.lineWidth = 3;
+                    ctx.setLineDash([7, 5]);
+                    ctx.beginPath();
+                    ctx.moveTo(from.x, from.y);
+                    ctx.lineTo(to.x, to.y);
+                    ctx.stroke();
+                    ctx.setLineDash([]);
                 } else {
                     const dx = to.x - from.x;
                     const dy = to.y - from.y;
@@ -1460,6 +2185,34 @@
                     ctx.arc(headX, headY, 3, 0, Math.PI * 2);
                     ctx.fill();
                 }
+            } else if (message.type === "wave") {
+                const board = render.board;
+                const progress = 1 - alpha;
+                ctx.strokeStyle = message.color;
+                ctx.lineWidth = Math.max(3, board.cell * 0.08);
+                ctx.globalAlpha = alpha * 0.78;
+                ctx.beginPath();
+                if (message.axis === "row") {
+                    const y = board.y + (message.index + 0.5) * board.cell;
+                    const head = board.x + board.size * progress;
+                    ctx.moveTo(board.x, y);
+                    ctx.lineTo(head, y);
+                } else {
+                    const x = board.x + (message.index + 0.5) * board.cell;
+                    const head = board.y + board.size - board.size * progress;
+                    ctx.moveTo(x, board.y + board.size);
+                    ctx.lineTo(x, head);
+                }
+                ctx.stroke();
+            } else if (message.type === "pulse") {
+                const center = gridToScreen(message.x, message.y);
+                const radius = render.board.cell * message.radius * (1.12 - alpha * 0.28);
+                ctx.strokeStyle = message.color;
+                ctx.lineWidth = Math.max(2, render.board.cell * 0.05);
+                ctx.globalAlpha = alpha * 0.7;
+                ctx.beginPath();
+                ctx.arc(center.x, center.y, radius, 0, Math.PI * 2);
+                ctx.stroke();
             } else {
                 const pos = gridToScreen(message.x, message.y - (1 - alpha) * 0.45);
                 ctx.fillStyle = message.color;
@@ -1473,12 +2226,9 @@
     }
 
     function drawLegend() {
-        const items = [
-            ["构建块", "#4b6688"],
-            ["战斗格", "#4eb5ff"],
-            ["敌人", EnemyDef.color],
-            ["核心", "#f6c95f"]
-        ];
+        const items = state.phase === "build"
+            ? [["构建块", "#60a5fa"], ["战斗格", "#4eb5ff"], ["核心", "#f6c95f"]]
+            : [["战斗格", "#4eb5ff"], ["敌人", EnemyDef.color], ["核心", "#f6c95f"]];
         const x = 16;
         let y = 18;
         ctx.save();
@@ -1574,6 +2324,7 @@
         });
         dom.startBattleButton.addEventListener("click", startBattle);
         dom.rotateButton.addEventListener("click", rotateSelectedShape);
+        dom.refreshShapesButton.addEventListener("click", refreshShapes);
         dom.canvas.addEventListener("pointerdown", handleCanvasPointerDown, { passive: false });
         dom.canvas.addEventListener("pointermove", handleCanvasMove);
         dom.canvas.addEventListener("pointerleave", function () {

@@ -377,6 +377,20 @@ h2 {
     gap: 10px;
 }
 
+.refresh-shapes-button {
+    width: 100%;
+    margin-bottom: 10px;
+    border-color: rgba(246, 201, 95, 0.58);
+    background: #302719;
+    color: var(--gold);
+}
+
+.refresh-shapes-button:hover:not(:disabled),
+.refresh-shapes-button:focus-visible:not(:disabled) {
+    border-color: var(--gold);
+    background: #3b2d12;
+}
+
 .shape-card {
     display: grid;
     grid-template-columns: 76px 1fr auto;
@@ -391,6 +405,16 @@ h2 {
 .shape-card.is-selected {
     border-color: var(--primary);
     background: #1c3145;
+}
+
+.shape-card.is-used {
+    border-style: dashed;
+    background: #141a24;
+}
+
+.shape-card.is-used .shape-mini,
+.shape-card.is-used .shape-name {
+    opacity: 0.55;
 }
 
 .shape-mini {
@@ -419,10 +443,14 @@ h2 {
     font-weight: 800;
 }
 
-.shape-cost {
+.shape-status {
     color: var(--gold);
     font-weight: 800;
     font-variant-numeric: tabular-nums;
+}
+
+.shape-card.is-used .shape-status {
+    color: var(--muted);
 }
 
 .cell-info {
@@ -626,6 +654,10 @@ h2 {
         gap: 8px;
     }
 
+    .refresh-shapes-button {
+        margin-bottom: 8px;
+    }
+
     .shape-card {
         grid-template-columns: 1fr;
         min-height: 104px;
@@ -643,7 +675,7 @@ h2 {
         font-size: 13px;
     }
 
-    .shape-cost {
+    .shape-status {
         grid-column: auto;
         font-size: 12px;
     }
