@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <title>Grid3D Combat Prototype</title>
+    <link rel="stylesheet" href="src/styles.css">
+</head>
+<body>
+    <div id="toastLayer" class="toast-layer" aria-live="polite" aria-atomic="true"></div>
+    <div id="confirmOverlay" class="confirm-overlay" hidden>
+        <div class="confirm-dialog" role="dialog" aria-modal="true" aria-labelledby="confirmTitle" aria-describedby="confirmMessage">
+            <h2 id="confirmTitle">确认重置</h2>
+            <p id="confirmMessage">当前进度会被清空，确认重置游戏吗？</p>
+            <div class="confirm-actions">
+                <button id="confirmCancelButton" type="button">取消</button>
+                <button id="confirmOkButton" class="danger-button" type="button">确认重置</button>
+            </div>
+        </div>
+    </div>
+    <main class="app-shell">
+        <section class="top-bar" aria-label="游戏状态">
+            <div>
+                <p class="eyebrow">Grid3D Prototype</p>
+                <h1>构建消除 + 自动战斗</h1>
+            </div>
+            <div class="stats-grid">
+                <div class="stat">
+                    <span>阶段</span>
+                    <strong id="phaseText">未开始</strong>
+                </div>
+                <div class="stat">
+                    <span>轮次</span>
+                    <strong id="roundText">1</strong>
+                </div>
+                <div id="goldStat" class="stat">
+                    <span>金币</span>
+                    <strong id="goldText">100</strong>
+                    <small id="interestText">利息 +0</small>
+                </div>
+                <div class="stat">
+                    <span>核心</span>
+                    <strong id="coreText">100 / 100</strong>
+                </div>
+            </div>
+        </section>
+
+        <section class="play-layout">
+            <section class="board-panel" aria-label="棋盘">
+                <canvas id="gameCanvas" width="900" height="720" aria-label="10x10 Grid3D prototype board"></canvas>
+            </section>
+
+            <aside class="side-panel" aria-label="操作面板">
+                <section class="panel-section actions">
+                    <button id="startGameButton" class="primary-button" type="button">开始游戏</button>
+                    <button id="startBattleButton" type="button" disabled>开始战斗</button>
+                    <button id="rotateButton" type="button" disabled>旋转方块 R</button>
+                </section>
+
+                <section class="panel-section">
+                    <div class="section-title">
+                        <h2>候选方块</h2>
+                        <span>点击选择，点棋盘放置</span>
+                    </div>
+                    <div id="shapeList" class="shape-list" aria-label="候选方块"></div>
+                </section>
+
+                <section class="panel-section">
+                    <div class="section-title">
+                        <h2>地块配置</h2>
+                        <span id="selectedCellText">未选择地块</span>
+                    </div>
+                    <div id="cellInfo" class="cell-info">点击非核心格，可配置战斗单位。</div>
+                    <div class="unit-grid">
+                        <button class="unit-button" data-unit="melee" type="button" disabled>
+                            <strong>近战守卫</strong>
+                            <span>前排阻挡</span>
+                        </button>
+                        <button class="unit-button" data-unit="ranged" type="button" disabled>
+                            <strong>远程射手</strong>
+                            <span>稳定输出</span>
+                        </button>
+                        <button class="unit-button" data-unit="repair" type="button" disabled>
+                            <strong>修复师</strong>
+                            <span>保护核心</span>
+                        </button>
+                    </div>
+                </section>
+
+                <section class="panel-section">
+                    <div class="section-title">
+                        <h2>战斗读数</h2>
+                        <span id="actorText">单位 0 / 敌人 0</span>
+                    </div>
+                    <div class="battle-bars">
+                        <div>
+                            <span>核心生命</span>
+                            <div class="meter"><i id="coreMeter"></i></div>
+                        </div>
+                        <div>
+                            <span>本轮击杀</span>
+                            <strong id="killText">0</strong>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="panel-section log-section">
+                    <div class="section-title">
+                        <h2>事件日志</h2>
+                    </div>
+                    <ol id="logList" class="log-list" aria-live="polite"></ol>
+                </section>
+            </aside>
+        </section>
+    </main>
+
+    <script defer src="src/game.js"></script>
+</body>
+</html>
