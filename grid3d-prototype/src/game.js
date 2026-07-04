@@ -33,6 +33,14 @@
     const DEFENSE_HP_CV_WEIGHT = 0.12;
     const ENEMY_HP_CV_WEIGHT = 0.45;
     const DPS_CV_WEIGHT = 1;
+    const RANGE_CV_WEIGHT = 0.18;
+    const MOBILITY_CV_WEIGHT = 0.12;
+    const ENEMY_MIN_HITS_TO_KILL = 3.1;
+    const ENEMY_MAX_HITS_TO_KILL = 8.2;
+    const ENEMY_CV_MATCH_MIN = 0.82;
+    const ENEMY_CV_MATCH_MAX = 1.18;
+    const ENEMY_HP_CV_SHARE_MIN = 0.48;
+    const ENEMY_HP_CV_SHARE_MAX = 0.68;
     const KILL_INCOME_RATIO = 0.45;
     const CLEAR_INCOME_RATIO = 0.55;
     const WAVE_INCOME_BASE = 9;
@@ -97,14 +105,11 @@
     const EnemyDef = {
         color: "#fb7185",
         hp: 5,
-        hpRound: 0.9,
-        hpCurve: 0.22,
         attack: 1,
-        attackRound: 0.2,
-        attackCurve: 0,
         range: 0.48,
         speed: 0.88,
-        cooldown: 0.8
+        cooldown: 0.8,
+        damageTakenScale: 1
     };
 
     const ShapeTemplates = [
@@ -180,7 +185,10 @@
             spawnInterval: MAX_ENEMY_SPAWN_INTERVAL,
             enemyHp: 1,
             enemyAttack: 1,
+            enemyRange: EnemyDef.range,
             enemySpeed: EnemyDef.speed,
+            enemyCooldown: EnemyDef.cooldown,
+            enemyDamageTakenScale: EnemyDef.damageTakenScale,
             estimatedPlayerDps: 0,
             currentDefenseCv: 0,
             targetMonsterCv: 0,
@@ -298,7 +306,10 @@
             spawnInterval: MAX_ENEMY_SPAWN_INTERVAL,
             enemyHp: 1,
             enemyAttack: 1,
+            enemyRange: EnemyDef.range,
             enemySpeed: EnemyDef.speed,
+            enemyCooldown: EnemyDef.cooldown,
+            enemyDamageTakenScale: EnemyDef.damageTakenScale,
             estimatedPlayerDps: 0,
             currentDefenseCv: 0,
             targetMonsterCv: 0,
@@ -1021,29 +1032,25 @@
             }
         });
 
-        pushLog("第 " + state.round + " 轮战斗开始：敌人 " + state.battleStats.enemiesToSpawn + " 个，DCV " + Math.round(state.battleStats.currentDefenseCv) + " / MCV " + Math.round(state.battleStats.actualMonsterCv) + "，EV " + Math.round(state.battleStats.theoreticalEconomy) + "。");
+        pushLog("第 " + state.round + " 轮战斗开始：敌人 " + state.battleStats.enemiesToSpawn + " 个，HP " + state.battleStats.enemyHp + "，攻 " + state.battleStats.enemyAttack + "，间隔 " + state.battleStats.enemyCooldown.toFixed(2) + "，射程 " + state.battleStats.enemyRange.toFixed(2) + "，移速 " + state.battleStats.enemySpeed.toFixed(2) + "，承伤 " + state.battleStats.enemyDamageTakenScale.toFixed(2) + "，DCV " + Math.round(state.battleStats.currentDefenseCv) + " / MCV " + Math.round(state.battleStats.actualMonsterCv) + "。");
         markDirty();
     }
 
     function setupDynamicWave() {
         const theoreticalEconomy = getTheoreticalEconomyForRound(state.round);
         const currentDefenseCv = estimateCurrentDefenseCombatValue();
+        const defenseProfile = getCurrentDefenseProfile();
         const recommendedMonsterCv = getRecommendedMonsterCombatValue(state.round, theoreticalEconomy);
         const difficultyMultiplier = getWaveDifficultyMultiplier(state.round);
         const lowerCv = currentDefenseCv * 0.68;
         const upperCv = currentDefenseCv * (difficultyMultiplier >= 1.15 ? 1.16 : difficultyMultiplier >= 1.05 ? 1.1 : 1.04);
         const targetMonsterCv = clamp(recommendedMonsterCv, lowerCv, upperCv);
         const targetClearTime = getTargetClearTime(state.round);
-        const enemyHp = getEnemyHpForRound(state.round);
-        const enemyAttack = getEnemyAttackForRound(state.round);
-        const enemySpeed = getEnemySpeedForRound(state.round);
-        const singleEnemyCv = calculateEnemyCombatValue(enemyHp, enemyAttack, enemySpeed);
-        const minCount = 8 + state.round * 2;
-        const maxCount = 20 + state.round * 6;
-        const roughCount = clamp(Math.round(targetMonsterCv / singleEnemyCv), minCount, maxCount);
-        const countShapeFactor = getCountShapeFactor(roughCount);
-        const enemyCount = clamp(Math.round(targetMonsterCv / (singleEnemyCv * countShapeFactor)), minCount, maxCount);
-        const actualMonsterCv = singleEnemyCv * enemyCount * getCountShapeFactor(enemyCount);
+        const enemyCount = getEnemyCountForWave(state.round, targetMonsterCv, defenseProfile);
+        const enemyStats = createEnemyStatsForWave(state.round, targetMonsterCv, enemyCount, defenseProfile);
+        tuneEnemyStatsForTargetCv(enemyStats, targetMonsterCv, enemyCount, defenseProfile);
+        const actualSingleEnemyCv = calculateEnemyCombatValue(enemyStats);
+        const actualMonsterCv = actualSingleEnemyCv * enemyCount * getCountShapeFactor(enemyCount);
         const spawnInterval = clamp(targetClearTime * 0.65 / Math.max(1, enemyCount), MIN_ENEMY_SPAWN_INTERVAL, MAX_ENEMY_SPAWN_INTERVAL);
         const plannedIncome = getPlannedWaveIncome(state.round);
         const killGoldPool = plannedIncome * KILL_INCOME_RATIO;
@@ -1055,9 +1062,12 @@
         state.battleStats.theoreticalEconomy = theoreticalEconomy;
         state.battleStats.targetClearTime = targetClearTime;
         state.battleStats.enemiesToSpawn = enemyCount;
-        state.battleStats.enemyHp = enemyHp;
-        state.battleStats.enemyAttack = enemyAttack;
-        state.battleStats.enemySpeed = enemySpeed;
+        state.battleStats.enemyHp = enemyStats.hp;
+        state.battleStats.enemyAttack = enemyStats.attack;
+        state.battleStats.enemyRange = enemyStats.range;
+        state.battleStats.enemySpeed = enemyStats.speed;
+        state.battleStats.enemyCooldown = enemyStats.cooldownMax;
+        state.battleStats.enemyDamageTakenScale = enemyStats.damageTakenScale;
         state.battleStats.killGoldPerEnemy = killGoldPool / Math.max(1, enemyCount);
         state.battleStats.killGoldBank = 0;
         state.battleStats.clearReward = Math.max(3, Math.round(plannedIncome * CLEAR_INCOME_RATIO));
@@ -1194,20 +1204,118 @@
         return Math.max(25, heroCv + getCoreDefenseCombatValue(state.round));
     }
 
+    function getCurrentDefenseProfile() {
+        const players = state.actors.filter(function (actor) {
+            return actor.team === "player";
+        });
+        const coreDps = getCoreEstimatedDps(state.round);
+        const coreHit = 4 + state.round;
+        if (players.length === 0) {
+            return {
+                averageHit: coreHit,
+                averageSingleHit: coreHit,
+                maxSingleHit: coreHit,
+                averageCooldown: 0.58,
+                averageRange: 2.2,
+                averageSpeed: 1,
+                aoePressure: 1,
+                defensePressure: 1,
+                totalDps: coreDps
+            };
+        }
+
+        let hitTotal = coreHit;
+        let singleHitTotal = coreHit;
+        let maxSingleHit = coreHit;
+        let cooldownTotal = 0.58;
+        let rangeTotal = 7.2;
+        let speedTotal = 0;
+        let aoeTotal = 1;
+        let defenseTotal = 1;
+        let weightTotal = 1;
+        let totalDps = coreDps;
+
+        players.forEach(function (actor) {
+            const actorDps = estimateActorDps(actor);
+            const weight = Math.max(1, actorDps);
+            const singleHit = getActorPrimaryHit(actor);
+            hitTotal += getActorAverageHit(actor) * weight;
+            singleHitTotal += singleHit * weight;
+            maxSingleHit = Math.max(maxSingleHit, singleHit);
+            cooldownTotal += Math.max(0.18, actor.cooldownMax || 1) * weight;
+            rangeTotal += (actor.range || 0) * weight;
+            speedTotal += (actor.speed || 0) * weight;
+            aoeTotal += getActorAreaPressure(actor) * weight;
+            defenseTotal += (1 / Math.max(0.18, actor.damageTakenScale || 1)) * weight;
+            weightTotal += weight;
+            totalDps += actorDps;
+        });
+
+        return {
+            averageHit: hitTotal / weightTotal,
+            averageSingleHit: singleHitTotal / weightTotal,
+            maxSingleHit,
+            averageCooldown: cooldownTotal / weightTotal,
+            averageRange: rangeTotal / weightTotal,
+            averageSpeed: speedTotal / weightTotal,
+            aoePressure: aoeTotal / weightTotal,
+            defensePressure: defenseTotal / weightTotal,
+            totalDps
+        };
+    }
+
+    function getActorPrimaryHit(actor) {
+        if (actor.kind === "ranged") {
+            return Math.max(actor.attack || 1, (actor.barrageDamage || 0) * 0.75);
+        }
+        if (actor.kind === "repair") {
+            return Math.max(actor.attack || 1, (actor.supportPulseDamage || 0) * 0.55);
+        }
+        return actor.attack || 1;
+    }
+
+    function getActorTargetCoverage(actor) {
+        if (actor.kind === "ranged") {
+            const shotCount = Math.max(1, actor.shotsPerAttack || 1);
+            const basicTargets = 1 + Math.min(shotCount - 1, 10) * (actor.stage >= 3 ? 0.85 : 0.7);
+            const barrageTargets = actor.barrageCooldownMax > 0 ? Math.min(actor.barrageShots || 0, 28) * 0.18 : 0;
+            return basicTargets + barrageTargets;
+        }
+        if (actor.kind === "melee") {
+            return 1 + Math.min(3.2, (actor.cleaveRadius || 0) * (actor.cleaveDamageScale || 0) * 1.25);
+        }
+        if (actor.kind === "repair") {
+            return 1 + Math.min(2.2, (actor.supportPulseDamage || 0) * 0.055);
+        }
+        return 1;
+    }
+
+    function getActorAverageHit(actor) {
+        return getActorPrimaryHit(actor) * getActorTargetCoverage(actor);
+    }
+
+    function getActorAreaPressure(actor) {
+        return getActorTargetCoverage(actor);
+    }
+
     function calculateDefenseCombatValue(actor) {
         const dps = estimateActorDps(actor);
-        const outputValue = DPS_CV_WEIGHT * dps * CV_REFERENCE_TIME * getRangeCoverageFactor(actor.range);
+        const outputValue = DPS_CV_WEIGHT * dps * CV_REFERENCE_TIME * getRangeCoverageFactor(actor.range) * getMobilityCoverageFactor(actor);
         const ehp = actor.maxHp / Math.max(0.18, actor.damageTakenScale || 1);
         const defenseValue = DEFENSE_HP_CV_WEIGHT * ehp;
+        const rangeValue = RANGE_CV_WEIGHT * actor.range * Math.max(1, actor.attack || 1);
+        const mobilityValue = MOBILITY_CV_WEIGHT * actor.speed * CV_REFERENCE_TIME;
         const functionValue = getActorFunctionCombatValue(actor);
         const openingValue = getOpeningSkillCombatValue(actor);
-        return outputValue + defenseValue + functionValue + openingValue;
+        return outputValue + defenseValue + rangeValue + mobilityValue + functionValue + openingValue;
     }
 
     function estimateActorDps(actor) {
         const cooldown = Math.max(0.18, actor.cooldownMax || 1);
         if (actor.kind === "ranged") {
-            const attackDps = (actor.attack / cooldown) * Math.min(actor.shotsPerAttack || 1, 6);
+            const shotCount = Math.max(1, actor.shotsPerAttack || 1);
+            const basicTargets = 1 + Math.min(shotCount - 1, 10) * (actor.stage >= 3 ? 0.85 : 0.7);
+            const attackDps = (actor.attack / cooldown) * basicTargets;
             const barrageDps = actor.barrageCooldownMax > 0
                 ? ((actor.barrageShots || 0) * (actor.barrageDamage || actor.attack) / actor.barrageCooldownMax) * 0.65
                 : 0;
@@ -1253,6 +1361,11 @@
         return clamp(0.82 + range * 0.22, 0.95, 2.35);
     }
 
+    function getMobilityCoverageFactor(actor) {
+        if (actor.kind === "ranged") return 1;
+        return clamp(0.86 + (actor.speed || 0) * 0.16 + (actor.range || 0) * 0.06, 0.9, 1.32);
+    }
+
     function getCoreEstimatedDps(round) {
         return ((4 + round) / 0.58) * 0.45;
     }
@@ -1288,14 +1401,135 @@
         return (targetDefenseCv * getWaveDifficultyMultiplier(round)) / STABLE_COEFFICIENT;
     }
 
-    function calculateEnemyCombatValue(hp, attack, speed) {
-        const dps = attack / Math.max(0.2, EnemyDef.cooldown);
-        const baseValue = ENEMY_HP_CV_WEIGHT * hp + DPS_CV_WEIGHT * dps * CV_REFERENCE_TIME;
-        return baseValue * getEnemySpeedFactor(speed);
+    function getEnemyCountForWave(round, targetMonsterCv, profile) {
+        const targetHits = getEnemyTargetHits(round, profile);
+        const baselineEhp = Math.max(8, profile.averageSingleHit * targetHits);
+        const baselineHpValue = ENEMY_HP_CV_WEIGHT * baselineEhp;
+        const baselineAttack = getEnemyBaseAttackForRound(round, profile);
+        const baselineCooldown = getEnemyCooldownForRound(round, profile);
+        const baselineDpsValue = DPS_CV_WEIGHT * (baselineAttack / baselineCooldown) * CV_REFERENCE_TIME;
+        const baselineUtility = MOBILITY_CV_WEIGHT * getEnemySpeedForRound(round, profile) * CV_REFERENCE_TIME;
+        const desiredSingleCv = Math.max(10, baselineHpValue + baselineDpsValue + baselineUtility);
+        const aoeCountBonus = clamp(1 + (profile.aoePressure - 1) * 0.18, 0.95, 1.62);
+        const rawCount = Math.round((targetMonsterCv / desiredSingleCv) * aoeCountBonus);
+        const minCount = Math.round(7 + round * 1.8);
+        const maxCount = Math.round(16 + round * 4.8 + Math.max(0, profile.aoePressure - 1) * 4);
+        return clamp(rawCount, minCount, maxCount);
+    }
+
+    function createEnemyStatsForWave(round, targetMonsterCv, enemyCount, profile) {
+        profile = profile || getCurrentDefenseProfile();
+        const countShape = getCountShapeFactor(enemyCount);
+        const targetSingleCv = targetMonsterCv / Math.max(1, enemyCount * countShape);
+        const damageTakenScale = getEnemyDamageTakenScaleForRound(round, profile);
+        const range = getEnemyRangeForRound(round, profile);
+        const speed = getEnemySpeedForRound(round, profile);
+        const cooldownMax = getEnemyCooldownForRound(round, profile);
+        const targetHits = getEnemyTargetHits(round, profile);
+        const hpShare = clamp(0.52 + Math.max(0, profile.aoePressure - 1) * 0.035 + round * 0.003, ENEMY_HP_CV_SHARE_MIN, ENEMY_HP_CV_SHARE_MAX);
+        const hitBasedEhp = Math.max(profile.averageSingleHit, profile.maxSingleHit * 0.76) * targetHits;
+        const budgetBasedEhp = (targetSingleCv * hpShare) / ENEMY_HP_CV_WEIGHT;
+        const minEhp = getEnemyMinEhpForProfile(profile);
+        const maxEhp = getEnemyMaxEhpForProfile(round, profile);
+        const targetEhp = clamp(Math.max(hitBasedEhp, budgetBasedEhp), minEhp, maxEhp);
+        const hp = Math.max(1, Math.round(targetEhp * damageTakenScale));
+        const attack = getEnemyAttackFromCvBudget(round, targetSingleCv, hp, range, speed, cooldownMax, damageTakenScale, profile);
+
+        return {
+            hp,
+            attack,
+            range,
+            speed,
+            cooldownMax,
+            damageTakenScale
+        };
+    }
+
+    function tuneEnemyStatsForTargetCv(enemyStats, targetMonsterCv, enemyCount, profile) {
+        const countShape = getCountShapeFactor(enemyCount);
+        const targetSingleCv = targetMonsterCv / Math.max(1, enemyCount * countShape);
+        const beforeCv = calculateEnemyCombatValue(enemyStats) * enemyCount * countShape;
+        if (beforeCv >= targetMonsterCv * ENEMY_CV_MATCH_MIN && beforeCv <= targetMonsterCv * ENEMY_CV_MATCH_MAX) return;
+
+        const targetSingleBeforeMultiplier = targetSingleCv / getEnemyAttributeMultiplier(enemyStats);
+        const nonHpCv = calculateEnemyNonHpCombatValue(enemyStats);
+        const desiredEhp = Math.max(1, (targetSingleBeforeMultiplier - nonHpCv) / ENEMY_HP_CV_WEIGHT);
+        const minHp = Math.round(getEnemyMinEhpForProfile(profile) * enemyStats.damageTakenScale);
+        const maxHp = Math.round(getEnemyMaxEhpForProfile(state.round, profile) * enemyStats.damageTakenScale);
+        enemyStats.hp = clamp(Math.round(desiredEhp * enemyStats.damageTakenScale), minHp, Math.max(minHp, maxHp));
+        enemyStats.attack = getEnemyAttackFromCvBudget(state.round, targetSingleCv, enemyStats.hp, enemyStats.range, enemyStats.speed, enemyStats.cooldownMax, enemyStats.damageTakenScale, profile);
+    }
+
+    function calculateEnemyCombatValue(enemyStats) {
+        const eHp = enemyStats.hp / Math.max(0.18, enemyStats.damageTakenScale || 1);
+        const baseValue = ENEMY_HP_CV_WEIGHT * eHp + calculateEnemyNonHpCombatValue(enemyStats);
+        return baseValue * getEnemyAttributeMultiplier(enemyStats);
+    }
+
+    function calculateEnemyNonHpCombatValue(enemyStats) {
+        const dps = enemyStats.attack / Math.max(0.2, enemyStats.cooldownMax || EnemyDef.cooldown);
+        const dpsValue = DPS_CV_WEIGHT * dps * CV_REFERENCE_TIME;
+        const rangeValue = RANGE_CV_WEIGHT * (enemyStats.range || EnemyDef.range) * Math.max(1, enemyStats.attack || 1);
+        const mobilityValue = MOBILITY_CV_WEIGHT * (enemyStats.speed || EnemyDef.speed) * CV_REFERENCE_TIME;
+        return dpsValue + rangeValue + mobilityValue;
+    }
+
+    function getEnemyAttributeMultiplier(enemyStats) {
+        return getEnemySpeedFactor(enemyStats.speed) * getEnemyRangeThreatFactor(enemyStats.range) * getEnemyAttackSpeedFactor(enemyStats.cooldownMax);
     }
 
     function getEnemySpeedFactor(speed) {
-        return clamp(0.9 + (speed - EnemyDef.speed) * 0.35, 0.85, 1.22);
+        return clamp(1 + (speed - EnemyDef.speed) * 0.35, 0.88, 1.24);
+    }
+
+    function getEnemyRangeThreatFactor(range) {
+        return clamp(1 + ((range || EnemyDef.range) - EnemyDef.range) * 0.18, 0.92, 1.18);
+    }
+
+    function getEnemyAttackSpeedFactor(cooldownMax) {
+        return clamp(1 + ((EnemyDef.cooldown / Math.max(0.2, cooldownMax || EnemyDef.cooldown)) - 1) * 0.16, 0.9, 1.18);
+    }
+
+    function getEnemyTargetHits(round, profile) {
+        const burstGap = Math.max(0, (profile.maxSingleHit || 1) - (profile.averageSingleHit || 1));
+        const burstPressure = clamp(burstGap / Math.max(1, profile.averageSingleHit || 1), 0, 1.4);
+        const aoePressure = Math.max(0, (profile.aoePressure || 1) - 1);
+        return clamp(ENEMY_MIN_HITS_TO_KILL + round * 0.12 + aoePressure * 0.42 + burstPressure * 0.55, ENEMY_MIN_HITS_TO_KILL, ENEMY_MAX_HITS_TO_KILL + round * 0.1);
+    }
+
+    function getEnemyMinEhpForProfile(profile) {
+        const singleHit = Math.max(1, profile.averageSingleHit || 1);
+        const maxHit = Math.max(singleHit, profile.maxSingleHit || singleHit);
+        return Math.max(8, singleHit * ENEMY_MIN_HITS_TO_KILL, maxHit * 1.45);
+    }
+
+    function getEnemyMaxEhpForProfile(round, profile) {
+        const singleHit = Math.max(1, profile.averageSingleHit || 1);
+        const maxHit = Math.max(singleHit, profile.maxSingleHit || singleHit);
+        const aoeBonus = Math.max(0, (profile.aoePressure || 1) - 1) * 0.85;
+        return Math.max(getEnemyMinEhpForProfile(profile), maxHit * (ENEMY_MAX_HITS_TO_KILL + round * 0.16 + aoeBonus));
+    }
+
+    function getEnemyAttackFromCvBudget(round, targetSingleCv, hp, range, speed, cooldownMax, damageTakenScale, profile) {
+        const statsForModifier = {
+            hp,
+            attack: 1,
+            range,
+            speed,
+            cooldownMax,
+            damageTakenScale
+        };
+        const targetBeforeMultiplier = targetSingleCv / getEnemyAttributeMultiplier(statsForModifier);
+        const eHp = hp / Math.max(0.18, damageTakenScale || 1);
+        const hpValue = ENEMY_HP_CV_WEIGHT * eHp;
+        const mobilityValue = MOBILITY_CV_WEIGHT * speed * CV_REFERENCE_TIME;
+        const remainingValue = Math.max(targetSingleCv * 0.18, targetBeforeMultiplier - hpValue - mobilityValue);
+        const attackCvPerPoint = (DPS_CV_WEIGHT * CV_REFERENCE_TIME / Math.max(0.2, cooldownMax)) + RANGE_CV_WEIGHT * range;
+        const budgetAttack = remainingValue / Math.max(0.1, attackCvPerPoint);
+        const baseAttack = getEnemyBaseAttackForRound(round, profile);
+        const defensePressure = profile ? profile.defensePressure : 1;
+        const maxAttack = Math.max(baseAttack + 1, 2 + round * 0.95 + Math.max(0, defensePressure - 1) * 2.2);
+        return Math.max(baseAttack, Math.round(clamp(Math.max(baseAttack, budgetAttack), baseAttack, maxAttack)));
     }
 
     function getCountShapeFactor(count) {
@@ -1334,10 +1568,11 @@
             hp,
             maxHp: hp,
             attack: state.battleStats.enemyAttack || getEnemyAttackForRound(state.round),
-            range: EnemyDef.range,
+            range: state.battleStats.enemyRange || EnemyDef.range,
             speed: state.battleStats.enemySpeed || getEnemySpeedForRound(state.round),
             cooldown: 0.3,
-            cooldownMax: EnemyDef.cooldown,
+            cooldownMax: state.battleStats.enemyCooldown || EnemyDef.cooldown,
+            damageTakenScale: state.battleStats.enemyDamageTakenScale || EnemyDef.damageTakenScale,
             sourceCell: null,
             radius: 0.18,
             hitFlash: 0
@@ -1347,16 +1582,40 @@
     }
 
     function getEnemyHpForRound(round) {
-        return Math.max(4, Math.round(5 + round * 0.9 + Math.pow(round, 1.35) * 0.22));
+        return Math.max(6, Math.round(7 + round * 2.2 + Math.pow(round, 1.18) * 0.8));
     }
 
-    function getEnemyAttackForRound(round) {
-        return Math.max(1, Math.floor(1 + round / 5));
+    function getEnemyBaseAttackForRound(round, profile) {
+        const defensePressure = profile ? profile.defensePressure : 1;
+        return Math.max(1, Math.round(1 + round * 0.28 + Math.max(0, defensePressure - 1) * 0.35));
     }
 
-    function getEnemySpeedForRound(round) {
+    function getEnemyAttackForRound(round, profile) {
+        return getEnemyBaseAttackForRound(round, profile);
+    }
+
+    function getEnemyRangeForRound(round, profile) {
+        const playerRange = profile ? profile.averageRange : 2.2;
+        return clamp(EnemyDef.range + round * 0.012 + Math.max(0, playerRange - 2.5) * 0.025, 0.42, 0.9);
+    }
+
+    function getEnemySpeedForRound(round, profile) {
         const ramp = Math.max(0, round - 1);
-        return EnemyDef.speed + Math.min(0.42, ramp * 0.025);
+        const playerRange = profile ? profile.averageRange : 2.2;
+        return clamp(EnemyDef.speed + Math.min(0.32, ramp * 0.018) + Math.max(0, playerRange - 3) * 0.018, 0.82, 1.28);
+    }
+
+    function getEnemyCooldownForRound(round, profile) {
+        const playerCooldown = profile ? profile.averageCooldown : 0.8;
+        return clamp(EnemyDef.cooldown - round * 0.006 - Math.max(0, 0.8 - playerCooldown) * 0.08, 0.52, 0.95);
+    }
+
+    function getEnemyDamageTakenScaleForRound(round, profile) {
+        const averageSingleHit = profile ? profile.averageSingleHit : 8;
+        const maxSingleHit = profile ? profile.maxSingleHit : averageSingleHit;
+        const aoePressure = profile ? Math.max(0, profile.aoePressure - 1) : 0;
+        const hitPressure = clamp((Math.max(averageSingleHit, maxSingleHit * 0.65) - 12) / 120 + aoePressure * 0.025, 0, 0.26);
+        return clamp(EnemyDef.damageTakenScale - Math.floor((round - 1) / 4) * 0.032 - hitPressure, 0.58, 1);
     }
 
     function updateBattle(dt) {
@@ -1444,15 +1703,15 @@
             targets.forEach(function (enemy, index) {
                 const damageScale = index === 0 ? 1 : actor.stage >= 3 ? 0.85 : 0.7;
                 const damage = Math.max(1, Math.floor(actor.attack * damageScale));
-                damageActor(enemy, damage);
+                const finalDamage = damageActor(enemy, damage);
                 addProjectile(actor.x, actor.y, enemy.x, enemy.y, index === 0 ? "#93c5fd" : "#c4b5fd", "ranged");
-                addFloatingMessage("-" + damage, enemy.x, enemy.y, "#f8fafc");
+                addFloatingMessage("-" + finalDamage, enemy.x, enemy.y, "#f8fafc");
             });
             return;
         }
 
-        damageActor(target, actor.attack);
-        addFloatingMessage("-" + actor.attack, target.x, target.y, "#f8fafc");
+        const finalDamage = damageActor(target, actor.attack);
+        addFloatingMessage("-" + finalDamage, target.x, target.y, "#f8fafc");
         if (actor.kind === "melee" && actor.cleaveRadius > 0) {
             damageEnemiesAround(target.x, target.y, actor.cleaveRadius, Math.max(1, Math.floor(actor.attack * actor.cleaveDamageScale)), target);
             addPulse(target.x, target.y, actor.cleaveRadius, "#60a5fa");
@@ -1465,9 +1724,9 @@
 
         targets.forEach(function (enemy, index) {
             const damage = Math.max(1, Math.floor((actor.barrageDamage || actor.attack) * (index % 3 === 0 ? 1 : 0.78)));
-            damageActor(enemy, damage);
+            const finalDamage = damageActor(enemy, damage);
             addProjectile(actor.x, actor.y, enemy.x, enemy.y, index % 3 === 0 ? "#f6c95f" : "#c4b5fd", "ranged");
-            addFloatingMessage("-" + damage, enemy.x, enemy.y, index % 3 === 0 ? "#fef3c7" : "#f8fafc");
+            addFloatingMessage("-" + finalDamage, enemy.x, enemy.y, index % 3 === 0 ? "#fef3c7" : "#f8fafc");
         });
         addPulse(actor.x, actor.y, 2.1 + Math.min(1.4, (actor.mastery || 0) * 0.05), "#a78bfa");
         addFloatingMessage("弹幕 x" + targets.length, actor.x, actor.y - 0.25, "#f6c95f");
@@ -1525,7 +1784,7 @@
     }
 
     function damageActor(actor, damage) {
-        const scale = actor.team === "player" ? (actor.damageTakenScale || 1) : 1;
+        const scale = actor.damageTakenScale || 1;
         const finalDamage = Math.max(1, Math.ceil(damage * scale));
         actor.hp -= finalDamage;
         actor.hitFlash = 0.14;
@@ -1601,9 +1860,9 @@
             const targets = findNearestActors(actor.x, actor.y, "enemy", 16, shots);
             targets.forEach(function (enemy) {
                 const damage = Math.floor(actor.attack * (1.15 + burstCount * 0.22));
-                damageActor(enemy, damage);
+                const finalDamage = damageActor(enemy, damage);
                 addProjectile(actor.x, actor.y, enemy.x, enemy.y, "#c4b5fd", "ranged");
-                addFloatingMessage("-" + damage, enemy.x, enemy.y, "#f8fafc");
+                addFloatingMessage("-" + finalDamage, enemy.x, enemy.y, "#f8fafc");
             });
             addFloatingMessage("齐射 x" + shots, actor.x, actor.y - 0.2, "#c4b5fd");
         } else if (actor.kind === "repair") {
