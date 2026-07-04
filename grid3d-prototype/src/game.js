@@ -5,12 +5,12 @@
     const CORE_MIN = 4;
     const CORE_MAX = 5;
     const LINE_EXP_TO_LEVEL = GRID_SIZE;
-    const INITIAL_GOLD = 18;
+    const INITIAL_GOLD = 36;
     const MAX_CORE_HP = 100;
     const SHAPE_REFRESH_COST = 2;
-    const FREE_BATTLE_GRID_CREDITS = 3;
-    const BATTLE_GRID_COST = 10;
-    const CHANGE_UNIT_COST = 3;
+    const FREE_BATTLE_GRID_CREDITS = 0;
+    const BATTLE_GRID_COST = 12;
+    const CHANGE_UNIT_COST = 4;
     const BASE_COMMAND_LIMIT = 3;
     const MAX_COMMAND_LIMIT = 6;
     const COMMAND_LIMIT_ROUND_STEP = 3;
@@ -27,7 +27,18 @@
     const BUILD_ACTION_BASE = 2;
     const BUILD_ACTION_MAX = 4;
     const BUILD_ACTION_ROUND_STEP = 4;
-    const EARLY_ROUND_BONUS_GOLD = [2, 3, 3, 2, 2];
+    const CV_REFERENCE_TIME = 8;
+    const CV_PER_GOLD = 5.2;
+    const STABLE_COEFFICIENT = 1.15;
+    const DEFENSE_HP_CV_WEIGHT = 0.12;
+    const ENEMY_HP_CV_WEIGHT = 0.45;
+    const DPS_CV_WEIGHT = 1;
+    const KILL_INCOME_RATIO = 0.45;
+    const CLEAR_INCOME_RATIO = 0.55;
+    const WAVE_INCOME_BASE = 9;
+    const WAVE_INCOME_LINEAR = 2.4;
+    const WAVE_INCOME_POWER = 1.15;
+    const WAVE_INCOME_POWER_SCALE = 1.15;
     const CORE_GUARD_POINTS = [
         { x: 4.5, y: 3.7 },
         { x: 5.5, y: 3.7 },
@@ -44,6 +55,7 @@
             label: "近战守卫",
             short: "M",
             color: "#60a5fa",
+            cost: 10,
             hp: 30,
             hpLevel: 6,
             attack: 4,
@@ -56,6 +68,7 @@
             label: "远程射手",
             short: "R",
             color: "#a78bfa",
+            cost: 12,
             hp: 20,
             hpLevel: 4,
             attack: 5,
@@ -68,6 +81,7 @@
             label: "修复师",
             short: "H",
             color: "#34d399",
+            cost: 10,
             hp: 22,
             hpLevel: 4,
             attack: 1,
@@ -82,15 +96,15 @@
 
     const EnemyDef = {
         color: "#fb7185",
-        hp: 7,
-        hpRound: 1.15,
-        hpCurve: 0.55,
-        attack: 2,
-        attackRound: 0.45,
-        attackCurve: 0.35,
+        hp: 5,
+        hpRound: 0.9,
+        hpCurve: 0.22,
+        attack: 1,
+        attackRound: 0.2,
+        attackCurve: 0,
         range: 0.48,
         speed: 0.88,
-        cooldown: 0.75
+        cooldown: 0.8
     };
 
     const ShapeTemplates = [
@@ -168,6 +182,13 @@
             enemyAttack: 1,
             enemySpeed: EnemyDef.speed,
             estimatedPlayerDps: 0,
+            currentDefenseCv: 0,
+            targetMonsterCv: 0,
+            actualMonsterCv: 0,
+            theoreticalEconomy: INITIAL_GOLD,
+            killGoldPerEnemy: 0,
+            killGoldBank: 0,
+            clearReward: 0,
             targetClearTime: 0,
             coreCooldown: 0,
             endDelay: 0
@@ -279,6 +300,13 @@
             enemyAttack: 1,
             enemySpeed: EnemyDef.speed,
             estimatedPlayerDps: 0,
+            currentDefenseCv: 0,
+            targetMonsterCv: 0,
+            actualMonsterCv: 0,
+            theoreticalEconomy: INITIAL_GOLD,
+            killGoldPerEnemy: 0,
+            killGoldBank: 0,
+            clearReward: 0,
             targetClearTime: 0,
             coreCooldown: 0,
             endDelay: 0
@@ -476,9 +504,16 @@
         }, 0);
     }
 
-    function getBattleGridCost(cell) {
-        if (cell && cell.isBattleGrid && cell.summonUnitType) return CHANGE_UNIT_COST;
-        return state.freeBattleGridCredits > 0 ? 0 : BATTLE_GRID_COST;
+    function getUnitBuildCost(unitType) {
+        return UnitDefs[unitType] && UnitDefs[unitType].cost ? UnitDefs[unitType].cost : BATTLE_GRID_COST;
+    }
+
+    function getBattleGridCost(cell, unitType) {
+        const targetUnitType = unitType || (cell && cell.summonUnitType);
+        if (cell && cell.isBattleGrid && cell.summonUnitType) {
+            return Math.max(CHANGE_UNIT_COST, Math.ceil(getUnitBuildCost(targetUnitType) * 0.35));
+        }
+        return state.freeBattleGridCredits > 0 ? 0 : getUnitBuildCost(targetUnitType);
     }
 
     function addCellCharge(cell, amount, reason) {
@@ -929,7 +964,7 @@
             return;
         }
 
-        const cost = getBattleGridCost(cell);
+        const cost = getBattleGridCost(cell, unitType);
         if (state.gold < cost) {
             notify("金币不足，配置需要 " + cost + " 金币。", "error");
             cancelSelectedUnit();
@@ -945,7 +980,7 @@
         cell.isBattleGrid = true;
         cell.summonUnitType = unitType;
         cell.flash = 0.45;
-        pushLog("地块 [" + (cell.col + 1) + "," + (cell.row + 1) + "] 配置为" + UnitDefs[unitType].label + "，" + (cost > 0 ? "消耗 " + cost + " 金币" : "使用免费战斗格") + "。");
+        pushLog("地块 [" + (cell.col + 1) + "," + (cell.row + 1) + "] 配置为" + UnitDefs[unitType].label + "，" + (cost > 0 ? "消耗 " + cost + " 金币" : "无需金币") + "。");
         state.selectedUnitType = null;
         markDirty();
     }
@@ -986,26 +1021,46 @@
             }
         });
 
-        pushLog("第 " + state.round + " 轮战斗开始：敌人 " + state.battleStats.enemiesToSpawn + " 个，目标时长 " + state.battleStats.targetClearTime.toFixed(1) + " 秒。");
+        pushLog("第 " + state.round + " 轮战斗开始：敌人 " + state.battleStats.enemiesToSpawn + " 个，DCV " + Math.round(state.battleStats.currentDefenseCv) + " / MCV " + Math.round(state.battleStats.actualMonsterCv) + "，EV " + Math.round(state.battleStats.theoreticalEconomy) + "。");
         markDirty();
     }
 
     function setupDynamicWave() {
-        const dps = estimateCurrentPlayerDps();
+        const theoreticalEconomy = getTheoreticalEconomyForRound(state.round);
+        const currentDefenseCv = estimateCurrentDefenseCombatValue();
+        const recommendedMonsterCv = getRecommendedMonsterCombatValue(state.round, theoreticalEconomy);
+        const difficultyMultiplier = getWaveDifficultyMultiplier(state.round);
+        const lowerCv = currentDefenseCv * 0.68;
+        const upperCv = currentDefenseCv * (difficultyMultiplier >= 1.15 ? 1.16 : difficultyMultiplier >= 1.05 ? 1.1 : 1.04);
+        const targetMonsterCv = clamp(recommendedMonsterCv, lowerCv, upperCv);
         const targetClearTime = getTargetClearTime(state.round);
         const enemyHp = getEnemyHpForRound(state.round);
-        const minCount = 10 + state.round * 4;
-        const maxCount = 32 + state.round * 10;
-        const totalEnemyHp = dps * targetClearTime * 0.72;
-        const enemyCount = clamp(Math.round(totalEnemyHp / enemyHp), minCount, maxCount);
+        const enemyAttack = getEnemyAttackForRound(state.round);
+        const enemySpeed = getEnemySpeedForRound(state.round);
+        const singleEnemyCv = calculateEnemyCombatValue(enemyHp, enemyAttack, enemySpeed);
+        const minCount = 8 + state.round * 2;
+        const maxCount = 20 + state.round * 6;
+        const roughCount = clamp(Math.round(targetMonsterCv / singleEnemyCv), minCount, maxCount);
+        const countShapeFactor = getCountShapeFactor(roughCount);
+        const enemyCount = clamp(Math.round(targetMonsterCv / (singleEnemyCv * countShapeFactor)), minCount, maxCount);
+        const actualMonsterCv = singleEnemyCv * enemyCount * getCountShapeFactor(enemyCount);
         const spawnInterval = clamp(targetClearTime * 0.65 / Math.max(1, enemyCount), MIN_ENEMY_SPAWN_INTERVAL, MAX_ENEMY_SPAWN_INTERVAL);
+        const plannedIncome = getPlannedWaveIncome(state.round);
+        const killGoldPool = plannedIncome * KILL_INCOME_RATIO;
 
-        state.battleStats.estimatedPlayerDps = dps;
+        state.battleStats.estimatedPlayerDps = estimateCurrentPlayerDps();
+        state.battleStats.currentDefenseCv = currentDefenseCv;
+        state.battleStats.targetMonsterCv = targetMonsterCv;
+        state.battleStats.actualMonsterCv = actualMonsterCv;
+        state.battleStats.theoreticalEconomy = theoreticalEconomy;
         state.battleStats.targetClearTime = targetClearTime;
         state.battleStats.enemiesToSpawn = enemyCount;
         state.battleStats.enemyHp = enemyHp;
-        state.battleStats.enemyAttack = getEnemyAttackForRound(state.round);
-        state.battleStats.enemySpeed = getEnemySpeedForRound(state.round);
+        state.battleStats.enemyAttack = enemyAttack;
+        state.battleStats.enemySpeed = enemySpeed;
+        state.battleStats.killGoldPerEnemy = killGoldPool / Math.max(1, enemyCount);
+        state.battleStats.killGoldBank = 0;
+        state.battleStats.clearReward = Math.max(3, Math.round(plannedIncome * CLEAR_INCOME_RATIO));
         state.battleStats.spawnInterval = spawnInterval;
     }
 
@@ -1131,6 +1186,24 @@
         return Math.max(8, heroDps + getCoreEstimatedDps(state.round));
     }
 
+    function estimateCurrentDefenseCombatValue() {
+        const heroCv = state.actors.reduce(function (total, actor) {
+            if (actor.team !== "player") return total;
+            return total + calculateDefenseCombatValue(actor);
+        }, 0);
+        return Math.max(25, heroCv + getCoreDefenseCombatValue(state.round));
+    }
+
+    function calculateDefenseCombatValue(actor) {
+        const dps = estimateActorDps(actor);
+        const outputValue = DPS_CV_WEIGHT * dps * CV_REFERENCE_TIME * getRangeCoverageFactor(actor.range);
+        const ehp = actor.maxHp / Math.max(0.18, actor.damageTakenScale || 1);
+        const defenseValue = DEFENSE_HP_CV_WEIGHT * ehp;
+        const functionValue = getActorFunctionCombatValue(actor);
+        const openingValue = getOpeningSkillCombatValue(actor);
+        return outputValue + defenseValue + functionValue + openingValue;
+    }
+
     function estimateActorDps(actor) {
         const cooldown = Math.max(0.18, actor.cooldownMax || 1);
         if (actor.kind === "ranged") {
@@ -1149,8 +1222,84 @@
         return actor.attack / cooldown;
     }
 
+    function getActorFunctionCombatValue(actor) {
+        if (actor.kind === "repair") {
+            const baseHeal = UnitDefs.repair.heal + UnitDefs.repair.healLevel * (getCellLevel(actor.sourceCell) - 1);
+            return baseHeal * (actor.healMultiplier || 1) * 2.4;
+        }
+        if (actor.kind === "melee") {
+            return actor.deathBurstDamage > 0 ? actor.deathBurstDamage * 0.22 : 0;
+        }
+        return 0;
+    }
+
+    function getOpeningSkillCombatValue(actor) {
+        const burst = actor.sourceCell ? (actor.sourceCell.burstReady || 0) : 0;
+        if (burst <= 0) return 0;
+        if (actor.kind === "ranged") {
+            const shots = Math.min(14, (actor.shotsPerAttack || 1) + burst * 3);
+            return actor.attack * shots * (0.55 + burst * 0.08);
+        }
+        if (actor.kind === "melee") {
+            return actor.attack * burst * (1.6 + actor.stage * 0.45);
+        }
+        if (actor.kind === "repair") {
+            return (UnitDefs.repair.heal + actor.stage * 5) * burst * (actor.healMultiplier || 1) * 1.6;
+        }
+        return 0;
+    }
+
+    function getRangeCoverageFactor(range) {
+        return clamp(0.82 + range * 0.22, 0.95, 2.35);
+    }
+
     function getCoreEstimatedDps(round) {
         return ((4 + round) / 0.58) * 0.45;
+    }
+
+    function getCoreDefenseCombatValue(round) {
+        return getCoreEstimatedDps(round) * CV_REFERENCE_TIME * 0.62 + state.maxCoreHp * DEFENSE_HP_CV_WEIGHT * 0.35;
+    }
+
+    function getTheoreticalEconomyForRound(round) {
+        let economy = INITIAL_GOLD;
+        for (let index = 1; index < round; index += 1) {
+            economy += getPlannedWaveIncome(index);
+        }
+        return economy;
+    }
+
+    function getPlannedWaveIncome(round) {
+        return Math.round(WAVE_INCOME_BASE + round * WAVE_INCOME_LINEAR + Math.pow(round, WAVE_INCOME_POWER) * WAVE_INCOME_POWER_SCALE);
+    }
+
+    function getDefenseInvestmentRatio(round) {
+        return clamp(0.92 - (round - 1) * 0.012, 0.74, 0.92);
+    }
+
+    function getWaveDifficultyMultiplier(round) {
+        if (round > 0 && round % 5 === 0) return 1.18;
+        if (round > 0 && round % 3 === 0) return 1.08;
+        return 0.96;
+    }
+
+    function getRecommendedMonsterCombatValue(round, theoreticalEconomy) {
+        const targetDefenseCv = theoreticalEconomy * getDefenseInvestmentRatio(round) * CV_PER_GOLD;
+        return (targetDefenseCv * getWaveDifficultyMultiplier(round)) / STABLE_COEFFICIENT;
+    }
+
+    function calculateEnemyCombatValue(hp, attack, speed) {
+        const dps = attack / Math.max(0.2, EnemyDef.cooldown);
+        const baseValue = ENEMY_HP_CV_WEIGHT * hp + DPS_CV_WEIGHT * dps * CV_REFERENCE_TIME;
+        return baseValue * getEnemySpeedFactor(speed);
+    }
+
+    function getEnemySpeedFactor(speed) {
+        return clamp(0.9 + (speed - EnemyDef.speed) * 0.35, 0.85, 1.22);
+    }
+
+    function getCountShapeFactor(count) {
+        return clamp(0.88 + Math.log(Math.max(1, count)) / 13, 0.92, 1.22);
     }
 
     function getTargetClearTime(round) {
@@ -1401,9 +1550,13 @@
             if (actor.hp > 0) return true;
             if (actor.team === "enemy") {
                 state.battleStats.kills += 1;
-                const reward = 1;
-                state.gold += reward;
-                addFloatingMessage("+" + reward, actor.x, actor.y, "#f6c95f");
+                state.battleStats.killGoldBank += state.battleStats.killGoldPerEnemy || 0;
+                const reward = Math.floor(state.battleStats.killGoldBank + 0.0001);
+                if (reward > 0) {
+                    state.gold += reward;
+                    state.battleStats.killGoldBank -= reward;
+                    addFloatingMessage("+" + reward, actor.x, actor.y, "#f6c95f");
+                }
             }
             return false;
         });
@@ -1411,8 +1564,7 @@
     }
 
     function endBattle() {
-        const earlyBonus = getEarlyRoundBonusGold(state.round);
-        const reward = 6 + state.round + earlyBonus;
+        const reward = state.battleStats.clearReward || Math.max(3, Math.round(getPlannedWaveIncome(state.round) * CLEAR_INCOME_RATIO));
         state.gold += reward;
         state.coreHp = Math.min(state.maxCoreHp, state.coreHp + 8);
         state.round += 1;
@@ -1426,11 +1578,6 @@
         triggerGoldGainFx(reward, "胜利");
         pushLog("战斗胜利：奖励 " + reward + " 金币，回到构建阶段，构建行动 " + state.buildActions + "。");
         markDirty();
-    }
-
-    function getEarlyRoundBonusGold(round) {
-        if (round < 1 || round > EARLY_ROUND_BONUS_GOLD.length) return 0;
-        return EARLY_ROUND_BONUS_GOLD[round - 1];
     }
 
     function triggerOpeningSkill(actor, cell) {
@@ -1710,14 +1857,16 @@
         dom.roundText.textContent = String(state.round);
         dom.goldText.textContent = String(state.gold);
         dom.interestText.textContent = state.phase === "idle"
-            ? "指挥 0/" + BASE_COMMAND_LIMIT
+            ? "行动 0/" + BUILD_ACTION_BASE + " · 指挥 0/" + BASE_COMMAND_LIMIT
             : "行动 " + state.buildActions + "/" + getBuildActionLimit() + " · 指挥 " + getBattleGridCount() + "/" + getCommandLimit() + (state.freeBattleGridCredits > 0 ? " · 免费 " + state.freeBattleGridCredits : "");
         dom.coreText.textContent = Math.round(state.coreHp) + " / " + state.maxCoreHp;
         dom.coreMeter.style.width = Math.max(0, (state.coreHp / state.maxCoreHp) * 100) + "%";
 
         const playerCount = countActors("player");
         const enemyCount = countActors("enemy");
-        dom.actorText.textContent = "单位 " + playerCount + " / 指挥 " + getBattleGridCount() + "/" + getCommandLimit() + " / 敌人 " + enemyCount;
+        dom.actorText.textContent = state.phase === "battle"
+            ? "单位 " + playerCount + " / 敌人 " + enemyCount + " / DCV " + Math.round(state.battleStats.currentDefenseCv) + " / MCV " + Math.round(state.battleStats.actualMonsterCv)
+            : "单位 " + playerCount + " / 指挥 " + getBattleGridCount() + "/" + getCommandLimit() + " / 敌人 " + enemyCount;
         dom.killText.textContent = String(state.battleStats.kills);
 
         dom.startBattleButton.disabled = state.phase !== "build";
@@ -1796,7 +1945,7 @@
         if (!cell) {
             if (state.selectedUnitType) {
                 dom.selectedCellText.textContent = "配置模式";
-                const newCostText = state.freeBattleGridCredits > 0 ? "剩余 " + state.freeBattleGridCredits + " 个新战斗格免费" : "新建消耗 " + BATTLE_GRID_COST + " 金币";
+                const newCostText = state.freeBattleGridCredits > 0 ? "剩余 " + state.freeBattleGridCredits + " 个新战斗格免费" : "新建消耗 " + getUnitBuildCost(state.selectedUnitType) + " 金币";
                 dom.cellInfo.textContent = "已选择" + UnitDefs[state.selectedUnitType].label + "，点击非核心格配置战斗单位。构建行动 " + state.buildActions + "/" + getBuildActionLimit() + "，指挥 " + getBattleGridCount() + "/" + getCommandLimit() + "，" + newCostText + "，更换消耗 " + CHANGE_UNIT_COST + " 金币。";
             } else {
                 dom.selectedCellText.textContent = "未选择地块";
@@ -1812,10 +1961,11 @@
         }
 
         const unit = cell.summonUnitType ? UnitDefs[cell.summonUnitType].label : "未配置";
-        const cost = getBattleGridCost(cell);
-        const costText = cost > 0 ? cost + " 金币" : "免费";
         const mode = state.selectedUnitType ? " 当前选择：" + UnitDefs[state.selectedUnitType].label + "。" : "";
-        dom.cellInfo.textContent = "阶段 " + getStageLabel(getCellStage(cell)) + "，充能 " + (cell.charge || 0) + "/" + MAX_CELL_CHARGE + "，精通 " + (cell.mastery || 0) + "/" + MAX_CELL_MASTERY + "，开场技 " + (cell.burstReady || 0) + "/" + MAX_BURST_READY + "，指挥 " + getBattleGridCount() + "/" + getCommandLimit() + "，有效 Lv." + getCellLevel(cell) + "，行 Lv." + getRowLevel(cell.row) + " " + getRowProgress(cell.row) + "/" + LINE_EXP_TO_LEVEL + "，列 Lv." + getColumnLevel(cell.col) + " " + getColumnProgress(cell.col) + "/" + LINE_EXP_TO_LEVEL + "，单位：" + unit + "。配置/更换消耗 " + costText + "。" + mode;
+        const costText = state.selectedUnitType
+            ? (getBattleGridCost(cell, state.selectedUnitType) > 0 ? getBattleGridCost(cell, state.selectedUnitType) + " 金币" : "免费")
+            : (cell.summonUnitType ? "更换约 " + getBattleGridCost(cell, cell.summonUnitType) + " 金币" : "按单位造价");
+        dom.cellInfo.textContent = "阶段 " + getStageLabel(getCellStage(cell)) + "，充能 " + (cell.charge || 0) + "/" + MAX_CELL_CHARGE + "，精通 " + (cell.mastery || 0) + "/" + MAX_CELL_MASTERY + "，开场技 " + (cell.burstReady || 0) + "/" + MAX_BURST_READY + "，指挥 " + getBattleGridCount() + "/" + getCommandLimit() + "，有效 Lv." + getCellLevel(cell) + "，行 Lv." + getRowLevel(cell.row) + " " + getRowProgress(cell.row) + "/" + LINE_EXP_TO_LEVEL + "，列 Lv." + getColumnLevel(cell.col) + " " + getColumnProgress(cell.col) + "/" + LINE_EXP_TO_LEVEL + "，单位：" + unit + "。配置费用：" + costText + "。" + mode;
     }
 
     function resizeCanvas() {
